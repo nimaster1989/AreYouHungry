@@ -1,5 +1,6 @@
 package comp3350.Group2.areyouhungry;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
@@ -18,7 +19,7 @@ import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageButton mBtnRandowSearch;
+    //private ImageButton mBtnRandowSearch;
     //COMP3350  group2
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +34,10 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-        //jump to
-        mBtnRandowSearch = (ImageButton) findViewById(R.id.imageButton);
-        mBtnRandowSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
+        //jump to randomActivity page when click the buttom
+
+
     }
 
 
