@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
     }
-    //jump to randomActivity page when click the imagebutton
+    //jump to randomActivity page when click the image button
     public void randomPickOnClick(View view) {
         Intent random_intent = new Intent(MainActivity.this, RandomActivity.class);
         MainActivity.this.startActivity(random_intent);

@@ -2,6 +2,7 @@ package comp3350.Group2.areyouhungry;
 
 import comp3350.Group2.areyouhungry.presistence.DataAccessStub;
 
+//services is to create and get data from the database
 public class Services {
     private static DataAccessStub dataAccessService = null;
 
