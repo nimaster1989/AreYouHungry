@@ -20,7 +20,6 @@ import android.widget.ImageButton;
 import comp3350.Group2.areyouhungry.ui.RandomActivity;
 
 public class MainActivity extends AppCompatActivity {
-
     //COMP3350  group2
     @Override
     protected void onCreate(Bundle savedInstanceState) {
