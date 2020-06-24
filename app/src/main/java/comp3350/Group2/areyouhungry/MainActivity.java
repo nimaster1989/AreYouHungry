@@ -1,15 +1,24 @@
 package comp3350.Group2.areyouhungry;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.view.View;
+import android.widget.Button;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ImageButton mBtnRandowSearch;
     //COMP3350  group2
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,5 +33,16 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+        //jump to
+        mBtnRandowSearch = (ImageButton) findViewById(R.id.imageButton);
+        mBtnRandowSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
+
+
+
 }
