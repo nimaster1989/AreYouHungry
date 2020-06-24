@@ -1,5 +1,6 @@
 package comp3350.Group2.areyouhungry.objects;
 
+//class for food
 public class Foods {
     private int foodID;
     private String foodName;
