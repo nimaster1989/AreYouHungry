@@ -3,4 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_favorites">Favorite</string>
     <string name="title_more">More</string>
+    <string name="search_food">Search Food</string>
+    <string name="random_pick">Random_Pick</string>
+    <string name="pick_for_me">Pick For Me</string>
 </resources>
