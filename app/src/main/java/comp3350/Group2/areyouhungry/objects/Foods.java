@@ -1,6 +1,7 @@
 package comp3350.Group2.areyouhungry.objects;
 
 //class for food
+//DATABASE commit test
 public class Foods {
     private int foodID;
     private String foodName;
