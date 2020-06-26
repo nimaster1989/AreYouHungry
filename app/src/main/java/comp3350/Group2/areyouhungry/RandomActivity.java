@@ -1,4 +1,4 @@
-package comp3350.Group2.areyouhungry.ui;
+package comp3350.Group2.areyouhungry;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,7 @@ public class RandomActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("random activity create");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random);
     }
