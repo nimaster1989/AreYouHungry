@@ -20,7 +20,7 @@ public class AllFoodsActivity extends AppCompatActivity {
     private AccessFoods accessFoods;
     private ArrayList<Food> foodList;
     private ArrayAdapter<Food> foodArrayAdapter;
-    private int selectedFoodPosition = -1;
+    //private int selectedFoodPosition = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("File(AllFoodsActivity) AllFoodsActivity on create");
@@ -30,7 +30,7 @@ public class AllFoodsActivity extends AppCompatActivity {
         accessFoods = new AccessFoods();
 
         foodList = new ArrayList<Food>();
-        String result = accessFoods.getCourses(foodList);
+        String result = accessFoods.getFoods(foodList);
         if(result != null){
             System.out.println("accessFoods.getCourses Error");
         }else {

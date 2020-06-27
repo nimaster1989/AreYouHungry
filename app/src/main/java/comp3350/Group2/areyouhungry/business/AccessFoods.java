@@ -21,13 +21,18 @@ public class AccessFoods {
         food = null;
         currentFood = 0;
     }
-    public String getCourses(List<Food> foods)
+    public String getFoods(List<Food> foods)
     {
         System.out.println("File(AccessFood) getCoures create");
         foods.clear();
         return dataAccess.getFoodSequential(foods);
     }
-
+    public String getRandom(List<Food> foods)
+    {
+        System.out.println("File(AccessFood) getCoures create");
+        foods.clear();
+        return dataAccess.getFoodRandom(foods);
+    }
     public Food getSequential()
     {
         System.out.println("File(AccessFood) getSequantial create");
@@ -50,22 +55,22 @@ public class AccessFoods {
         }
         return food;
     }
-    public Food getRandom(String foodID)
-    {
-        System.out.println("File(AccessCourse) getRandom create");
-        foods = dataAccess.getFoodRandom(new Food(foodID));
-        currentFood = 0;
-        if (currentFood < foods.size())
-        {
-            food = (Food) foods.get(currentFood);
-            currentFood++;
-        }
-        else
-        {
-            foods = null;
-            food = null;
-            currentFood = 0;
-        }
-        return food;
-    }
+//    public Food getRandom(String foodID)
+//    {
+//        System.out.println("File(AccessCourse) getRandom create");
+//        foods = dataAccess.getFoodRandom(foods);
+//        currentFood = 0;
+//        if (currentFood < foods.size())
+//        {
+//            food = (Food) foods.get(currentFood);
+//            currentFood++;
+//        }
+//        else
+//        {
+//            foods = null;
+//            food = null;
+//            currentFood = 0;
+//        }
+//        return food;
+//    }
 }

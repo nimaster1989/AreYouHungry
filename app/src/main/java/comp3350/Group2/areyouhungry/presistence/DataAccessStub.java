@@ -2,7 +2,7 @@ package comp3350.Group2.areyouhungry.presistence;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Random;
 import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.objects.Food;
 
@@ -38,24 +38,20 @@ public class DataAccessStub {
         System.out.println("Closed " +dbType +" database " +dbName);
     }
 
+    //xu yang: this function is from sample project, used to add food to a list that contain
+    //all foods in the stub datasbase
     public String getFoodSequential(List<Food> foodResult){
         System.out.println("run getFoodSequential");
         foodResult.addAll((foods));
         return null;
     }
 
-    public ArrayList<Food> getFoodRandom(Food currentFood)
-    {
-        System.out.println("File(DataAccessStub) run get FoodRandom");
-        ArrayList<Food> newCourses;
-        int index;
-
-        newCourses = new ArrayList<Food>();
-        index = foods.indexOf(currentFood);
-        if (index >= 0)
-        {
-            newCourses.add(foods.get(index));
-        }
-        return newCourses;
+    //xu yang: this function is used to generate a random food from the stub database
+    //and add it into the foodresult List
+    public String getFoodRandom(List<Food> foodResult){
+        System.out.println("run getFoodRandom");
+        Random random = new Random();
+        foodResult.add(foods.get(random.nextInt(foods.size())));
+        return null;
     }
 }
