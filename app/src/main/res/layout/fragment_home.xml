@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fadingEdge="horizontal|vertical"
     android:visibility="visible"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".MainActivity">
 
 
     <TextView
@@ -43,13 +43,14 @@
 
     <Button
         android:id="@+id/randomFoodButton"
-        android:layout_width="264dp"
+        android:layout_width="352dp"
         android:layout_height="81dp"
         android:layout_below="@+id/searchView2"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="157dp"
-        android:text="Pick For Me!"
-        android:layout_centerHorizontal="true"/>
-        
+        android:onClick="randomPickOnClick"
+        android:text="Pick For Me!" />
+
 
 
 </RelativeLayout>
