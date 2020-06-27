@@ -30,7 +30,13 @@ public class DataAccessStub {
         foods.add(food);
         food = new Food("003","pie");
         foods.add(food);
-
+        food = new Food("004","cake");
+        foods.add(food);
+        food = new Food("005","chips");
+        foods.add(food);
+        food = new Food("006","veggies");
+        foods.add(food);
+        
         System.out.println("Opened " +dbType +" database " +dbName);
     }
     public void close()

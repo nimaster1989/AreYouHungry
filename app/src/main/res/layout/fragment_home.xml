@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fadingEdge="horizontal|vertical"
     android:visibility="visible"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".MainActivity">
 
 
     <TextView
@@ -41,39 +41,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="500dp"
-        android:layout_height="158dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:backgroundTint="#F8F3C5"
-        android:contentDescription="@string/random_pick"
-        android:src="@drawable/ic_launcher_foreground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView2"
-        app:layout_constraintVertical_bias="0.117"
+    <Button
+        android:id="@+id/randomFoodButton"
+        android:layout_width="352dp"
+        android:layout_height="81dp"
+        android:layout_below="@+id/searchView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="157dp"
         android:onClick="randomPickOnClick"
-        />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="198dp"
-        android:layout_height="55dp"
-        android:text="@string/pick_for_me"
-        android:textAlignment="textStart"
-        android:textColor="#80000000"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton"
-        app:layout_constraintHorizontal_bias="0.079"
-        app:layout_constraintStart_toStartOf="@+id/imageButton"
-        app:layout_constraintTop_toTopOf="@+id/imageButton"
-        app:layout_constraintVertical_bias="0.155" />
+        android:text="Pick For Me!" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>
