@@ -23,29 +23,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <SearchView
-        android:id="@+id/searchView2"
-        style="@android:style/Widget.Material.Light.SearchView"
-        android:layout_width="500dp"
-        android:layout_height="73dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="116dp"
-        android:layout_marginEnd="32dp"
-        android:background="#C6FA8A"
-        android:baselineAligned="false"
-        android:fadingEdge="horizontal|vertical"
-        android:focusable="auto"
-        android:queryHint="Search food"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/specifiedFoodButton"
+        android:layout_width="352dp"
+        android:layout_height="81dp"
+        android:layout_below="@+id/text_home"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="157dp"
+        android:onClick="preferredPickOnClick"
+        android:text="Preference Search!" />
 
     <Button
         android:id="@+id/randomFoodButton"
         android:layout_width="352dp"
         android:layout_height="81dp"
-        android:layout_below="@+id/searchView2"
+        android:layout_below="@+id/specifiedFoodButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="157dp"
         android:onClick="randomPickOnClick"

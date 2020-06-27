@@ -36,7 +36,7 @@ public class DataAccessStub {
         foods.add(food);
         food = new Food("006","veggies");
         foods.add(food);
-        
+
         System.out.println("Opened " +dbType +" database " +dbName);
     }
     public void close()

@@ -12,6 +12,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+
 public class MainActivity extends AppCompatActivity {
     public static final String dbName="SC";
     //COMP3350  group2
@@ -40,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void startUp() {
         Services.createDataAccess(dbName);
+    }
+
+    public void preferredPickOnClick(View view) {
+        Intent preferred_intent = new Intent(MainActivity.this, PreferredActivity.class);
+        MainActivity.this.startActivity(preferred_intent);
     }
 
     //jump to randomActivity page when click the image button
