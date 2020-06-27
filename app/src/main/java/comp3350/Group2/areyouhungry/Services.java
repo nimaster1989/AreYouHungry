@@ -8,10 +8,11 @@ public class Services {
 
     public static DataAccessStub createDataAccess(String dbName)
     {
+        System.out.println("create data access start");
         if (dataAccessService == null)
         {
             dataAccessService = new DataAccessStub(dbName);
-            //dataAccessService.open(Main.dbName);
+            dataAccessService.open(MainActivity.dbName);
         }
         return dataAccessService;
     }

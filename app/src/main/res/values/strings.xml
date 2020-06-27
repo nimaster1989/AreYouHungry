@@ -6,4 +6,11 @@
     <string name="search_food">Search Food</string>
     <string name="random_pick">Random_Pick</string>
     <string name="pick_for_me">Pick For Me</string>
+    <string name="all_foods">All Foods &amp; Recipes</string>
+    <string name="title_activity_all_foods">AllFoodsActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
 </resources>

@@ -1,20 +1,26 @@
 package comp3350.Group2.areyouhungry.objects;
 
 //class for food
-public class Foods {
-    private int foodID;
+//DATABASE commit test
+public class Food {
+    private String foodID;
     private String foodName;
     private String recipeLink;
     private boolean favourite;
 
-    public Foods(int newFoodID,String newFoodName)
+    public Food(String foodID) {
+        this.foodID = foodID;
+        this.foodName = null;
+    }
+
+    public Food(String newFoodID, String newFoodName)
     {
         foodID = newFoodID;
         foodName = newFoodName;
         recipeLink = null;
         favourite= false;
     }
-    public int getFoodID(){ return foodID; }
+    public String getFoodID(){ return foodID; }
 
     public String getFoodName() { return foodName; }
 
@@ -30,7 +36,7 @@ public class Foods {
 
     @Override
     public String toString() {
-        return "Foods{" +
+        return "Food{" +
                 "foodID=" + foodID +
                 ", foodName='" + foodName + '\'' +
                 ", recipeLink='" + recipeLink + '\'' +
@@ -43,13 +49,13 @@ public class Foods {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Foods foods = (Foods) o;
+        Food food = (Food) o;
 
-        if (getFoodID() != foods.getFoodID()) return false;
-        if (favourite != foods.favourite) return false;
-        if (getFoodName() != null ? !getFoodName().equals(foods.getFoodName()) : foods.getFoodName() != null)
+        if (getFoodID() != food.getFoodID()) return false;
+        if (favourite != food.favourite) return false;
+        if (getFoodName() != null ? !getFoodName().equals(food.getFoodName()) : food.getFoodName() != null)
             return false;
-        return getRecipeLink() != null ? getRecipeLink().equals(foods.getRecipeLink()) : foods.getRecipeLink() == null;
+        return getRecipeLink() != null ? getRecipeLink().equals(food.getRecipeLink()) : food.getRecipeLink() == null;
     }
 
 }
