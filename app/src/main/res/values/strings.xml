@@ -15,4 +15,5 @@
     <string name="hello_world">Hello Square World!</string>
     <string name="title_food_list">Foods</string>
     <string name="title_food_detail">Food Detail</string>
+    <string name="all_food_page">all food page</string>
 </resources>
