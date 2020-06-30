@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void allFoodsOnClick(View view) {
-        Intent all_intent = new Intent(MainActivity.this, AllFoodsActivity.class);
-        //Intent all_intent = new Intent(MainActivity.this, FoodListActivity.class);
+        //Intent all_intent = new Intent(MainActivity.this, AllFoodsActivity.class);
+        Intent all_intent = new Intent(MainActivity.this, FoodListActivity.class);
         MainActivity.this.startActivity(all_intent);
     }
 }

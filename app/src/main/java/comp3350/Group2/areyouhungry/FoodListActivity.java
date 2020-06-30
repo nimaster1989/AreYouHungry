@@ -17,8 +17,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import comp3350.Group2.areyouhungry.business.AccessFoods;
 import comp3350.Group2.areyouhungry.dummy.DummyContent;
+import comp3350.Group2.areyouhungry.objects.Food;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,6 +38,9 @@ public class FoodListActivity extends AppCompatActivity {
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
      */
+
+    private AccessFoods accessFoods;
+    private ArrayList<Food> foodList;
     private boolean mTwoPane;
 
     @Override
@@ -69,22 +75,28 @@ public class FoodListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMS, mTwoPane));
+        accessFoods = new AccessFoods();
+        foodList = new ArrayList<Food>();
+        accessFoods.getFoods(foodList);
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, foodList, mTwoPane));
+        //recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMS, mTwoPane));
     }
 
     public static class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final FoodListActivity mParentActivity;
-        private final List<DummyContent.DummyItem> mValues;
+        private final List<Food> mValues;
+        //private final List<DummyContent.DummyItem> mValues;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DummyContent.DummyItem item = (DummyContent.DummyItem) view.getTag();
+                  Food food = (Food) view.getTag();
+//                DummyContent.DummyItem item = (DummyContent.DummyItem) view.getTag();
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
-                    arguments.putString(FoodDetailFragment.ARG_ITEM_ID, item.id);
+                    arguments.putString(FoodDetailFragment.ARG_ITEM_ID, food.foodID);
                     FoodDetailFragment fragment = new FoodDetailFragment();
                     fragment.setArguments(arguments);
                     mParentActivity.getSupportFragmentManager().beginTransaction()
@@ -93,16 +105,19 @@ public class FoodListActivity extends AppCompatActivity {
                 } else {
                     Context context = view.getContext();
                     Intent intent = new Intent(context, FoodDetailActivity.class);
-                    intent.putExtra(FoodDetailFragment.ARG_ITEM_ID, item.id);
+                    intent.putExtra(FoodDetailFragment.ARG_ITEM_ID, food.foodID);
 
                     context.startActivity(intent);
                 }
             }
         };
 
-        SimpleItemRecyclerViewAdapter(FoodListActivity parent,
-                                      List<DummyContent.DummyItem> items,
-                                      boolean twoPane) {
+//        SimpleItemRecyclerViewAdapter(FoodListActivity parent,
+//                                      List<DummyContent.DummyItem> items,
+//                                      boolean twoPane) {
+            SimpleItemRecyclerViewAdapter(FoodListActivity parent,
+                                    List<Food> items,
+                                        boolean twoPane) {
             mValues = items;
             mParentActivity = parent;
             mTwoPane = twoPane;
@@ -117,8 +132,10 @@ public class FoodListActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.mIdView.setText(mValues.get(position).id);
-            holder.mContentView.setText(mValues.get(position).content);
+                holder.mIdView.setText(mValues.get(position).foodID);
+                holder.mContentView.setText(mValues.get(position).foodName);
+//            holder.mIdView.setText(mValues.get(position).id);
+//            holder.mContentView.setText(mValues.get(position).food_name);
 
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);

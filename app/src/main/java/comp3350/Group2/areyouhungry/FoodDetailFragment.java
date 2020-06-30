@@ -12,7 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import comp3350.Group2.areyouhungry.business.AccessFoods;
 import comp3350.Group2.areyouhungry.dummy.DummyContent;
+import comp3350.Group2.areyouhungry.objects.Food;
+import comp3350.Group2.areyouhungry.presistence.DataAccessStub;
 
 /**
  * A fragment representing a single Food detail screen.
@@ -30,7 +36,9 @@ public class FoodDetailFragment extends Fragment {
     /**
      * The dummy content this fragment is presenting.
      */
-    private DummyContent.DummyItem mItem;
+    private Food mFood;
+    private AccessFoods accessFoods;
+    //private DummyContent.DummyItem mItem;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -47,12 +55,15 @@ public class FoodDetailFragment extends Fragment {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
-
+            //mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+            accessFoods = new AccessFoods();
+            Map<String,Food> Food_map = new HashMap<String,Food>();
+            accessFoods.getMap(Food_map);
+            mFood = Food_map.get(getArguments().getString(ARG_ITEM_ID));
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
-                appBarLayout.setTitle(mItem.content);
+                appBarLayout.setTitle(mFood.foodName);
             }
         }
     }
@@ -61,10 +72,12 @@ public class FoodDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.food_detail, container, false);
-
+        System.out.println("FoodDetailFragment oncreate view mFood is null");
         // Show the dummy content as text in a TextView.
-        if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.food_detail)).setText(mItem.details);
+        if (mFood != null) {
+            ((TextView) rootView.findViewById(R.id.food_detail)).setText(mFood.recipeLink);
+        }else{
+            System.out.println("FoodDetailFragment oncreate view mFood is null");
         }
 
         return rootView;
