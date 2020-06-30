@@ -32,10 +32,10 @@ public class AccessFoods {
         foods.clear();
         return dataAccess.getFoodMap(foods);
     }
-    public Map getMapRandom(Map foods){
-        foods.clear();
-        return dataAccess.getFoodMapRamdom(foods);
-    }
+//    public Map getMapRandom(Map foods){
+//        foods.clear();
+//        return dataAccess.getFoodMapRamdom(foods);
+//    }
     public String getFoods(List<Food> foods)
     {
         System.out.println("File(AccessFood) getCoures create");
