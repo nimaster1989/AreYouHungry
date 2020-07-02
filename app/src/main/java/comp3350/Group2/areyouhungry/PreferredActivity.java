@@ -3,20 +3,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.AdapterView.OnItemSelectedListener;
 
-import java.util.ArrayList;
+import java.sql.SQLOutput;
 
-import comp3350.Group2.areyouhungry.MainActivity;
-import comp3350.Group2.areyouhungry.R;
-import comp3350.Group2.areyouhungry.business.AccessFoods;
-import comp3350.Group2.areyouhungry.objects.Food;
-
-public class PreferredActivity extends AppCompatActivity{
+public class PreferredActivity extends AppCompatActivity implements OnItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +26,20 @@ public class PreferredActivity extends AppCompatActivity{
 
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         foodSpinner.setAdapter(myAdapter);
+        foodSpinner.setOnItemSelectedListener(this);
 
 
+    }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View v, int position,
+                               long id) {
+        System.out.println("Selected");
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
     }
 }
