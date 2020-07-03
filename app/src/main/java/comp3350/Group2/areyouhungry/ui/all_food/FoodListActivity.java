@@ -1,4 +1,4 @@
-package comp3350.Group2.areyouhungry;
+package comp3350.Group2.areyouhungry.ui.all_food;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,8 +17,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import comp3350.Group2.areyouhungry.R;
 import comp3350.Group2.areyouhungry.business.AccessFoods;
-import comp3350.Group2.areyouhungry.dummy.DummyContent;
+//import comp3350.Group2.areyouhungry.dummy.DummyContent;
 import comp3350.Group2.areyouhungry.objects.Food;
 
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ public class FoodListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("FoodListActivity oncreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_list);
 
@@ -112,9 +114,7 @@ public class FoodListActivity extends AppCompatActivity {
             }
         };
 
-//        SimpleItemRecyclerViewAdapter(FoodListActivity parent,
-//                                      List<DummyContent.DummyItem> items,
-//                                      boolean twoPane) {
+
             SimpleItemRecyclerViewAdapter(FoodListActivity parent,
                                     List<Food> items,
                                         boolean twoPane) {

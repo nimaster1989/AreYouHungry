@@ -3,7 +3,7 @@ package comp3350.Group2.areyouhungry.business;
 //import comp3350.Group2.areyouhungry.*;
 import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.Services;
-import comp3350.Group2.areyouhungry.dummy.DummyContent;
+//import comp3350.Group2.areyouhungry.dummy.DummyContent;
 import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.presistence.DataAccessStub;
 
@@ -19,7 +19,7 @@ public class AccessFoods {
     private int currentFood;
 
     public AccessFoods(){
-        System.out.println("File(AccessFood) access Course");
+        System.out.println("File(AccessFood) access Foods");
         dataAccess = (DataAccessStub) Services.getDataAccess(MainActivity.dbName);
         foods = null;
         food = null;
@@ -38,9 +38,14 @@ public class AccessFoods {
 //    }
     public String getFoods(List<Food> foods)
     {
-        System.out.println("File(AccessFood) getCoures create");
+        System.out.println("File(AccessFood) get foods create");
         foods.clear();
         return dataAccess.getFoodSequential(foods);
+    }
+    public String getFavouriteFoods(ArrayList<Food> favouriteFoodList) {
+        System.out.println("File(AccessFood) get favourite food create");
+        favouriteFoodList.clear();
+        return dataAccess.getFavouriteFoodSequential(favouriteFoodList);
     }
     public String getRandom(List<Food> foods)
     {
@@ -70,6 +75,7 @@ public class AccessFoods {
         }
         return food;
     }
+
 //    public Food getRandom(String foodID)
 //    {
 //        System.out.println("File(AccessCourse) getRandom create");

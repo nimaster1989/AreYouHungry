@@ -1,4 +1,4 @@
-package comp3350.Group2.areyouhungry;
+package comp3350.Group2.areyouhungry.ui.all_food;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,8 @@ import androidx.appcompat.app.ActionBar;
 
 import android.view.MenuItem;
 
+import comp3350.Group2.areyouhungry.R;
+
 /**
  * An activity representing a single Food detail screen. This
  * activity is only used on narrow width devices. On tablet-size devices,
@@ -29,6 +31,8 @@ public class FoodDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_food_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
+
+        System.out.println("FoodDetailActivity oncreate");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
