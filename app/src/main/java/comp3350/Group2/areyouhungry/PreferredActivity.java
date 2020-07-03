@@ -11,14 +11,15 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import java.sql.SQLOutput;
 
 public class PreferredActivity extends AppCompatActivity implements OnItemSelectedListener {
-
+    Spinner foodSpinner;
+    String kindOfFood;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("prefered activity create");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferred);
 
-        Spinner foodSpinner = (Spinner) findViewById(R.id.foodSpinner);
+        foodSpinner = (Spinner) findViewById(R.id.foodSpinner);
 
         ArrayAdapter<String> myAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1,
@@ -34,8 +35,7 @@ public class PreferredActivity extends AppCompatActivity implements OnItemSelect
     @Override
     public void onItemSelected(AdapterView<?> parent, View v, int position,
                                long id) {
-        System.out.println("Selected");
-
+        kindOfFood = foodSpinner.getSelectedItem().toString();
     }
 
     @Override
