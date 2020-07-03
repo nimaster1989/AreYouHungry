@@ -31,18 +31,10 @@ public class MainActivity extends AppCompatActivity {
 
         //startup database
         startUp();
+
+        //startUp home activity
         Intent home_intent = new Intent(MainActivity.this, HomeActivity.class);
         MainActivity.this.startActivity(home_intent);
-
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-//        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.navigation_home, R.id.navigation_favorites, R.id.navigation_more)
-//                .build();
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-//        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-//        NavigationUI.setupWithNavController(navView, navController);
-
     }
     private void startUp() {
         Services.createDataAccess(dbName);

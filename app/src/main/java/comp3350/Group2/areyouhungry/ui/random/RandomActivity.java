@@ -21,7 +21,7 @@ public class RandomActivity extends AppCompatActivity {
     private ArrayList<Food> foodList;
     private ArrayAdapter<Food> foodArrayAdapter;
 
-    //private int selectedFoodPosition = -1;
+    private int selectedFoodPosition = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("random activity create");

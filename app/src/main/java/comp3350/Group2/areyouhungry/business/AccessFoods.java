@@ -1,9 +1,7 @@
 package comp3350.Group2.areyouhungry.business;
 
-//import comp3350.Group2.areyouhungry.*;
 import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.Services;
-//import comp3350.Group2.areyouhungry.dummy.DummyContent;
 import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.presistence.DataAccessStub;
 
@@ -32,10 +30,6 @@ public class AccessFoods {
         foods.clear();
         return dataAccess.getFoodMap(foods);
     }
-//    public Map getMapRandom(Map foods){
-//        foods.clear();
-//        return dataAccess.getFoodMapRamdom(foods);
-//    }
     public String getFoods(List<Food> foods)
     {
         System.out.println("File(AccessFood) get foods create");
@@ -76,22 +70,4 @@ public class AccessFoods {
         return food;
     }
 
-//    public Food getRandom(String foodID)
-//    {
-//        System.out.println("File(AccessCourse) getRandom create");
-//        foods = dataAccess.getFoodRandom(foods);
-//        currentFood = 0;
-//        if (currentFood < foods.size())
-//        {
-//            food = (Food) foods.get(currentFood);
-//            currentFood++;
-//        }
-//        else
-//        {
-//            foods = null;
-//            food = null;
-//            currentFood = 0;
-//        }
-//        return food;
-//    }
 }

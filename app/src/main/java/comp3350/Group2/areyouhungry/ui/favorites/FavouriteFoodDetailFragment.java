@@ -32,10 +32,6 @@ public class FavouriteFoodDetailFragment extends Fragment {
      */
     public static final String ARG_ITEM_ID = "item_id";
 
-    /**
-     * The dummy content this fragment is presenting.
-     */
-    //private DummyContent.DummyItem mItem;
     private Food mFood;
     private AccessFoods accessFoods;
     /**
@@ -50,9 +46,6 @@ public class FavouriteFoodDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
-            // Load the dummy content specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
             accessFoods = new AccessFoods();
             Map<String, Food> Food_map = new HashMap<String,Food>();
             accessFoods.getMap(Food_map);
@@ -71,7 +64,6 @@ public class FavouriteFoodDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.favouritefood_detail, container, false);
 
-        // Show the dummy content as text in a TextView.
         if (mFood != null) {
             ((TextView) rootView.findViewById(R.id.favouritefood_detail)).setText(mFood.recipeLink);
         }
