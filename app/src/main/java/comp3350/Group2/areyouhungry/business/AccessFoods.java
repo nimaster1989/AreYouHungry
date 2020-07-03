@@ -48,6 +48,10 @@ public class AccessFoods {
         foods.clear();
         return dataAccess.getFoodRandom(foods);
     }
+    public String getPreferred(List<Food> foods, String food){
+        foods.clear();
+        return dataAccess.getFoodPreferred(foods, food);
+    }
     public Food getSequential()
     {
         System.out.println("File(AccessFood) getSequantial create");

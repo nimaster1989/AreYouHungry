@@ -1,18 +1,21 @@
 package comp3350.Group2.areyouhungry;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 import java.sql.SQLOutput;
 
 public class PreferredActivity extends AppCompatActivity implements OnItemSelectedListener {
-    Spinner foodSpinner;
-    String kindOfFood;
+    private Spinner foodSpinner;
+    private String kindOfFood;
+    private Button searchButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("prefered activity create");
@@ -29,7 +32,13 @@ public class PreferredActivity extends AppCompatActivity implements OnItemSelect
         foodSpinner.setAdapter(myAdapter);
         foodSpinner.setOnItemSelectedListener(this);
 
-
+        searchButton = (Button) findViewById(R.id.preferredSearch);
+        searchButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                searchFood();
+            }
+        });
     }
 
     @Override
@@ -41,5 +50,11 @@ public class PreferredActivity extends AppCompatActivity implements OnItemSelect
     @Override
     public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
+    }
+
+    public void searchFood(){
+        Intent intent = new Intent(this, PreferredSearchActivity.class);
+        intent.putExtra("KIND_OF_FOOD", kindOfFood);
+        startActivity(intent);
     }
 }
