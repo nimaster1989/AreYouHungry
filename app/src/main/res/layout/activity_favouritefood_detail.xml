@@ -49,7 +49,7 @@
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@+id/favouritefood_detail_container"
         app:layout_anchorGravity="top|end"
-        app:srcCompat="@android:drawable/stat_notify_chat" />
+        android:src = "@drawable/ic_baseline_favorite_border_24" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"

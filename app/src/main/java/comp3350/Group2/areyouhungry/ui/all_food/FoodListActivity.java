@@ -97,6 +97,7 @@ public class FoodListActivity extends AppCompatActivity {
                   Food food = (Food) view.getTag();
 //                DummyContent.DummyItem item = (DummyContent.DummyItem) view.getTag();
                 if (mTwoPane) {
+                    System.out.println("Two Page tablet mode");
                     Bundle arguments = new Bundle();
                     arguments.putString(FoodDetailFragment.ARG_ITEM_ID, food.foodID);
                     FoodDetailFragment fragment = new FoodDetailFragment();
@@ -105,6 +106,7 @@ public class FoodListActivity extends AppCompatActivity {
                             .replace(R.id.food_detail_container, fragment)
                             .commit();
                 } else {
+                    System.out.println("Two Page tablet mode");
                     Context context = view.getContext();
                     Intent intent = new Intent(context, FoodDetailActivity.class);
                     intent.putExtra(FoodDetailFragment.ARG_ITEM_ID, food.foodID);

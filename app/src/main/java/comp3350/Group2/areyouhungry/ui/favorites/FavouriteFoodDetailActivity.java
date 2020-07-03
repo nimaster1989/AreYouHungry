@@ -18,8 +18,14 @@ import androidx.appcompat.app.ActionBar;
 
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.R;
+import comp3350.Group2.areyouhungry.business.AccessFoods;
+import comp3350.Group2.areyouhungry.objects.Food;
+import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailFragment;
 import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
 import comp3350.Group2.areyouhungry.ui.more.MoreActivity;
 
@@ -31,6 +37,9 @@ import comp3350.Group2.areyouhungry.ui.more.MoreActivity;
  */
 public class FavouriteFoodDetailActivity extends AppCompatActivity {
 
+    private String curr_id = null;
+    private AccessFoods accessFoods;
+    private ArrayList<Food> foodList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,12 +47,35 @@ public class FavouriteFoodDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
+        //xu yang: get current food id
+        curr_id = getIntent().getStringExtra(FavouriteFoodDetailFragment.ARG_ITEM_ID);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                if (curr_id != null){
+                    accessFoods = new AccessFoods();
+                    foodList = new ArrayList<Food>();
+                    accessFoods.getFoods(foodList);
+                    Iterator<Food> foodIterator = foodList.iterator();
+                    Food getFood;
+                    while(foodIterator.hasNext()){
+                        getFood = foodIterator.next();
+                        if(getFood.foodID.equals(curr_id)){
+                            System.out.println("get the food by id");
+                            if(getFood.favourite){
+                                getFood.setFavourite(false);
+                                Snackbar.make(view, "You unlike this food!", Snackbar.LENGTH_LONG)
+                                        .setAction("Action", null).show();
+                            }else{
+                                getFood.setFavourite(true);
+                                Snackbar.make(view, "You like this food!", Snackbar.LENGTH_LONG)
+                                        .setAction("Action", null).show();
+                            }
+                        }
+                    }
+                }
             }
         });
 
