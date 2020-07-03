@@ -16,4 +16,6 @@
     <string name="title_food_list">Foods</string>
     <string name="title_food_detail">Food Detail</string>
     <string name="all_food_page">all food page</string>
+    <string name="title_favouritefood_list">FavouriteFoods</string>
+    <string name="title_favouritefood_detail">FavouriteFood Detail</string>
 </resources>

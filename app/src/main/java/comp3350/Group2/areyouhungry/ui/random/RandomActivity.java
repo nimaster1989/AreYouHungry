@@ -1,4 +1,4 @@
-package comp3350.Group2.areyouhungry;
+package comp3350.Group2.areyouhungry.ui.random;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,7 +21,7 @@ public class RandomActivity extends AppCompatActivity {
     private ArrayList<Food> foodList;
     private ArrayAdapter<Food> foodArrayAdapter;
 
-    //private int selectedFoodPosition = -1;
+    private int selectedFoodPosition = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("random activity create");
@@ -43,8 +43,8 @@ public class RandomActivity extends AppCompatActivity {
                     TextView text1 = (TextView) view.findViewById(android.R.id.text1);
                     TextView text2 = (TextView) view.findViewById(android.R.id.text2);
 
-                    text1.setText(foodList.get(position).getFoodID());
-                    text2.setText(foodList.get(position).getFoodName());
+                    text1.setText(new StringBuilder().append(foodList.get(position).getFoodID()).append(foodList.get(position).getFoodName()).toString());
+                    text2.setText(foodList.get(position).getRecipeLink());
 
                     return view;
                 }

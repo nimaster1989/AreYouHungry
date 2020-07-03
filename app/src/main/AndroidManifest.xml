@@ -11,21 +11,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.home.HomeActivity"></activity>
+        <activity android:name=".ui.more.MoreActivity" />
         <activity
-            android:name=".FoodListActivity"
-            android:label="@string/title_food_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:name=".ui.favorites.FavouriteFoodListActivity"
+            android:label="@string/title_favouritefood_list"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".FoodDetailActivity"
-            android:label="@string/title_food_detail"
-            android:parentActivityName=".FoodListActivity"
+            android:name=".ui.favorites.FavouriteFoodDetailActivity"
+            android:label="@string/title_favouritefood_detail"
+            android:parentActivityName=".ui.favorites.FavouriteFoodListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="comp3350.Group2.areyouhungry.FoodListActivity" />
+                android:value="comp3350.Group2.areyouhungry.ui.favorites.FavouriteFoodListActivity" />
         </activity>
-        <activity android:name=".AllFoodsActivity" />
-        <activity android:name=".RandomActivity" />
+        <activity
+            android:name=".ui.all_food.FoodListActivity"
+            android:label="@string/title_food_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.all_food.FoodDetailActivity"
+            android:label="@string/title_food_detail"
+            android:parentActivityName=".ui.all_food.FoodListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="comp3350.Group2.areyouhungry.ui.all_food.FoodListActivity" />
+        </activity> <!-- <activity android:name=".AllFoodsActivity" /> -->
+        <activity android:name=".ui.random.RandomActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
