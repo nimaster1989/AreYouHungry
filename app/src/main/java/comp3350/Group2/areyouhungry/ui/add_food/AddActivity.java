@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -24,6 +25,8 @@ public class AddActivity extends AppCompatActivity {
 
     private AccessFoods accessFoods;
     private ArrayList<Food> foods;
+
+    private boolean set_favourite = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,9 @@ public class AddActivity extends AppCompatActivity {
         System.out.println("get from form: "+newName+" , "+newRecipe);
         Food newFood = validateFoodData(newName,newRecipe);
         if(newFood != null){
+            if(set_favourite){
+                newFood.setFavourite(true);
+            }
             if(accessFoods.addFood(newFood) == null){
                 System.out.println("add success create");
                 Snackbar.make(findViewById(R.id.add_constrain), "successfully added!", Snackbar.LENGTH_LONG)
@@ -58,6 +64,7 @@ public class AddActivity extends AppCompatActivity {
                 accessFoods.getFoods(foods);
             }
         }
+        set_favourite = false;
     }
 
     private Food validateFoodData(String name,String Recipe){
@@ -101,5 +108,12 @@ public class AddActivity extends AppCompatActivity {
     }
         public void onBackPressed() {
             navigateUpTo(new Intent(this, FoodListActivity.class));
+    }
+
+    public void Fav_onClick(View view) {
+        CheckBox checkBox = (CheckBox)view;
+        if(checkBox.isChecked()){
+            this.set_favourite = true;
+        }
     }
 }
