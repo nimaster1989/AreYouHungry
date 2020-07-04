@@ -109,4 +109,9 @@ public class DataAccessStub {
         return null;
     }
 
+    public String addFood(Food newFood) {
+        foods.add(newFood);
+        Food_map.put(newFood.foodID,newFood);
+        return null;
+    }
 }

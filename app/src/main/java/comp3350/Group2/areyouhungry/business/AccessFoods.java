@@ -74,4 +74,7 @@ public class AccessFoods {
         return food;
     }
 
+    public String addFood(Food newFood) {
+        return dataAccess.addFood(newFood);
+    }
 }
