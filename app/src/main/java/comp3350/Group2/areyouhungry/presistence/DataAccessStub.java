@@ -97,7 +97,16 @@ public class DataAccessStub {
         foodResult.add(foods.get(random.nextInt(foods.size())));
         return null;
     }
+    //jonathon
+    public String getFoodPreferred(List<Food> foodResult, String food){
+        if(food.equals("Meat")){
+            foodResult.add(foods.get(1));
+        }
+        else if(food.equals("Dessert")){
+            foodResult.add(foods.get(3));
+        }
 
-
+        return null;
+    }
 
 }

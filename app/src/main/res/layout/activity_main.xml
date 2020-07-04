@@ -6,23 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="?attr/actionBarSize" >
-    <SearchView
-        android:id="@+id/searchView2"
-        style="@android:style/Widget.Material.Light.SearchView"
-        android:layout_width="500dp"
-        android:layout_height="73dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="116dp"
-        android:layout_marginEnd="32dp"
-        android:background="#C6FA8A"
-        android:baselineAligned="false"
-        android:fadingEdge="horizontal|vertical"
-        android:focusable="auto"
-        android:queryHint="Search food"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/randomFoodButton"
@@ -33,6 +16,17 @@
         android:background="#BCFE78"
         android:onClick="randomPickOnClick"
         android:text="Pick For Me!" />
+    <Button
+        android:id="@+id/specifiedFoodButton"
+        android:layout_width="352dp"
+        android:layout_height="81dp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="400dp"
+        android:onClick="preferredPickOnClick"
+        android:text="Preference Search!" />
+
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
