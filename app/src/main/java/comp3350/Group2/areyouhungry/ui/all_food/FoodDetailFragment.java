@@ -1,4 +1,4 @@
-package comp3350.Group2.areyouhungry;
+package comp3350.Group2.areyouhungry.ui.all_food;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -15,10 +15,9 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.Map;
 
+import comp3350.Group2.areyouhungry.R;
 import comp3350.Group2.areyouhungry.business.AccessFoods;
-import comp3350.Group2.areyouhungry.dummy.DummyContent;
 import comp3350.Group2.areyouhungry.objects.Food;
-import comp3350.Group2.areyouhungry.presistence.DataAccessStub;
 
 /**
  * A fragment representing a single Food detail screen.
@@ -33,12 +32,8 @@ public class FoodDetailFragment extends Fragment {
      */
     public static final String ARG_ITEM_ID = "item_id";
 
-    /**
-     * The dummy content this fragment is presenting.
-     */
     private Food mFood;
     private AccessFoods accessFoods;
-    //private DummyContent.DummyItem mItem;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -50,12 +45,8 @@ public class FoodDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        System.out.println("FoodDetailFragment oncreate");
         if (getArguments().containsKey(ARG_ITEM_ID)) {
-            // Load the dummy content specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
-            //mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
             accessFoods = new AccessFoods();
             Map<String,Food> Food_map = new HashMap<String,Food>();
             accessFoods.getMap(Food_map);
@@ -72,8 +63,7 @@ public class FoodDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.food_detail, container, false);
-        System.out.println("FoodDetailFragment oncreate view mFood is null");
-        // Show the dummy content as text in a TextView.
+        System.out.println("FoodDetailFragment view");
         if (mFood != null) {
             ((TextView) rootView.findViewById(R.id.food_detail)).setText(mFood.recipeLink);
         }else{

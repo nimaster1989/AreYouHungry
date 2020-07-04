@@ -10,26 +10,26 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context=".ui.all_food.FoodListActivity">
+    tools:context=".ui.favorites.FavouriteFoodListActivity">
 
     <!--
-    This layout is a two-pane layout for the Foods master/detail flow.
+    This layout is a two-pane layout for the FavouriteFoods master/detail flow.
     -->
 
     <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/food_list"
-        android:name="comp3350.Group2.areyouhungry.FoodListFragment"
+        android:id="@+id/favouritefood_list"
+        android:name="comp3350.Group2.areyouhungry.ui.favorites.FavouriteFoodListFragment"
         android:layout_width="@dimen/item_width"
         android:layout_height="match_parent"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
-        tools:context="comp3350.Group2.areyouhungry.ui.all_food.FoodListActivity"
-        tools:listitem="@layout/food_list_content" />
+        tools:context="comp3350.Group2.areyouhungry.ui.favorites.FavouriteFoodListActivity"
+        tools:listitem="@layout/favouritefood_list_content" />
 
     <FrameLayout
-        android:id="@+id/food_detail_container"
+        android:id="@+id/favouritefood_detail_container"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="3" />

@@ -13,12 +13,9 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
-
-    <string-array name="foodSpinner">
-        <item>Meat</item>
-        <item>Dessert</item>
-    </string-array>
     <string name="title_food_list">Foods</string>
     <string name="title_food_detail">Food Detail</string>
     <string name="all_food_page">all food page</string>
+    <string name="title_favouritefood_list">FavouriteFoods</string>
+    <string name="title_favouritefood_detail">FavouriteFood Detail</string>
 </resources>

@@ -52,9 +52,8 @@ public class Food {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
+    public boolean equals(Food o) {
+        if (this.foodID == o.foodID) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         Food food = (Food) o;

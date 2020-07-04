@@ -2,6 +2,7 @@ package comp3350.Group2.areyouhungry.presistence;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -28,12 +29,14 @@ public class DataAccessStub {
         foods = new ArrayList<Food>();
         Food_map = new HashMap<>();
         food = new Food("001","fish","google.1");
+        food.setFavourite(true);
         foods.add(food);
         Food_map.put(food.foodID,food);
         food = new Food("002","burger","google.2");
         foods.add(food);
         Food_map.put(food.foodID,food);
         food = new Food("003","pie","google.3");
+        food.setFavourite(true);
         foods.add(food);
         Food_map.put(food.foodID,food);
         food = new Food("004","cake","google.4");
@@ -43,6 +46,7 @@ public class DataAccessStub {
         foods.add(food);
         Food_map.put(food.foodID,food);
         food = new Food("006","veggies","google.6");
+        food.setFavourite(true);
         foods.add(food);
         Food_map.put(food.foodID,food);
 
@@ -71,6 +75,20 @@ public class DataAccessStub {
         foodResult.addAll((foods));
         return null;
     }
+    //david le : generate the favourite list
+    public String getFavouriteFoodSequential(List<Food> foodResult){
+        System.out.println("run getFoodFavourite");
+        Iterator<Food> foodIterator = foods.iterator(); //This iterates through the foods list
+        Food recipe;
+        while(foodIterator.hasNext()){
+            recipe = foodIterator.next();
+            if(recipe.favourite){
+                foodResult.add(recipe);
+            }
+        }
+        return null;
+    }
+
     //xu yang: this function is used to generate a random food from the stub database
     //and add it into the foodresult List
     public String getFoodRandom(List<Food> foodResult){
@@ -89,5 +107,6 @@ public class DataAccessStub {
 
         return null;
     }
+
 
 }
