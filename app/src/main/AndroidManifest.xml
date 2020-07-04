@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.home.HomeActivity"></activity>
+        <activity android:name=".ui.preferred.PreferredSearchActivity"></activity>
+        <activity android:name=".ui.preferred.PreferredActivity" />
+        <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.more.MoreActivity" />
         <activity
             android:name=".ui.favorites.FavouriteFoodListActivity"
