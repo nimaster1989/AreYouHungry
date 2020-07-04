@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:theme="@style/Theme.MyApp"
     tools:context=".ui.all_food.FoodListActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -30,12 +31,17 @@
         <include layout="@layout/food_list" />
     </FrameLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/all_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        android:layout_gravity="bottom|right"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="100dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/extended_fab_label"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:icon="@android:drawable/ic_input_add"
+        app:iconPadding="16dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -22,4 +22,5 @@
     <string name="all_food_page">all food page</string>
     <string name="title_favouritefood_list">FavouriteFoods</string>
     <string name="title_favouritefood_detail">FavouriteFood Detail</string>
+    <string name="extended_fab_label">ADD FOOD</string>
 </resources>

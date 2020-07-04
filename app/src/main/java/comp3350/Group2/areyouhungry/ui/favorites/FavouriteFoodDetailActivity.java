@@ -67,11 +67,11 @@ public class FavouriteFoodDetailActivity extends AppCompatActivity {
                             if(getFood.favourite){
                                 getFood.setFavourite(false);
                                 Snackbar.make(view, "You unlike this food!", Snackbar.LENGTH_LONG)
-                                        .setAction("Action", null).show();
+                                        .setAction("Action", null).setAnchorView(R.id.nav_view).show();
                             }else{
                                 getFood.setFavourite(true);
                                 Snackbar.make(view, "You like this food!", Snackbar.LENGTH_LONG)
-                                        .setAction("Action", null).show();
+                                        .setAction("Action", null).setAnchorView(R.id.nav_view).show();
                             }
                         }
                     }
