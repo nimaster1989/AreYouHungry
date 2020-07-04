@@ -5,8 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.preferred.PreferredActivity">
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="363dp"
@@ -16,7 +14,6 @@
         android:text="What kind of food are you looking for?"
         android:textColor="#0B0707"
         android:textSize="20sp"
-        />
 
     <Spinner
         android:id="@+id/foodSpinner"

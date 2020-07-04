@@ -47,7 +47,6 @@ public class AccessFoods {
         foods.clear();
         return dataAccess.getFoodRandom(foods);
     }
-    //jonathan
     public String getPreferred(List<Food> foods, String food){
         foods.clear();
         return dataAccess.getFoodPreferred(foods, food);

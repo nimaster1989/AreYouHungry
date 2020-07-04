@@ -49,7 +49,7 @@ public class DataAccessStub {
         food.setFavourite(true);
         foods.add(food);
         Food_map.put(food.foodID,food);
-        
+
         System.out.println("Opened " +dbType +" database " +dbName);
     }
     public void close()
@@ -97,7 +97,7 @@ public class DataAccessStub {
         foodResult.add(foods.get(random.nextInt(foods.size())));
         return null;
     }
-    //jonathon
+
     public String getFoodPreferred(List<Food> foodResult, String food){
         if(food.equals("Meat")){
             foodResult.add(foods.get(1));
