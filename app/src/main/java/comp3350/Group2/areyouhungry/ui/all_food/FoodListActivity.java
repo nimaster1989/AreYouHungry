@@ -9,17 +9,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.TextView;
 
 import comp3350.Group2.areyouhungry.R;
 import comp3350.Group2.areyouhungry.business.AccessFoods;
 import comp3350.Group2.areyouhungry.objects.Food;
+import comp3350.Group2.areyouhungry.ui.add_food.AddActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,12 +56,13 @@ public class FoodListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        ExtendedFloatingActionButton fab = (ExtendedFloatingActionButton) findViewById(R.id.all_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent add_intent = new Intent(FoodListActivity.this, AddActivity.class);
+                FoodListActivity.this.startActivity(add_intent);
+                System.out.println("after call add activity");
             }
         });
 
@@ -79,7 +83,8 @@ public class FoodListActivity extends AppCompatActivity {
         accessFoods = new AccessFoods();
         foodList = new ArrayList<Food>();
         accessFoods.getFoods(foodList);
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, foodList, mTwoPane));
+        SimpleItemRecyclerViewAdapter theAdapter  = new SimpleItemRecyclerViewAdapter(this, foodList, mTwoPane);
+        recyclerView.setAdapter(theAdapter);
     }
 
     public static class SimpleItemRecyclerViewAdapter
