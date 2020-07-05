@@ -26,6 +26,7 @@ import comp3350.Group2.areyouhungry.R;
 
 import comp3350.Group2.areyouhungry.business.AccessFoods;
 import comp3350.Group2.areyouhungry.objects.Food;
+import comp3350.Group2.areyouhungry.ui.all_food.FoodListActivity;
 import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
 import comp3350.Group2.areyouhungry.ui.more.MoreActivity;
 
@@ -64,8 +65,8 @@ public class FavouriteFoodListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent all_intent = new Intent(FavouriteFoodListActivity.this, FoodListActivity.class);
+                FavouriteFoodListActivity.this.startActivity(all_intent);
             }
         });
 

@@ -39,7 +39,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="100dp"
         android:fontFamily="sans-serif"
-        android:text="@string/extended_fab_label"
+        android:text="@string/add_favourite"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:icon="@android:drawable/ic_input_add"
         app:iconPadding="16dp" />

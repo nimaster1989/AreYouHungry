@@ -15,7 +15,7 @@
         android:layout_gravity="center"
         android:background="#BCFE78"
         android:onClick="randomPickOnClick"
-        android:text="Pick For Me!" />
+        android:text="@string/pick_for_me" />
     <Button
         android:id="@+id/specifiedFoodButton"
         android:layout_width="352dp"
@@ -24,7 +24,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="400dp"
         android:onClick="preferredPickOnClick"
-        android:text="Preference Search!" />
+        android:text="@string/preference_search" />
 
 
 
