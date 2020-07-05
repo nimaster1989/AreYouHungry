@@ -31,24 +31,24 @@ public class DataAccessStub {
         food = new Food("001","fish","google.1");
         food.setFavourite(true);
         foods.add(food);
-        Food_map.put(food.foodID,food);
+        Food_map.put(food.getFoodID(),food);
         food = new Food("002","burger","google.2");
         foods.add(food);
-        Food_map.put(food.foodID,food);
+        Food_map.put(food.getFoodID(),food);
         food = new Food("003","pie","google.3");
         food.setFavourite(true);
         foods.add(food);
-        Food_map.put(food.foodID,food);
+        Food_map.put(food.getFoodID(),food);
         food = new Food("004","cake","google.4");
         foods.add(food);
-        Food_map.put(food.foodID,food);
+        Food_map.put(food.getFoodID(),food);
         food = new Food("005","chips","google.5");
         foods.add(food);
-        Food_map.put(food.foodID,food);
+        Food_map.put(food.getFoodID(),food);
         food = new Food("006","veggies","google.6");
         food.setFavourite(true);
         foods.add(food);
-        Food_map.put(food.foodID,food);
+        Food_map.put(food.getFoodID(),food);
 
         System.out.println("Opened " +dbType +" database " +dbName);
     }
@@ -65,7 +65,7 @@ public class DataAccessStub {
     public Map getFoodMapRamdom(Map foods) {
         Random random = new Random();
         Food aRandomFood =  (Food)foods.get(random.nextInt(foods.size()));
-        foods.put(Food_map.get(aRandomFood.foodID),aRandomFood);
+        foods.put(Food_map.get(aRandomFood.getFoodID()),aRandomFood);
         return foods;
     }
     //xu yang: this function is from sample project, used to add food to a list that contain
@@ -82,7 +82,7 @@ public class DataAccessStub {
         Food recipe;
         while(foodIterator.hasNext()){
             recipe = foodIterator.next();
-            if(recipe.favourite){
+            if(recipe.getFavourite()){
                 foodResult.add(recipe);
             }
         }

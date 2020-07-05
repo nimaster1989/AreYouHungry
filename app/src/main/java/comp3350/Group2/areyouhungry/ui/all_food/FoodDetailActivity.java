@@ -59,9 +59,9 @@ public class FoodDetailActivity extends AppCompatActivity {
                     Food getFood;
                     while(foodIterator.hasNext()){
                         getFood = foodIterator.next();
-                        if(getFood.foodID.equals(curr_id)){
+                        if(getFood.getFoodID().equals(curr_id)){
                             System.out.println("get the food by id");
-                            if(getFood.favourite){
+                            if(getFood.getFavourite()){
                                 getFood.setFavourite(false);
                                 Snackbar.make(view, "You unlike this food!", Snackbar.LENGTH_LONG)
                                         .setAction("Action", null).show();

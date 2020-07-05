@@ -3,10 +3,10 @@ package comp3350.Group2.areyouhungry.objects;
 //class for food
 //DATABASE commit test
 public class Food {
-    public String foodID;
-    public String foodName;
-    public String recipeLink;
-    public boolean favourite;
+    private String foodID;
+    private String foodName;
+    private String recipeLink;
+    private boolean favourite;
 
     public Food(String foodID) {
         this.foodID = foodID;
@@ -33,6 +33,8 @@ public class Food {
     public String getFoodName() { return foodName; }
 
     public String getRecipeLink() { return recipeLink; }
+
+    public Boolean getFavourite() {return favourite; }
 
     public void setRecipeLink(String recipeLink) {
         this.recipeLink = recipeLink;
