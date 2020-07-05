@@ -95,7 +95,7 @@ public class FoodListActivity extends AppCompatActivity {
                 if (mTwoPane) {
                     System.out.println("Two Page tablet mode");
                     Bundle arguments = new Bundle();
-                    arguments.putString(FoodDetailFragment.ARG_ITEM_ID, food.foodID);
+                    arguments.putString(FoodDetailFragment.ARG_ITEM_ID, food.getFoodID());
                     FoodDetailFragment fragment = new FoodDetailFragment();
                     fragment.setArguments(arguments);
                     mParentActivity.getSupportFragmentManager().beginTransaction()
@@ -105,7 +105,7 @@ public class FoodListActivity extends AppCompatActivity {
                     System.out.println("Two Page tablet mode");
                     Context context = view.getContext();
                     Intent intent = new Intent(context, FoodDetailActivity.class);
-                    intent.putExtra(FoodDetailFragment.ARG_ITEM_ID, food.foodID);
+                    intent.putExtra(FoodDetailFragment.ARG_ITEM_ID, food.getFoodID());
 
                     context.startActivity(intent);
                 }
@@ -130,8 +130,8 @@ public class FoodListActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.mIdView.setText(mValues.get(position).foodID);
-            holder.mContentView.setText(mValues.get(position).foodName);
+            holder.mIdView.setText(mValues.get(position).getFoodID());
+            holder.mContentView.setText(mValues.get(position).getFoodName());
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
         }

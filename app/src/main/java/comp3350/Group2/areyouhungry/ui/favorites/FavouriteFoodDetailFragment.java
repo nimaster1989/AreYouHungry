@@ -54,7 +54,7 @@ public class FavouriteFoodDetailFragment extends Fragment {
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
-                appBarLayout.setTitle(mFood.foodName);
+                appBarLayout.setTitle(mFood.getFoodName());
             }
         }
     }
@@ -65,7 +65,7 @@ public class FavouriteFoodDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.favouritefood_detail, container, false);
 
         if (mFood != null) {
-            ((TextView) rootView.findViewById(R.id.favouritefood_detail)).setText(mFood.recipeLink);
+            ((TextView) rootView.findViewById(R.id.favouritefood_detail)).setText(mFood.getRecipeLink());
         }
 
         return rootView;

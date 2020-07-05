@@ -54,7 +54,7 @@ public class FoodDetailFragment extends Fragment {
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
-                appBarLayout.setTitle(mFood.foodName);
+                appBarLayout.setTitle(mFood.getFoodName());
             }
         }
     }
@@ -65,7 +65,7 @@ public class FoodDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.food_detail, container, false);
         System.out.println("FoodDetailFragment view");
         if (mFood != null) {
-            ((TextView) rootView.findViewById(R.id.food_detail)).setText(mFood.recipeLink);
+            ((TextView) rootView.findViewById(R.id.food_detail)).setText(mFood.getRecipeLink());
         }else{
             System.out.println("FoodDetailFragment oncreate view mFood is null");
         }

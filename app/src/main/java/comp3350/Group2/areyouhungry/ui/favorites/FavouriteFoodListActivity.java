@@ -126,7 +126,7 @@ public class FavouriteFoodListActivity extends AppCompatActivity {
                 Food food = (Food) view.getTag();
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
-                    arguments.putString(FavouriteFoodDetailFragment.ARG_ITEM_ID, food.foodID);
+                    arguments.putString(FavouriteFoodDetailFragment.ARG_ITEM_ID, food.getFoodID());
                     FavouriteFoodDetailFragment fragment = new FavouriteFoodDetailFragment();
                     fragment.setArguments(arguments);
                     mParentActivity.getSupportFragmentManager().beginTransaction()
@@ -135,7 +135,7 @@ public class FavouriteFoodListActivity extends AppCompatActivity {
                 } else {
                     Context context = view.getContext();
                     Intent intent = new Intent(context, FavouriteFoodDetailActivity.class);
-                    intent.putExtra(FavouriteFoodDetailFragment.ARG_ITEM_ID, food.foodID);
+                    intent.putExtra(FavouriteFoodDetailFragment.ARG_ITEM_ID, food.getFoodID());
 
                     context.startActivity(intent);
                 }
@@ -159,8 +159,8 @@ public class FavouriteFoodListActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.mIdView.setText(mValues.get(position).foodID);
-            holder.mContentView.setText(mValues.get(position).foodName);
+            holder.mIdView.setText(mValues.get(position).getFoodID());
+            holder.mContentView.setText(mValues.get(position).getFoodName());
 
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
