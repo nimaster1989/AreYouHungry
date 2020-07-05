@@ -75,7 +75,7 @@ public class AddActivity extends AppCompatActivity {
         }else{
             Iterator<Food> foodIterator = foods.iterator();
             while(foodIterator.hasNext()){
-                if(foodIterator.next().foodName.equals(name)){
+                if(foodIterator.next().getFoodName().equals(name)){
                     Snackbar.make(findViewById(R.id.add_constrain), "food is already in the app ", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                     return null;}
