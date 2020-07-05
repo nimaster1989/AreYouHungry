@@ -29,14 +29,12 @@ public class DataAccessStub {
         foods = new ArrayList<Food>();
         Food_map = new HashMap<>();
         food = new Food("001","fish","google.1");
-        food.setFavourite(true);
         foods.add(food);
         Food_map.put(food.foodID,food);
         food = new Food("002","burger","google.2");
         foods.add(food);
         Food_map.put(food.foodID,food);
         food = new Food("003","pie","google.3");
-        food.setFavourite(true);
         foods.add(food);
         Food_map.put(food.foodID,food);
         food = new Food("004","cake","google.4");
@@ -46,7 +44,6 @@ public class DataAccessStub {
         foods.add(food);
         Food_map.put(food.foodID,food);
         food = new Food("006","veggies","google.6");
-        food.setFavourite(true);
         foods.add(food);
         Food_map.put(food.foodID,food);
         

@@ -3,6 +3,7 @@ package comp3350.Group2.areyouhungry.tests;
 import org.junit.Test;
 import junit.framework.TestSuite;
 
+import comp3350.Group2.areyouhungry.Services;
 import comp3350.Group2.areyouhungry.tests.business.DatabaseTest;
 
 //This class when run tests all the other testing suites
