@@ -62,7 +62,7 @@ public class DatabaseTest extends TestCase {
         //This part verifies that they're all different IDs/foods.
         while(foodIterator.hasNext()){
             foodId = "00" + num;
-            assertEquals(foodId, foodIterator.next().foodID);
+            assertEquals(foodId, foodIterator.next().getFoodID());
             num++;
         }
         
