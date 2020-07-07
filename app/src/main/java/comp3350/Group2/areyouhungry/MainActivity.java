@@ -22,7 +22,7 @@ import comp3350.Group2.areyouhungry.ui.more.MoreActivity;
 import comp3350.Group2.areyouhungry.ui.random.RandomActivity;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String dbName="SC";
+    public static final String dbName="BF";
     //COMP3350  group2
     @Override
     protected void onCreate(Bundle savedInstanceState) {
