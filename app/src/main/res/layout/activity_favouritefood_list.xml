@@ -42,7 +42,8 @@
         android:text="@string/add_favourite"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:icon="@android:drawable/ic_input_add"
-        app:iconPadding="16dp" />
+        app:iconPadding="16dp"
+        app:backgroundTint="#5156BF"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"

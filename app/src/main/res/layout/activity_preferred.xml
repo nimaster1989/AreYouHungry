@@ -32,7 +32,9 @@
         android:layout_height="75dp"
         android:layout_below="@+id/foodSpinner"
         android:layout_centerHorizontal="true"
+        android:background="#5156BF"
         android:layout_marginStart="150dp"
         android:layout_marginTop="322dp"
         android:text="Search!" />
+
 </RelativeLayout>
