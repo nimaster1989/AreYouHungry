@@ -93,8 +93,11 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="96dp"
         android:onClick="foodAddOnClick"
+        android:background="#4D00EA"
+        android:textSize="22sp"
+        android:textColor="#FFFFFF"
         android:shadowColor="@color/design_default_color_background"
-        android:text="ADD"
+        android:text="@string/add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
 

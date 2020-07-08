@@ -35,15 +35,17 @@
         android:id="@+id/all_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_marginRight="20dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="100dp"
-        android:background="#5156BF"
+        android:background="#4D00EA"
         android:fontFamily="sans-serif"
         android:text="@string/extended_fab_label"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#4D00EA"
         app:icon="@android:drawable/ic_input_add"
-        app:backgroundTint="#5156BF"
-        app:iconPadding="16dp" />
+        app:iconPadding="16dp"
+        app:iconTint="#FAFAFA" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

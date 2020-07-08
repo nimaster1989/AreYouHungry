@@ -5,7 +5,8 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="?attr/actionBarSize" >
+    android:paddingTop="?attr/actionBarSize"
+    android:theme="@style/AppTheme">
 
     <Button
         android:id="@+id/randomFoodButton"
@@ -13,9 +14,12 @@
         android:layout_height="81dp"
         android:layout_below="@+id/searchView2"
         android:layout_gravity="center"
-        android:background="#5156BF"
+        android:background="#E64D00EA"
         android:onClick="randomPickOnClick"
-        android:text="@string/pick_for_me" />
+        android:text="@string/pick_for_me"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"/>
+
     <Button
         android:id="@+id/specifiedFoodButton"
         android:layout_width="352dp"
@@ -23,9 +27,11 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginBottom="400dp"
-        android:background="#5156BF"
+        android:background="#E64D00EA"
         android:onClick="preferredPickOnClick"
-        android:text="@string/preference_search" />
+        android:text="@string/preference_search"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"/>
 
 
 
