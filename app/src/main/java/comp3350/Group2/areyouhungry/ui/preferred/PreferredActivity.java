@@ -15,6 +15,7 @@ import java.sql.SQLOutput;
 import comp3350.Group2.areyouhungry.R;
 
 
+//This is the page that loads when the user selects
 public class PreferredActivity extends AppCompatActivity implements OnItemSelectedListener {
     private Spinner foodSpinner;
     private String kindOfFood;

@@ -22,16 +22,16 @@ public class PreferredSearchTest extends TestCase {
         AccessFoods accessFood = new AccessFoods();
         ArrayList<Food> foodList = new ArrayList<>();
 
-        /* DELETE THIS COMMENT BLOCK LATER
-           This test assumes that our database stub does not have anything favourited yet.
-        */
-
         //test for empty search
         accessFood.getPreferred(foodList, "");
         assertTrue(foodList.isEmpty());//should return an empty list
 
         //test for a food you cant search by
         accessFood.getPreferred(foodList, "Broccoli");
+        assertTrue(foodList.isEmpty());//should return an empty list
+
+        //test for correct food inside wrong food
+        accessFood.getPreferred(foodList, "BrocMeatcoli");
         assertTrue(foodList.isEmpty());//should return an empty list
 
         //test preferred search for meat
@@ -46,6 +46,17 @@ public class PreferredSearchTest extends TestCase {
         assertEquals(1, foodList.size()); //check if the size of the list is 1 cause theres only one "meat" obj right now
         assertEquals("004", foodList.get(0).getFoodID()); //check if the food is meat
 
+        //test for numbers
+        accessFood.getPreferred(foodList, "1");
+        assertTrue(foodList.isEmpty());//should return an empty list
+
+        //test for NULL
+        try {
+            accessFood.getPreferred(foodList, null);
+        }
+        catch(Exception e){
+            assertNotNull(e);
+        }
 
     }
 }
