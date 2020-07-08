@@ -18,14 +18,14 @@ public class Food {
         foodID = newFoodID;
         foodName = newFoodName;
         recipeLink = null;
-        favourite= false;
+        favourite = false;
     }
     public Food(String newFoodID, String newFoodName,String recipeLink)
     {
         this.foodID = newFoodID;
         this.foodName = newFoodName;
         this.recipeLink = recipeLink;
-        favourite= false;
+        favourite = false;
     }
 
     public String getFoodID(){ return foodID; }
@@ -46,25 +46,23 @@ public class Food {
 
     @Override
     public String toString() {
-        return "Food{" +
-                "foodID=" + foodID +
-                ", foodName='" + foodName + '\'' +
-                ", recipeLink='" + recipeLink + '\'' +
-                ", favourite=" + favourite +
-                '}';
+        return "ID: " + foodID + "\n  foodName: " + foodName + "\n  recipe link: " + recipeLink + "\n  favourited: " + favourite + "\n";
     }
 
-    public boolean equals(Food o) {
-        if (this.foodID == o.foodID) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(Object otherObject){
+        boolean result = false;
 
-        Food food = (Food) o;
+        if (otherObject instanceof Food){
+            Food otherFood = (Food) otherObject;
 
-        if (getFoodID() != food.getFoodID()) return false;
-        if (favourite != food.favourite) return false;
-        if (getFoodName() != null ? !getFoodName().equals(food.getFoodName()) : food.getFoodName() != null)
-            return false;
-        return getRecipeLink() != null ? getRecipeLink().equals(food.getRecipeLink()) : food.getRecipeLink() == null;
+            if(foodID == null && otherFood.foodID == null){
+                result = true;
+            }
+            else if (foodID.equals(otherFood.foodID)){
+                result = true;
+            }
+        }
+        return result;
     }
 
 }
