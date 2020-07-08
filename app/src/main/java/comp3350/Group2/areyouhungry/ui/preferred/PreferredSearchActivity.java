@@ -46,10 +46,8 @@ public class PreferredSearchActivity extends AppCompatActivity {
                     View view = super.getView(position, convertView, parent);
 
                     TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-                    TextView text2 = (TextView) view.findViewById(android.R.id.text2);
 
-                    text1.setText(foodList.get(position).getFoodID());
-                    text2.setText(foodList.get(position).getFoodName());
+                    text1.setText(new StringBuilder().append(foodList.get(position).getFoodName()).toString());
 
                     return view;
                 }

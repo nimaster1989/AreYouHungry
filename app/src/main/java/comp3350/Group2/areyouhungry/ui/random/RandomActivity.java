@@ -47,10 +47,8 @@ public class RandomActivity extends AppCompatActivity {
                     View view = super.getView(position, convertView, parent);
 
                     TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-                    TextView text2 = (TextView) view.findViewById(android.R.id.text2);
 
-                    text1.setText(new StringBuilder().append(foodList.get(position).getFoodID()).append(foodList.get(position).getFoodName()).toString());
-                    text2.setText(foodList.get(position).getRecipeLink());
+                    text1.setText(new StringBuilder().append(foodList.get(position).getFoodName()).toString());
 
 
                     return view;
