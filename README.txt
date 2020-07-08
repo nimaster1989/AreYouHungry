@@ -4,6 +4,8 @@ Project Name: Are you Hungry
 
 Tested on: Nexus 7 API 23 Running Marshmallow Android 6 x86
 
+Github Repo: https://github.com/nimaster1989/AreYouHungry
+
 How to run:
     Open the project in android studio. Download a Nexus 7 tablet emulator with Marshmallow on it.
     Before you run it make sure it says app to the left where it says what emulator you are using.
@@ -30,9 +32,21 @@ Packages:
 
 Major source code files:
 
-        //not sure what to do here
+    comp3350.Group2.areyouhungry.business: This class is the middle man between the persistence
+    storage and the presentation layer. It contains all the different ways to add and retrieve
+    food from the "database".
 
-Github Repo: https://github.com/nimaster1989/AreYouHungry
+    comp3350.Group2.areyouhungry.objects: This class is our food object which is what is stored
+    in the "database" and is presented to the user. Will eventually contain things like recipes
+
+    comp3350.Group2.areyouhungry.presistence: This class is our database right now. It stores all
+    of our food objects and has methods for accessing them
+
+    comp3350.Group2.areyouhungry.ui.*: These classes are our front end, they're responsible for
+    providing a way for users to interact with our application to start the process to retrieve
+    food/recipes from the backend. They have buttons and list to help the user easily see what
+    they're searching for and be able to store it into their favourites.
+
 
 Developer Log:
     Our developer log is multipart, first we used Trello to keep track of who was assigned what,
