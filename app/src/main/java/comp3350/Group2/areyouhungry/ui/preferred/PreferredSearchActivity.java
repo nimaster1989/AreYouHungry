@@ -38,7 +38,7 @@ public class PreferredSearchActivity extends AppCompatActivity {
         foodList = new ArrayList<Food>();
         String result = accessFoods.getPreferred(foodList, foodType);
         if (result != null) {
-            System.out.println("accessFoods.getCourses Error");
+            System.out.println("accessFoods.getFood Error");
         } else {
             foodArrayAdapter = new ArrayAdapter<Food>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, foodList) {
                 @Override

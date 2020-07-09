@@ -9,11 +9,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
@@ -23,6 +26,9 @@ import comp3350.Group2.areyouhungry.R;
 import comp3350.Group2.areyouhungry.business.AccessFoods;
 import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.ui.add_food.AddActivity;
+import comp3350.Group2.areyouhungry.ui.favorites.FavouriteFoodListActivity;
+import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
+import comp3350.Group2.areyouhungry.ui.more.MoreActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +61,35 @@ public class FoodListActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
+
+        //for button navigation bar
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        Menu menu = navView.getMenu();
+        MenuItem menuItem = menu.getItem(2);
+        menuItem.setChecked(true);
+        navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+
+                    case R.id.navigation_home:
+                        Intent home_intent = new Intent(FoodListActivity.this, HomeActivity.class);
+                        startActivity(home_intent);
+                        break;
+
+                    case R.id.navigation_favorites:
+                        Intent fav_intent = new Intent(FoodListActivity.this, FavouriteFoodListActivity.class);
+                        startActivity(fav_intent);
+                        break;
+
+                    case R.id.navigation_more:
+                        Intent more_intent = new Intent(FoodListActivity.this, MoreActivity.class);
+                        startActivity(more_intent);
+                        break;
+                }
+                return false;
+            }
+        });
 
         ExtendedFloatingActionButton fab = (ExtendedFloatingActionButton) findViewById(R.id.all_fab);
         fab.setOnClickListener(new View.OnClickListener() {
