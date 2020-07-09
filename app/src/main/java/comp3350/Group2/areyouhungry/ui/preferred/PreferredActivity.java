@@ -10,8 +10,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 
-import java.sql.SQLOutput;
-
 import comp3350.Group2.areyouhungry.R;
 
 
@@ -22,7 +20,6 @@ public class PreferredActivity extends AppCompatActivity implements OnItemSelect
     private Button searchButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("prefered activity create");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferred);
 

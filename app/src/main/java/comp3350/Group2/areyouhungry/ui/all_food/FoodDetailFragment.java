@@ -45,7 +45,6 @@ public class FoodDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println("FoodDetailFragment oncreate");
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             accessFoods = new AccessFoods();
             Map<String,Food> Food_map = new HashMap<String,Food>();
@@ -63,7 +62,6 @@ public class FoodDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.food_detail, container, false);
-        System.out.println("FoodDetailFragment view");
         if (mFood != null) {
             ((TextView) rootView.findViewById(R.id.food_detail)).setText(mFood.getRecipeLink());
         }else{

@@ -2,8 +2,6 @@ package comp3350.Group2.areyouhungry.tests.business;
 
 import junit.framework.TestCase;
 
-import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -17,34 +15,79 @@ import static comp3350.Group2.areyouhungry.MainActivity.dbName;
 
 public class DatabaseTest extends TestCase {
 
-    public void testFavourites(){
-        System.out.println("Running test to test favouriting foods in the database");
+    public void testGetEmptyFavourites() {
+        //System.out.println("Running test to test favouriting foods in the database");
         Services.createDataAccess(dbName);
         AccessFoods accessFood = new AccessFoods();
         ArrayList<Food> foodList = new ArrayList<>();
-
-        /* DELETE THIS COMMENT BLOCK LATER
-           This test assumes that our database stub does not have anything favourited yet.
-        */
-
         //This portion checks if we can get favourited foods, and list should be empty since we have nothing favourited yet.
         accessFood.getFavouriteFoods(foodList);
         assertTrue(foodList.isEmpty()); //True as we have no foods favourited yet.
+    }
 
+    public void testAddingFavourite(){
+        Services.createDataAccess(dbName);
+        AccessFoods accessFood = new AccessFoods();
+        ArrayList<Food> foodList = new ArrayList<>();
         //This portion grabs a random food, favourites it, clears our foodList and fills foodList with all our favourited foods.
         accessFood.getRandom(foodList);
         foodList.get(0).setFavourite(true);
         foodList.clear();
         accessFood.getFavouriteFoods(foodList);
         assertFalse(foodList.isEmpty()); //This should not be empty now as we have a favourited food!!
+        //Removing the favourite food for future tests
+        foodList.get(0).setFavourite(false);
+        foodList.clear();
+    }
 
-        //This portion unfavourites the favourited food, clears foodList and "tries" to fill foodList with all our favourited foods.
+    public void testUnfavouriteFood(){
+        Services.createDataAccess(dbName);
+        AccessFoods accessFood = new AccessFoods();
+        ArrayList<Food> foodList = new ArrayList<>();
+        //Accesses a random food and favourites it
+        accessFood.getRandom(foodList);
+        foodList.get(0).setFavourite(true);
+        foodList.clear();
+        //Gets favourite food list and removed item added
+        accessFood.getFavouriteFoods(foodList);
         foodList.get(0).setFavourite(false);
         foodList.clear();
         accessFood.getFavouriteFoods(foodList);
         assertTrue(foodList.isEmpty());
     }
 
+    public void testFavouriteTwice(){
+        Services.createDataAccess(dbName);
+        AccessFoods accessFood = new AccessFoods();
+        ArrayList<Food> foodList = new ArrayList<>();
+        //This portion grabs a random food, favourites it, clears our foodList and fills foodList with all our favourited foods.
+        accessFood.getRandom(foodList);
+        //Setting its favourite to true twice in a row
+        foodList.get(0).setFavourite(true);
+        foodList.get(0).setFavourite(true);
+        foodList.clear();
+        accessFood.getFavouriteFoods(foodList);
+        assertFalse(foodList.isEmpty()); //This should not be empty now as we have a favourited food!!
+        //Removing the favourite food for future tests
+        foodList.get(0).setFavourite(false);
+        foodList.clear();
+    }
+
+    //Tests trying to add a null item to the food list, this checks to make sure the null item isnt added
+    public void testAddNullFood(){
+        Services.createDataAccess(dbName);
+        AccessFoods accessFood = new AccessFoods();
+        ArrayList<Food> foodList = new ArrayList<>();
+        Food newItem = null;
+        accessFood.addFood(newItem);
+        accessFood.getFoods(foodList);
+        System.out.println(foodList);
+        assertFalse(foodList.contains(null));
+    }
+
+
+
+    //Tests the stub database, ensuring our hardcoded data is working and we can access all entries
     public void testSequential(){
         System.out.println("Running test to test if we can get a list of food.");
         Services.createDataAccess(dbName);

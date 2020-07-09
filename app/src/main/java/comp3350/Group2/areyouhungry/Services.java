@@ -8,11 +8,10 @@ public class Services {
 
     public static DataAccessStub createDataAccess(String dbName)
     {
-        System.out.println("create data access start");
         if (dataAccessService == null)
         {
-            dataAccessService = new DataAccessStub(dbName);
-            dataAccessService.open(MainActivity.dbName);
+            dataAccessService = new DataAccessStub();
+            dataAccessService.open();
         }
         return dataAccessService;
     }
@@ -27,12 +26,4 @@ public class Services {
         return dataAccessService;
     }
 
-    public static void closeDataAccess()
-    {
-        if (dataAccessService != null)
-        {
-            //dataAccessService.close();
-        }
-        dataAccessService = null;
-    }
 }

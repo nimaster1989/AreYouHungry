@@ -10,10 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.R;
-import comp3350.Group2.areyouhungry.Services;
 import comp3350.Group2.areyouhungry.ui.favorites.FavouriteFoodListActivity;
 import comp3350.Group2.areyouhungry.ui.more.MoreActivity;
 import comp3350.Group2.areyouhungry.ui.preferred.PreferredActivity;
@@ -23,7 +20,6 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("Home activity oncreate");
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);

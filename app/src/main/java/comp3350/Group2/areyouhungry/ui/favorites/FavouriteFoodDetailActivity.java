@@ -21,11 +21,9 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.R;
 import comp3350.Group2.areyouhungry.business.AccessFoods;
 import comp3350.Group2.areyouhungry.objects.Food;
-import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailFragment;
 import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
 import comp3350.Group2.areyouhungry.ui.more.MoreActivity;
 
@@ -63,7 +61,6 @@ public class FavouriteFoodDetailActivity extends AppCompatActivity {
                     while(foodIterator.hasNext()){
                         getFood = foodIterator.next();
                         if(getFood.getFoodID().equals(curr_id)){
-                            System.out.println("get the food by id");
                             if(getFood.getFavourite()){
                                 getFood.setFavourite(false);
                                 Snackbar.make(view, "You unlike this food!", Snackbar.LENGTH_LONG)

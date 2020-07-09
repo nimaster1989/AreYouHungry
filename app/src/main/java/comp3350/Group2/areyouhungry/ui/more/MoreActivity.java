@@ -11,7 +11,6 @@ import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.R;
 import comp3350.Group2.areyouhungry.ui.all_food.FoodListActivity;
 import comp3350.Group2.areyouhungry.ui.favorites.FavouriteFoodListActivity;
