@@ -9,6 +9,7 @@ public class FoodTest extends TestCase{
 
 
     public void testGetters(){
+        System.out.println("Running test to test Food class getters");
         Food food = new Food("123", "foodName", "linkPage");
 
         assertEquals("123", food.getFoodID());
@@ -19,6 +20,7 @@ public class FoodTest extends TestCase{
     }
 
     public void testSetters(){
+        System.out.println("Running test to test Food class setters.");
         Food food = new Food("123", "Chicken");
 
         food.setRecipeLink("bing");
@@ -32,6 +34,7 @@ public class FoodTest extends TestCase{
 
     //This tests food equality (if IDs are the same or if both are null)
     public void testEquals(){
+        System.out.println("Running test to test Food class equality.");
         Food food1 = new Food("123");
         Food food2 = new Food("123");
         Food food3 = new Food("1234");

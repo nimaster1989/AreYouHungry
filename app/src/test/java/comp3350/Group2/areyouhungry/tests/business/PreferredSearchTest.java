@@ -2,10 +2,7 @@ package comp3350.Group2.areyouhungry.tests.business;
 
 import junit.framework.TestCase;
 
-import org.junit.Test;
-
 import java.util.ArrayList;
-import java.util.Iterator;
 
 
 import comp3350.Group2.areyouhungry.Services;
@@ -17,7 +14,7 @@ import static comp3350.Group2.areyouhungry.MainActivity.dbName;
 
 public class PreferredSearchTest extends TestCase {
     public void testFoodSelection(){
-        System.out.println("Running test to test Preferred Search of foods in the database");
+        System.out.println("Running test to test Preferred Search of foods in the database.");
         Services.createDataAccess(dbName);
         AccessFoods accessFood = new AccessFoods();
         ArrayList<Food> foodList = new ArrayList<>();

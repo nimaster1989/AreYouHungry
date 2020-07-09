@@ -11,15 +11,12 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.TextView;
 
 import comp3350.Group2.areyouhungry.R;
@@ -54,7 +51,6 @@ public class FoodListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("FoodListActivity oncreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_list);
 
@@ -97,7 +93,6 @@ public class FoodListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent add_intent = new Intent(FoodListActivity.this, AddActivity.class);
                 FoodListActivity.this.startActivity(add_intent);
-                System.out.println("after call add activity");
             }
         });
 
