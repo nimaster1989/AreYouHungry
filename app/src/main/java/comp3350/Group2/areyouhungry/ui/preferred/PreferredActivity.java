@@ -51,9 +51,7 @@ public class PreferredActivity extends AppCompatActivity implements OnItemSelect
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
-    }
+    public void onNothingSelected(AdapterView<?> arg0) {}
 
     public void searchFood(){
         Intent intent = new Intent(this, PreferredSearchActivity.class);
