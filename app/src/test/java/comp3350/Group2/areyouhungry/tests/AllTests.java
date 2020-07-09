@@ -5,6 +5,7 @@ import junit.framework.TestSuite;
 
 import comp3350.Group2.areyouhungry.tests.business.DatabaseTest;
 import comp3350.Group2.areyouhungry.tests.business.PreferredSearchTest;
+import comp3350.Group2.areyouhungry.tests.business.FoodTest;
 
 //This class when run tests all the other testing suites
 public class AllTests {
@@ -16,6 +17,7 @@ public class AllTests {
         suite = new TestSuite("All Tests");
         testDatabase();
         testPreferredSearch();
+        testFood();
         return suite;
     }
 
@@ -30,4 +32,6 @@ public class AllTests {
         suite.addTestSuite(PreferredSearchTest.class);
     }
 
+    @Test
+    private static void testFood(){suite.addTestSuite(FoodTest.class);}
 }

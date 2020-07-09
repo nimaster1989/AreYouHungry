@@ -75,5 +75,14 @@ public class PreferredSearchTest extends TestCase {
         accessFood.getPreferred(foodList, "1");
         assertTrue(foodList.isEmpty());//should return an empty list
     }
+
+    public void testNullSearch(){
+        Services.createDataAccess(dbName);
+        AccessFoods accessFood = new AccessFoods();
+        ArrayList<Food> foodList = new ArrayList<>();
+        //test for empty search
+        accessFood.getPreferred(foodList, null);
+        assertTrue(foodList.isEmpty());//should return an empty list
+    }
 }
 
