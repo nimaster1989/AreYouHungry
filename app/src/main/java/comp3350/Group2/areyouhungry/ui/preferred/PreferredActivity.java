@@ -23,6 +23,8 @@ public class PreferredActivity extends AppCompatActivity implements OnItemSelect
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferred);
 
+        setTitle(getTitle());
+
         foodSpinner = (Spinner) findViewById(R.id.foodSpinner);
 
         ArrayAdapter<String> myAdapter = new ArrayAdapter<>(this,

@@ -25,8 +25,10 @@
             android:windowSoftInputMode="stateHidden|adjustResize"
             android:parentActivityName=".ui.more.MoreActivity"/>
         <activity android:name=".ui.preferred.PreferredSearchActivity"
+            android:label="search result"
             android:parentActivityName=".ui.preferred.PreferredActivity"/>
-        <activity android:name=".ui.preferred.PreferredActivity" />
+        <activity android:name=".ui.preferred.PreferredActivity"
+            android:label="search"/>
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.more.MoreActivity"
             android:label="@string/title_more"/>
@@ -56,7 +58,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="comp3350.Group2.areyouhungry.ui.all_food.FoodListActivity" />
         </activity>
-        <activity android:name=".ui.random.RandomActivity" />
+        <activity android:name=".ui.random.RandomActivity"
+            android:label="random"/>
 
     </application>
 

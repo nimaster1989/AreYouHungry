@@ -20,22 +20,22 @@ public class DataAccessStub {
 
         foods = new ArrayList<Food>();
         Food_map = new HashMap<>();
-        food = new Food("001","fish","google.1");
+        food = new Food("001","Fish","https://www.food.com/recipe/beer-battered-fish-130102");
         foods.add(food);
         Food_map.put(food.getFoodID(),food);
-        food = new Food("002","burger","google.2");
+        food = new Food("002","Burger","https://www.food.com/recipe/the-perfect-burger-92021");
         foods.add(food);
         Food_map.put(food.getFoodID(),food);
-        food = new Food("003","pie","google.3");
+        food = new Food("003","Pie","https://www.tasteofhome.com/recipes/apple-pie/");
         foods.add(food);
         Food_map.put(food.getFoodID(),food);
-        food = new Food("004","cake","google.4");
+        food = new Food("004","Cake","https://addapinch.com/the-best-chocolate-cake-recipe-ever/");
         foods.add(food);
         Food_map.put(food.getFoodID(),food);
-        food = new Food("005","chips","google.5");
+        food = new Food("005","Fries","https://www.spendwithpennies.com/crispy-oven-fries/");
         foods.add(food);
         Food_map.put(food.getFoodID(),food);
-        food = new Food("006","veggies","google.6");
+        food = new Food("006","veggies","https://www.cookingclassy.com/greek-salad/");
         foods.add(food);
         Food_map.put(food.getFoodID(),food);
     }
@@ -75,12 +75,13 @@ public class DataAccessStub {
     }
 
     public String getFoodPreferred(List<Food> foodResult, String food){
-        if(food !=null) {
-            if (food.equals("Meat")) {
-                foodResult.add(foods.get(1));
-            } else if (food.equals("Dessert")) {
-                foodResult.add(foods.get(3));
-            }
+        if(food.equals("Meat")){
+            foodResult.add(foods.get(1));
+            foodResult.add(foods.get(0));
+        }
+        else if(food.equals("Dessert")){
+            foodResult.add(foods.get(2));
+            foodResult.add(foods.get(3));
         }
         return null;
     }

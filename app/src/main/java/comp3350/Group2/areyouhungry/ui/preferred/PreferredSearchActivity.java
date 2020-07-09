@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -32,6 +33,7 @@ public class PreferredSearchActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferred_search);
+        setTitle(getTitle());
 
         accessFoods = new AccessFoods();
 
@@ -48,6 +50,7 @@ public class PreferredSearchActivity extends AppCompatActivity {
                     TextView text1 = (TextView) view.findViewById(android.R.id.text1);
 
                     text1.setText(new StringBuilder().append(foodList.get(position).getFoodName()).toString());
+                    text1.setTextSize(28);
 
                     return view;
                 }
