@@ -55,6 +55,7 @@ Developer Log:
     of Google Doc in chronological order. For our group meetings we put those straight into the
     Google Doc as opposed to a Trello card first.
     The Log: https://docs.google.com/document/d/1a8yhKzSlzY0D8_UWBL0q6TMm_ceQJbOEeWVaKGaYHDc/
+    Trello board: https://trello.com/b/ETfh9VNT/are-you-hungry
 
 Major implemented features and where to find them:
     1. The first major feature that we implemented was the options to generate a food from the
