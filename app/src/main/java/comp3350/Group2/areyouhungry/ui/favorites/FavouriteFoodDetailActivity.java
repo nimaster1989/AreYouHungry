@@ -38,6 +38,8 @@ public class FavouriteFoodDetailActivity extends AppCompatActivity {
     private String curr_id = null;
     private AccessFoods accessFoods;
     private ArrayList<Food> foodList;
+    FloatingActionButton fab;
+    Food curr_food = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,35 +47,47 @@ public class FavouriteFoodDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
-        //xu yang: get current food id
+        //xu yang: get current food id ,and current food
         curr_id = getIntent().getStringExtra(FavouriteFoodDetailFragment.ARG_ITEM_ID);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        if (curr_id != null) {
+            accessFoods = new AccessFoods();
+            foodList = new ArrayList<Food>();
+            accessFoods.getFoods(foodList);
+            Iterator<Food> foodIterator = foodList.iterator();
+            Food getFood;
+            while (foodIterator.hasNext()) {
+                getFood = foodIterator.next();
+                if (getFood.getFoodID().equals(curr_id)) {
+                    curr_food = getFood;
+                    break;
+                }
+            }
+        }
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        if(this.curr_food != null ) {
+            if(this.curr_food.getFavourite()){
+                fab.setImageDrawable(getDrawable(R.drawable.ic_baseline_favorite_24));
+            }else {
+                fab.setImageDrawable(getDrawable(R.drawable.ic_baseline_favorite_border_24));
+            }
+        }
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (curr_id != null){
-                    accessFoods = new AccessFoods();
-                    foodList = new ArrayList<Food>();
-                    accessFoods.getFoods(foodList);
-                    Iterator<Food> foodIterator = foodList.iterator();
-                    Food getFood;
-                    while(foodIterator.hasNext()){
-                        getFood = foodIterator.next();
-                        if(getFood.getFoodID().equals(curr_id)){
-                            if(getFood.getFavourite()){
-                                getFood.setFavourite(false);
-                                Snackbar.make(view, "You unlike this food!", Snackbar.LENGTH_LONG)
-                                        .setAction("Action", null).setAnchorView(R.id.nav_view).show();
-                            }else{
-                                getFood.setFavourite(true);
-                                Snackbar.make(view, "You like this food!", Snackbar.LENGTH_LONG)
-                                        .setAction("Action", null).setAnchorView(R.id.nav_view).show();
-                            }
-                        }
-                    }
+            if (curr_food != null) {
+                if (curr_food.getFavourite()) {
+                    curr_food.setFavourite(false);
+                    fab.setImageDrawable(getDrawable(R.drawable.ic_baseline_favorite_border_24));
+                    Snackbar.make(view, "You unlike this food!", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).setAnchorView(R.id.nav_view).show();
+                } else {
+                    curr_food.setFavourite(true);
+                    fab.setImageDrawable(getDrawable(R.drawable.ic_baseline_favorite_24));
+                    Snackbar.make(view, "You like this food!", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).setAnchorView(R.id.nav_view).show();
                 }
             }
+        }
         });
 
         // Show the Up button in the action bar.
