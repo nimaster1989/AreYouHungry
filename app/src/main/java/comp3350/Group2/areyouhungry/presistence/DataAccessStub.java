@@ -75,15 +75,17 @@ public class DataAccessStub {
     }
 
     public String getFoodPreferred(List<Food> foodResult, String food){
-        if(food.equals("Meat")){
-            foodResult.add(foods.get(1));
-            foodResult.add(foods.get(0));
-        }
-        else if(food.equals("Dessert")){
-            foodResult.add(foods.get(2));
-            foodResult.add(foods.get(3));
+        if(food != null) {
+            if (food.equals("Meat")) {
+                foodResult.add(foods.get(1));
+                foodResult.add(foods.get(0));
+            } else if (food.equals("Dessert")) {
+                foodResult.add(foods.get(2));
+                foodResult.add(foods.get(3));
+            }
         }
         return null;
+
     }
 
     public String addFood(Food newFood) {

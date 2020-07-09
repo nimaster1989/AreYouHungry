@@ -63,7 +63,7 @@ public class PreferredSearchTest extends TestCase {
         ArrayList<Food> foodList = new ArrayList<>();
         accessFood.getPreferred(foodList, "Meat");
         assertFalse(foodList.isEmpty());//should return a list of meat
-        assertEquals(1, foodList.size()); //check if the size of the list is 1 cause theres only one "meat" obj right now
+        assertEquals(2, foodList.size()); //check if the size of the list is 1 cause theres only one "meat" obj right now
         assertEquals("002", foodList.get(0).getFoodID()); //check if the food is meat
     }
 
