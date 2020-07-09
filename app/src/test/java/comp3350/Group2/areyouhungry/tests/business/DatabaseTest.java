@@ -81,15 +81,42 @@ public class DatabaseTest extends TestCase {
         Food newItem = null;
         accessFood.addFood(newItem);
         accessFood.getFoods(foodList);
-        System.out.println(foodList);
         assertFalse(foodList.contains(null));
     }
 
+    public void testAddRealFood(){
+        Services.createDataAccess(dbName);
+        AccessFoods accessFood = new AccessFoods();
+        ArrayList<Food> foodList = new ArrayList<>();
+        Food newItem = new Food("007", "Pizza");
+        accessFood.addFood(newItem);
+        accessFood.getFoods(foodList);
+        assertTrue(foodList.contains(newItem));
+    }
+
+    public void testAddEmptyFood(){
+        Services.createDataAccess(dbName);
+        AccessFoods accessFood = new AccessFoods();
+        ArrayList<Food> foodList = new ArrayList<>();
+        Food newItem = new Food("", "");
+        accessFood.addFood(newItem);
+        accessFood.getFoods(foodList);
+        assertFalse(foodList.contains(newItem));
+    }
+
+    public void testFoodMissingName(){
+        Services.createDataAccess(dbName);
+        AccessFoods accessFood = new AccessFoods();
+        ArrayList<Food> foodList = new ArrayList<>();
+        Food newItem = new Food("009", "");
+        accessFood.addFood(newItem);
+        accessFood.getFoods(foodList);
+        assertFalse(foodList.contains(newItem));
+    }
 
 
     //Tests the stub database, ensuring our hardcoded data is working and we can access all entries
     public void testSequential(){
-        System.out.println("Running test to test if we can get a list of food.");
         Services.createDataAccess(dbName);
         AccessFoods accessFood = new AccessFoods();
         ArrayList<Food> foodList = new ArrayList<>();

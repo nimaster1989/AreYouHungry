@@ -83,14 +83,15 @@ public class DataAccessStub {
             foodResult.add(foods.get(2));
             foodResult.add(foods.get(3));
         }
-
         return null;
     }
 
     public String addFood(Food newFood) {
         if(newFood != null) {
-            foods.add(newFood);
-            Food_map.put(newFood.getFoodID(), newFood);
+            if(newFood.getFoodID() != "" && newFood.getFoodName() != "") {
+                foods.add(newFood);
+                Food_map.put(newFood.getFoodID(), newFood);
+            }
         }
         return null;
     }
