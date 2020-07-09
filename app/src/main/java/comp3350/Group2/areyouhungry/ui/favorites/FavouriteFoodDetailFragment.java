@@ -7,6 +7,8 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,10 +64,11 @@ public class FavouriteFoodDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.favouritefood_detail, container, false);
+        TextView rootView = (TextView) inflater.inflate(R.layout.favouritefood_detail, container, false);
 
         if (mFood != null) {
-            ((TextView) rootView.findViewById(R.id.favouritefood_detail)).setText(mFood.getRecipeLink());
+            ((TextView) rootView.findViewById(R.id.favouritefood_detail)).setText(Html.fromHtml("<a href=" + mFood.getRecipeLink() + "> Link"));
+            rootView.setMovementMethod(LinkMovementMethod.getInstance());
         }
 
         return rootView;
