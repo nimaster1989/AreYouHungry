@@ -64,12 +64,11 @@ public class FavouriteFoodDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        TextView rootView = (TextView) inflater.inflate(R.layout.food_detail, container, false);
+        TextView rootView = (TextView) inflater.inflate(R.layout.favouritefood_detail, container, false);
+
         if (mFood != null) {
-            ((TextView) rootView.findViewById(R.id.food_detail)).setText(Html.fromHtml("<a href=" + mFood.getRecipeLink() + "> Link"));
+            ((TextView) rootView.findViewById(R.id.favouritefood_detail)).setText(Html.fromHtml("<a href=" + mFood.getRecipeLink() + "> Link"));
             rootView.setMovementMethod(LinkMovementMethod.getInstance());
-        }else{
-            System.out.println("FoodDetailFragment oncreate view mFood is null");
         }
 
         return rootView;
