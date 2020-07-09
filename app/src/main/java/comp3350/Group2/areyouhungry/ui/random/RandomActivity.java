@@ -13,14 +13,12 @@ import android.widget.TextView;
 import android.widget.AdapterView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import comp3350.Group2.areyouhungry.R;
 import comp3350.Group2.areyouhungry.business.AccessFoods;
 import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailActivity;
 import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailFragment;
-import comp3350.Group2.areyouhungry.ui.all_food.FoodListActivity;
 
 public class RandomActivity extends AppCompatActivity {
 
@@ -30,7 +28,6 @@ public class RandomActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("Random activity create");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random);
 

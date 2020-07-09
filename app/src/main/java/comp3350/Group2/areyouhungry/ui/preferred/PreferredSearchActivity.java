@@ -52,7 +52,6 @@ public class PreferredSearchActivity extends AppCompatActivity {
                     return view;
                 }
             };
-            System.out.println("list view");
             final ListView listView = (ListView) findViewById(R.id.preferred_pick);
             //Creating an onClickListener for clicking on the food selected
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

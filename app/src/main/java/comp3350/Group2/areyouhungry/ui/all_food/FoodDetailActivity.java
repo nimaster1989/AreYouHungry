@@ -41,8 +41,6 @@ public class FoodDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
-        System.out.println("FoodDetailActivity oncreate");
-
         //xu yang: get current food id
         curr_id = getIntent().getStringExtra(FoodDetailFragment.ARG_ITEM_ID);
 
@@ -60,7 +58,6 @@ public class FoodDetailActivity extends AppCompatActivity {
                     while(foodIterator.hasNext()){
                         getFood = foodIterator.next();
                         if(getFood.getFoodID().equals(curr_id)){
-                            System.out.println("get the food by id");
                             if(getFood.getFavourite()){
                                 getFood.setFavourite(false);
                                 Snackbar.make(view, "You unlike this food!", Snackbar.LENGTH_LONG)
@@ -97,7 +94,6 @@ public class FoodDetailActivity extends AppCompatActivity {
             Bundle arguments = new Bundle();
             arguments.putString(FoodDetailFragment.ARG_ITEM_ID,
                     getIntent().getStringExtra(FoodDetailFragment.ARG_ITEM_ID));
-            System.out.println("curr id: "+getIntent().getStringExtra(FoodDetailFragment.ARG_ITEM_ID));
             FoodDetailFragment fragment = new FoodDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
@@ -123,15 +119,5 @@ public class FoodDetailActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    public static String bundle2string(Bundle bundle) {
-        if (bundle == null) {
-            return null;
-        }
-        String string = "Bundle{";
-        for (String key : bundle.keySet()) {
-            string += " " + key + " => " + bundle.get(key) + ";";
-        }
-        string += " }Bundle";
-        return string;
-    }
+
 }

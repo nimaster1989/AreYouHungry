@@ -1,6 +1,5 @@
 package comp3350.Group2.areyouhungry.ui.add_food;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,7 +30,6 @@ public class AddActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        System.out.println("add activity create");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
         ActionBar actionBar = getSupportActionBar();
@@ -46,19 +44,16 @@ public class AddActivity extends AppCompatActivity {
     }
 
     public void foodAddOnClick(View view) {
-        System.out.println("add onclick");
         EditText editName = (EditText)findViewById(R.id.editFoodName);
         EditText editRecipe = (EditText)findViewById(R.id.editRecipe);
         String newName =  editName.getText().toString();
         String newRecipe = editRecipe.getText().toString();
-        System.out.println("get from form: "+newName+" , "+newRecipe);
         Food newFood = validateFoodData(newName,newRecipe);
         if(newFood != null){
             if(set_favourite){
                 newFood.setFavourite(true);
             }
             if(accessFoods.addFood(newFood) == null){
-                System.out.println("add success create");
                 Snackbar.make(findViewById(R.id.add_constrain), "successfully added!", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 accessFoods.getFoods(foods);
