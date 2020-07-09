@@ -23,7 +23,9 @@ public class MoreActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more);
+        setTitle(getTitle());
 
+        //for button navigation
         BottomNavigationView navView = findViewById(R.id.nav_view);
         Menu menu = navView.getMenu();
         MenuItem menuItem = menu.getItem(2);

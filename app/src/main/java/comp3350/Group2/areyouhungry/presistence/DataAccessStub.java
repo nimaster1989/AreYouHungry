@@ -49,6 +49,12 @@ public class DataAccessStub {
 
         System.out.println("Opened " +dbType +" database " +dbName);
     }
+
+    public void reStart(){
+        this.foods.clear();
+        this.Food_map.clear();
+        open(dbName);
+    }
     public void close()
     {
         System.out.println("Closed " +dbType +" database " +dbName);
