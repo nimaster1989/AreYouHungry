@@ -1,22 +1,34 @@
 package comp3350.Group2.areyouhungry;
 
+import comp3350.Group2.areyouhungry.presistence.DataAccess;
+import comp3350.Group2.areyouhungry.presistence.DataAccessObject;
 import comp3350.Group2.areyouhungry.presistence.DataAccessStub;
 
 //services is to create and get data from the database
 public class Services {
-    private static DataAccessStub dataAccessService = null;
+    private static DataAccess dataAccessService = null;
 
-    public static DataAccessStub createDataAccess(String dbName)
+    public static DataAccess createDataAccess(String dbName)
     {
         if (dataAccessService == null)
         {
-            dataAccessService = new DataAccessStub();
-            dataAccessService.open();
+            dataAccessService = new DataAccessObject(dbName);
+            dataAccessService.open(MainActivity.getDBPathName());
         }
         return dataAccessService;
     }
 
-    public static DataAccessStub getDataAccess(String dbName)
+    public static DataAccess getDataAccess(DataAccess alternateDataAccessService)
+    {
+        if (dataAccessService == null)
+        {
+            dataAccessService = alternateDataAccessService;
+            dataAccessService.open(MainActivity.getDBPathName());
+        }
+        return dataAccessService;
+    }
+
+    public static DataAccess getDataAccess(String dbName)
     {
         if (dataAccessService == null)
         {
@@ -26,4 +38,12 @@ public class Services {
         return dataAccessService;
     }
 
+    public static void closeDataAccess()
+    {
+        if (dataAccessService != null)
+        {
+            dataAccessService.close();
+        }
+        dataAccessService = null;
+    }
 }

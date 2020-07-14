@@ -27,6 +27,13 @@ public class Food {
         this.recipeLink = recipeLink;
         favourite = false;
     }
+    public Food(String newFoodID, String newFoodName,String recipeLink,Boolean favourite)
+    {
+        this.foodID = newFoodID;
+        this.foodName = newFoodName;
+        this.recipeLink = recipeLink;
+        this.favourite = favourite;
+    }
 
     public String getFoodID(){ return foodID; }
 

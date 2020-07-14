@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/AppTheme"
     tools:context=".ui.preferred.PreferredActivity">
     <TextView
         android:id="@+id/textView2"
@@ -17,7 +18,7 @@
         android:textSize="20sp">
     </TextView>
 
-    <Spinner
+    <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/foodSpinner"
         android:layout_width="372dp"
         android:layout_height="55dp"

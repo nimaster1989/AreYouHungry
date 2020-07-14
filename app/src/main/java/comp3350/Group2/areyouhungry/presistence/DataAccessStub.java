@@ -56,11 +56,11 @@ public class DataAccessStub {
     //david le : generate the favourite list
     public String getFavouriteFoodSequential(List<Food> foodResult){
         Iterator<Food> foodIterator = foods.iterator(); //This iterates through the foods list
-        Food recipe;
+        Food food;
         while(foodIterator.hasNext()){
-            recipe = foodIterator.next();
-            if(recipe.getFavourite()){
-                foodResult.add(recipe);
+            food = foodIterator.next();
+            if(food.getFavourite()){
+                foodResult.add(food);
             }
         }
         return null;
