@@ -101,7 +101,6 @@ public class DataAccessObject implements DataAccess{
         System.out.println("Closed " +dbType +" database " +dbName);
     }
 
-    @Override
     public Map getFoodMap(Map ret_food_map) {
         System.out.println("-----------");
         System.out.println("getFoodMap()");
@@ -118,7 +117,6 @@ public class DataAccessObject implements DataAccess{
         return ret_food_map;
     }
 
-    @Override
     public String getFoodSequential(List<Food> foodResult) {
         System.out.println("-----------");
         System.out.println("getFoodSequential()");
@@ -153,7 +151,6 @@ public class DataAccessObject implements DataAccess{
         return result;
     }
 
-    @Override
     public String getFavouriteFoodSequential(List<Food> foodResult) {
         System.out.println("-----------");
         System.out.println("getFavouriteFoodSequential()");
@@ -189,7 +186,6 @@ public class DataAccessObject implements DataAccess{
 
     }
 
-    @Override
     public String getFoodRandom(List<Food> foodResult) {
         System.out.println("-----------");
         System.out.println("getFoodRandom()");
@@ -224,7 +220,6 @@ public class DataAccessObject implements DataAccess{
         return result;
     }
 
-    @Override
     public String getFoodPreferred(List<Food> foodResult, String preferredCategory) {
         System.out.println("preferred food want: "+ preferredCategory);
         System.out.println("-----------");
@@ -241,7 +236,6 @@ public class DataAccessObject implements DataAccess{
             cmdString = "SELECT * from FOODS as f INNER JOIN FOODSCATEGORY as fc ON ( f.FOODID = fc.FOODID ) INNER JOIN CATEGORYS as c ON (fc.CATEGORYID = c.CATEGORYID) WHERE c.CATEGORYNAME = '"+preferredCategory+"'";
             rs5 = st3.executeQuery(cmdString);
             if (rs5 == null) System.out.println("return state 5 is null");
-            System.out.println("total no of rows in rs5 are " + rs5.getRow());
             while (rs5.next()){
                 myID = rs5.getString("FoodID");
                 System.out.println("get ID: "+myID);
@@ -261,7 +255,6 @@ public class DataAccessObject implements DataAccess{
         return result;
     }
 
-    @Override
     public Food getFoodFromID(String foodID){
 
         System.out.println("-----------");
@@ -278,7 +271,6 @@ public class DataAccessObject implements DataAccess{
             cmdString = "SELECT * from FOODS  WHERE FOODID = '"+foodID+"'";
             rs5 = st3.executeQuery(cmdString);
             if (rs5 == null) System.out.println("return state 5 is null");
-            System.out.println("total no of rows in rs5 are " + rs5.getRow());
             while (rs5.next()){
                 myID = rs5.getString("FoodID");
                 System.out.println("get ID: "+myID);
@@ -308,17 +300,52 @@ public class DataAccessObject implements DataAccess{
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
+        } catch (Exception e)
+        {
+            result = processSQLError(e);
+        }
+        return result;
+    }
+    public int getFoodTableRow(){
+        System.out.println("-----------");
+        System.out.println("get food table row" );
+        System.out.println("-----------");
+        result = null;
+        int myRow = 0;
+        try
+        {
+            cmdString = "Select * from Foods";
+            rs5 = st3.executeQuery(cmdString);
+            if (rs5 == null) System.out.println("return state 5 is null");
+            while (rs5.next()){
+                myRow ++;
+            }
+            rs5.close();
+        }
+        catch (Exception e)
+        {
+            result = processSQLError(e);
+        }
+        return myRow;
+    }
+
+    public String addFood(Food addFood){
+        String values;
+
+        result = null;
+        try
+        {
+            cmdString = "Insert into Foods Values("+Integer.parseInt(addFood.getFoodID()) +", '"+addFood.getFoodName()+"','"+addFood.getRecipeLink()+"',"+addFood.getFavourite()+")";
+
+            //System.out.println(cmdString);
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
         }
         catch (Exception e)
         {
             result = processSQLError(e);
         }
         return result;
-    }
-
-    @Override
-    public String addFood(Food newFood) {
-        return null;
     }
 
     public String processSQLError(Exception e)

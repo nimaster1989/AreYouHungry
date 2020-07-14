@@ -48,21 +48,15 @@ public class AddActivity extends AppCompatActivity {
         EditText editRecipe = (EditText)findViewById(R.id.editRecipe);
         String newName =  editName.getText().toString();
         String newRecipe = editRecipe.getText().toString();
-        Food newFood = validateFoodData(newName,newRecipe);
+        Food newFood = validateFoodData(newName,newRecipe,set_favourite);
         if(newFood != null){
-            if(set_favourite){
-                newFood.setFavourite(true);
-            }
-            if(accessFoods.addFood(newFood) == null){
-                Snackbar.make(findViewById(R.id.add_constrain), "successfully added!", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                accessFoods.getFoods(foods);
-            }
+            Snackbar.make(findViewById(R.id.add_constrain), "successfully added!", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
         }
-        set_favourite = false;
     }
 
-    private Food validateFoodData(String name,String Recipe){
+    private Food validateFoodData(String name,String Recipe,Boolean favourite){
+        Food addedFood = null;
         if(name.length() == 0){
             Snackbar.make(findViewById(R.id.add_constrain), "food name can not be empty", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
@@ -75,20 +69,17 @@ public class AddActivity extends AppCompatActivity {
                             .setAction("Action", null).show();
                     return null;}
             }
+            String newID = Integer.toString( accessFoods.getFoodRow() + 1);
+            System.out.println("foodrow:" +accessFoods.getFoodRow() );
+            System.out.println("newID:" +newID);
             if(Recipe.length() == 0){
-                if(foods.size() < 10) {
-                    return new Food("00" + (foods.size() + 1),name);
-                }else{
-                    return new Food("0" + (foods.size() + 1),name);
-                }
+                addedFood = new Food(newID,name,"",set_favourite);
             }else{
-                if(foods.size() < 10) {
-                    return new Food("00" + (foods.size()+1),name,Recipe);
-                }else{
-                    return new Food("0" + (foods.size()+1),name,Recipe);
-                }
+                addedFood = new Food(newID,name,Recipe,set_favourite);
             }
+            accessFoods.addFood(addedFood);
         }
+        return addedFood;
     }
 
     @Override

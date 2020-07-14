@@ -20,9 +20,11 @@ public interface DataAccess {
 
     public String getFoodPreferred(List<Food> foodResult, String food);
 
-    public String addFood(Food newFood);
-
     public Food getFoodFromID(String foodID);
 
     public String setFoodToFavourite(String curr_id, boolean favourite);
+
+    public String addFood(Food addFood);
+
+    public int getFoodTableRow();
 }

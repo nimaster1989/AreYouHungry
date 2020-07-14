@@ -50,10 +50,12 @@ public class AccessFoods {
         foods.clear();
         return dataAccess.getFoodPreferred(foods, food);
     }
+    public int getFoodRow(){
+        return dataAccess.getFoodTableRow();
+    }
 
-
-    public String addFood(Food newFood) {
-        return dataAccess.addFood(newFood);
+    public String addFood(Food addedFood) {
+        return dataAccess.addFood(addedFood);
     }
 
     public String setFoodFavourite(String curr_id,boolean favourite) {
