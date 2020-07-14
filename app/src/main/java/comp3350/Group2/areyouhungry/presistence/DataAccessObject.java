@@ -3,6 +3,7 @@ package comp3350.Group2.areyouhungry.presistence;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLWarning;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -261,6 +262,61 @@ public class DataAccessObject implements DataAccess{
     }
 
     @Override
+    public Food getFoodFromID(String foodID){
+
+        System.out.println("-----------");
+        System.out.println("getFoodFromId: "+foodID );
+        System.out.println("-----------");
+        Food foodByID = null;
+        String myID,myFoodName,myRecipe;
+        Boolean myFavourite;
+        myID = EOF;
+        myFoodName = EOF;
+
+        result = null;
+        try {
+            cmdString = "SELECT * from FOODS  WHERE FOODID = '"+foodID+"'";
+            rs5 = st3.executeQuery(cmdString);
+            if (rs5 == null) System.out.println("return state 5 is null");
+            System.out.println("total no of rows in rs5 are " + rs5.getRow());
+            while (rs5.next()){
+                myID = rs5.getString("FoodID");
+                System.out.println("get ID: "+myID);
+                myFoodName = rs5.getString("FoodName");
+                System.out.println("get name: "+myFoodName);
+                myRecipe = rs5.getString("Recipe");
+                System.out.println("get recipe: "+myRecipe);
+                myFavourite = rs5.getBoolean("Favourite");
+                System.out.println("get favourite: "+myFavourite);
+                foodByID = new Food(myID,myFoodName,myRecipe,myFavourite);
+            }
+            rs5.close();
+        }catch (Exception e){
+            processSQLError(e);
+        }
+        return foodByID;
+    }
+    @Override
+    public String setFoodToFavourite(String FoodID, boolean favourite){
+        String values;
+        String where;
+
+        result = null;
+        try
+        {
+            cmdString = "Update Foods Set Favourite = '" +favourite +"' where Foods.foodID = '"+FoodID+"'";
+            //System.out.println(cmdString);
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+        }
+        catch (Exception e)
+        {
+            result = processSQLError(e);
+        }
+        return result;
+    }
+
+    @Override
     public String addFood(Food newFood) {
         return null;
     }
@@ -273,6 +329,29 @@ public class DataAccessObject implements DataAccess{
         e.printStackTrace();
         System.out.println(result);
 
+        return result;
+    }
+    public String checkWarning(Statement st, int updateCount)
+    {
+        String result;
+
+        result = null;
+        try
+        {
+            SQLWarning warning = st.getWarnings();
+            if (warning != null)
+            {
+                result = warning.getMessage();
+            }
+        }
+        catch (Exception e)
+        {
+            result = processSQLError(e);
+        }
+        if (updateCount != 1)
+        {
+            result = "Tuple not inserted correctly.";
+        }
         return result;
     }
 }

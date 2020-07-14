@@ -33,6 +33,10 @@ public class AccessFoods {
         foods.clear();
         return dataAccess.getFoodSequential(foods);
     }
+    public Food getFoodByID(String foodID){
+        return dataAccess.getFoodFromID(foodID);
+    }
+
     public String getFavouriteFoods(ArrayList<Food> favouriteFoodList) {
         favouriteFoodList.clear();
         return dataAccess.getFavouriteFoodSequential(favouriteFoodList);
@@ -50,5 +54,9 @@ public class AccessFoods {
 
     public String addFood(Food newFood) {
         return dataAccess.addFood(newFood);
+    }
+
+    public String setFoodFavourite(String curr_id,boolean favourite) {
+        return dataAccess.setFoodToFavourite(curr_id,favourite);
     }
 }

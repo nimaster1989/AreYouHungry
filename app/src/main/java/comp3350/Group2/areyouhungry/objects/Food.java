@@ -49,6 +49,7 @@ public class Food {
 
     public void setFavourite(boolean favourite) {
         this.favourite = favourite;
+
     }
 
     @Override
