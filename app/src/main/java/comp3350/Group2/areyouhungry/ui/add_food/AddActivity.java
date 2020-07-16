@@ -25,7 +25,6 @@ public class AddActivity extends AppCompatActivity {
     private AccessFoods accessFoods;
     private ArrayList<Food> foods;
 
-    private boolean set_favourite = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +47,34 @@ public class AddActivity extends AppCompatActivity {
         EditText editRecipe = (EditText)findViewById(R.id.editRecipe);
         String newName =  editName.getText().toString();
         String newRecipe = editRecipe.getText().toString();
+        CheckBox favCheck = (CheckBox) findViewById(R.id.fav_checkBox);
+        boolean set_favourite = favCheck.isChecked();
         Food newFood = validateFoodData(newName,newRecipe,set_favourite);
         if(newFood != null){
+            addCategory(newFood);
             Snackbar.make(findViewById(R.id.add_constrain), "successfully added!", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         }
+
+        //now add the category
+    }
+
+    private void addCategory(Food newFood) {
+        CheckBox checkbox;
+        checkbox = (CheckBox) findViewById(R.id.meat_checkBox);
+        if (checkbox.isChecked()) addCategoryHelper(newFood,"Meat");
+        checkbox = (CheckBox) findViewById(R.id.vegetable_checkBox);
+        if (checkbox.isChecked()) addCategoryHelper(newFood,"Vegetable");
+        checkbox = (CheckBox) findViewById(R.id.grain_checkBox);
+        if (checkbox.isChecked()) addCategoryHelper(newFood,"Garin");
+        checkbox = (CheckBox) findViewById(R.id.diary_checkBox);
+        if (checkbox.isChecked()) addCategoryHelper(newFood,"Diary");
+        checkbox = (CheckBox) findViewById(R.id.fruit_checkBox);
+        if (checkbox.isChecked()) addCategoryHelper(newFood,"Fruit");
+    }
+
+    private void addCategoryHelper(Food newFood,String categoryName){
+        accessFoods.addFoodCategory(newFood,categoryName);
     }
 
     private Food validateFoodData(String name,String Recipe,Boolean favourite){
@@ -64,10 +86,11 @@ public class AddActivity extends AppCompatActivity {
         }else{
             //make a food obj
             String newID = Integer.toString( accessFoods.getFoodRow() + 1);
+
             if(Recipe.length() == 0){
-                foodToAdd = new Food(newID,name,"",set_favourite);
+                foodToAdd = new Food(newID,name,"",favourite);
             }else{
-                foodToAdd = new Food(newID,name,Recipe,set_favourite);
+                foodToAdd = new Food(newID,name,Recipe,favourite);
             }
             //check if the new food is duplicate
             if(accessFoods.checkDuplicate(foodToAdd)){
@@ -95,10 +118,6 @@ public class AddActivity extends AppCompatActivity {
             navigateUpTo(new Intent(this, FoodListActivity.class));
     }
 
-    public void Fav_onClick(View view) {
-        CheckBox checkBox = (CheckBox)view;
-        if(checkBox.isChecked()){
-            this.set_favourite = true;
-        }
-    }
+
+
 }

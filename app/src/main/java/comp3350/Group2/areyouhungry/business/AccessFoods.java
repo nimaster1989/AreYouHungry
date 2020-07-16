@@ -38,6 +38,7 @@ public class AccessFoods {
         return dataAccess.getFoodFromID(foodID);
     }
 
+
     //xu yang: definition of duplicate: we assume foods might have same name, but not same recipe,
     //we call two foods to be equal if they have same name, and same recipe
     public boolean checkDuplicate(Food food){
@@ -57,6 +58,7 @@ public class AccessFoods {
         }
         return duplicate;
     }
+
 
     public String getFavouriteFoods(ArrayList<Food> favouriteFoodList) {
         favouriteFoodList.clear();
@@ -81,5 +83,20 @@ public class AccessFoods {
 
     public String setFoodFavourite(String curr_id,boolean favourite) {
         return dataAccess.setFoodToFavourite(curr_id,favourite);
+    }
+
+    public String addFoodCategory(Food newFood, String categoryName) {
+        int foodID = getFoodID(newFood);
+        int categoryID = getCategoryID(categoryName);
+        return dataAccess.addFoodCategory(foodID, categoryID);
+    }
+
+    private int getCategoryID(String categoryName) {
+        return dataAccess.getCategoryIDbyName(categoryName);
+    }
+
+    //xu ang: if not found, should return -1
+    public int getFoodID(Food food){
+        return dataAccess.getIDByFood(food);
     }
 }

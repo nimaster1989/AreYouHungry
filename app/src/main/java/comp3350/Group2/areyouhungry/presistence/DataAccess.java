@@ -27,4 +27,10 @@ public interface DataAccess {
     public String addFood(Food addFood);
 
     public int getFoodTableRow();
+
+    public String addFoodCategory(int foodID,int categoryID);
+
+    public int getIDByFood(Food food);
+
+    public int getCategoryIDbyName(String categoryName);
 }

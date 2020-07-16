@@ -102,9 +102,6 @@ public class DataAccessObject implements DataAccess{
     }
 
     public Map getFoodMap(Map ret_food_map) {
-        System.out.println("-----------");
-        System.out.println("getFoodMap()");
-        System.out.println("-----------");
         ArrayList<Food> mfoods = new ArrayList<Food>();
         mfoods.clear();
         this.getFoodSequential(mfoods);
@@ -327,6 +324,73 @@ public class DataAccessObject implements DataAccess{
             result = processSQLError(e);
         }
         return myRow;
+    }
+
+
+
+    public int getIDByFood(Food food) {
+        System.out.println("-----------");
+        System.out.println("get id by food" );
+        System.out.println("-----------");
+        result = null;
+        int myID = -1;
+        try
+        {
+            cmdString = "Select * from Foods where Foods.foodname = '"+food.getFoodName()+"' and Foods.RECIPE = '"+food.getRecipeLink()+"'";
+            rs5 = st3.executeQuery(cmdString);
+            while (rs5.next()){
+                myID = rs5.getInt("FoodID");
+            }
+            rs5.close();
+        }
+        catch (Exception e)
+        {
+            result = processSQLError(e);
+        }
+        return myID;
+    }
+
+    @Override
+    public int getCategoryIDbyName(String categoryName) {
+        System.out.println("-----------");
+        System.out.println("get categoryID by category name: "+categoryName );
+        System.out.println("-----------");
+        result = null;
+        int myID = -1;
+        try
+        {
+            cmdString = "Select * from Categorys where Categorys.categoryname = '"+categoryName+"'";
+            rs5 = st3.executeQuery(cmdString);
+            while (rs5.next()){
+                myID = rs5.getInt("CATEGORYID");
+            }
+            rs5.close();
+        }
+        catch (Exception e)
+        {
+            result = processSQLError(e);
+        }
+        System.out.println("get: "+myID);
+        return myID;
+    }
+
+
+    public String addFoodCategory(int foodID, int categoryID) {
+        String values;
+
+        result = null;
+        try
+        {
+            cmdString ="INSERT INTO FOODSCATEGORY VALUES("+ foodID+","+ categoryID+")";
+            //System.out.println(cmdString);
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+        }
+        catch (Exception e)
+        {
+            result = processSQLError(e);
+        }
+        return result;
     }
 
     public String addFood(Food addFood){
