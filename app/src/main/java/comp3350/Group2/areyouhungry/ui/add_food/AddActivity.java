@@ -56,30 +56,29 @@ public class AddActivity extends AppCompatActivity {
     }
 
     private Food validateFoodData(String name,String Recipe,Boolean favourite){
-        Food addedFood = null;
+        Food foodToAdd = null;
         if(name.length() == 0){
             Snackbar.make(findViewById(R.id.add_constrain), "food name can not be empty", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
             return null;
         }else{
-            Iterator<Food> foodIterator = foods.iterator();
-            while(foodIterator.hasNext()){
-                if(foodIterator.next().getFoodName().equals(name)){
-                    Snackbar.make(findViewById(R.id.add_constrain), "food is already in the app ", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                    return null;}
-            }
+            //make a food obj
             String newID = Integer.toString( accessFoods.getFoodRow() + 1);
-            System.out.println("foodrow:" +accessFoods.getFoodRow() );
-            System.out.println("newID:" +newID);
             if(Recipe.length() == 0){
-                addedFood = new Food(newID,name,"",set_favourite);
+                foodToAdd = new Food(newID,name,"",set_favourite);
             }else{
-                addedFood = new Food(newID,name,Recipe,set_favourite);
+                foodToAdd = new Food(newID,name,Recipe,set_favourite);
             }
-            accessFoods.addFood(addedFood);
+            //check if the new food is duplicate
+            if(accessFoods.checkDuplicate(foodToAdd)){
+                Snackbar.make(findViewById(R.id.add_constrain), "food is already in the app ", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                return null;
+            }
+            //now its safe to add food
+            accessFoods.addFood(foodToAdd);
         }
-        return addedFood;
+        return foodToAdd;
     }
 
     @Override

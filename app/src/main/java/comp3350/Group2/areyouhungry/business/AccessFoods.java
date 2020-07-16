@@ -7,6 +7,7 @@ import comp3350.Group2.areyouhungry.presistence.DataAccess;
 import comp3350.Group2.areyouhungry.presistence.DataAccessStub;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +36,26 @@ public class AccessFoods {
     }
     public Food getFoodByID(String foodID){
         return dataAccess.getFoodFromID(foodID);
+    }
+
+    //xu yang: definition of duplicate: we assume foods might have same name, but not same recipe,
+    //we call two foods to be equal if they have same name, and same recipe
+    public boolean checkDuplicate(Food food){
+        boolean duplicate = false;
+        List<Food> foodsInDatabase = new ArrayList<Food>();
+        String result = this.getFoods(foodsInDatabase);
+        if(result == null){
+            Iterator<Food> foodIterator = foodsInDatabase.iterator(); //This iterates through the foods list
+            Food curr_food;
+            while(foodIterator.hasNext()){
+                curr_food = foodIterator.next();
+                if(curr_food.equals(food)){
+                    duplicate = true;
+                    break;
+                }
+            }
+        }
+        return duplicate;
     }
 
     public String getFavouriteFoods(ArrayList<Food> favouriteFoodList) {

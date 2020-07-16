@@ -63,10 +63,7 @@ public class Food {
         if (otherObject instanceof Food){
             Food otherFood = (Food) otherObject;
 
-            if(foodID == null && otherFood.foodID == null){
-                result = true;
-            }
-            else if (foodID.equals(otherFood.foodID)){
+            if(foodName.equals(otherFood.getFoodName()) && recipeLink.equals(otherFood.getRecipeLink())) {
                 result = true;
             }
         }
