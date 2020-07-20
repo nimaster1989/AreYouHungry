@@ -27,6 +27,13 @@ public class Food {
         this.recipeLink = recipeLink;
         favourite = false;
     }
+    public Food(String newFoodID, String newFoodName,String recipeLink,Boolean favourite)
+    {
+        this.foodID = newFoodID;
+        this.foodName = newFoodName;
+        this.recipeLink = recipeLink;
+        this.favourite = favourite;
+    }
 
     public String getFoodID(){ return foodID; }
 
@@ -42,6 +49,7 @@ public class Food {
 
     public void setFavourite(boolean favourite) {
         this.favourite = favourite;
+
     }
 
     @Override
@@ -55,10 +63,7 @@ public class Food {
         if (otherObject instanceof Food){
             Food otherFood = (Food) otherObject;
 
-            if(foodID == null && otherFood.foodID == null){
-                result = true;
-            }
-            else if (foodID.equals(otherFood.foodID)){
+            if(foodName.equals(otherFood.getFoodName()) && recipeLink.equals(otherFood.getRecipeLink())) {
                 result = true;
             }
         }

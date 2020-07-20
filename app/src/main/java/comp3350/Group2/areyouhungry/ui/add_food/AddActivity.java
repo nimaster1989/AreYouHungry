@@ -25,7 +25,6 @@ public class AddActivity extends AppCompatActivity {
     private AccessFoods accessFoods;
     private ArrayList<Food> foods;
 
-    private boolean set_favourite = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,47 +47,61 @@ public class AddActivity extends AppCompatActivity {
         EditText editRecipe = (EditText)findViewById(R.id.editRecipe);
         String newName =  editName.getText().toString();
         String newRecipe = editRecipe.getText().toString();
-        Food newFood = validateFoodData(newName,newRecipe);
+        CheckBox favCheck = (CheckBox) findViewById(R.id.fav_checkBox);
+        boolean set_favourite = favCheck.isChecked();
+        Food newFood = validateFoodData(newName,newRecipe,set_favourite);
         if(newFood != null){
-            if(set_favourite){
-                newFood.setFavourite(true);
-            }
-            if(accessFoods.addFood(newFood) == null){
-                Snackbar.make(findViewById(R.id.add_constrain), "successfully added!", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                accessFoods.getFoods(foods);
-            }
+            addCategory(newFood);
+            Snackbar.make(findViewById(R.id.add_constrain), "successfully added!", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
         }
-        set_favourite = false;
+
+        //now add the category
     }
 
-    private Food validateFoodData(String name,String Recipe){
+    private void addCategory(Food newFood) {
+        CheckBox checkbox;
+        checkbox = (CheckBox) findViewById(R.id.meat_checkBox);
+        if (checkbox.isChecked()) addCategoryHelper(newFood,"Meat");
+        checkbox = (CheckBox) findViewById(R.id.vegetable_checkBox);
+        if (checkbox.isChecked()) addCategoryHelper(newFood,"Vegetable");
+        checkbox = (CheckBox) findViewById(R.id.grain_checkBox);
+        if (checkbox.isChecked()) addCategoryHelper(newFood,"Garin");
+        checkbox = (CheckBox) findViewById(R.id.diary_checkBox);
+        if (checkbox.isChecked()) addCategoryHelper(newFood,"Diary");
+        checkbox = (CheckBox) findViewById(R.id.fruit_checkBox);
+        if (checkbox.isChecked()) addCategoryHelper(newFood,"Fruit");
+    }
+
+    private void addCategoryHelper(Food newFood,String categoryName){
+        accessFoods.addFoodCategory(newFood,categoryName);
+    }
+
+    private Food validateFoodData(String name,String Recipe,Boolean favourite){
+        Food foodToAdd = null;
         if(name.length() == 0){
             Snackbar.make(findViewById(R.id.add_constrain), "food name can not be empty", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
             return null;
         }else{
-            Iterator<Food> foodIterator = foods.iterator();
-            while(foodIterator.hasNext()){
-                if(foodIterator.next().getFoodName().equals(name)){
-                    Snackbar.make(findViewById(R.id.add_constrain), "food is already in the app ", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                    return null;}
-            }
+            //make a food obj
+            String newID = Integer.toString( accessFoods.getFoodRow() + 1);
+
             if(Recipe.length() == 0){
-                if(foods.size() < 10) {
-                    return new Food("00" + (foods.size() + 1),name);
-                }else{
-                    return new Food("0" + (foods.size() + 1),name);
-                }
+                foodToAdd = new Food(newID,name,"",favourite);
             }else{
-                if(foods.size() < 10) {
-                    return new Food("00" + (foods.size()+1),name,Recipe);
-                }else{
-                    return new Food("0" + (foods.size()+1),name,Recipe);
-                }
+                foodToAdd = new Food(newID,name,Recipe,favourite);
             }
+            //check if the new food is duplicate
+            if(accessFoods.checkDuplicate(foodToAdd)){
+                Snackbar.make(findViewById(R.id.add_constrain), "food is already in the app ", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                return null;
+            }
+            //now its safe to add food
+            accessFoods.addFood(foodToAdd);
         }
+        return foodToAdd;
     }
 
     @Override
@@ -105,10 +118,6 @@ public class AddActivity extends AppCompatActivity {
             navigateUpTo(new Intent(this, FoodListActivity.class));
     }
 
-    public void Fav_onClick(View view) {
-        CheckBox checkBox = (CheckBox)view;
-        if(checkBox.isChecked()){
-            this.set_favourite = true;
-        }
-    }
+
+
 }

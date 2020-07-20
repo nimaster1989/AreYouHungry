@@ -15,7 +15,10 @@
     <string name="hello_world">Hello Square World!</string>
     <string-array name="foodSpinner">
         <item>Meat</item>
-        <item>Dessert</item>
+        <item>Grain</item>
+        <item>Vegetable</item>
+        <item>Diary</item>
+        <item>Fruit</item>
     </string-array>
     <string name="title_food_list">Foods</string>
     <string name="title_food_detail">Food Detail</string>
@@ -27,4 +30,7 @@
     <string name="add_favourite">Add Favourite</string>
     <string name="search">Search!</string>
     <string name="add">ADD</string>
+    <string name="fatalError">Fatal error</string>
+    <string name="warning">Warning</string>
+    <string name="add_a_new_food">Add a new food</string>
 </resources>

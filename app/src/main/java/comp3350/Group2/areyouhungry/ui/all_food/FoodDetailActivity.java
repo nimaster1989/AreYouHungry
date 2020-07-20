@@ -43,21 +43,11 @@ public class FoodDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
+        accessFoods = new AccessFoods();
         //xu yang: get current food id
         curr_id = getIntent().getStringExtra(FoodDetailFragment.ARG_ITEM_ID);
         if (curr_id != null) {
-            accessFoods = new AccessFoods();
-            foodList = new ArrayList<Food>();
-            accessFoods.getFoods(foodList);
-            Iterator<Food> foodIterator = foodList.iterator();
-            Food getFood;
-            while (foodIterator.hasNext()) {
-                getFood = foodIterator.next();
-                if (getFood.getFoodID().equals(curr_id)) {
-                    curr_food = getFood;
-                    break;
-                }
-            }
+            curr_food = accessFoods.getFoodByID(curr_id);
         }
         fab = (FloatingActionButton) findViewById(R.id.fab);
         if(this.curr_food != null ) {
@@ -73,11 +63,13 @@ public class FoodDetailActivity extends AppCompatActivity {
                 if (curr_food != null) {
                     if (curr_food.getFavourite()) {
                         curr_food.setFavourite(false);
+                        accessFoods.setFoodFavourite(curr_id,false);
                         fab.setImageDrawable(getDrawable(R.drawable.ic_baseline_favorite_border_24));
                         Snackbar.make(view, "You unlike this food!", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                     } else {
                         curr_food.setFavourite(true);
+                        accessFoods.setFoodFavourite(curr_id,true);
                         fab.setImageDrawable(getDrawable(R.drawable.ic_baseline_favorite_24));
                         Snackbar.make(view, "You like this food!", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
