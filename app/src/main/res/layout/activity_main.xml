@@ -8,17 +8,6 @@
     android:paddingTop="?attr/actionBarSize"
     android:theme="@style/AppTheme">
 
-    <Button
-        android:id="@+id/randomFoodButton"
-        android:layout_width="352dp"
-        android:layout_height="81dp"
-        android:layout_below="@+id/searchView2"
-        android:layout_gravity="center"
-        android:background="#E64D00EA"
-        android:onClick="randomPickOnClick"
-        android:text="@string/pick_for_me"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"/>
 
     <Button
         android:id="@+id/specifiedFoodButton"
@@ -31,9 +20,7 @@
         android:onClick="preferredPickOnClick"
         android:text="@string/preference_search"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"/>
-
-
+        android:textSize="18sp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"

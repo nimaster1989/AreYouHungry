@@ -14,7 +14,7 @@ import comp3350.Group2.areyouhungry.R;
 import comp3350.Group2.areyouhungry.ui.favorites.FavouriteFoodListActivity;
 import comp3350.Group2.areyouhungry.ui.more.MoreActivity;
 import comp3350.Group2.areyouhungry.ui.preferred.PreferredActivity;
-import comp3350.Group2.areyouhungry.ui.random.RandomActivity;
+
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -50,11 +50,6 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    //jump to randomActivity page when click the image button
-    public void randomPickOnClick(View view) {
-        Intent random_intent = new Intent(HomeActivity.this, RandomActivity.class);
-        HomeActivity.this.startActivity(random_intent);
-    }
 
     public void preferredPickOnClick(View view) {
         Intent preferred_intent = new Intent(HomeActivity.this, PreferredActivity.class);
