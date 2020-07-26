@@ -21,28 +21,23 @@ import comp3350.Group2.areyouhungry.R;
 import comp3350.Group2.areyouhungry.business.AccessFoods;
 import comp3350.Group2.areyouhungry.objects.Food;
 
-/**
- * A fragment representing a single Food detail screen.
- * This fragment is either contained in a {@link FoodListActivity}
- * in two-pane mode (on tablets) or a {@link FoodDetailActivity}
- * on handsets.
- */
+/* A fragment representing a single Food detail screen.
+   This fragment is either contained in a FoodListActivity
+   in two-pane mode (on tablets) or a FoodDetailActivity
+   on handsets. */
 public class FoodDetailFragment extends Fragment {
-    /**
-     * The fragment argument representing the item ID that this fragment
-     * represents.
-     */
+    /* The fragment argument representing the item ID that this fragment
+       represents. */
+
     public static final String ARG_ITEM_ID = "item_id";
 
     private Food mFood;
     private AccessFoods accessFoods;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
-    public FoodDetailFragment(){
-    }
+    /* Mandatory empty constructor for the fragment manager to instantiate the
+       fragment (e.g. upon screen orientation changes). */
+
+    public FoodDetailFragment(){}
 
     @Override
     public void onCreate(Bundle savedInstanceState){

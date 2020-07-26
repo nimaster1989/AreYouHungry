@@ -16,19 +16,17 @@ import comp3350.Group2.areyouhungry.persistence.Messages;
 import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
 
 public class MainActivity extends AppCompatActivity {
-    //beautiful food
     public static final String dbName="SC";
     private static String dbPathName = "database/SC";
-    //COMP3350  group2
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        //startup database
+        /* Startup database. */
         copyDatabaseToDevice();
         startUp();
 
-        //startUp home activity
+        /* StartUp home activity. */
         Intent home_intent = new Intent(MainActivity.this, HomeActivity.class);
         MainActivity.this.startActivity(home_intent);
     }
@@ -42,16 +40,12 @@ public class MainActivity extends AppCompatActivity {
         AssetManager assetManager = getAssets();
 
         try{
-
             assetNames = assetManager.list(DB_PATH);
             for (int i = 0; i < assetNames.length; i++){
                 assetNames[i] = DB_PATH + "/" + assetNames[i];
             }
-
             copyAssetsToDirectory(assetNames, dataDirectory);
-
             MainActivity.setDBPathName(dataDirectory.toString() + "/" + MainActivity.dbName);
-
         } catch (IOException ioe){
             Messages.warning(this, "Unable to access application data: " + ioe.getMessage());
         }

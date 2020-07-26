@@ -56,14 +56,14 @@ public class PreferredSearchActivity extends AppCompatActivity {
                 }
             };
             final ListView listView = (ListView) findViewById(R.id.preferred_pick);
-            //Creating an onClickListener for clicking on the food selected
+            /* Creating an onClickListener for clicking on the food selected. */
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                    //Gets the food selected from the list
+                    /* Gets the food selected from the list. */
                     Food food = (Food) foodList.get(position);
                     Context context = view.getContext();
-                    //Change the content of the application
+                    /* Change the content of the application. */
                     Intent intent = new Intent(context, FoodDetailActivity.class);
                     intent.putExtra(FoodDetailFragment.ARG_ITEM_ID, food.getFoodID());
                     context.startActivity(intent);
