@@ -33,19 +33,20 @@ public class AccessFoods {
         foods.clear();
         return dataAccess.getFoodSequential(foods);
     }
+
     public Food getFoodByID(String foodID){
         return dataAccess.getFoodFromID(foodID);
     }
 
-
-    //definition of duplicate: we assume foods might have same name, but not same recipe,
-    //we call two foods to be equal if they have same name, and same recipe
+    /* Definition of duplicate: we assume foods might have same name,
+       but not same recipe, we call two foods to be equal if they have same
+       name, and same recipe. */
     public boolean checkDuplicate(Food food){
         boolean duplicate = false;
         List<Food> foodsInDatabase = new ArrayList<Food>();
         String result = this.getFoods(foodsInDatabase);
         if(result == null){
-            Iterator<Food> foodIterator = foodsInDatabase.iterator(); //This iterates through the foods list
+            Iterator<Food> foodIterator = foodsInDatabase.iterator(); /* This iterates through the foods list. */
             Food curr_food;
             while(foodIterator.hasNext()){
                 curr_food = foodIterator.next();
@@ -58,19 +59,21 @@ public class AccessFoods {
         return duplicate;
     }
 
-
     public String getFavouriteFoods(ArrayList<Food> favouriteFoodList){
         favouriteFoodList.clear();
         return dataAccess.getFavouriteFoodSequential(favouriteFoodList);
     }
+
     public String getRandom(List<Food> foods){
         foods.clear();
         return dataAccess.getFoodRandom(foods);
     }
+
     public String getPreferred(List<Food> foods, String food){
         foods.clear();
         return dataAccess.getFoodPreferred(foods, food);
     }
+
     public int getFoodRow(){
         return dataAccess.getFoodTableRow();
     }
@@ -93,7 +96,7 @@ public class AccessFoods {
         return dataAccess.getCategoryIDbyName(categoryName);
     }
 
-    //xu ang: if not found, should return -1
+    /* If not found, should return -1. */
     public int getFoodID(Food food){
         return dataAccess.getIDByFood(food);
     }

@@ -127,11 +127,11 @@
 
 
         <CheckBox
-            android:id="@+id/diary_checkBox"
+            android:id="@+id/dairy_checkBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="diary"
+            android:text="dairy"
             android:textSize="20dp" />
 
         <TextView

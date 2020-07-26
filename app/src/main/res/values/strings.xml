@@ -17,7 +17,7 @@
         <item>Meat</item>
         <item>Grain</item>
         <item>Vegetable</item>
-        <item>Diary</item>
+        <item>Dairy</item>
         <item>Fruit</item>
     </string-array>
     <string name="title_food_list">Foods</string>

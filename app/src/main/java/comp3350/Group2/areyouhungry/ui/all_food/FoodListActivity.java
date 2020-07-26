@@ -30,20 +30,17 @@ import comp3350.Group2.areyouhungry.ui.more.MoreActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * An activity representing a list of Foods. This activity
- * has different presentations for handset and tablet-size devices. On
- * handsets, the activity presents a list of items, which when touched,
- * lead to a {@link FoodDetailActivity} representing
- * item details. On tablets, the activity presents the list of items and
- * item details side-by-side using two vertical panes.
- */
+/* An activity representing a list of Foods. This activity
+   has different presentations for handset and tablet-size devices. On
+   handsets, the activity presents a list of items, which when touched,
+   lead to a FoodDetailActivity representing
+   item details. On tablets, the activity presents the list of items and
+   item details side-by-side using two vertical panes. */
+
 public class FoodListActivity extends AppCompatActivity {
 
-    /**
-     * Whether or not the activity is in two-pane mode, i.e. running on a tablet
-     * device.
-     */
+    /* Whether or not the activity is in two-pane mode, i.e. running on a tablet
+       device.  */
 
     private AccessFoods accessFoods;
     private ArrayList<Food> foodList;
@@ -58,7 +55,7 @@ public class FoodListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        //for button navigation bar
+        /* For button navigation bar. */
         BottomNavigationView navView = findViewById(R.id.nav_view);
         Menu menu = navView.getMenu();
         MenuItem menuItem = menu.getItem(2);
@@ -97,10 +94,10 @@ public class FoodListActivity extends AppCompatActivity {
         });
 
         if (findViewById(R.id.food_detail_container) != null){
-            // The detail container view will be present only in the
-            // large-screen layouts (res/values-w900dp).
-            // If this view is present, then the
-            // activity should be in two-pane mode.
+            /* The detail container view will be present only in the
+               large-screen layouts (res/values-w900dp).
+               If this view is present, then the
+               activity should be in two-pane mode. */
             mTwoPane = true;
         }
 

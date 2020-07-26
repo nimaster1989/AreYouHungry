@@ -13,8 +13,6 @@ public class DataAccessStub {
     private ArrayList<Food> foods;
     private Map<String,Food> Food_map;
 
-
-
     public void open(){
         Food food;
 
@@ -41,21 +39,22 @@ public class DataAccessStub {
     }
 
 
-    //add on function to get the food map for FoodDetail Activity
+    /* Add on function to get the food map for FoodDetail Activity. */
     public Map getFoodMap(Map ret_food_map){
         ret_food_map.putAll(Food_map);
         return null;
     }
 
-    //this function is from sample project, used to add food to a list that contain
-    //all foods in the stub datasbase
+    /* This function is from sample project, used to add food to a list that contain
+       all foods in the stub database. */
     public String getFoodSequential(List<Food> foodResult){
         foodResult.addAll((foods));
         return null;
     }
-    //Generate the favourite list
+
+    /* Generate the favourite list. */
     public String getFavouriteFoodSequential(List<Food> foodResult){
-        Iterator<Food> foodIterator = foods.iterator(); //This iterates through the foods list
+        Iterator<Food> foodIterator = foods.iterator(); /* This iterates through the foods list. */
         Food food;
         while(foodIterator.hasNext()){
             food = foodIterator.next();
@@ -66,8 +65,8 @@ public class DataAccessStub {
         return null;
     }
 
-    //this function is used to generate a random food from the stub database
-    //and add it into the foodresult List
+    /* This function is used to generate a random food from the stub database
+       and add it into the foodresult list. */
     public String getFoodRandom(List<Food> foodResult){
         Random random = new Random();
         foodResult.add(foods.get(random.nextInt(foods.size())));
@@ -85,7 +84,6 @@ public class DataAccessStub {
             }
         }
         return null;
-
     }
 
     public String addFood(Food newFood){

@@ -1,7 +1,5 @@
 package comp3350.Group2.areyouhungry.objects;
 
-//class for food
-//DATABASE commit test
 public class Food {
     private String foodID;
     private String foodName;
@@ -19,12 +17,14 @@ public class Food {
         recipeLink = null;
         favourite = false;
     }
+
     public Food(String newFoodID, String newFoodName,String recipeLink){
         this.foodID = newFoodID;
         this.foodName = newFoodName;
         this.recipeLink = recipeLink;
         favourite = false;
     }
+
     public Food(String newFoodID, String newFoodName,String recipeLink,Boolean favourite){
         this.foodID = newFoodID;
         this.foodName = newFoodName;
@@ -54,7 +54,6 @@ public class Food {
 
     public void setFavourite(boolean favourite){
         this.favourite = favourite;
-
     }
 
     @Override
@@ -67,11 +66,11 @@ public class Food {
 
         if (otherObject instanceof Food){
             Food otherFood = (Food) otherObject;
-
             if(foodName.equals(otherFood.getFoodName()) && recipeLink.equals(otherFood.getRecipeLink())){
                 result = true;
             }
         }
+
         return result;
     }
 
