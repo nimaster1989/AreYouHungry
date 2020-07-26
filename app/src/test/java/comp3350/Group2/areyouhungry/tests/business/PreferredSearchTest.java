@@ -20,7 +20,7 @@ public class PreferredSearchTest extends TestCase {
         AccessFoods accessFood = new AccessFoods();
         ArrayList<Food> foodList = new ArrayList<>();
         //test for NULL
-        try {
+        try{
             accessFood.getPreferred(foodList, null);
         }
         catch(Exception e){

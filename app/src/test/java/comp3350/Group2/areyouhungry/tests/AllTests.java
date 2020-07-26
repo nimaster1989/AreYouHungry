@@ -33,5 +33,7 @@ public class AllTests {
     }
 
     @Test
-    private static void testFood(){suite.addTestSuite(FoodTest.class);}
+    private static void testFood(){
+        suite.addTestSuite(FoodTest.class);
+    }
 }

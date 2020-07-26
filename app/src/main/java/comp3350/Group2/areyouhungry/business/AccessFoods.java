@@ -29,8 +29,7 @@ public class AccessFoods {
         return dataAccess.getFoodMap(foods);
     }
 
-    public String getFoods(List<Food> foods)
-    {
+    public String getFoods(List<Food> foods){
         foods.clear();
         return dataAccess.getFoodSequential(foods);
     }
@@ -60,12 +59,11 @@ public class AccessFoods {
     }
 
 
-    public String getFavouriteFoods(ArrayList<Food> favouriteFoodList) {
+    public String getFavouriteFoods(ArrayList<Food> favouriteFoodList){
         favouriteFoodList.clear();
         return dataAccess.getFavouriteFoodSequential(favouriteFoodList);
     }
-    public String getRandom(List<Food> foods)
-    {
+    public String getRandom(List<Food> foods){
         foods.clear();
         return dataAccess.getFoodRandom(foods);
     }
@@ -77,21 +75,21 @@ public class AccessFoods {
         return dataAccess.getFoodTableRow();
     }
 
-    public String addFood(Food addedFood) {
+    public String addFood(Food addedFood){
         return dataAccess.addFood(addedFood);
     }
 
-    public String setFoodFavourite(String curr_id,boolean favourite) {
+    public String setFoodFavourite(String curr_id,boolean favourite){
         return dataAccess.setFoodToFavourite(curr_id,favourite);
     }
 
-    public String addFoodCategory(Food newFood, String categoryName) {
+    public String addFoodCategory(Food newFood, String categoryName){
         int foodID = getFoodID(newFood);
         int categoryID = getCategoryID(categoryName);
         return dataAccess.addFoodCategory(foodID, categoryID);
     }
 
-    private int getCategoryID(String categoryName) {
+    private int getCategoryID(String categoryName){
         return dataAccess.getCategoryIDbyName(categoryName);
     }
 

@@ -19,7 +19,7 @@ import comp3350.Group2.areyouhungry.ui.preferred.PreferredActivity;
 public class HomeActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
@@ -27,10 +27,10 @@ public class HomeActivity extends AppCompatActivity {
         Menu menu = navView.getMenu();
         MenuItem menuItem = menu.getItem(0);
         menuItem.setChecked(true);
-        navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item){
+                switch (item.getItemId()){
 
                     case R.id.navigation_home:
                         break;
@@ -51,7 +51,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-    public void preferredPickOnClick(View view) {
+    public void preferredPickOnClick(View view){
         Intent preferred_intent = new Intent(HomeActivity.this, PreferredActivity.class);
         HomeActivity.this.startActivity(preferred_intent);
     }

@@ -49,7 +49,7 @@ public class FavouriteFoodListActivity extends AppCompatActivity {
     private boolean mTwoPane;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favouritefood_list);
 
@@ -58,15 +58,15 @@ public class FavouriteFoodListActivity extends AppCompatActivity {
         toolbar.setTitle(getTitle());
 
         ExtendedFloatingActionButton fab = (ExtendedFloatingActionButton) findViewById(R.id.fav_fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
+            public void onClick(View view){
                 Intent all_intent = new Intent(FavouriteFoodListActivity.this, FoodListActivity.class);
                 FavouriteFoodListActivity.this.startActivity(all_intent);
             }
         });
 
-        if (findViewById(R.id.favouritefood_detail_container) != null) {
+        if (findViewById(R.id.favouritefood_detail_container) != null){
             // The detail container view will be present only in the
             // large-screen layouts (res/values-w900dp).
             // If this view is present, then the
@@ -82,10 +82,10 @@ public class FavouriteFoodListActivity extends AppCompatActivity {
         Menu menu = navView.getMenu();
         MenuItem menuItem = menu.getItem(1);
         menuItem.setChecked(true);
-        navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item){
+                switch (item.getItemId()){
 
                     case R.id.navigation_home:
                         Intent home_intent = new Intent(FavouriteFoodListActivity.this, HomeActivity.class);
@@ -105,7 +105,7 @@ public class FavouriteFoodListActivity extends AppCompatActivity {
         });
     }
 
-    private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
+    private void setupRecyclerView(@NonNull RecyclerView recyclerView){
         accessFoods = new AccessFoods();
         favouriteFoodList = new ArrayList<Food>();
         accessFoods.getFavouriteFoods(favouriteFoodList);
@@ -113,16 +113,16 @@ public class FavouriteFoodListActivity extends AppCompatActivity {
     }
 
     public static class SimpleItemRecyclerViewAdapter
-            extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
+            extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>{
 
         private final FavouriteFoodListActivity mParentActivity;
         private final List<Food> mValues;
         private final boolean mTwoPane;
-        private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
+        private final View.OnClickListener mOnClickListener = new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
+            public void onClick(View view){
                 Food food = (Food) view.getTag();
-                if (mTwoPane) {
+                if (mTwoPane){
                     Bundle arguments = new Bundle();
                     arguments.putString(FavouriteFoodDetailFragment.ARG_ITEM_ID, food.getFoodID());
                     FavouriteFoodDetailFragment fragment = new FavouriteFoodDetailFragment();
@@ -130,7 +130,7 @@ public class FavouriteFoodListActivity extends AppCompatActivity {
                     mParentActivity.getSupportFragmentManager().beginTransaction()
                             .replace(R.id.favouritefood_detail_container, fragment)
                             .commit();
-                } else {
+                } else{
                     Context context = view.getContext();
                     Intent intent = new Intent(context, FavouriteFoodDetailActivity.class);
                     intent.putExtra(FavouriteFoodDetailFragment.ARG_ITEM_ID, food.getFoodID());
@@ -142,21 +142,21 @@ public class FavouriteFoodListActivity extends AppCompatActivity {
 
         SimpleItemRecyclerViewAdapter(FavouriteFoodListActivity parent,
                                       List<Food> items,
-                                      boolean twoPane) {
+                                      boolean twoPane){
             mValues = items;
             mParentActivity = parent;
             mTwoPane = twoPane;
         }
 
         @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.favouritefood_list_content, parent, false);
             return new ViewHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(final ViewHolder holder, int position) {
+        public void onBindViewHolder(final ViewHolder holder, int position){
             holder.mIdView.setText(mValues.get(position).getFoodID());
             holder.mContentView.setText(mValues.get(position).getFoodName());
 
@@ -165,15 +165,15 @@ public class FavouriteFoodListActivity extends AppCompatActivity {
         }
 
         @Override
-        public int getItemCount() {
+        public int getItemCount(){
             return mValues.size();
         }
 
-        class ViewHolder extends RecyclerView.ViewHolder {
+        class ViewHolder extends RecyclerView.ViewHolder{
             final TextView mIdView;
             final TextView mContentView;
 
-            ViewHolder(View view) {
+            ViewHolder(View view){
                 super(view);
                 mIdView = (TextView) view.findViewById(R.id.id_text);
                 mContentView = (TextView) view.findViewById(R.id.content);

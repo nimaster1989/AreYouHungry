@@ -27,7 +27,7 @@ public class PreferredSearchActivity extends AppCompatActivity {
     private ArrayList<Food> foodList;
     private ArrayAdapter<Food> foodArrayAdapter;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
 
         String foodType = getIntent().getStringExtra("KIND_OF_FOOD");
 
@@ -39,12 +39,12 @@ public class PreferredSearchActivity extends AppCompatActivity {
 
         foodList = new ArrayList<Food>();
         String result = accessFoods.getPreferred(foodList, foodType);
-        if (result != null) {
+        if (result != null){
             System.out.println("accessFoods.getFood Error");
-        } else {
-            foodArrayAdapter = new ArrayAdapter<Food>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, foodList) {
+        } else{
+            foodArrayAdapter = new ArrayAdapter<Food>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, foodList){
                 @Override
-                public View getView(int position, View convertView, ViewGroup parent) {
+                public View getView(int position, View convertView, ViewGroup parent){
                     View view = super.getView(position, convertView, parent);
 
                     TextView text1 = (TextView) view.findViewById(android.R.id.text1);
@@ -57,9 +57,9 @@ public class PreferredSearchActivity extends AppCompatActivity {
             };
             final ListView listView = (ListView) findViewById(R.id.preferred_pick);
             //Creating an onClickListener for clicking on the food selected
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
                 @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                     //Gets the food selected from the list
                     Food food = (Food) foodList.get(position);
                     Context context = view.getContext();

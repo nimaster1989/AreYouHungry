@@ -41,20 +41,20 @@ public class FoodDetailFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public FoodDetailFragment() {
+    public FoodDetailFragment(){
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        if (getArguments().containsKey(ARG_ITEM_ID)) {
+        if (getArguments().containsKey(ARG_ITEM_ID)){
             accessFoods = new AccessFoods();
             Map<String,Food> Food_map = new HashMap<String,Food>();
             accessFoods.getMap(Food_map);
             mFood = Food_map.get(getArguments().getString(ARG_ITEM_ID));
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
-            if (appBarLayout != null) {
+            if (appBarLayout != null){
                 appBarLayout.setTitle(mFood.getFoodName());
             }
         }
@@ -62,9 +62,9 @@ public class FoodDetailFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState){
         TextView rootView = (TextView) inflater.inflate(R.layout.food_detail, container, false);
-        if (mFood != null) {
+        if (mFood != null){
             ((TextView) rootView.findViewById(R.id.food_detail)).setText(Html.fromHtml("<a href=" + mFood.getRecipeLink() + "> Link"));
             rootView.setMovementMethod(LinkMovementMethod.getInstance());
         }else{

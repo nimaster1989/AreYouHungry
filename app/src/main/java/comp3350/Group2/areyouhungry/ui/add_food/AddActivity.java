@@ -27,12 +27,12 @@ public class AddActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
+        if (actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
@@ -42,7 +42,7 @@ public class AddActivity extends AppCompatActivity {
 
     }
 
-    public void foodAddOnClick(View view) {
+    public void foodAddOnClick(View view){
         EditText editName = (EditText)findViewById(R.id.editFoodName);
         EditText editRecipe = (EditText)findViewById(R.id.editRecipe);
         String newName =  editName.getText().toString();
@@ -59,7 +59,7 @@ public class AddActivity extends AppCompatActivity {
         //now add the category
     }
 
-    private void addCategory(Food newFood) {
+    private void addCategory(Food newFood){
         CheckBox checkbox;
         checkbox = (CheckBox) findViewById(R.id.meat_checkBox);
         if (checkbox.isChecked()) addCategoryHelper(newFood,"Meat");
@@ -107,14 +107,14 @@ public class AddActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == android.R.id.home) {
+        if (id == android.R.id.home){
             navigateUpTo(new Intent(this, FoodListActivity.class));
 
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-        public void onBackPressed() {
+        public void onBackPressed(){
             navigateUpTo(new Intent(this, FoodListActivity.class));
     }
 

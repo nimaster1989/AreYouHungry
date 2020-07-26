@@ -32,8 +32,7 @@ public class DataAccessObject implements DataAccess{
 
     public void open(String dbPath){
         String url;
-        try
-        {
+        try{
             // Setup for HSQL
             dbType = "HSQL";
             Class.forName("org.hsqldb.jdbcDriver").newInstance();
@@ -78,30 +77,26 @@ public class DataAccessObject implements DataAccess{
              * ... create statements
              */
         }
-        catch (Exception e)
-        {
+        catch (Exception e){
             processSQLError(e);
             System.out.println("open fail,"+ e);
         }
         System.out.println("Opened " +dbType +" database " +dbPath);
     }
 
-    public void close()
-    {
-        try
-        {	// commit all changes to the database
+    public void close(){
+        try{	// commit all changes to the database
             cmdString = "shutdown compact";
             rs2 = st1.executeQuery(cmdString);
             c1.close();
         }
-        catch (Exception e)
-        {
+        catch (Exception e){
             System.out.println(e);
         }
         System.out.println("Closed " +dbType +" database " +dbName);
     }
 
-    public Map getFoodMap(Map ret_food_map) {
+    public Map getFoodMap(Map ret_food_map){
         ArrayList<Food> mfoods = new ArrayList<Food>();
         mfoods.clear();
         this.getFoodSequential(mfoods);
@@ -114,7 +109,7 @@ public class DataAccessObject implements DataAccess{
         return ret_food_map;
     }
 
-    public String getFoodSequential(List<Food> foodResult) {
+    public String getFoodSequential(List<Food> foodResult){
         System.out.println("-----------");
         System.out.println("getFoodSequential()");
         System.out.println("-----------");
@@ -125,7 +120,7 @@ public class DataAccessObject implements DataAccess{
         myFoodName = EOF;
 
         result = null;
-        try {
+        try{
             cmdString = "Select * from Foods";
             rs5 = st3.executeQuery(cmdString);
             if (rs5 == null) System.out.println("return state 5 is null");
@@ -148,7 +143,7 @@ public class DataAccessObject implements DataAccess{
         return result;
     }
 
-    public String getFavouriteFoodSequential(List<Food> foodResult) {
+    public String getFavouriteFoodSequential(List<Food> foodResult){
         System.out.println("-----------");
         System.out.println("getFavouriteFoodSequential()");
         System.out.println("-----------");
@@ -159,7 +154,7 @@ public class DataAccessObject implements DataAccess{
         myFoodName = EOF;
 
         result = null;
-        try {
+        try{
             cmdString = "SELECT * from Foods WHERE Favourite = TRUE";
             rs5 = st3.executeQuery(cmdString);
             if (rs5 == null) System.out.println("return state 5 is null");
@@ -183,7 +178,7 @@ public class DataAccessObject implements DataAccess{
 
     }
 
-    public String getFoodRandom(List<Food> foodResult) {
+    public String getFoodRandom(List<Food> foodResult){
         System.out.println("-----------");
         System.out.println("getFoodRandom()");
         System.out.println("-----------");
@@ -194,7 +189,7 @@ public class DataAccessObject implements DataAccess{
         myFoodName = EOF;
 
         result = null;
-        try {
+        try{
             cmdString = "SELECT * from Foods ORDER BY RAND() LIMIT 1";
             rs5 = st3.executeQuery(cmdString);
             if (rs5 == null) System.out.println("return state 5 is null");
@@ -217,7 +212,7 @@ public class DataAccessObject implements DataAccess{
         return result;
     }
 
-    public String getFoodPreferred(List<Food> foodResult, String preferredCategory) {
+    public String getFoodPreferred(List<Food> foodResult, String preferredCategory){
         System.out.println("preferred food want: "+ preferredCategory);
         System.out.println("-----------");
         System.out.println("getFoodRandom()");
@@ -229,7 +224,7 @@ public class DataAccessObject implements DataAccess{
         myFoodName = EOF;
 
         result = null;
-        try {
+        try{
             cmdString = "SELECT * from FOODS as f INNER JOIN FOODSCATEGORY as fc ON ( f.FOODID = fc.FOODID ) INNER JOIN CATEGORYS as c ON (fc.CATEGORYID = c.CATEGORYID) WHERE c.CATEGORYNAME = '"+preferredCategory+"'";
             rs5 = st3.executeQuery(cmdString);
             if (rs5 == null) System.out.println("return state 5 is null");
@@ -264,7 +259,7 @@ public class DataAccessObject implements DataAccess{
         myFoodName = EOF;
 
         result = null;
-        try {
+        try{
             cmdString = "SELECT * from FOODS  WHERE FOODID = '"+foodID+"'";
             rs5 = st3.executeQuery(cmdString);
             if (rs5 == null) System.out.println("return state 5 is null");
@@ -291,14 +286,12 @@ public class DataAccessObject implements DataAccess{
         String where;
 
         result = null;
-        try
-        {
+        try{
             cmdString = "Update Foods Set Favourite = '" +favourite +"' where Foods.foodID = '"+FoodID+"'";
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
-        } catch (Exception e)
-        {
+        } catch (Exception e){
             result = processSQLError(e);
         }
         return result;
@@ -309,8 +302,7 @@ public class DataAccessObject implements DataAccess{
         System.out.println("-----------");
         result = null;
         int myRow = 0;
-        try
-        {
+        try{
             cmdString = "Select * from Foods";
             rs5 = st3.executeQuery(cmdString);
             if (rs5 == null) System.out.println("return state 5 is null");
@@ -319,8 +311,7 @@ public class DataAccessObject implements DataAccess{
             }
             rs5.close();
         }
-        catch (Exception e)
-        {
+        catch (Exception e){
             result = processSQLError(e);
         }
         return myRow;
@@ -328,14 +319,13 @@ public class DataAccessObject implements DataAccess{
 
 
 
-    public int getIDByFood(Food food) {
+    public int getIDByFood(Food food){
         System.out.println("-----------");
         System.out.println("get id by food" );
         System.out.println("-----------");
         result = null;
         int myID = -1;
-        try
-        {
+        try{
             cmdString = "Select * from Foods where Foods.foodname = '"+food.getFoodName()+"' and Foods.RECIPE = '"+food.getRecipeLink()+"'";
             rs5 = st3.executeQuery(cmdString);
             while (rs5.next()){
@@ -343,22 +333,20 @@ public class DataAccessObject implements DataAccess{
             }
             rs5.close();
         }
-        catch (Exception e)
-        {
+        catch (Exception e){
             result = processSQLError(e);
         }
         return myID;
     }
 
     @Override
-    public int getCategoryIDbyName(String categoryName) {
+    public int getCategoryIDbyName(String categoryName){
         System.out.println("-----------");
         System.out.println("get categoryID by category name: "+categoryName );
         System.out.println("-----------");
         result = null;
         int myID = -1;
-        try
-        {
+        try{
             cmdString = "Select * from Categorys where Categorys.categoryname = '"+categoryName+"'";
             rs5 = st3.executeQuery(cmdString);
             while (rs5.next()){
@@ -366,8 +354,7 @@ public class DataAccessObject implements DataAccess{
             }
             rs5.close();
         }
-        catch (Exception e)
-        {
+        catch (Exception e){
             result = processSQLError(e);
         }
         System.out.println("get: "+myID);
@@ -375,19 +362,17 @@ public class DataAccessObject implements DataAccess{
     }
 
 
-    public String addFoodCategory(int foodID, int categoryID) {
+    public String addFoodCategory(int foodID, int categoryID){
         String values;
 
         result = null;
-        try
-        {
+        try{
             cmdString ="INSERT INTO FOODSCATEGORY VALUES("+ foodID+","+ categoryID+")";
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
         }
-        catch (Exception e)
-        {
+        catch (Exception e){
             result = processSQLError(e);
         }
         return result;
@@ -397,23 +382,20 @@ public class DataAccessObject implements DataAccess{
         String values;
 
         result = null;
-        try
-        {
+        try{
             cmdString = "Insert into Foods Values("+Integer.parseInt(addFood.getFoodID()) +", '"+addFood.getFoodName()+"','"+addFood.getRecipeLink()+"',"+addFood.getFavourite()+")";
 
             //System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
         }
-        catch (Exception e)
-        {
+        catch (Exception e){
             result = processSQLError(e);
         }
         return result;
     }
 
-    public String processSQLError(Exception e)
-    {
+    public String processSQLError(Exception e){
         String result = "*** SQL Error: " + e.getMessage();
 
         // Remember, this will NOT be seen by the user!
@@ -422,25 +404,21 @@ public class DataAccessObject implements DataAccess{
 
         return result;
     }
-    public String checkWarning(Statement st, int updateCount)
-    {
+    public String checkWarning(Statement st, int updateCount){
         String result;
 
         result = null;
-        try
-        {
+        try{
             SQLWarning warning = st.getWarnings();
             if (warning != null)
             {
                 result = warning.getMessage();
             }
         }
-        catch (Exception e)
-        {
+        catch (Exception e){
             result = processSQLError(e);
         }
-        if (updateCount != 1)
-        {
+        if (updateCount != 1){
             result = "Tuple not inserted correctly.";
         }
         return result;

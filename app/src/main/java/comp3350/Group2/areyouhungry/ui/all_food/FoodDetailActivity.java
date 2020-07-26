@@ -37,7 +37,7 @@ public class FoodDetailActivity extends AppCompatActivity {
     Food curr_food = null;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
@@ -46,28 +46,28 @@ public class FoodDetailActivity extends AppCompatActivity {
         accessFoods = new AccessFoods();
         //get current food id
         curr_id = getIntent().getStringExtra(FoodDetailFragment.ARG_ITEM_ID);
-        if (curr_id != null) {
+        if (curr_id != null){
             curr_food = accessFoods.getFoodByID(curr_id);
         }
         fab = (FloatingActionButton) findViewById(R.id.fab);
-        if(this.curr_food != null ) {
+        if(this.curr_food != null ){
             if(this.curr_food.getFavourite()){
                 fab.setImageDrawable(getDrawable(R.drawable.ic_baseline_favorite_24));
-            }else {
+            }else{
                 fab.setImageDrawable(getDrawable(R.drawable.ic_baseline_favorite_border_24));
             }
         }
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
-                if (curr_food != null) {
-                    if (curr_food.getFavourite()) {
+            public void onClick(View view){
+                if (curr_food != null){
+                    if (curr_food.getFavourite()){
                         curr_food.setFavourite(false);
                         accessFoods.setFoodFavourite(curr_id,false);
                         fab.setImageDrawable(getDrawable(R.drawable.ic_baseline_favorite_border_24));
                         Snackbar.make(view, "You unlike this food!", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
-                    } else {
+                    } else{
                         curr_food.setFavourite(true);
                         accessFoods.setFoodFavourite(curr_id,true);
                         fab.setImageDrawable(getDrawable(R.drawable.ic_baseline_favorite_24));
@@ -80,7 +80,7 @@ public class FoodDetailActivity extends AppCompatActivity {
 
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
+        if (actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
@@ -93,7 +93,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         //
         // http://developer.android.com/guide/components/fragments.html
         //
-        if (savedInstanceState == null) {
+        if (savedInstanceState == null){
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
@@ -108,9 +108,9 @@ public class FoodDetailActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
-        if (id == android.R.id.home) {
+        if (id == android.R.id.home){
 
             // This ID represents the Home or Up button. In the case of this
             // activity, the Up button is shown. For

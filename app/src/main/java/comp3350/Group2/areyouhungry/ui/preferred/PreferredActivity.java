@@ -19,7 +19,7 @@ public class PreferredActivity extends AppCompatActivity implements OnItemSelect
     private String kindOfFood;
     private Button searchButton;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferred);
 
@@ -46,12 +46,12 @@ public class PreferredActivity extends AppCompatActivity implements OnItemSelect
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View v, int position,
-                               long id) {
+                               long id){
         kindOfFood = foodSpinner.getSelectedItem().toString();
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> arg0) {}
+    public void onNothingSelected(AdapterView<?> arg0){}
 
     public void searchFood(){
         Intent intent = new Intent(this, PreferredSearchActivity.class);
