@@ -3,8 +3,8 @@ package comp3350.Group2.areyouhungry.business;
 import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.Services;
 import comp3350.Group2.areyouhungry.objects.Food;
-import comp3350.Group2.areyouhungry.presistence.DataAccess;
-import comp3350.Group2.areyouhungry.presistence.DataAccessStub;
+import comp3350.Group2.areyouhungry.persistance.DataAccess;
+import comp3350.Group2.areyouhungry.persistance.DataAccessStub;
 
 import java.util.ArrayList;
 import java.util.Iterator;
