@@ -44,7 +44,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         accessFoods = new AccessFoods();
-        //xu yang: get current food id
+        //get current food id
         curr_id = getIntent().getStringExtra(FoodDetailFragment.ARG_ITEM_ID);
         if (curr_id != null){
             curr_food = accessFoods.getFoodByID(curr_id);

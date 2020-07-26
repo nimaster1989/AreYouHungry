@@ -48,7 +48,7 @@ public class FavouriteFoodDetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         accessFoods = new AccessFoods();
-        //xu yang: get current food id ,and current food
+        //get current food id ,and current food
         curr_id = getIntent().getStringExtra(FavouriteFoodDetailFragment.ARG_ITEM_ID);
         if (curr_id != null){
             curr_food = accessFoods.getFoodByID(curr_id);

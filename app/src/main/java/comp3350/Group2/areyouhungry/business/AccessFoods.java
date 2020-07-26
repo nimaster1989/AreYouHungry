@@ -3,8 +3,8 @@ package comp3350.Group2.areyouhungry.business;
 import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.Services;
 import comp3350.Group2.areyouhungry.objects.Food;
-import comp3350.Group2.areyouhungry.presistence.DataAccess;
-import comp3350.Group2.areyouhungry.presistence.DataAccessStub;
+import comp3350.Group2.areyouhungry.persistance.DataAccess;
+import comp3350.Group2.areyouhungry.persistance.DataAccessStub;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -38,7 +38,7 @@ public class AccessFoods {
     }
 
 
-    //xu yang: definition of duplicate: we assume foods might have same name, but not same recipe,
+    //definition of duplicate: we assume foods might have same name, but not same recipe,
     //we call two foods to be equal if they have same name, and same recipe
     public boolean checkDuplicate(Food food){
         boolean duplicate = false;

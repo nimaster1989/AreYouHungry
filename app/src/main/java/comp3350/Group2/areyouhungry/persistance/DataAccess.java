@@ -1,4 +1,4 @@
-package comp3350.Group2.areyouhungry.presistence;
+package comp3350.Group2.areyouhungry.persistance;
 
 import java.util.List;
 import java.util.Map;

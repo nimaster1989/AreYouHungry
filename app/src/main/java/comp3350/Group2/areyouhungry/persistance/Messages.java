@@ -1,4 +1,4 @@
-package comp3350.Group2.areyouhungry.presistence;
+package comp3350.Group2.areyouhungry.persistance;
 
 import android.app.Activity;
 import android.app.AlertDialog;
