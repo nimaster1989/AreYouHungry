@@ -79,7 +79,7 @@ public class DataAccessStub {
             if (food.equals("Meat")){
                 foodResult.add(foods.get(1));
                 foodResult.add(foods.get(0));
-            } else if (food.equals("Dessert")) {
+            } else if (food.equals("Dessert")){
                 foodResult.add(foods.get(2));
                 foodResult.add(foods.get(3));
             }

@@ -12,7 +12,7 @@ import java.util.Map;
 
 import comp3350.Group2.areyouhungry.objects.Food;
 
-public class DataAccessObject implements DataAccess{
+public class DataAccessObject implements DataAccess {
     private Statement st1,st2,st3;
     private Connection c1;
     private ResultSet rs2,rs3,rs4,rs5;
@@ -410,8 +410,7 @@ public class DataAccessObject implements DataAccess{
         result = null;
         try{
             SQLWarning warning = st.getWarnings();
-            if (warning != null)
-            {
+            if (warning != null){
                 result = warning.getMessage();
             }
         }

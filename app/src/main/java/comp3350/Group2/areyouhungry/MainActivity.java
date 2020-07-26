@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         File dataDirectory = context.getDir(DB_PATH, Context.MODE_PRIVATE);
         AssetManager assetManager = getAssets();
 
-        try {
+        try{
 
             assetNames = assetManager.list(DB_PATH);
             for (int i = 0; i < assetNames.length; i++){
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void copyAssetsToDirectory(String[] assets, File directory) throws IOException {
+    public void copyAssetsToDirectory(String[] assets, File directory) throws IOException{
         AssetManager assetManager = getAssets();
 
         for (String asset : assets){

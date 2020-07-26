@@ -68,7 +68,7 @@ public class Food {
         if (otherObject instanceof Food){
             Food otherFood = (Food) otherObject;
 
-            if(foodName.equals(otherFood.getFoodName()) && recipeLink.equals(otherFood.getRecipeLink())) {
+            if(foodName.equals(otherFood.getFoodName()) && recipeLink.equals(otherFood.getRecipeLink())){
                 result = true;
             }
         }
