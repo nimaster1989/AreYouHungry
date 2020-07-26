@@ -1,4 +1,4 @@
-package comp3350.Group2.areyouhungry.persistance;
+package comp3350.Group2.areyouhungry.persistence;
 
 import java.util.ArrayList;
 import java.util.HashMap;

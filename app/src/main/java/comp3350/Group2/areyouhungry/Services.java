@@ -1,8 +1,8 @@
 package comp3350.Group2.areyouhungry;
 
-import comp3350.Group2.areyouhungry.persistance.DataAccess;
-import comp3350.Group2.areyouhungry.persistance.DataAccessObject;
-import comp3350.Group2.areyouhungry.persistance.DataAccessStub;
+import comp3350.Group2.areyouhungry.persistence.DataAccess;
+import comp3350.Group2.areyouhungry.persistence.DataAccessObject;
+import comp3350.Group2.areyouhungry.persistence.DataAccessStub;
 
 //services is to create and get data from the database
 public class Services {
