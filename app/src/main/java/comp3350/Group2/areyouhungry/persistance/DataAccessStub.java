@@ -47,13 +47,13 @@ public class DataAccessStub {
         return null;
     }
 
-    //xu yang: this function is from sample project, used to add food to a list that contain
+    //this function is from sample project, used to add food to a list that contain
     //all foods in the stub datasbase
     public String getFoodSequential(List<Food> foodResult){
         foodResult.addAll((foods));
         return null;
     }
-    //david le : generate the favourite list
+    //Generate the favourite list
     public String getFavouriteFoodSequential(List<Food> foodResult){
         Iterator<Food> foodIterator = foods.iterator(); //This iterates through the foods list
         Food food;
@@ -66,7 +66,7 @@ public class DataAccessStub {
         return null;
     }
 
-    //xu yang: this function is used to generate a random food from the stub database
+    //this function is used to generate a random food from the stub database
     //and add it into the foodresult List
     public String getFoodRandom(List<Food> foodResult){
         Random random = new Random();
