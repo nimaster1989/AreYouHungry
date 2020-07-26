@@ -19,7 +19,7 @@ import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
 public class MoreActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more);
         setTitle(getTitle());
@@ -29,10 +29,10 @@ public class MoreActivity extends AppCompatActivity {
         Menu menu = navView.getMenu();
         MenuItem menuItem = menu.getItem(2);
         menuItem.setChecked(true);
-        navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item){
+                switch (item.getItemId()){
 
                     case R.id.navigation_home:
                         Intent home_intent = new Intent(MoreActivity.this, HomeActivity.class);
@@ -52,7 +52,7 @@ public class MoreActivity extends AppCompatActivity {
         });
     }
 
-    public void allFoodsOnClick(View view) {
+    public void allFoodsOnClick(View view){
         Intent all_intent = new Intent(MoreActivity.this, FoodListActivity.class);
         MoreActivity.this.startActivity(all_intent);
     }

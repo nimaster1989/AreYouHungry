@@ -15,7 +15,7 @@ import static comp3350.Group2.areyouhungry.MainActivity.dbName;
 
 public class DatabaseTest extends TestCase {
 
-    public void testGetEmptyFavourites() {
+    public void testGetEmptyFavourites(){
         //System.out.println("Running test to test favouriting foods in the database");
         Services.createDataAccess(dbName);
         AccessFoods accessFood = new AccessFoods();

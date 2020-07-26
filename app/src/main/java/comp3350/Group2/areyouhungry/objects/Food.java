@@ -8,52 +8,57 @@ public class Food {
     private String recipeLink;
     private boolean favourite;
 
-    public Food(String foodID) {
+    public Food(String foodID){
         this.foodID = foodID;
         this.foodName = null;
     }
 
-    public Food(String newFoodID, String newFoodName)
-    {
+    public Food(String newFoodID, String newFoodName){
         foodID = newFoodID;
         foodName = newFoodName;
         recipeLink = null;
         favourite = false;
     }
-    public Food(String newFoodID, String newFoodName,String recipeLink)
-    {
+    public Food(String newFoodID, String newFoodName,String recipeLink){
         this.foodID = newFoodID;
         this.foodName = newFoodName;
         this.recipeLink = recipeLink;
         favourite = false;
     }
-    public Food(String newFoodID, String newFoodName,String recipeLink,Boolean favourite)
-    {
+    public Food(String newFoodID, String newFoodName,String recipeLink,Boolean favourite){
         this.foodID = newFoodID;
         this.foodName = newFoodName;
         this.recipeLink = recipeLink;
         this.favourite = favourite;
     }
 
-    public String getFoodID(){ return foodID; }
+    public String getFoodID(){
+        return foodID;
+    }
 
-    public String getFoodName() { return foodName; }
+    public String getFoodName(){
+        return foodName;
+    }
 
-    public String getRecipeLink() { return recipeLink; }
+    public String getRecipeLink(){
+        return recipeLink;
+    }
 
-    public Boolean getFavourite() {return favourite; }
+    public Boolean getFavourite(){
+        return favourite;
+    }
 
-    public void setRecipeLink(String recipeLink) {
+    public void setRecipeLink(String recipeLink){
         this.recipeLink = recipeLink;
     }
 
-    public void setFavourite(boolean favourite) {
+    public void setFavourite(boolean favourite){
         this.favourite = favourite;
 
     }
 
     @Override
-    public String toString() {
+    public String toString(){
         return "ID: " + foodID + "\n  foodName: " + foodName + "\n  recipe link: " + recipeLink + "\n  favourited: " + favourite + "\n";
     }
 
