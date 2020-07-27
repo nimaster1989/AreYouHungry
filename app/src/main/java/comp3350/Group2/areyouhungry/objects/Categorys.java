@@ -8,11 +8,11 @@ public class Categorys {
         this.categoryName  = categoryName;
     }
 
-    public int getCategoryID() {
+    public int getCategoryID(){
         return categoryID;
     }
 
-    public String getCategoryName() {
+    public String getCategoryName(){
         return categoryName;
     }
 }

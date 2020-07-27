@@ -9,11 +9,11 @@ public class FC {
         this.categoryID = categoryID;
     }
 
-    public int getFoodID() {
+    public int getFoodID(){
         return foodID;
     }
 
-    public int getCategoryID() {
+    public int getCategoryID(){
         return categoryID;
     }
 }
