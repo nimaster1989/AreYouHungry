@@ -39,7 +39,7 @@ public class DataAccessTest extends TestCase{
         foods = new ArrayList<Food>();
         result = dataAccess.getFoodSequential(foods);
         assertNull(result);
-        assertEquals(8, foods.size());
+        assertEquals(6, foods.size());
         food = foods.get(0);
         assertEquals("1", food.getFoodID());
         // ...

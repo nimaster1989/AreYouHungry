@@ -18,11 +18,13 @@ public class Food {
         this.foodID = newFoodID;
         this.foodName = newFoodName;
     }
-    public Food(int newFoodID, String newFoodName,Boolean favourite,int portionSize) {
+    public Food(int newFoodID, String newFoodName,Boolean favourite,int portionSize, int prepTime,String flavour) {
         this.foodID = newFoodID;
         this.foodName = newFoodName;
         this.favourite = favourite;
         this.portionSize = portionSize;
+        this.prepTime = prepTime;
+        this.flavour = flavour;
     }
     public Food(int newFoodID, String newFoodName,Boolean favourite) {
         this.foodID = newFoodID;
