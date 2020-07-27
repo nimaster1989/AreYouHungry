@@ -2,7 +2,6 @@ package comp3350.Group2.areyouhungry;
 
 import comp3350.Group2.areyouhungry.persistence.DataAccess;
 import comp3350.Group2.areyouhungry.persistence.DataAccessObject;
-import comp3350.Group2.areyouhungry.persistence.DataAccessStub;
 
 /* Services is to create and get data from the database. */
 public class Services {
@@ -16,7 +15,7 @@ public class Services {
         return dataAccessService;
     }
 
-    public static DataAccess getDataAccess(DataAccess alternateDataAccessService){
+    public static DataAccess createDataAccess(DataAccess alternateDataAccessService){
         if (dataAccessService == null){
             dataAccessService = alternateDataAccessService;
             dataAccessService.open(MainActivity.getDBPathName());

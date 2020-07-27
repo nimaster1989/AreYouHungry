@@ -61,17 +61,14 @@ public class Food {
         return "ID: " + foodID + "\n  foodName: " + foodName + "\n  recipe link: " + recipeLink + "\n  favourited: " + favourite + "\n";
     }
 
-    public boolean equals(Object otherObject){
-        boolean result = false;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        if (otherObject instanceof Food){
-            Food otherFood = (Food) otherObject;
-            if(foodName.equals(otherFood.getFoodName()) && recipeLink.equals(otherFood.getRecipeLink())){
-                result = true;
-            }
-        }
+        Food food = (Food) o;
 
-        return result;
+        return getFoodID() == food.getFoodID();
     }
 
 }
