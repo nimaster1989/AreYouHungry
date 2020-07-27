@@ -43,51 +43,51 @@ public class Answers {
 
 
     }
-    public List<Integer> getAnswers() {
+    public List<Integer> getAnswers(){
         return answers;
     }
 
-    public void setAnswers(List<Integer> answers) {
+    public void setAnswers(List<Integer> answers){
         this.answers = answers;
     }
 
-    public String getFlavor() {
+    public String getFlavor(){
         return flavor;
     }
 
-    public void setFlavor(String flavor) {
+    public void setFlavor(String flavor){
         this.flavor = flavor;
     }
 
-    public String getPortionSize() {
+    public String getPortionSize(){
         return portionSize;
     }
 
-    public void setPortionSize(String portionSize) {
+    public void setPortionSize(String portionSize){
         this.portionSize = portionSize;
     }
 
-    public String getPreptime() {
+    public String getPreptime(){
         return preptime;
     }
 
-    public void setPreptime(String preptime) {
+    public void setPreptime(String preptime){
         this.preptime = preptime;
     }
 
-    public String getDifficulty() {
+    public String getDifficulty(){
         return difficulty;
     }
 
-    public void setDifficulty(String difficulty) {
+    public void setDifficulty(String difficulty){
         this.difficulty = difficulty;
     }
 
-    public String getFaveColor() {
+    public String getFaveColor(){
         return faveColor;
     }
 
-    public void setFaveColor(String faveColor) {
+    public void setFaveColor(String faveColor){
         this.faveColor = faveColor;
     }
 

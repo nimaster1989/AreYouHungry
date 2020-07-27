@@ -61,9 +61,9 @@ public class PreferredActivity extends AppCompatActivity  {
         questionCount = 0;
         showNextQuestion();
 
-        buttonConfirmNext.setOnClickListener(new View.OnClickListener() {
+        buttonConfirmNext.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
+            public void onClick(View view){
                 if(!answered){
                     if(rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked()){
                         insertAnswer();

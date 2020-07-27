@@ -198,12 +198,12 @@ public class DataAccessStub implements DataAccess{
     }
 
     @Override
-    public List<Question> getAllQuestions() {
+    public List<Question> getAllQuestions(){
         return null;
     }
 
     @Override
-    public int getTotalQuestions() {
+    public int getTotalQuestions(){
         return 0;
     }
 

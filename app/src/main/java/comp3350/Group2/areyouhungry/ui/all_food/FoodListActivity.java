@@ -120,7 +120,7 @@ public class FoodListActivity extends AppCompatActivity {
         private final FoodListActivity mParentActivity;
         private final List<Food> mValues;
         private final boolean mTwoPane;
-        private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
+        private final View.OnClickListener mOnClickListener = new View.OnClickListener(){
             @Override
             public void onClick(View view){
                   Food food = (Food) view.getTag();
