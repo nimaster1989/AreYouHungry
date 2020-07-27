@@ -89,7 +89,7 @@ public class AddActivity extends AppCompatActivity {
             return null;
         }else{
             /* Creates a food object. */
-            String newID = Integer.toString( accessFoods.getFoodRow() + 1);
+            int newID =  accessFoods.getFoodRow() + 1;
 
             if(Recipe.length() == 0){
                 foodToAdd = new Food(newID,name,"",favourite);
