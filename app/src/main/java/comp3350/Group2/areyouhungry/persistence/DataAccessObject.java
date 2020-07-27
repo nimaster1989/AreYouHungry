@@ -10,7 +10,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import comp3350.Group2.areyouhungry.objects.Direction;
 import comp3350.Group2.areyouhungry.objects.Food;
+import comp3350.Group2.areyouhungry.objects.Ingredient;
 import comp3350.Group2.areyouhungry.objects.Question;
 
 public class DataAccessObject implements DataAccess {
@@ -82,35 +84,75 @@ public class DataAccessObject implements DataAccess {
         System.out.println("getFoodSequential()");
         System.out.println("-----------");
         result = null;
-        cmdString = "Select * from Foods";
+        cmdString = "SELECT * from FOODS as f INNER JOIN FOODINGREDIENT as fi ON (f.FOODID = fi.FOODID) INNER JOIN INGREDIENT as i ON(fi.INGREDIENTID = i.INGREDIENTID) ORDER BY FoodID";
         fillFoodObject(cmdString,foodResult);
         return result;
     }
 
     private void fillFoodObject(String cmdString,List<Food> foodResult){
-        String myID,myFoodName,myFlavour,myDifficulty,myEthnicity;
-        int myPortionSize,myPrepTime;
-        Boolean myFavourite;
+        String myID="",myFoodName="",myFlavour="",myDifficulty="",myEthnicity="",myIngredientName="",myIngredientMeasure="",myIngredientId="";
+        String currentID = "-1";
+        int myPortionSize=0,myPrepTime=0;
+        Boolean myFavourite=false;
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
+        ArrayList<Direction> directions = new ArrayList<>();
         try {
             rs5 = st3.executeQuery(cmdString);
             if (rs5 == null) System.out.println("return state 5 is null");
             while (rs5.next()) {
                 myID = rs5.getString("FoodID");
                 System.out.println("get ID: " + myID);
-                myFoodName = rs5.getString("FoodName");
-                System.out.println("get name: " + myFoodName);
-                myFavourite = rs5.getBoolean("Favourite");
-                System.out.println("get favourite: " + myFavourite);
-                myPortionSize = rs5.getInt("PORTIONSIZE");
-                System.out.println("get portion size: " + myPortionSize);
-                myPrepTime = rs5.getInt("PREPTIME");
-                System.out.println("get prep time: " + myPrepTime);
-                myFlavour = rs5.getString("FLAVOUR");
-                System.out.println("get flavour: " + myFlavour);
-                Food foundFood = new Food(Integer.valueOf(myID), myFoodName, myFavourite,myPortionSize,myPrepTime,myFlavour);
-                foodResult.add(foundFood);
+                if(!currentID.equals(myID)){
+                    //Checking if there is variables set to add to a food
+                    if(!currentID.equals("-1")){
+                        Food foundFood = new Food(Integer.valueOf(currentID), myFoodName,myPortionSize,myPrepTime,ingredients,directions,myFlavour,myDifficulty,myEthnicity,myFavourite);
+                        foodResult.add(foundFood);
+                        ingredients = new ArrayList<>();
+                        directions = new ArrayList<>();
+                    }
 
+                    myID = rs5.getString("FoodID");
+                    System.out.println("get ID: " + myID);
+                    myFoodName = rs5.getString("FoodName");
+                    System.out.println("get name: " + myFoodName);
+                    myFavourite = rs5.getBoolean("Favourite");
+                    System.out.println("get favourite: " + myFavourite);
+                    myPortionSize = rs5.getInt("PORTIONSIZE");
+                    System.out.println("get portion size: " + myPortionSize);
+                    myPrepTime = rs5.getInt("PREPTIME");
+                    System.out.println("get prep time: " + myPrepTime);
+                    myFlavour = rs5.getString("FLAVOUR");
+                    System.out.println("get flavour: " + myFlavour);
+                    myDifficulty = rs5.getString("DIFFICULTY");
+                    System.out.println("get Difficulty: " + myDifficulty);
+                    myEthnicity = rs5.getString("ETHNICITY");
+                    System.out.println("get Ethnicity: " + myEthnicity);
+                    myIngredientName = rs5.getString("INGREDIENTNAME");
+                    System.out.println("get IngredientName: " + myIngredientName);
+                    myIngredientId= rs5.getString("INGREDIENTID");
+                    System.out.println("get IngredientId: " + myIngredientId);
+                    myIngredientMeasure= rs5.getString("INGREDIENTMEASUREMENT");
+                    System.out.println("get IngredientMeasure: " + myIngredientMeasure);
+                    Ingredient newIngredient = new Ingredient(Integer.valueOf(myIngredientId),myIngredientName,myIngredientMeasure);
+                    ingredients.add(newIngredient);
+
+                    //Set variables for next food item
+                }
+                else{
+                    myIngredientName = rs5.getString("INGREDIENTNAME");
+                    System.out.println("get IngredientName: " + myIngredientName);
+                    myIngredientId= rs5.getString("INGREDIENTID");
+                    System.out.println("get IngredientId: " + myIngredientId);
+                    myIngredientMeasure= rs5.getString("INGREDIENTMEASUREMENT");
+                    System.out.println("get IngredientMeasure: " + myIngredientMeasure);
+                    Ingredient newIngredient = new Ingredient(Integer.valueOf(myIngredientId),myIngredientName,myIngredientMeasure);
+                    ingredients.add(newIngredient);
+                }
+                currentID = myID;
             }
+            //Adding the last food returned from the query
+            Food foundFood = new Food(Integer.valueOf(myID), myFoodName,myPortionSize,myPrepTime,ingredients,directions,myFlavour,myDifficulty,myEthnicity,myFavourite);
+            foodResult.add(foundFood);
             rs5.close();
         }catch(Exception e){
             processSQLError(e);

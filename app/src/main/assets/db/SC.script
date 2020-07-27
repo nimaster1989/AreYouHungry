@@ -39,3 +39,30 @@ INSERT INTO QUESTIONS VALUES(1,'Question 1', 'Option 1', 'Option 2', 'Option 3',
 INSERT INTO QUESTIONS VALUES(2,'Question 2', 'Option 1', 'Option 2', 'Option 3', 'Option 4')
 INSERT INTO QUESTIONS VALUES(3,'Question 3', 'Option 1', 'Option 2', 'Option 3', 'Option 4')
 INSERT INTO QUESTIONS VALUES(4,'Question 4', 'Option 1', 'Option 2', 'Option 3', 'Option 4')
+
+INSERT INTO INGREDIENT(1, 'Halibut', '256lb')
+INSERT INTO INGREDIENT(2, 'Salt', '60g')
+
+INSERT INTO INGREDIENT(3, 'Wagyu Beef', '57g')
+INSERT INTO INGREDIENT(4, 'Iceberg Lettuce', '3 pieces')
+INSERT INTO INGREDIENT(5, 'American Cheese', '1 slice')
+
+INSERT INTO DIRECTION(1, 'Cook the Halibut in a fire for 7 hours.', 1)
+INSERT INTO DIRECTION(2, 'Add in all of the salt', 2)
+
+INSERT INTO DIRECTION(3, 'Cook the Wagyu Beef for 10 minutes or until well done', 1)
+INSERT INTO DIRECTION(4, 'Blend the lettuce, and spread it on the beef', 2)
+INSERT INTO DIRECTION(5, 'Add a piece of processed cheese, and serve!', 3)
+
+
+INSERT INTO FOODINGREDIENT(1, 1)
+INSERT INTO FOODINGREDIENT(1, 2)
+INSERT INTO FOODDIRECTION(1, 1)
+INSERT INTO FOODDIRECTION(1, 2)
+
+INSERT INTO FOODINGREDIENT(2, 3)
+INSERT INTO FOODINGREDIENT(2, 4)
+INSERT INTO FOODINGREDIENT(2, 5)
+INSERT INTO FOODDIRECTION(2, 3)
+INSERT INTO FOODDIRECTION(2, 4)
+INSERT INTO FOODDIRECTION(2, 5)

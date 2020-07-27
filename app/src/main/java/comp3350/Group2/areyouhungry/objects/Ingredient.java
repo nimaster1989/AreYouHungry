@@ -41,4 +41,8 @@ public class Ingredient {
         }
         return equal;
     }
+
+    public String toString(){
+        return "ID: " + ingredientID + "\n  foodName: " + ingredientName + "\n  favourited: " + measurement + "\n";
+    }
 }
