@@ -1,31 +1,31 @@
 package comp3350.Group2.areyouhungry.objects;
 
 public class Food {
-    private String foodID;
+    private int foodID;
     private String foodName;
     private String recipeLink;
     private boolean favourite;
 
-    public Food(String foodID){
+    public Food(int foodID){
         this.foodID = foodID;
         this.foodName = null;
     }
 
-    public Food(String newFoodID, String newFoodName){
+    public Food(int newFoodID, String newFoodName){
         foodID = newFoodID;
         foodName = newFoodName;
         recipeLink = null;
         favourite = false;
     }
 
-    public Food(String newFoodID, String newFoodName,String recipeLink){
+    public Food(int newFoodID, String newFoodName,String recipeLink){
         this.foodID = newFoodID;
         this.foodName = newFoodName;
         this.recipeLink = recipeLink;
         favourite = false;
     }
 
-    public Food(String newFoodID, String newFoodName,String recipeLink,Boolean favourite){
+    public Food(int newFoodID, String newFoodName,String recipeLink,Boolean favourite){
         this.foodID = newFoodID;
         this.foodName = newFoodName;
         this.recipeLink = recipeLink;
@@ -33,7 +33,7 @@ public class Food {
     }
 
     public String getFoodID(){
-        return foodID;
+        return String.valueOf(foodID);
     }
 
     public String getFoodName(){

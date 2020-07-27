@@ -18,24 +18,24 @@ public class DataAccessStub {
 
         foods = new ArrayList<Food>();
         Food_map = new HashMap<>();
-        food = new Food("001","Fish","https://www.food.com/recipe/beer-battered-fish-130102");
+        food = new Food(1,"Fish","https://www.food.com/recipe/beer-battered-fish-130102");
         foods.add(food);
-        Food_map.put(food.getFoodID(),food);
-        food = new Food("002","Burger","https://www.food.com/recipe/the-perfect-burger-92021");
+        Food_map.put(String.valueOf(food.getFoodID()),food);
+        food = new Food(2,"Burger","https://www.food.com/recipe/the-perfect-burger-92021");
         foods.add(food);
-        Food_map.put(food.getFoodID(),food);
-        food = new Food("003","Pie","https://www.tasteofhome.com/recipes/apple-pie/");
+        Food_map.put(String.valueOf(food.getFoodID()),food);
+        food = new Food(3,"Pie","https://www.tasteofhome.com/recipes/apple-pie/");
         foods.add(food);
-        Food_map.put(food.getFoodID(),food);
-        food = new Food("004","Cake","https://addapinch.com/the-best-chocolate-cake-recipe-ever/");
+        Food_map.put(String.valueOf(food.getFoodID()),food);
+        food = new Food(4,"Cake","https://addapinch.com/the-best-chocolate-cake-recipe-ever/");
         foods.add(food);
-        Food_map.put(food.getFoodID(),food);
-        food = new Food("005","Fries","https://www.spendwithpennies.com/crispy-oven-fries/");
+        Food_map.put(String.valueOf(food.getFoodID()),food);
+        food = new Food(5,"Fries","https://www.spendwithpennies.com/crispy-oven-fries/");
         foods.add(food);
-        Food_map.put(food.getFoodID(),food);
-        food = new Food("006","veggies","https://www.cookingclassy.com/greek-salad/");
+        Food_map.put(String.valueOf(food.getFoodID()),food);
+        food = new Food(6,"veggies","https://www.cookingclassy.com/greek-salad/");
         foods.add(food);
-        Food_map.put(food.getFoodID(),food);
+        Food_map.put(String.valueOf(food.getFoodID()),food);
     }
 
 

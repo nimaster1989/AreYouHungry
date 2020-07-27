@@ -100,7 +100,7 @@ public class DataAccessObject implements DataAccess {
                 System.out.println("get recipe: "+myRecipe);
                 myFavourite = rs5.getBoolean("Favourite");
                 System.out.println("get favourite: "+myFavourite);
-                food = new Food(myID,myFoodName,myRecipe,myFavourite);
+                food = new Food(Integer.valueOf(myID),myFoodName,myRecipe,myFavourite);
                 foodResult.add(food);
             }
             rs5.close();
@@ -134,7 +134,7 @@ public class DataAccessObject implements DataAccess {
                 System.out.println("get recipe: "+myRecipe);
                 myFavourite = rs5.getBoolean("Favourite");
                 System.out.println("get favourite: "+myFavourite);
-                food = new Food(myID,myFoodName,myRecipe,myFavourite);
+                food = new Food(Integer.valueOf(myID),myFoodName,myRecipe,myFavourite);
                 foodResult.add(food);
             }
             rs5.close();
@@ -168,7 +168,7 @@ public class DataAccessObject implements DataAccess {
                 System.out.println("get recipe: "+myRecipe);
                 myFavourite = rs5.getBoolean("Favourite");
                 System.out.println("get favourite: "+myFavourite);
-                food = new Food(myID,myFoodName,myRecipe,myFavourite);
+                food = new Food(Integer.valueOf(myID),myFoodName,myRecipe,myFavourite);
                 foodResult.add(food);
             }
             rs5.close();
@@ -203,7 +203,7 @@ public class DataAccessObject implements DataAccess {
                 System.out.println("get recipe: "+myRecipe);
                 myFavourite = rs5.getBoolean("Favourite");
                 System.out.println("get favourite: "+myFavourite);
-                preferredFood = new Food(myID,myFoodName,myRecipe,myFavourite);
+                preferredFood = new Food(Integer.valueOf(myID),myFoodName,myRecipe,myFavourite);
                 foodResult.add(preferredFood);
             }
             rs5.close();
@@ -239,7 +239,7 @@ public class DataAccessObject implements DataAccess {
                 System.out.println("get recipe: "+myRecipe);
                 myFavourite = rs5.getBoolean("Favourite");
                 System.out.println("get favourite: "+myFavourite);
-                foodByID = new Food(myID,myFoodName,myRecipe,myFavourite);
+                foodByID = new Food(Integer.valueOf(myID),myFoodName,myRecipe,myFavourite);
             }
             rs5.close();
         }catch (Exception e){
