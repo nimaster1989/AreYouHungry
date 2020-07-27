@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         /* StartUp home activity. */
         Intent home_intent = new Intent(MainActivity.this, HomeActivity.class);
         MainActivity.this.startActivity(home_intent);
+        finish();
     }
 
     private void copyDatabaseToDevice(){
