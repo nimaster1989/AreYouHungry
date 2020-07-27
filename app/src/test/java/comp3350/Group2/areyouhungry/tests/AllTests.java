@@ -34,6 +34,8 @@ public class AllTests {
     @Test
     private static void testObject(){
         suite.addTestSuite(FoodTest.class);
+        // TODO: 27/07/20
+        //write test for user
     }
 
     private static void testPersistence(){
