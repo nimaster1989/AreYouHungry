@@ -68,7 +68,7 @@ public class Food {
 
         Food food = (Food) o;
 
-        return getFoodID() == food.getFoodID();
+        return getFoodID().equals(food.getFoodID());
     }
 
 }
