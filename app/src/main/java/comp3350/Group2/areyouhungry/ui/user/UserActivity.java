@@ -40,13 +40,13 @@ import comp3350.Group2.areyouhungry.ui.user.UserActivity;
 import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
 import comp3350.Group2.areyouhungry.ui.more.MoreActivity;
 
-public class UserActivity extends AppCompatActivity {
+public class UserActivity extends AppCompatActivity{
     private AccessUsers accessUsers;
     private ArrayList<User> userList;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
@@ -93,18 +93,18 @@ public class UserActivity extends AppCompatActivity {
                 input.setInputType(InputType.TYPE_CLASS_TEXT);
                 builder.setIcon(R.drawable.ic_baseline_account_circle_24);
                 builder.setView(input);
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener(){
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(DialogInterface dialog, int which){
                         dialog.dismiss();
                         String m_Text = input.getText().toString();
                         CreateUser(m_Text,view);
                         setupRecyclerView((RecyclerView) recyclerView);
                     }
                 });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(DialogInterface dialog, int which){
                         dialog.cancel();
                     }
                 });
@@ -115,7 +115,7 @@ public class UserActivity extends AppCompatActivity {
 
     }
 
-    private void CreateUser(String m_text,View view) {
+    private void CreateUser(String m_text,View view){
         if(!m_text.equals("")){
             accessUsers = new AccessUsers();
             final User newUser = accessUsers.newUsers(m_text);
@@ -124,15 +124,15 @@ public class UserActivity extends AppCompatActivity {
                 builder.setTitle("Create User success");
                 builder.setMessage("Do you want to switch to "+m_text+" now ?");
                 builder.setIcon(R.drawable.ic_baseline_account_circle_24);
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id){
                         dialog.dismiss();
                         System.out.println(newUser.getUserName());
                         changeUser(newUser.getUserID());
                     }
                 });
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id){
                         dialog.dismiss();
                     }
                 });
@@ -153,7 +153,7 @@ public class UserActivity extends AppCompatActivity {
         recyclerView.setAdapter(theAdapter);
     }
     public class SimpleItemRecyclerViewAdapter
-            extends RecyclerView.Adapter<UserActivity.SimpleItemRecyclerViewAdapter.ViewHolder> {
+            extends RecyclerView.Adapter<UserActivity.SimpleItemRecyclerViewAdapter.ViewHolder>{
 
         private final UserActivity mParentActivity;
         private final List<User> mValues;
@@ -165,15 +165,15 @@ public class UserActivity extends AppCompatActivity {
                 builder.setTitle("Switch User Confirm");
                 builder.setMessage("Do you want to switch to "+user.getUserName()+" ?");
                 builder.setIcon(R.drawable.ic_baseline_account_circle_24);
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id){
                         dialog.dismiss();
                         System.out.println(user.getUserName());
                         changeUser(user.getUserID());
                     }
                 });
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id){
                         dialog.dismiss();
                     }
                 });
@@ -211,7 +211,7 @@ public class UserActivity extends AppCompatActivity {
             return mValues.size();
         }
 
-        class ViewHolder extends RecyclerView.ViewHolder {
+        class ViewHolder extends RecyclerView.ViewHolder{
             final TextView mIdView;
             final TextView mContentView;
 
@@ -223,7 +223,7 @@ public class UserActivity extends AppCompatActivity {
         }
     }
 
-    private void changeUser(int userID) {
+    private void changeUser(int userID){
         accessUsers = new AccessUsers();
         User newUser = accessUsers.getUserByID(userID);
         if (newUser != null){

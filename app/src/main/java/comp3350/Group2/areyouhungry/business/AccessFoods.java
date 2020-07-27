@@ -109,11 +109,11 @@ public class AccessFoods {
         return dataAccess.getIDByFood(food);
     }
 
-    public String setFoodFavouriteByUser(User user,String curr_id, boolean b) {
+    public String setFoodFavouriteByUser(User user,String curr_id, boolean b){
         return dataAccess.setFoodToFavouriteByUser(user,curr_id,b);
     }
 
-    public boolean getFoodFavouriteByUser(User user,Food food) {
+    public boolean getFoodFavouriteByUser(User user,Food food){
         return dataAccess.getFoodFavByUser(user,food);
     }
 }

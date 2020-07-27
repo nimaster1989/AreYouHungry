@@ -64,7 +64,7 @@ public class MoreActivity extends AppCompatActivity {
         MoreActivity.this.startActivity(all_intent);
     }
 
-    public void switchUserOnClick(View view) {
+    public void switchUserOnClick(View view){
         Intent user_intent = new Intent(MoreActivity.this, UserActivity.class);
         MoreActivity.this.startActivity(user_intent);
     }

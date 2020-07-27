@@ -18,7 +18,7 @@ import comp3350.Group2.areyouhungry.ui.more.MoreActivity;
 import comp3350.Group2.areyouhungry.ui.preferred.PreferredActivity;
 
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity{
     private Button addFoodButton;
 
     @Override

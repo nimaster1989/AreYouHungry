@@ -18,7 +18,7 @@ import comp3350.Group2.areyouhungry.persistence.DataAccess;
 import comp3350.Group2.areyouhungry.persistence.Messages;
 import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
     public static final String dbName="SC";
     private static String dbPathName = "database/SC";
     public static User currentUser;
@@ -31,14 +31,14 @@ public class MainActivity extends AppCompatActivity {
         startUp();
         setCurrentUser();
         System.out.println("current user:" +currentUser.getUserID()+" "+currentUser.getUserName());
-        
+
         //finish();
         /* StartUp home activity. */
         Intent home_intent = new Intent(MainActivity.this, HomeActivity.class);
         MainActivity.this.startActivity(home_intent);
     }
 
-    private void setCurrentUser() {
+    private void setCurrentUser(){
         AccessUsers au = new AccessUsers();
         currentUser = au.getDefaultUser();
     }

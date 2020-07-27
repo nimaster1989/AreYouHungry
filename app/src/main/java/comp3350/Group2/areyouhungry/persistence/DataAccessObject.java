@@ -14,7 +14,7 @@ import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.Question;
 import comp3350.Group2.areyouhungry.objects.User;
 
-public class DataAccessObject implements DataAccess {
+public class DataAccessObject implements DataAccess{
     private Statement st1,st2,st3;
     private Connection c1;
     private ResultSet rs2,rs3,rs4,rs5;
@@ -78,7 +78,7 @@ public class DataAccessObject implements DataAccess {
         return ret_food_map;
     }
     @Override
-    public String getUserSequential(List<User> userResult) {
+    public String getUserSequential(List<User> userResult){
         System.out.println("-----------");
         System.out.println("getUserSequential()");
         System.out.println("-----------");
@@ -108,7 +108,7 @@ public class DataAccessObject implements DataAccess {
     }
 
     @Override
-    public User getUser(int userID) {
+    public User getUser(int userID){
         System.out.println("-----------");
         System.out.println("getUserFromId: "+userID );
         System.out.println("-----------");
@@ -389,7 +389,7 @@ public class DataAccessObject implements DataAccess {
     }
 
     @Override
-    public User getDefault() {
+    public User getDefault(){
         System.out.println("-----------");
         System.out.println("getDefaultUser: ");
         System.out.println("-----------");
@@ -418,7 +418,7 @@ public class DataAccessObject implements DataAccess {
     }
 
 
-    public String getFavouriteFoodByUserSequential(User user, List<Food> foodResult) {
+    public String getFavouriteFoodByUserSequential(User user, List<Food> foodResult){
         System.out.println("-----------");
         System.out.println("getFavouriteFoodSequential()");
         System.out.println("-----------");
@@ -456,14 +456,14 @@ public class DataAccessObject implements DataAccess {
     }
 
     @Override
-    public String setFoodToFavouriteByUser(User user, String curr_id, boolean b) {
+    public String setFoodToFavouriteByUser(User user, String curr_id, boolean b){
         String values;
         cmdString = "";
         result = null;
         try{
-            if(b) {
+            if(b){
                 cmdString = "INSERT INTO USERSFAVOURITE VALUES(" + user.getUserID() + "," + curr_id + ")";
-            }else {
+            }else{
                 cmdString = "DELETE FROM USERSFAVOURITE WHERE USERID = '"+user.getUserID()+"' and FOODID = '"+curr_id+"'";
             }
             updateCount = st1.executeUpdate(cmdString);
@@ -476,12 +476,12 @@ public class DataAccessObject implements DataAccess {
     }
 
     @Override
-    public boolean getFoodFavByUser(User user, Food food) {
+    public boolean getFoodFavByUser(User user, Food food){
         Boolean ret = false;
         try{
             cmdString = "SELECT * FROM USERSFAVOURITE WHERE USERID = '"+user.getUserID()+"' and FOODID = '"+food.getFoodID()+"'";
             rs5 = st3.executeQuery(cmdString);
-            if (rs5.next()) {
+            if (rs5.next()){
                 ret = true;
             }else
                 ret = false;
@@ -552,7 +552,7 @@ public class DataAccessObject implements DataAccess {
     }
 
     @Override
-    public User setNewUser(int id,String username) {
+    public User setNewUser(int id,String username){
         String values;
         System.out.println("in add new user");
         result = null;

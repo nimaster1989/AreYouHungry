@@ -8,7 +8,7 @@ import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.Question;
 import comp3350.Group2.areyouhungry.objects.User;
 
-public interface DataAccess {
+public interface DataAccess{
     void open(String string);
 
     void close();
