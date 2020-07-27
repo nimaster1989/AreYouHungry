@@ -11,8 +11,8 @@ import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.objects.Categorys;
 import comp3350.Group2.areyouhungry.objects.FC;
 import comp3350.Group2.areyouhungry.objects.Food;
-import comp3350.Group2.areyouhungry.objects.Question;
 
+import comp3350.Group2.areyouhungry.objects.Question;
 import comp3350.Group2.areyouhungry.persistence.DataAccess;
 
 import static comp3350.Group2.areyouhungry.MainActivity.dbName;
@@ -23,7 +23,6 @@ public class DataAccessStub implements DataAccess{
     private String dbType = "stub";
 
     private ArrayList<Food> foods;
-    private ArrayList<Question> questions;
     private ArrayList<FC> fcs;
     private ArrayList<Categorys> categorysList;
 
@@ -64,16 +63,6 @@ public class DataAccessStub implements DataAccess{
         foods.add(food);
         Food_map.put(String.valueOf(food.getFoodID()),food);
 
-        Question question;
-        questions = new ArrayList<Question>();
-        question = new Question("Question1","A","B","C","D");
-        questions.add(question);
-        question = new Question("Question2","A","B","C","D");
-        questions.add(question);
-        question = new Question("Question3","A","B","C","D");
-        questions.add(question);
-        question = new Question("Question4","A","B","C","D");
-        questions.add(question);
         categorysList = new ArrayList<Categorys>();
         categorys = new Categorys(1,"Meat");
         categorysList.add(categorys);
@@ -117,9 +106,6 @@ public class DataAccessStub implements DataAccess{
         return null;
     }
 
-    public Question getQuestion(int questionNum){
-        return questions.get(questionNum);
-    }
 
     /* Generate the favourite list. */
     public String getFavouriteFoodSequential(List<Food> foodResult){
@@ -210,4 +196,15 @@ public class DataAccessStub implements DataAccess{
     public int getCategoryIDbyName(String categoryName){
         return 0;
     }
+
+    @Override
+    public List<Question> getAllQuestions() {
+        return null;
+    }
+
+    @Override
+    public int getTotalQuestions() {
+        return 0;
+    }
+
 }

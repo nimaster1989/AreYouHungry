@@ -12,7 +12,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import comp3350.Group2.areyouhungry.persistence.DataAccessStub;
 import comp3350.Group2.areyouhungry.persistence.Messages;
 import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
 
