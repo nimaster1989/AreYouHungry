@@ -11,32 +11,56 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import comp3350.Group2.areyouhungry.R;
 import comp3350.Group2.areyouhungry.business.AccessFoods;
+import comp3350.Group2.areyouhungry.business.AccessQuestions;
 import comp3350.Group2.areyouhungry.objects.Answers;
 import comp3350.Group2.areyouhungry.objects.Food;
+import comp3350.Group2.areyouhungry.objects.Question;
 import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailActivity;
 import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailFragment;
 import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
 
 
 public class PreferredSearchActivity extends AppCompatActivity {
-    private AccessFoods accessFoods;
-    private ArrayList<Food> foodList;
-    private ArrayAdapter<Food> foodArrayAdapter;
+    private AccessQuestions accessQuestions;
+
+    private TextView textViewName;
+    private TextView textViewDifficulty;
+    private TextView textViewPrepTime;
+    private TextView textViewFlavor;
+    private TextView textViewServes;
+    private TextView textViewEthnicity;
+    private ImageView dishImage;
+    private Answers answer;
     private Button homeButton;
     @Override
     protected void onCreate(Bundle savedInstanceState){
-        //Answers answers = (Answers) getIntent().getSerializableExtra("Answers");
+        answer = (Answers) getIntent().getSerializableExtra("Answers");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferred_search);
         setTitle(getTitle());
+        textViewName = findViewById(R.id.resultName);
+        textViewDifficulty = findViewById(R.id.difficultyTextView);
+        textViewPrepTime = findViewById(R.id.prepTimeTextView);
+        textViewFlavor = findViewById(R.id.flavorTextView);
+        textViewServes = findViewById(R.id.portionSizeTextView);
+        textViewEthnicity = findViewById(R.id.ethnicityTextView);
+        dishImage = findViewById(R.id.image);
+        setFood();
+
+
+
         homeButton = findViewById(R.id.returnHomeButton);
         homeButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -48,5 +72,13 @@ public class PreferredSearchActivity extends AppCompatActivity {
 
     }
 
+        private void setFood(){
+            textViewName.setText("Its all Spaghetti");
+            textViewDifficulty.setText(answer.getDifficulty());
+            textViewPrepTime.setText(answer.getPreptime());
+            textViewFlavor.setText(answer.getFlavor());
+            textViewServes.setText(answer.getPortionSize());
+            textViewEthnicity.setText(answer.getEthnicity());
+        }
 
 }
