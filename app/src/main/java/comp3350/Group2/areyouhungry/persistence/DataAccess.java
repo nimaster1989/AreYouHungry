@@ -48,4 +48,8 @@ public interface DataAccess {
     String setFoodToFavouriteByUser(User user,String curr_id, boolean b);
 
     boolean getFoodFavByUser(User user, Food food);
+
+    String getUserSequential(List<User> userResult);
+
+    User getUser(int userID);
 }

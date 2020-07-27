@@ -77,6 +77,63 @@ public class DataAccessObject implements DataAccess {
         }
         return ret_food_map;
     }
+    @Override
+    public String getUserSequential(List<User> userResult) {
+        System.out.println("-----------");
+        System.out.println("getUserSequential()");
+        System.out.println("-----------");
+        User user;
+        int myUserID;
+        String myUserName;
+        myUserID = -1;
+        myUserName= EOF;
+
+        result = null;
+        try{
+            cmdString = "Select * from USERS";
+            rs3 = st2.executeQuery(cmdString);
+            while (rs3.next()){
+                myUserID = rs3.getInt("USERID");
+                System.out.println("get ID: "+myUserID);
+                myUserName = rs3.getString("USERNAME");
+                System.out.println("get name: "+myUserName);
+                user = new User(myUserID,myUserName);
+                userResult.add(user);
+            }
+            rs3.close();
+        }catch (Exception e){
+            processSQLError(e);
+        }
+        return result;
+    }
+
+    @Override
+    public User getUser(int userID) {
+        System.out.println("-----------");
+        System.out.println("getUserFromId: "+userID );
+        System.out.println("-----------");
+        User userByID = null;
+        int myID;
+        String myUserName;
+        myID = -1;
+        myUserName= EOF;
+        result = null;
+        try{
+            cmdString = "SELECT * from USERS  WHERE USERID = '"+userID+"'";
+            rs5 = st3.executeQuery(cmdString);
+            while (rs5.next()){
+                myID = rs5.getInt("USERID");
+                System.out.println("get ID: "+myID);
+                myUserName = rs5.getString("USERNAME");
+                System.out.println("get name: "+myUserName);
+                userByID = new User(userID,myUserName);
+            }
+            rs5.close();
+        }catch (Exception e){
+            processSQLError(e);
+        }
+        return userByID;
+    }
 
     public String getFoodSequential(List<Food> foodResult){
         System.out.println("-----------");
@@ -432,6 +489,7 @@ public class DataAccessObject implements DataAccess {
         }
         return ret;
     }
+
 
 
     public int getIDByFood(Food food){

@@ -1,5 +1,6 @@
 package comp3350.Group2.areyouhungry.business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.Group2.areyouhungry.MainActivity;
@@ -17,5 +18,13 @@ public class AccessUsers {
     }
     public User getDefaultUser(){
         return dataAccess.getDefault();
+    }
+
+    public String getUsers(ArrayList<User> userList) {
+        return dataAccess.getUserSequential(userList);
+    }
+
+    public User getUserByID(int userID) {
+        return dataAccess.getUser(userID);
     }
 }
