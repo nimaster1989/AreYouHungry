@@ -1,16 +1,17 @@
 package comp3350.Group2.areyouhungry.objects;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Answers {
+public class Answers implements Serializable {
 
     private List<Integer> answers;
     private String flavor;
     private String portionSize;
     private String preptime;
     private String difficulty;
-    private String faveColor;
+    private String ethnicity;
 
 
     public Answers(List<Integer> newAnswers){
@@ -35,7 +36,7 @@ public class Answers {
                 }
             }else if(i == 4){
                 if(answer!= 0){
-                    faveColor = "blue";
+                    ethnicity = "african";
                 }
             }
 
@@ -83,12 +84,12 @@ public class Answers {
         this.difficulty = difficulty;
     }
 
-    public String getFaveColor(){
-        return faveColor;
+    public String getEthnicity(){
+        return ethnicity;
     }
 
-    public void setFaveColor(String faveColor){
-        this.faveColor = faveColor;
+    public void setEthnicity(String ethnicity){
+        this.ethnicity = ethnicity;
     }
 
 
