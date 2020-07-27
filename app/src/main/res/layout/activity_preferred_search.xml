@@ -1,36 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.preferred.PreferredSearchActivity">
-
-    <ListView
-        android:id="@+id/preferred_pick"
-        android:layout_width="411dp"
-        android:layout_height="430dp"
-        android:layout_gravity="bottom"
-        android:layout_marginTop="296dp"
-        android:choiceMode="singleChoice"
-        android:divider="@android:drawable/divider_horizontal_textfield"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.38"
-        app:layout_constraintTop_toTopOf="parent"/>
+    android:theme="@style/AppTheme"
+    tools:context=".ui.preferred.PreferredActivity">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/resultTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Preferred Search Results"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="Based off your selection you've got:"
         android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/preferred_pick"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-  
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textSize="30sp"
+
+        />
+
+    <TextView
+        android:id="@+id/resultName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/resultTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100sp"
+        android:text="Spaghetti!!"
+        android:textColor="#000000"
+        android:textSize="30sp" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="389dp"
+        android:layout_height="272dp"
+        android:layout_below="@id/resultName"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/spaghetti"></ImageView>
+
+    <TextView
+        android:id="@+id/difficultyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/image"
+        android:layout_centerHorizontal="true"
+        android:text="Difficulty: Easy"
+        android:textColor="#000000"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/prepTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/difficultyTextView"
+        android:layout_centerHorizontal="true"
+        android:text="Preparation Time: 20 Minutes"
+        android:textColor="#000000"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/flavorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/prepTimeTextView"
+        android:layout_centerHorizontal="true"
+        android:text="Flavor: Savory"
+        android:textColor="#000000"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/portionSizeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/flavorTextView"
+        android:layout_centerHorizontal="true"
+        android:text="Serves: 3-4 People"
+        android:textColor="#000000"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/ethnicityTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/portionSizeTextView"
+        android:layout_centerHorizontal="true"
+        android:text="Ethnicity: Mamma Mia"
+        android:textColor="#000000"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/returnHomeButton"
+        android:layout_width="275dp"
+        android:layout_height="75dp"
+        android:layout_below="@id/ethnicityTextView"
+        android:layout_centerHorizontal="true"
+        android:background="#4D00EA"
+        android:text="Return Home"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
+
+
+</RelativeLayout>

@@ -10,68 +10,75 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import comp3350.Group2.areyouhungry.R;
 import comp3350.Group2.areyouhungry.business.AccessFoods;
+import comp3350.Group2.areyouhungry.business.AccessQuestions;
+import comp3350.Group2.areyouhungry.objects.Answers;
 import comp3350.Group2.areyouhungry.objects.Food;
+import comp3350.Group2.areyouhungry.objects.Question;
 import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailActivity;
 import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailFragment;
+import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
 
 
 public class PreferredSearchActivity extends AppCompatActivity {
-    private AccessFoods accessFoods;
-    private ArrayList<Food> foodList;
-    private ArrayAdapter<Food> foodArrayAdapter;
+    private AccessQuestions accessQuestions;
+
+    private TextView textViewName;
+    private TextView textViewDifficulty;
+    private TextView textViewPrepTime;
+    private TextView textViewFlavor;
+    private TextView textViewServes;
+    private TextView textViewEthnicity;
+    private ImageView dishImage;
+    private Answers answer;
+    private Button homeButton;
     @Override
     protected void onCreate(Bundle savedInstanceState){
-
-        String foodType = getIntent().getStringExtra("KIND_OF_FOOD");
-
+        answer = (Answers) getIntent().getSerializableExtra("Answers");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferred_search);
         setTitle(getTitle());
+        textViewName = findViewById(R.id.resultName);
+        textViewDifficulty = findViewById(R.id.difficultyTextView);
+        textViewPrepTime = findViewById(R.id.prepTimeTextView);
+        textViewFlavor = findViewById(R.id.flavorTextView);
+        textViewServes = findViewById(R.id.portionSizeTextView);
+        textViewEthnicity = findViewById(R.id.ethnicityTextView);
+        dishImage = findViewById(R.id.image);
+        setFood();
 
-        accessFoods = new AccessFoods();
 
-        foodList = new ArrayList<Food>();
-        String result = accessFoods.getPreferred(foodList, foodType);
-        if (result != null){
-            System.out.println("accessFoods.getFood Error");
-        } else{
-            foodArrayAdapter = new ArrayAdapter<Food>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, foodList){
-                @Override
-                public View getView(int position, View convertView, ViewGroup parent){
-                    View view = super.getView(position, convertView, parent);
 
-                    TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-
-                    text1.setText(new StringBuilder().append(foodList.get(position).getFoodName()).toString());
-                    text1.setTextSize(28);
-
-                    return view;
-                }
-            };
-            final ListView listView = (ListView) findViewById(R.id.preferred_pick);
-            /* Creating an onClickListener for clicking on the food selected. */
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                    /* Gets the food selected from the list. */
-                    Food food = (Food) foodList.get(position);
-                    Context context = view.getContext();
-                    /* Change the content of the application. */
-                    Intent intent = new Intent(context, FoodDetailActivity.class);
-                    intent.putExtra(FoodDetailFragment.ARG_ITEM_ID, food.getFoodID());
-                    context.startActivity(intent);
-                }
-            });
-            listView.setAdapter(foodArrayAdapter);
-
-        }
+        homeButton = findViewById(R.id.returnHomeButton);
+        homeButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(PreferredSearchActivity.this, HomeActivity.class);
+                PreferredSearchActivity.this.startActivity(intent);
+            }
+        });
 
     }
+
+        private void setFood(){
+            textViewName.setText("Its all Spaghetti");
+            textViewDifficulty.setText(answer.getDifficulty());
+            textViewPrepTime.setText(answer.getPreptime());
+            textViewFlavor.setText(answer.getFlavor());
+            textViewServes.setText(answer.getPortionSize());
+            textViewEthnicity.setText(answer.getEthnicity());
+        }
+
 }

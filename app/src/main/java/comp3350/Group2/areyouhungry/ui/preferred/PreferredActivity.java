@@ -2,6 +2,7 @@ package comp3350.Group2.areyouhungry.ui.preferred;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.View;
@@ -19,6 +20,7 @@ import comp3350.Group2.areyouhungry.business.AccessQuestions;
 import comp3350.Group2.areyouhungry.R;
 import comp3350.Group2.areyouhungry.objects.Answers;
 import comp3350.Group2.areyouhungry.objects.Question;
+import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
 
 
 /* This is the page that loads when the user selects. */
@@ -111,6 +113,11 @@ public class PreferredActivity extends AppCompatActivity  {
     private void finishQuestions(){
         answer = new Answers(answers);
         finish();
+        Intent intent = new Intent(PreferredActivity.this, PreferredSearchActivity.class);
+        intent.putExtra("Answers", answer);
+        PreferredActivity.this.startActivity(intent);
+
+
     }
 
 
