@@ -10,68 +10,43 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import comp3350.Group2.areyouhungry.R;
 import comp3350.Group2.areyouhungry.business.AccessFoods;
+import comp3350.Group2.areyouhungry.objects.Answers;
 import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailActivity;
 import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailFragment;
+import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
 
 
 public class PreferredSearchActivity extends AppCompatActivity {
     private AccessFoods accessFoods;
     private ArrayList<Food> foodList;
     private ArrayAdapter<Food> foodArrayAdapter;
+    private Button homeButton;
     @Override
     protected void onCreate(Bundle savedInstanceState){
-
-        String foodType = getIntent().getStringExtra("KIND_OF_FOOD");
-
+        //Answers answers = (Answers) getIntent().getSerializableExtra("Answers");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferred_search);
         setTitle(getTitle());
-
-        accessFoods = new AccessFoods();
-
-        foodList = new ArrayList<Food>();
-        String result = accessFoods.getPreferred(foodList, foodType);
-        if (result != null){
-            System.out.println("accessFoods.getFood Error");
-        } else{
-            foodArrayAdapter = new ArrayAdapter<Food>(this, android.R.layout.simple_list_item_activated_2, android.R.id.text1, foodList){
-                @Override
-                public View getView(int position, View convertView, ViewGroup parent){
-                    View view = super.getView(position, convertView, parent);
-
-                    TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-
-                    text1.setText(new StringBuilder().append(foodList.get(position).getFoodName()).toString());
-                    text1.setTextSize(28);
-
-                    return view;
-                }
-            };
-            final ListView listView = (ListView) findViewById(R.id.preferred_pick);
-            /* Creating an onClickListener for clicking on the food selected. */
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                    /* Gets the food selected from the list. */
-                    Food food = (Food) foodList.get(position);
-                    Context context = view.getContext();
-                    /* Change the content of the application. */
-                    Intent intent = new Intent(context, FoodDetailActivity.class);
-                    intent.putExtra(FoodDetailFragment.ARG_ITEM_ID, food.getFoodID());
-                    context.startActivity(intent);
-                }
-            });
-            listView.setAdapter(foodArrayAdapter);
-
-        }
+        homeButton = findViewById(R.id.returnHomeButton);
+        homeButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(PreferredSearchActivity.this, HomeActivity.class);
+                PreferredSearchActivity.this.startActivity(intent);
+            }
+        });
 
     }
+
+
 }
