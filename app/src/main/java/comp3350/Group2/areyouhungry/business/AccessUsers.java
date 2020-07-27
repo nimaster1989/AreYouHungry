@@ -27,4 +27,12 @@ public class AccessUsers {
     public User getUserByID(int userID) {
         return dataAccess.getUser(userID);
     }
+
+    public User newUsers(String m_text) {
+        List users = new ArrayList<User>();
+        users.clear();
+        dataAccess.getUserSequential(users);
+        int newId = users.size()+1;
+        return dataAccess.setNewUser(newId,m_text);
+    }
 }

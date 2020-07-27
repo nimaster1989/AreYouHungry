@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:theme="@style/Theme.MyApp"
+    android:id="@+id/user_constrain"
     tools:context=".ui.user.UserActivity">
 
 

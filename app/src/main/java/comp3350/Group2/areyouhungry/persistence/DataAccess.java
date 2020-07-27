@@ -52,4 +52,6 @@ public interface DataAccess {
     String getUserSequential(List<User> userResult);
 
     User getUser(int userID);
+
+    User setNewUser(int userID, String username);
 }

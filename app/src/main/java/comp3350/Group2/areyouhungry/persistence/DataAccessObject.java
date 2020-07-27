@@ -135,6 +135,8 @@ public class DataAccessObject implements DataAccess {
         return userByID;
     }
 
+
+
     public String getFoodSequential(List<Food> foodResult){
         System.out.println("-----------");
         System.out.println("getFoodSequential()");
@@ -547,6 +549,22 @@ public class DataAccessObject implements DataAccess {
             result = processSQLError(e);
         }
         return result;
+    }
+
+    @Override
+    public User setNewUser(int id,String username) {
+        String values;
+        System.out.println("in add new user");
+        result = null;
+        try{
+            cmdString = "Insert into USERS Values("+id +", '"+username+"')";
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+        return new User(id,username);
     }
 
     public String addFood(Food addFood){

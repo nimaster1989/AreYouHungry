@@ -10,15 +10,18 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,18 +79,72 @@ public class UserActivity extends AppCompatActivity {
             }
         });
 
+        final View recyclerView = findViewById(R.id.user_list);
+        assert recyclerView != null;
+        setupRecyclerView((RecyclerView) recyclerView);
+
         ExtendedFloatingActionButton fab = (ExtendedFloatingActionButton) findViewById(R.id.all_fab);
         fab.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view){
-//                Intent add_intent = new Intent(UserActivity.this, AddUserActivity.class);
-//                UserActivity.this.startActivity(add_intent);
+            public void onClick(final View view){
+                AlertDialog.Builder builder = new AlertDialog.Builder(UserActivity.this);
+                builder.setTitle("Your User name:");
+                final EditText input = new EditText(UserActivity.this);
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
+                builder.setIcon(R.drawable.ic_baseline_account_circle_24);
+                builder.setView(input);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        String m_Text = input.getText().toString();
+                        CreateUser(m_Text,view);
+                        setupRecyclerView((RecyclerView) recyclerView);
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
             }
         });
-        View recyclerView = findViewById(R.id.user_list);
-        assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+
     }
+
+    private void CreateUser(String m_text,View view) {
+        if(!m_text.equals("")){
+            accessUsers = new AccessUsers();
+            final User newUser = accessUsers.newUsers(m_text);
+            if(newUser != null){
+                AlertDialog.Builder builder = new AlertDialog.Builder(UserActivity.this);
+                builder.setTitle("Create User success");
+                builder.setMessage("Do you want to switch to "+m_text+" now ?");
+                builder.setIcon(R.drawable.ic_baseline_account_circle_24);
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                        System.out.println(newUser.getUserName());
+                        changeUser(newUser.getUserID());
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        }else{
+            Snackbar.make(view, "user name can not be empty", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).setAnchorView(R.id.nav_view).show();
+        }
+    }
+
     private void setupRecyclerView(@NonNull RecyclerView recyclerView){
         accessUsers = new AccessUsers();
         userList = new ArrayList<User>();
@@ -105,7 +162,7 @@ public class UserActivity extends AppCompatActivity {
                 final User user = (User) view.getTag();
                 System.out.println("click on user");
                 AlertDialog.Builder builder = new AlertDialog.Builder(UserActivity.this);
-                builder.setTitle(R.string.app_name);
+                builder.setTitle("Switch User Confirm");
                 builder.setMessage("Do you want to switch to "+user.getUserName()+" ?");
                 builder.setIcon(R.drawable.ic_baseline_account_circle_24);
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
