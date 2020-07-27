@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         Services.createDataAccess(dbName);
     }
 
-    private void shutDown() {Services.closeDataAccess();}
+    private void shutDown(){Services.closeDataAccess();}
     public static String getDBPathName(){
         if (dbPathName == null)
             return dbName;

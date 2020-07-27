@@ -21,8 +21,7 @@ public class AccessFoodTest extends TestCase {
 
     public static String dbName = MainActivity.dbName;
 
-    public AccessFoodTest(String arg0)
-    {
+    public AccessFoodTest(String arg0){
         super(arg0);
     }
 

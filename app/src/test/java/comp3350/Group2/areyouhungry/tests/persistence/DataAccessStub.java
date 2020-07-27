@@ -15,7 +15,7 @@ import comp3350.Group2.areyouhungry.persistence.DataAccess;
 
 import static comp3350.Group2.areyouhungry.MainActivity.dbName;
 
-public class DataAccessStub implements DataAccess {
+public class DataAccessStub implements DataAccess{
 
     private String dbName;
     private String dbType = "stub";
@@ -26,13 +26,11 @@ public class DataAccessStub implements DataAccess {
 
     private Map<String,Food> Food_map;
 
-    public DataAccessStub(String dbName)
-    {
+    public DataAccessStub(String dbName){
         this.dbName = dbName;
     }
 
-    public DataAccessStub()
-    {
+    public DataAccessStub(){
         this(MainActivity.dbName);
     }
 
@@ -89,7 +87,7 @@ public class DataAccessStub implements DataAccess {
     }
 
 
-    public void close() {
+    public void close(){
         System.out.println("Closed " +dbType +" database " +dbName);
     }
 
@@ -141,7 +139,7 @@ public class DataAccessStub implements DataAccess {
     }
 
     @Override
-    public Food getFoodFromID(String foodID) {
+    public Food getFoodFromID(String foodID){
         Iterator<Food> foodIterator = foods.iterator(); /* This iterates through the foods list. */
         Food food;
         while(foodIterator.hasNext()){
@@ -154,7 +152,7 @@ public class DataAccessStub implements DataAccess {
     }
 
     @Override
-    public String setFoodToFavourite(String curr_id, boolean favourite) {
+    public String setFoodToFavourite(String curr_id, boolean favourite){
         Iterator<Food> foodIterator = foods.iterator(); /* This iterates through the foods list. */
         Food food;
         while(foodIterator.hasNext()){
@@ -177,22 +175,22 @@ public class DataAccessStub implements DataAccess {
     }
 
     @Override
-    public int getFoodTableRow() {
+    public int getFoodTableRow(){
         return foods.size();
     }
 
     @Override
-    public String addFoodCategory(int foodID, int categoryID) {
+    public String addFoodCategory(int foodID, int categoryID){
         return null;
     }
 
     @Override
-    public int getIDByFood(Food food) {
+    public int getIDByFood(Food food){
         return 0;
     }
 
     @Override
-    public int getCategoryIDbyName(String categoryName) {
+    public int getCategoryIDbyName(String categoryName){
         return 0;
     }
 }
