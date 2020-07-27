@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         copyDatabaseToDevice();
         startUp();
 
+        finish();
         /* StartUp home activity. */
         Intent home_intent = new Intent(MainActivity.this, HomeActivity.class);
         MainActivity.this.startActivity(home_intent);
