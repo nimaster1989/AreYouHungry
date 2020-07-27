@@ -30,9 +30,12 @@ public class MainActivity extends AppCompatActivity {
         /* StartUp home activity. */
         Intent home_intent = new Intent(MainActivity.this, HomeActivity.class);
         MainActivity.this.startActivity(home_intent);
-        finish();
     }
 
+    protected void onDestory(){
+        super.onDestroy();
+        shutDown();
+    }
     private void copyDatabaseToDevice(){
         final String DB_PATH = "db";
 
@@ -84,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         Services.createDataAccess(dbName);
     }
 
+    private void shutDown(){Services.closeDataAccess();}
     public static String getDBPathName(){
         if (dbPathName == null)
             return dbName;
