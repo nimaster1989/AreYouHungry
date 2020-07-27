@@ -81,9 +81,6 @@ public class DataAccessObject implements DataAccess {
         System.out.println("-----------");
         System.out.println("getFoodSequential()");
         System.out.println("-----------");
-
-//        myID = EOF;
-//        myFoodName = EOF;
         result = null;
         cmdString = "Select * from Foods";
         fillFoodObject(cmdString,foodResult);
@@ -105,8 +102,9 @@ public class DataAccessObject implements DataAccess {
                 System.out.println("get favourite: " + myFavourite);
                 Food foundFood = new Food(Integer.valueOf(myID), myFoodName, myFavourite);
                 foodResult.add(foundFood);
-                rs5.close();
+
             }
+            rs5.close();
         }catch(Exception e){
             processSQLError(e);
         }
@@ -128,30 +126,9 @@ public class DataAccessObject implements DataAccess {
         System.out.println("getFoodRandom()");
         System.out.println("-----------");
         Food food;
-        String myID,myFoodName;
-        Boolean myFavourite;
-        myID = EOF;
-        myFoodName = EOF;
-
         result = null;
-        try{
-            cmdString = "SELECT * from Foods ORDER BY RAND() LIMIT 1";
-            rs5 = st3.executeQuery(cmdString);
-            if (rs5 == null) System.out.println("return state 5 is null");
-            while (rs5.next()){
-                myID = rs5.getString("FoodID");
-                System.out.println("get ID: "+myID);
-                myFoodName = rs5.getString("FoodName");
-                System.out.println("get name: "+myFoodName);
-                myFavourite = rs5.getBoolean("Favourite");
-                System.out.println("get favourite: "+myFavourite);
-                food = new Food(Integer.valueOf(myID),myFoodName,myFavourite);
-                foodResult.add(food);
-            }
-            rs5.close();
-        }catch (Exception e){
-            processSQLError(e);
-        }
+        cmdString = "SELECT * from Foods ORDER BY RAND() LIMIT 1";
+        fillFoodObject(cmdString,foodResult);
         return result;
     }
 
@@ -160,31 +137,9 @@ public class DataAccessObject implements DataAccess {
         System.out.println("-----------");
         System.out.println("getFoodRandom()");
         System.out.println("-----------");
-        Food preferredFood;
-        String myID,myFoodName;
-        Boolean myFavourite;
-        myID = EOF;
-        myFoodName = EOF;
-
         result = null;
-        try{
-            cmdString = "SELECT * from FOODS as f INNER JOIN FOODSCATEGORY as fc ON ( f.FOODID = fc.FOODID ) INNER JOIN CATEGORYS as c ON (fc.CATEGORYID = c.CATEGORYID) WHERE c.CATEGORYNAME = '"+preferredCategory+"'";
-            rs5 = st3.executeQuery(cmdString);
-            if (rs5 == null) System.out.println("return state 5 is null");
-            while (rs5.next()){
-                myID = rs5.getString("FoodID");
-                System.out.println("get ID: "+myID);
-                myFoodName = rs5.getString("FoodName");
-                System.out.println("get name: "+myFoodName);
-                myFavourite = rs5.getBoolean("Favourite");
-                System.out.println("get favourite: "+myFavourite);
-                preferredFood = new Food(Integer.valueOf(myID),myFoodName,myFavourite);
-                foodResult.add(preferredFood);
-            }
-            rs5.close();
-        }catch (Exception e){
-            processSQLError(e);
-        }
+        cmdString = "SELECT * from FOODS as f INNER JOIN FOODSCATEGORY as fc ON ( f.FOODID = fc.FOODID ) INNER JOIN CATEGORYS as c ON (fc.CATEGORYID = c.CATEGORYID) WHERE c.CATEGORYNAME = '"+preferredCategory+"'";
+        fillFoodObject(cmdString,foodResult);
         return result;
     }
 
