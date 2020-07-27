@@ -1,4 +1,4 @@
-package comp3350.Group2.areyouhungry.tests.business;
+package comp3350.Group2.areyouhungry.tests.objects;
 
 
 import junit.framework.TestCase;
@@ -10,7 +10,7 @@ public class FoodTest extends TestCase{
 
     public void testGetters(){
         System.out.println("Running test to test Food class getters");
-        Food food = new Food("123", "foodName", "linkPage");
+        Food food = new Food(123, "foodName", "linkPage");
 
         assertEquals("123", food.getFoodID());
         assertEquals("foodName", food.getFoodName());
@@ -21,7 +21,7 @@ public class FoodTest extends TestCase{
 
     public void testSetters(){
         System.out.println("Running test to test Food class setters.");
-        Food food = new Food("123", "Chicken");
+        Food food = new Food(123, "Chicken");
 
         food.setRecipeLink("bing");
         assertEquals("bing", food.getRecipeLink());
@@ -35,11 +35,12 @@ public class FoodTest extends TestCase{
     //This tests food equality (if IDs are the same or if both are null)
     public void testEquals(){
         System.out.println("Running test to test Food class equality.");
-        Food food1 = new Food("123");
-        Food food2 = new Food("123");
-        Food food3 = new Food("1234");
-        Food food4 = new Food(null);
-        Food food5 = new Food(null);
+        Food food1 = new Food(123);
+        Food food2 = new Food(123);
+        Food food3 = new Food(1234);
+        Food food4 = new Food(-1);
+        Food food5 = new Food(-1);
+
 
         assertTrue(food1.equals(food2));
         assertFalse(food1.equals(food3));
