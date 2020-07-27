@@ -15,10 +15,10 @@
         android:layout_height="81dp"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:layout_marginBottom="400dp"
+        android:layout_marginBottom="200dp"
         android:background="#E64D00EA"
         android:onClick="preferredPickOnClick"
-        android:text="@string/preference_search"
+        android:text="Find your food!"
         android:textColor="#FFFFFF"
         android:textSize="18sp" />
 

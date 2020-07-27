@@ -38,6 +38,7 @@ public class AccessFoods {
         return dataAccess.getFoodFromID(foodID);
     }
 
+
     /* Definition of duplicate: we assume foods might have same name,
        but not same recipe, we call two foods to be equal if they have same
        name, and same recipe. */

@@ -14,8 +14,7 @@ import comp3350.Group2.areyouhungry.R;
 
 
 /* This is the page that loads when the user selects. */
-public class PreferredActivity extends AppCompatActivity implements OnItemSelectedListener {
-    private Spinner foodSpinner;
+public class PreferredActivity extends AppCompatActivity  {
     private String kindOfFood;
     private Button searchButton;
     @Override
@@ -23,39 +22,6 @@ public class PreferredActivity extends AppCompatActivity implements OnItemSelect
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferred);
 
-        setTitle(getTitle());
-
-        foodSpinner = (Spinner) findViewById(R.id.foodSpinner);
-
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1,
-                getResources().getStringArray(R.array.foodSpinner));
-
-        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        foodSpinner.setAdapter(myAdapter);
-        foodSpinner.setOnItemSelectedListener(this);
-
-        searchButton = (Button) findViewById(R.id.preferredSearch);
-        searchButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                searchFood();
-            }
-        });
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View v, int position,
-                               long id){
-        kindOfFood = foodSpinner.getSelectedItem().toString();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> arg0){}
-
-    public void searchFood(){
-        Intent intent = new Intent(this, PreferredSearchActivity.class);
-        intent.putExtra("KIND_OF_FOOD", kindOfFood);
-        startActivity(intent);
-    }
 }
