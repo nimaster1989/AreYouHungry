@@ -19,7 +19,7 @@
             android:textColor="@android:color/black"
             android:textSize="20sp" />
         <RadioGroup
-
+            android:layout_marginLeft="150dp"
             android:id="@+id/radio_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -114,7 +114,7 @@ public class PreferredActivity extends AppCompatActivity  {
         answer = new Answers(answers);
         finish();
         Intent intent = new Intent(PreferredActivity.this, PreferredSearchActivity.class);
-        //intent.putExtra("Answers", answer);
+        intent.putExtra("Answers", answer);
         PreferredActivity.this.startActivity(intent);
 
 
