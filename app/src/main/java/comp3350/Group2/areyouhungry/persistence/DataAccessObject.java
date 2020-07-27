@@ -89,6 +89,7 @@ public class DataAccessObject implements DataAccess {
 
     private void fillFoodObject(String cmdString,List<Food> foodResult){
         String myID,myFoodName;
+        String myPortionSize;
         Boolean myFavourite;
         try {
             rs5 = st3.executeQuery(cmdString);
@@ -100,7 +101,9 @@ public class DataAccessObject implements DataAccess {
                 System.out.println("get name: " + myFoodName);
                 myFavourite = rs5.getBoolean("Favourite");
                 System.out.println("get favourite: " + myFavourite);
-                Food foundFood = new Food(Integer.valueOf(myID), myFoodName, myFavourite);
+                myPortionSize = rs5.getString("PORTIONSIZE");
+                System.out.println("get portion size: " + myPortionSize);
+                Food foundFood = new Food(Integer.valueOf(myID), myFoodName, myFavourite,Integer.valueOf(myPortionSize));
                 foodResult.add(foundFood);
 
             }

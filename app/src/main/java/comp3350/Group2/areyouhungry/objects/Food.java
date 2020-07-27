@@ -18,12 +18,18 @@ public class Food {
         this.foodID = newFoodID;
         this.foodName = newFoodName;
     }
+    public Food(int newFoodID, String newFoodName,Boolean favourite,int portionSize) {
+        this.foodID = newFoodID;
+        this.foodName = newFoodName;
+        this.favourite = favourite;
+        this.portionSize = portionSize;
+    }
     public Food(int newFoodID, String newFoodName,Boolean favourite) {
         this.foodID = newFoodID;
         this.foodName = newFoodName;
         this.favourite = favourite;
     }
-    public Food(int foodID, String foodName, int portionSize, int prepTime, ArrayList<Ingredient> ingredientList,ArrayList<Direction> directionList, String flavour,String difficulty,String ethnicity){
+    public Food(int foodID, String foodName, int portionSize, int prepTime, ArrayList<Ingredient> ingredientList,ArrayList<Direction> directionList, String flavour,String difficulty,String ethnicity,Boolean favourite){
         this.foodID = foodID;
         this.foodName = foodName;
         this.portionSize = portionSize;
@@ -33,6 +39,7 @@ public class Food {
         this.flavour = flavour;
         this.difficulty = difficulty;
         this.ethnicity = ethnicity;
+        this.favourite = favourite;
     }
 
     public String getFoodID(){
