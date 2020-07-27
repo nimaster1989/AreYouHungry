@@ -7,36 +7,52 @@
     android:layout_height="match_parent"
     android:theme="@style/AppTheme"
     tools:context=".ui.preferred.PreferredActivity">
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="363dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="200dp"
-        android:text="What kind of food are you looking for?"
-        android:textColor="#0B0707"
-        android:textSize="20sp">
-    </TextView>
 
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/foodSpinner"
-        android:layout_width="372dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="252dp"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown" />
+        <TextView
+            android:id="@+id/text_view_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/radio_group"
+            android:layout_marginBottom="16dp"
+            android:text="Here will be the question text\nHere will be the question text\nHere will be the question text"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+        <RadioGroup
 
+            android:id="@+id/radio_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
+            <RadioButton
+                android:id="@+id/radio_button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Option 1" />
+            <RadioButton
+                android:id="@+id/radio_button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Option 2" />
+            <RadioButton
+                android:id="@+id/radio_button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Option 3" />
+            <RadioButton
+                android:id="@+id/radio_button4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Option 4" />
+        </RadioGroup>
     <Button
         android:id="@+id/preferredSearch"
         android:layout_width="275dp"
         android:layout_height="75dp"
-        android:layout_below="@+id/foodSpinner"
         android:layout_centerHorizontal="true"
         android:background="#4D00EA"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="322dp"
-        android:text="@string/search"
+        android:layout_below="@id/radio_group"
+        android:text="Confirm"
         android:textColor="#FFFFFF"
         android:textSize="20sp"/>
 

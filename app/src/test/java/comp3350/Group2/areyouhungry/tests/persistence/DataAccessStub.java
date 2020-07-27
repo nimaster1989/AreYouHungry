@@ -11,6 +11,8 @@ import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.objects.Categorys;
 import comp3350.Group2.areyouhungry.objects.FC;
 import comp3350.Group2.areyouhungry.objects.Food;
+
+import comp3350.Group2.areyouhungry.objects.Question;
 import comp3350.Group2.areyouhungry.persistence.DataAccess;
 
 import static comp3350.Group2.areyouhungry.MainActivity.dbName;
@@ -104,6 +106,7 @@ public class DataAccessStub implements DataAccess{
         return null;
     }
 
+
     /* Generate the favourite list. */
     public String getFavouriteFoodSequential(List<Food> foodResult){
         Iterator<Food> foodIterator = foods.iterator(); /* This iterates through the foods list. */
@@ -193,4 +196,15 @@ public class DataAccessStub implements DataAccess{
     public int getCategoryIDbyName(String categoryName){
         return 0;
     }
+
+    @Override
+    public List<Question> getAllQuestions(){
+        return null;
+    }
+
+    @Override
+    public int getTotalQuestions(){
+        return 0;
+    }
+
 }

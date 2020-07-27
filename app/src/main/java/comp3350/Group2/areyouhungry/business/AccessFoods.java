@@ -3,6 +3,7 @@ package comp3350.Group2.areyouhungry.business;
 import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.Services;
 import comp3350.Group2.areyouhungry.objects.Food;
+import comp3350.Group2.areyouhungry.objects.Question;
 import comp3350.Group2.areyouhungry.persistence.DataAccess;
 
 
@@ -37,6 +38,7 @@ public class AccessFoods {
     public Food getFoodByID(String foodID){
         return dataAccess.getFoodFromID(foodID);
     }
+
 
     /* Definition of duplicate: we assume foods might have same name,
        but not same recipe, we call two foods to be equal if they have same
@@ -100,4 +102,5 @@ public class AccessFoods {
     public int getFoodID(Food food){
         return dataAccess.getIDByFood(food);
     }
+
 }
