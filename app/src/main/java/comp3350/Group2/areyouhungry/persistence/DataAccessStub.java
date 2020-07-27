@@ -7,15 +7,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import comp3350.Group2.areyouhungry.objects.Food;
+import comp3350.Group2.areyouhungry.objects.Question;
 
 public class DataAccessStub {
 
     private ArrayList<Food> foods;
+    private ArrayList<Question> questions;
     private Map<String,Food> Food_map;
 
     public void open(){
         Food food;
-
         foods = new ArrayList<Food>();
         Food_map = new HashMap<>();
         food = new Food(1,"Fish","https://www.food.com/recipe/beer-battered-fish-130102");
@@ -36,6 +37,17 @@ public class DataAccessStub {
         food = new Food(6,"veggies","https://www.cookingclassy.com/greek-salad/");
         foods.add(food);
         Food_map.put(String.valueOf(food.getFoodID()),food);
+
+        Question question;
+        questions = new ArrayList<Question>();
+        question = new Question("Question1","A","B","C","D");
+        questions.add(question);
+        question = new Question("Question2","A","B","C","D");
+        questions.add(question);
+        question = new Question("Question3","A","B","C","D");
+        questions.add(question);
+        question = new Question("Question4","A","B","C","D");
+        questions.add(question);
     }
 
 
@@ -50,6 +62,10 @@ public class DataAccessStub {
     public String getFoodSequential(List<Food> foodResult){
         foodResult.addAll((foods));
         return null;
+    }
+
+    public Question getQuestion(int questionNum){
+        return questions.get(questionNum);
     }
 
     /* Generate the favourite list. */

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import comp3350.Group2.areyouhungry.objects.Food;
+import comp3350.Group2.areyouhungry.objects.Question;
 
 public class DataAccessObject implements DataAccess {
     private Statement st1,st2,st3;
@@ -285,6 +286,45 @@ public class DataAccessObject implements DataAccess {
             result = processSQLError(e);
         }
         return myRow;
+    }
+
+    public List<Question> getAllQuestions(){
+        List<Question> questionList = new ArrayList<>();
+        Question question;
+        result = null;
+        try{
+            cmdString = "Select * from Questions";
+            rs5 = st3.executeQuery(cmdString);
+            while(rs5.next()){
+                question = new Question();
+                question.setQuestion(rs5.getString("QUESTION"));
+                question.setOption1(rs5.getString("OPT1"));
+                question.setOption2(rs5.getString("OPT2"));
+                question.setOption3(rs5.getString("OPT3"));
+                question.setOption4(rs5.getString("OPT4"));
+                questionList.add(question);
+            }
+            rs5.close();
+        }catch (Exception e){
+            result = processSQLError(e);
+        }
+        return questionList;
+    }
+
+    public int getTotalQuestions(){
+        result = null;
+        int count = 0;
+        try{
+            cmdString = "Select * from Questions";
+            rs5 = st3.executeQuery(cmdString);
+            while(rs5.next()){
+                count++;
+            }
+            rs5.close();
+        }catch (Exception e){
+            result = processSQLError(e);
+        }
+        return count;
     }
 
     public int getIDByFood(Food food){

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import comp3350.Group2.areyouhungry.objects.Food;
+import comp3350.Group2.areyouhungry.objects.Question;
 
 public interface DataAccess {
     void open(String string);
@@ -33,4 +34,8 @@ public interface DataAccess {
     public int getIDByFood(Food food);
 
     public int getCategoryIDbyName(String categoryName);
+
+    public List<Question> getAllQuestions();
+
+    public int getTotalQuestions();
 }

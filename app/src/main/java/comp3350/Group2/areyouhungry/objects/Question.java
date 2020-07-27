@@ -1,4 +1,4 @@
-package comp3350.Group2.areyouhungry.ui.preferred;
+package comp3350.Group2.areyouhungry.objects;
 
 public class Question {
     private String question;
@@ -6,17 +6,15 @@ public class Question {
     private String option2;
     private String option3;
     private String option4;
-    private int answerNumber;
 
     public Question(){}
 
-    public Question(String question, String option1, String option2, String option3, String option4, int answerNumber) {
+    public Question(String question, String option1, String option2, String option3, String option4) {
         this.question = question;
         this.option1 = option1;
         this.option2 = option2;
         this.option3 = option3;
         this.option4 = option4;
-        this.answerNumber = answerNumber;
     }
 
     public String getQuestion() {
@@ -59,11 +57,4 @@ public class Question {
         this.option4 = option4;
     }
 
-    public int getAnswerNumber() {
-        return answerNumber;
-    }
-
-    public void setAnswerNumber(int answerNumber) {
-        this.answerNumber = answerNumber;
-    }
 }
