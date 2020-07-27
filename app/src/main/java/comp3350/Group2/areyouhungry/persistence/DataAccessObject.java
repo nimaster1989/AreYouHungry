@@ -84,7 +84,7 @@ public class DataAccessObject implements DataAccess {
         System.out.println("getFoodSequential()");
         System.out.println("-----------");
         result = null;
-        cmdString = "SELECT * from FOODS as f INNER JOIN FOODINGREDIENT as fi ON (f.FOODID = fi.FOODID) INNER JOIN INGREDIENT as i ON(fi.INGREDIENTID = i.INGREDIENTID) INNER JOIN FOODDIRECTION as fd ON (f.FOODID = fi.FOODID) INNER JOIN DIRECTION as d ON(fd.DIRECTIONID = d.DIRECTIONID) ORDER BY FoodID";
+        cmdString = "SELECT * from FOODS as f INNER JOIN FOODINGREDIENT as fi ON (f.FOODID = fi.FOODID) INNER JOIN INGREDIENT as i ON(fi.INGREDIENTID = i.INGREDIENTID) INNER JOIN FOODDIRECTION as fd ON (f.FOODID = fd.FOODID) INNER JOIN DIRECTION as d ON(fd.DIRECTIONID = d.DIRECTIONID) ORDER BY FoodID";
         fillFoodObject(cmdString,foodResult);
         return result;
     }
@@ -112,7 +112,6 @@ public class DataAccessObject implements DataAccess {
                         ingredients = new ArrayList<>();
                         directions = new ArrayList<>();
                     }
-
                     myID = rs5.getString("FoodID");
                     myFoodName = rs5.getString("FoodName");
                     myFavourite = rs5.getBoolean("Favourite");
@@ -130,31 +129,22 @@ public class DataAccessObject implements DataAccess {
                     //Set variables for next food item
                 }
                 else{
-                    myIngredientId= rs5.getString("INGREDIENTID");
-                    System.out.println("get IngredientId: " + myIngredientId);
-                    if(!currentIngredientID.equals(myIngredientId)) {
-                        myIngredientName = rs5.getString("INGREDIENTNAME");
-                        System.out.println("get IngredientName: " + myIngredientName);
-                        myIngredientId = rs5.getString("INGREDIENTID");
-                        System.out.println("get IngredientId: " + myIngredientId);
-                        myIngredientMeasure = rs5.getString("INGREDIENTMEASUREMENT");
-                        System.out.println("get IngredientMeasure: " + myIngredientMeasure);
-                        Ingredient newIngredient = new Ingredient(Integer.valueOf(myIngredientId), myIngredientName, myIngredientMeasure);
+                    //Checking if this result sets ingredient has been added or not
+                    myIngredientName = rs5.getString("INGREDIENTNAME");
+                    myIngredientId = rs5.getString("INGREDIENTID");
+                    myIngredientMeasure = rs5.getString("INGREDIENTMEASUREMENT");
+                    Ingredient newIngredient = new Ingredient(Integer.valueOf(myIngredientId), myIngredientName, myIngredientMeasure);
+                    if (!ingredients.contains(newIngredient)) {
                         ingredients.add(newIngredient);
-                        currentIngredientID = myIngredientId;
                     }
-                    else{
-                        myDirectionID = rs5.getString("DIRECTIONID");
-                        System.out.println("get Direction ID: " + myDirectionID);
-                        myDirectionDesc = rs5.getString("DIRECTIONDESCRIPTION");
-                        System.out.println("get Direction Description: " + myDirectionDesc);
-                        myDirectionStep = rs5.getString("DIRECTIONSTEPNUMBER");
-                        System.out.println("get Direction step: " + myDirectionStep);
-                        Direction newDirection = new Direction(Integer.valueOf(myDirectionID), myDirectionDesc,Integer.valueOf( myDirectionStep));
+                    //Checking if this result sets direction has been added or not
+                    myDirectionID = rs5.getString("DIRECTIONID");
+                    myDirectionDesc = rs5.getString("DIRECTIONDESCRIPTION");
+                    myDirectionStep = rs5.getString("DIRECTIONSTEPNUMBER");
+                    Direction newDirection = new Direction(Integer.valueOf(myDirectionID), myDirectionDesc,Integer.valueOf( myDirectionStep));
+                    if(!directions.contains(newDirection)) {
                         directions.add(newDirection);
-                        currentDirectionID = myDirectionID;
                     }
-
                 }
                 currentID = myID;
             }
@@ -173,7 +163,8 @@ public class DataAccessObject implements DataAccess {
         System.out.println("getFavouriteFoodSequential()");
         System.out.println("-----------");
         result = null;
-        cmdString = "SELECT * from Foods WHERE Favourite = TRUE";
+        cmdString = "SELECT * from FOODS as f INNER JOIN FOODINGREDIENT as fi ON (f.FOODID = fi.FOODID) INNER JOIN INGREDIENT as i ON(fi.INGREDIENTID = i.INGREDIENTID) INNER JOIN FOODDIRECTION as fd ON (f.FOODID = fd.FOODID) INNER JOIN DIRECTION as d ON(fd.DIRECTIONID = d.DIRECTIONID) WHERE Favourite = TRUE ORDER BY FoodID";
+        //cmdString = "SELECT * from Foods WHERE Favourite = TRUE";
         fillFoodObject(cmdString,foodResult);
         return result;
     }
@@ -182,9 +173,8 @@ public class DataAccessObject implements DataAccess {
         System.out.println("-----------");
         System.out.println("getFoodRandom()");
         System.out.println("-----------");
-        Food food;
         result = null;
-        cmdString = "SELECT * from Foods ORDER BY RAND() LIMIT 1";
+        cmdString = "SELECT * from FOODS as f INNER JOIN FOODINGREDIENT as fi ON (f.FOODID = fi.FOODID) INNER JOIN INGREDIENT as i ON(fi.INGREDIENTID = i.INGREDIENTID) INNER JOIN FOODDIRECTION as fd ON (f.FOODID = fd.FOODID) INNER JOIN DIRECTION as d ON(fd.DIRECTIONID = d.DIRECTIONID) ORDER BY RAND() LIMIT 1";
         fillFoodObject(cmdString,foodResult);
         return result;
     }

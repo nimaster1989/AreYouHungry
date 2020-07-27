@@ -38,7 +38,7 @@ public class DataAccessTest extends TestCase{
 
         foods = new ArrayList<Food>();
         result = dataAccess.getFoodSequential(foods);
-        System.out.println(foods.get(0));
+        System.out.println(foods.get(1));
         assertNull(result);
         assertEquals(2, foods.size());
 //        food = foods.get(0);

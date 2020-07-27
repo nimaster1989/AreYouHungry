@@ -25,12 +25,7 @@ public class AccessFoodTest extends TestCase {
         super(arg0);
     }
 
-
-
     public void testGetEmptyFavourites(){
-
-        Services.closeDataAccess();
-        Services.createDataAccess(new DataAccessStub(dbName));
         //System.out.println("Running test to test favouriting foods in the database");
         AccessFoods accessFood = new AccessFoods();
         ArrayList<Food> foodList = new ArrayList<>();
@@ -48,6 +43,7 @@ public class AccessFoodTest extends TestCase {
         ArrayList<Food> foodList = new ArrayList<>();
         //This portion grabs a random food, favourites it, clears our foodList and fills foodList with all our favourited foods.
         accessFood.getRandom(foodList);
+        System.out.println(foodList.get(0));
         foodList.get(0).setFavourite(true);
         foodList.clear();
         accessFood.getFavouriteFoods(foodList);
