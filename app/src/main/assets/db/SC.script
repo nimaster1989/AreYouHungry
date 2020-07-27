@@ -2,7 +2,7 @@ CREATE SCHEMA PUBLIC AUTHORIZATION DBA
 CREATE MEMORY TABLE FOODS(FOODID INTEGER NOT NULL PRIMARY KEY,FOODNAME VARCHAR(20),RECIPE VARCHAR(45),FAVOURITE BOOLEAN)
 CREATE MEMORY TABLE CATEGORYS(CATEGORYID INTEGER NOT NULL PRIMARY KEY,CATEGORYNAME VARCHAR(20))
 CREATE MEMORY TABLE FOODSCATEGORY (FOODID INTEGER NOT NULL, CATEGORYID INTEGER NOT NULL,CONSTRAINT CONSTRAINT1 PRIMARY KEY(FOODID,CATEGORYID),CONSTRAINT CONSTRAINT2 FOREIGN KEY(FOODID) REFERENCES FOODS(FOODID),CONSTRAINT CONSTRAINT3 FOREIGN KEY(CATEGORYID) REFERENCES CATEGORYS(CATEGORYID))
-CREATE MEMORY TABLE QUESTIONS(QUESTIONID INTEGER NOT NULL PRIMARY KEY,QUESTION VARCHAR(50),OPT1 VARCHAR(20),OPT2 VARCHAR(20),OPT3 VARCHAR(20),OPT4 VARCHAR(20))
+CREATE MEMORY TABLE QUESTIONS(QUESTIONID INTEGER NOT NULL PRIMARY KEY,QUESTION VARCHAR(300),OPT1 VARCHAR(100),OPT2 VARCHAR(100),OPT3 VARCHAR(100),OPT4 VARCHAR(100))
 
 CREATE USER SA PASSWORD ""
 GRANT DBA TO SA
@@ -31,7 +31,7 @@ INSERT INTO FOODSCATEGORY VALUES(4,3)
 INSERT INTO FOODSCATEGORY VALUES(5,1)
 INSERT INTO FOODSCATEGORY VALUES(6,2)
 
-INSERT INTO QUESTIONS VALUES(1,'Question 1', 'Option 1', 'Option 2', 'Option 3', 'Option 4')
-INSERT INTO QUESTIONS VALUES(2,'Question 2', 'Option 1', 'Option 2', 'Option 3', 'Option 4')
-INSERT INTO QUESTIONS VALUES(3,'Question 3', 'Option 1', 'Option 2', 'Option 3', 'Option 4')
-INSERT INTO QUESTIONS VALUES(4,'Question 4', 'Option 1', 'Option 2', 'Option 3', 'Option 4')
+INSERT INTO QUESTIONS VALUES(1,'You are on fear factor and the following items are presented for you to feast on. A blue substance you cant tell is bleach or gatorade, An Ant Hill, Hot Rocks, or a Mystery Box the host insists is much worse.What do you choose?', 'Its worth the risk for sweet sweet Gatorade', 'Ants are like little chips... right?', 'Mmmmm hot rocks go brrrr', 'The box cant possibly be worse!')
+INSERT INTO QUESTIONS VALUES(2,'Im so hungry i could eat a...', 'Horse', 'Slightly larger Horse', 'Wow thats a big horse', 'A horse bred so large for the purpose to stop this dumb statement')
+INSERT INTO QUESTIONS VALUES(3,'Which would you rather do?', 'Defuse a bomb with 10 seconds left', 'Sit in the "slow" McDonalds line', 'Spend four years getting a degree in theoretical phys-ed', 'Play a game of Monopoly')
+INSERT INTO QUESTIONS VALUES(4,'Ah yes the classic why did the chicken cross the road dilema, except the chicken is in the airport and is booking a flight to your favourite vacation spot which is...', 'The place where the toilet water spins the other way', 'Cant have a high amount of covid cases if we dont test land', 'Japan c:', 'The only country that beat USA in a war')
