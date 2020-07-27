@@ -41,4 +41,8 @@ public class Direction {
         }
         return equal;
     }
+
+    public String toString(){
+        return "ID: " + directionID + "\n  Direction Description: " + directionDescription + "\n  Step Number: " + stepNumber + "\n";
+    }
 }

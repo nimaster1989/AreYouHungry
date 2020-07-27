@@ -84,14 +84,16 @@ public class DataAccessObject implements DataAccess {
         System.out.println("getFoodSequential()");
         System.out.println("-----------");
         result = null;
-        cmdString = "SELECT * from FOODS as f INNER JOIN FOODINGREDIENT as fi ON (f.FOODID = fi.FOODID) INNER JOIN INGREDIENT as i ON(fi.INGREDIENTID = i.INGREDIENTID) ORDER BY FoodID";
+        cmdString = "SELECT * from FOODS as f INNER JOIN FOODINGREDIENT as fi ON (f.FOODID = fi.FOODID) INNER JOIN INGREDIENT as i ON(fi.INGREDIENTID = i.INGREDIENTID) INNER JOIN FOODDIRECTION as fd ON (f.FOODID = fi.FOODID) INNER JOIN DIRECTION as d ON(fd.DIRECTIONID = d.DIRECTIONID) ORDER BY FoodID";
         fillFoodObject(cmdString,foodResult);
         return result;
     }
 
     private void fillFoodObject(String cmdString,List<Food> foodResult){
-        String myID="",myFoodName="",myFlavour="",myDifficulty="",myEthnicity="",myIngredientName="",myIngredientMeasure="",myIngredientId="";
+        String myID="",myFoodName="",myFlavour="",myDifficulty="",myEthnicity="",myIngredientName="",myIngredientMeasure="",myIngredientId="",myDirectionID="",myDirectionDesc="",myDirectionStep="";
         String currentID = "-1";
+        String currentIngredientID = "-1";
+        String currentDirectionID = "-1";
         int myPortionSize=0,myPrepTime=0;
         Boolean myFavourite=false;
         ArrayList<Ingredient> ingredients = new ArrayList<>();
@@ -112,41 +114,47 @@ public class DataAccessObject implements DataAccess {
                     }
 
                     myID = rs5.getString("FoodID");
-                    System.out.println("get ID: " + myID);
                     myFoodName = rs5.getString("FoodName");
-                    System.out.println("get name: " + myFoodName);
                     myFavourite = rs5.getBoolean("Favourite");
-                    System.out.println("get favourite: " + myFavourite);
                     myPortionSize = rs5.getInt("PORTIONSIZE");
-                    System.out.println("get portion size: " + myPortionSize);
                     myPrepTime = rs5.getInt("PREPTIME");
-                    System.out.println("get prep time: " + myPrepTime);
                     myFlavour = rs5.getString("FLAVOUR");
-                    System.out.println("get flavour: " + myFlavour);
                     myDifficulty = rs5.getString("DIFFICULTY");
-                    System.out.println("get Difficulty: " + myDifficulty);
                     myEthnicity = rs5.getString("ETHNICITY");
-                    System.out.println("get Ethnicity: " + myEthnicity);
                     myIngredientName = rs5.getString("INGREDIENTNAME");
-                    System.out.println("get IngredientName: " + myIngredientName);
                     myIngredientId= rs5.getString("INGREDIENTID");
-                    System.out.println("get IngredientId: " + myIngredientId);
                     myIngredientMeasure= rs5.getString("INGREDIENTMEASUREMENT");
-                    System.out.println("get IngredientMeasure: " + myIngredientMeasure);
                     Ingredient newIngredient = new Ingredient(Integer.valueOf(myIngredientId),myIngredientName,myIngredientMeasure);
                     ingredients.add(newIngredient);
 
                     //Set variables for next food item
                 }
                 else{
-                    myIngredientName = rs5.getString("INGREDIENTNAME");
-                    System.out.println("get IngredientName: " + myIngredientName);
                     myIngredientId= rs5.getString("INGREDIENTID");
                     System.out.println("get IngredientId: " + myIngredientId);
-                    myIngredientMeasure= rs5.getString("INGREDIENTMEASUREMENT");
-                    System.out.println("get IngredientMeasure: " + myIngredientMeasure);
-                    Ingredient newIngredient = new Ingredient(Integer.valueOf(myIngredientId),myIngredientName,myIngredientMeasure);
-                    ingredients.add(newIngredient);
+                    if(!currentIngredientID.equals(myIngredientId)) {
+                        myIngredientName = rs5.getString("INGREDIENTNAME");
+                        System.out.println("get IngredientName: " + myIngredientName);
+                        myIngredientId = rs5.getString("INGREDIENTID");
+                        System.out.println("get IngredientId: " + myIngredientId);
+                        myIngredientMeasure = rs5.getString("INGREDIENTMEASUREMENT");
+                        System.out.println("get IngredientMeasure: " + myIngredientMeasure);
+                        Ingredient newIngredient = new Ingredient(Integer.valueOf(myIngredientId), myIngredientName, myIngredientMeasure);
+                        ingredients.add(newIngredient);
+                        currentIngredientID = myIngredientId;
+                    }
+                    else{
+                        myDirectionID = rs5.getString("DIRECTIONID");
+                        System.out.println("get Direction ID: " + myDirectionID);
+                        myDirectionDesc = rs5.getString("DIRECTIONDESCRIPTION");
+                        System.out.println("get Direction Description: " + myDirectionDesc);
+                        myDirectionStep = rs5.getString("DIRECTIONSTEPNUMBER");
+                        System.out.println("get Direction step: " + myDirectionStep);
+                        Direction newDirection = new Direction(Integer.valueOf(myDirectionID), myDirectionDesc,Integer.valueOf( myDirectionStep));
+                        directions.add(newDirection);
+                        currentDirectionID = myDirectionID;
+                    }
+
                 }
                 currentID = myID;
             }

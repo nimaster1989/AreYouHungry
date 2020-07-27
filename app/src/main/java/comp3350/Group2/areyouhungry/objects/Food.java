@@ -128,7 +128,7 @@ public class Food {
 
     @Override
     public String toString(){
-        return "ID: " + foodID + "\n  foodName: " + foodName + "\n  favourited: " + favourite + "\n" +ingredientList.toString();
+        return "ID: " + foodID + "\n  foodName: " + foodName + "\n  favourited: " + favourite + "\n" +ingredientList.toString() +"\n"+directionList.toString();
     }
 
     @Override

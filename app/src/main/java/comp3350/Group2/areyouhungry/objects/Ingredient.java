@@ -43,6 +43,6 @@ public class Ingredient {
     }
 
     public String toString(){
-        return "ID: " + ingredientID + "\n  foodName: " + ingredientName + "\n  favourited: " + measurement + "\n";
+        return "ID: " + ingredientID + "\n  IngredientName: " + ingredientName + "\n  Measurement: " + measurement + "\n";
     }
 }
