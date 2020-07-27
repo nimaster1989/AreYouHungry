@@ -60,7 +60,7 @@ public class FoodDetailFragment extends Fragment {
                              Bundle savedInstanceState){
         TextView rootView = (TextView) inflater.inflate(R.layout.food_detail, container, false);
         if (mFood != null){
-            ((TextView) rootView.findViewById(R.id.food_detail)).setText(Html.fromHtml("<a href=" + mFood.getRecipeLink() + "> Link"));
+            //((TextView) rootView.findViewById(R.id.food_detail)).setText(Html.fromHtml("<a href=" + mFood.getRecipeLink() + "> Link"));
             rootView.setMovementMethod(LinkMovementMethod.getInstance());
         }else{
             System.out.println("FoodDetailFragment oncreate view mFood is null");

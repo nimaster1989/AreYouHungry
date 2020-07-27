@@ -90,11 +90,11 @@ public class AddActivity extends AppCompatActivity {
         }else{
             /* Creates a food object. */
             int newID =  accessFoods.getFoodRow() + 1;
-
+            //TODO change to new constructor here
             if(Recipe.length() == 0){
-                foodToAdd = new Food(newID,name,"",favourite);
+                foodToAdd = new Food(newID,name,favourite);
             }else{
-                foodToAdd = new Food(newID,name,Recipe,favourite);
+                foodToAdd = new Food(newID,name,favourite);
             }
 
             /* Check if the new food is duplicate. */

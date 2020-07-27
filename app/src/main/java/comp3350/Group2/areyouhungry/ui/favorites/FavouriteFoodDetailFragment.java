@@ -62,7 +62,7 @@ public class FavouriteFoodDetailFragment extends Fragment {
         TextView rootView = (TextView) inflater.inflate(R.layout.favouritefood_detail, container, false);
 
         if (mFood != null){
-            ((TextView) rootView.findViewById(R.id.favouritefood_detail)).setText(Html.fromHtml("<a href=" + mFood.getRecipeLink() + "> Link"));
+            //((TextView) rootView.findViewById(R.id.favouritefood_detail)).setText(Html.fromHtml("<a href=" + mFood.getRecipeLink() + "> Link"));
             rootView.setMovementMethod(LinkMovementMethod.getInstance());
         }
 
