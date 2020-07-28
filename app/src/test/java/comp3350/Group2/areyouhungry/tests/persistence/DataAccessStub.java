@@ -46,22 +46,22 @@ public class DataAccessStub implements DataAccess{
 
         foods = new ArrayList<Food>();
         Food_map = new HashMap<>();
-        food = new Food(1,"Fish","https://www.food.com/recipe/beer-battered-fish-130102");
+        food = new Food(1,"Fish");
         foods.add(food);
         Food_map.put(String.valueOf(food.getFoodID()),food);
-        food = new Food(2,"Burger","https://www.food.com/recipe/the-perfect-burger-92021");
+        food = new Food(2,"Burger");
         foods.add(food);
         Food_map.put(String.valueOf(food.getFoodID()),food);
-        food = new Food(3,"Pie","https://www.tasteofhome.com/recipes/apple-pie/");
+        food = new Food(3,"Pie");
         foods.add(food);
         Food_map.put(String.valueOf(food.getFoodID()),food);
-        food = new Food(4,"Cake","https://addapinch.com/the-best-chocolate-cake-recipe-ever/");
+        food = new Food(4,"Cake");
         foods.add(food);
         Food_map.put(String.valueOf(food.getFoodID()),food);
-        food = new Food(5,"Fries","https://www.spendwithpennies.com/crispy-oven-fries/");
+        food = new Food(5,"Fries");
         foods.add(food);
         Food_map.put(String.valueOf(food.getFoodID()),food);
-        food = new Food(6,"veggies","https://www.cookingclassy.com/greek-salad/");
+        food = new Food(6,"veggies");
         foods.add(food);
         Food_map.put(String.valueOf(food.getFoodID()),food);
 
