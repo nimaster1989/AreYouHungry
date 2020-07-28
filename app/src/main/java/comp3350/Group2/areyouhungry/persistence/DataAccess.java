@@ -19,17 +19,11 @@ public interface DataAccess{
 
     public String getFoodSequential(List<Food> foodResult);
 
-    //public String getFavouriteFoodSequential(List<Food> foodResult);
-
     public String getFoodRandom(List<Food> foodResult);
-
-    public String getFoodFromQuestions(List<Food> foodResult);
 
     public String getFoodPreferred(List<Food> foodResult, String food);
 
     public Food getFoodFromID(String foodID);
-
-    //public String setFoodToFavourite(String curr_id, boolean favourite);
 
     public String addFood(Food addFood);
 
