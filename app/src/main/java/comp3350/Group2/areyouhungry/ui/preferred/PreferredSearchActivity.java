@@ -44,6 +44,7 @@ public class PreferredSearchActivity extends AppCompatActivity {
     private ImageView dishImage;
     private Answers answer;
     private Button homeButton;
+    private Button recipeButton;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         answer = (Answers) getIntent().getSerializableExtra("Answers");
@@ -63,6 +64,15 @@ public class PreferredSearchActivity extends AppCompatActivity {
 
         homeButton = findViewById(R.id.returnHomeButton);
         homeButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(PreferredSearchActivity.this, HomeActivity.class);
+                PreferredSearchActivity.this.startActivity(intent);
+            }
+        });
+
+        recipeButton = findViewById(R.id.viewRecipeButton);
+        recipeButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(PreferredSearchActivity.this, HomeActivity.class);

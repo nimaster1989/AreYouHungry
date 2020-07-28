@@ -93,11 +93,27 @@
         android:layout_width="275dp"
         android:layout_height="75dp"
         android:layout_below="@id/ethnicityTextView"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="14dp"
+        android:layout_toEndOf="@+id/viewRecipeButton"
         android:background="#4D00EA"
         android:text="Return Home"
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
 
+    <Button
+        android:id="@+id/viewRecipeButton"
+        android:layout_width="275dp"
+        android:layout_height="75dp"
+        android:layout_below="@id/ethnicityTextView"
+
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="5dp"
+        android:background="#4D00EA"
+        android:text="View Recipe"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
 
 </RelativeLayout>
