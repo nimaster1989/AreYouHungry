@@ -1,6 +1,6 @@
 package comp3350.Group2.areyouhungry.objects;
 
-public class Direction {
+public class Direction{
     private int directionID;
     private String directionDescription;
     private int stepNumber;

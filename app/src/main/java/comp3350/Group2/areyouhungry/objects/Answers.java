@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Answers implements Serializable {
+public class Answers implements Serializable{
 
     private List<Integer> answers;
     private String flavor;

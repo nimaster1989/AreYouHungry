@@ -20,18 +20,25 @@ import java.util.Iterator;
 
 import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.R;
+import comp3350.Group2.areyouhungry.business.AccessDirections;
 import comp3350.Group2.areyouhungry.business.AccessFoods;
+import comp3350.Group2.areyouhungry.business.AccessIngredients;
+import comp3350.Group2.areyouhungry.objects.Direction;
 import comp3350.Group2.areyouhungry.objects.Food;
+import comp3350.Group2.areyouhungry.objects.FoodDirection;
+import comp3350.Group2.areyouhungry.objects.Ingredient;
+import comp3350.Group2.areyouhungry.objects.User;
 
 /* This is the page that appears when you double click a food item for
    more details. */
-public class FoodDetailActivity extends AppCompatActivity {
+public class FoodDetailActivity extends AppCompatActivity{
 
     private String curr_id = null;
     private AccessFoods accessFoods;
     private ArrayList<Food> foodList;
     FloatingActionButton fab;
     Food curr_food = null;
+    User currUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -46,10 +53,35 @@ public class FoodDetailActivity extends AppCompatActivity {
         curr_id = getIntent().getStringExtra(FoodDetailFragment.ARG_ITEM_ID);
         if (curr_id != null){
             curr_food = accessFoods.getFoodByID(curr_id);
+
+            //test of ingredients
+
+            AccessIngredients ai = new AccessIngredients();
+            ArrayList<Ingredient> ins = new ArrayList<Ingredient>();
+            ai.getIngredient(curr_food,ins);
+            System.out.println("for currentfood:"+curr_food.getFoodName());
+            System.out.println("have "+ins.size()+" ingredient");
+            for(Ingredient in:ins){
+                System.out.println(in.toString());
+            }
+
+            //test for Directions
+            AccessDirections ad = new AccessDirections();
+            ArrayList<Direction> ds = new ArrayList<Direction>();
+            ad.getDirection(curr_food,ds);
+            System.out.println("for currentfood:"+curr_food.getFoodName());
+            System.out.println("have "+ds.size()+" directions");
+            for(Direction d:ds){
+                System.out.println(d.toString());
+            }
         }
+
+        currUser = MainActivity.currentUser;
+
         fab = (FloatingActionButton) findViewById(R.id.fab);
         if(this.curr_food != null ){
-            curr_food.setFavourite(accessFoods.getFoodFavouriteByUser(MainActivity.currentUser,curr_food));
+            Boolean userFav = accessFoods.getFoodFavouriteByUser(MainActivity.currentUser,curr_food);
+            curr_food.setFavourite(userFav);
             if(this.curr_food.getFavourite()){
                 fab.setImageDrawable(getDrawable(R.drawable.ic_baseline_favorite_24));
             }else{
@@ -62,15 +94,13 @@ public class FoodDetailActivity extends AppCompatActivity {
                 if (curr_food != null){
                     if (curr_food.getFavourite()){
                         curr_food.setFavourite(false);
-                        accessFoods.setFoodFavourite(curr_id,false);
-                        accessFoods.setFoodFavouriteByUser(MainActivity.currentUser,curr_id,false);
+                        accessFoods.setFoodFavouriteByUser(currUser,curr_id,false);
                         fab.setImageDrawable(getDrawable(R.drawable.ic_baseline_favorite_border_24));
                         Snackbar.make(view, "You unlike this food!", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                     } else{
                         curr_food.setFavourite(true);
-                        accessFoods.setFoodFavourite(curr_id,true);
-                        accessFoods.setFoodFavouriteByUser(MainActivity.currentUser,curr_id,true);
+                        accessFoods.setFoodFavouriteByUser(currUser,curr_id,true);
                         fab.setImageDrawable(getDrawable(R.drawable.ic_baseline_favorite_24));
                         Snackbar.make(view, "You like this food!", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
