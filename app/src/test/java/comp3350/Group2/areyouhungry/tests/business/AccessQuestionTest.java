@@ -23,7 +23,14 @@ public class AccessQuestionTest extends TestCase {
     }
 
     public void testGetQuestions(){
+        //System.out.println("Running test to test favouriting foods in the database");
+        AccessFoods accessFood = new AccessFoods();
+        ArrayList<Food> foodList = new ArrayList<>();
+        //This portion checks if we can get favourited foods, and list should be empty since we have nothing favourited yet.
+        accessFood.getFavouriteFoodsByUser(MainActivity.currentUser,foodList);
+        assertTrue(foodList.isEmpty()); //True as we have no foods favourited yet.
 
+        Services.closeDataAccess();
     }
 
 }
