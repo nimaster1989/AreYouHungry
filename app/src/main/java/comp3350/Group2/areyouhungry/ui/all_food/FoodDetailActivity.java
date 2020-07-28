@@ -94,14 +94,12 @@ public class FoodDetailActivity extends AppCompatActivity{
                 if (curr_food != null){
                     if (curr_food.getFavourite()){
                         curr_food.setFavourite(false);
-                        //accessFoods.setFoodFavourite(curr_id,false);
                         accessFoods.setFoodFavouriteByUser(currUser,curr_id,false);
                         fab.setImageDrawable(getDrawable(R.drawable.ic_baseline_favorite_border_24));
                         Snackbar.make(view, "You unlike this food!", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                     } else{
                         curr_food.setFavourite(true);
-                        //accessFoods.setFoodFavourite(curr_id,true);
                         accessFoods.setFoodFavouriteByUser(currUser,curr_id,true);
                         fab.setImageDrawable(getDrawable(R.drawable.ic_baseline_favorite_24));
                         Snackbar.make(view, "You like this food!", Snackbar.LENGTH_LONG)
