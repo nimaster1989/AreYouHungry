@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.R;
 
 import comp3350.Group2.areyouhungry.business.AccessFoods;
@@ -104,7 +105,8 @@ public class FavouriteFoodListActivity extends AppCompatActivity {
     private void setupRecyclerView(@NonNull RecyclerView recyclerView){
         accessFoods = new AccessFoods();
         favouriteFoodList = new ArrayList<Food>();
-        accessFoods.getFavouriteFoods(favouriteFoodList);
+        accessFoods.getFavouriteFoodsByUser(MainActivity.currentUser,favouriteFoodList);
+        //accessFoods.getFavouriteFoods(favouriteFoodList);
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, favouriteFoodList, mTwoPane));
     }
 

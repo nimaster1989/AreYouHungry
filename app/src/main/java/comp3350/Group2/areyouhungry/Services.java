@@ -4,7 +4,7 @@ import comp3350.Group2.areyouhungry.persistence.DataAccess;
 import comp3350.Group2.areyouhungry.persistence.DataAccessObject;
 
 /* Services is to create and get data from the database. */
-public class Services {
+public class Services{
     private static DataAccess dataAccessService = null;
 
     public static DataAccess createDataAccess(String dbName){
