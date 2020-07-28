@@ -139,26 +139,20 @@ public class Answers implements Serializable {
     public Food getFood() {
         accessFoods = new AccessFoods();
         List<Food> foods = new ArrayList<Food>();
-        accessFoods.getFoods(foods);
+        String result = accessFoods.getFoods(foods);
         Iterator<Food> foodIterator = foods.iterator(); /* This iterates through the foods list. */
         Food curr_food = null;
         while(foodIterator.hasNext()){
             curr_food = foodIterator.next();
-            System.out.println("Name: "+curr_food.getFoodName());
-            System.out.println("Time: "+curr_food.getPrepTime());
-            System.out.println("Flavor: "+curr_food.getFlavour());
-            System.out.println("Ethnicity: "+curr_food.getEthnicity());
-            System.out.println("Difficulty: "+curr_food.getDifficulty());
-            System.out.println("Size: "+curr_food.getPortionSize());
-//            if(checkValid(curr_food)) {
-//                if ((curr_food.getPrepTime() == Integer.parseInt(preptime.trim())) &&
-//                        curr_food.getFlavour().equals(flavor) &&
-//                        curr_food.getEthnicity().equals(ethnicity) &&
-//                        curr_food.getDifficulty().equals(difficulty) &&
-//                        curr_food.getPortionSize() == Integer.parseInt(portionSize.trim())) {
-//                    return curr_food;
-//                }
-//            }
+            if(checkValid(curr_food)) {
+                if ((curr_food.getPrepTime() == Integer.parseInt(preptime.trim())) &&
+                        curr_food.getFlavour().equals(flavor) &&
+                        curr_food.getEthnicity().equals(ethnicity) &&
+                        curr_food.getDifficulty().equals(difficulty) &&
+                        curr_food.getPortionSize() == Integer.parseInt(portionSize.trim())) {
+                    return curr_food;
+                }
+            }
         }
 
         return curr_food;

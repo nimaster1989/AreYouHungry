@@ -14,14 +14,14 @@ CREATE USER SA PASSWORD ""
 GRANT DBA TO SA
 SET WRITE_DELAY 20
 SET SCHEMA PUBLIC
-INSERT INTO FOODS VALUES(1,'Fish and Chip',FALSE,1,10,"Savory","Easy","American")
-INSERT INTO FOODS VALUES(2,'California Burger',FALSE,1,20,"Sweet","Medium","Australian")
+INSERT INTO FOODS VALUES(1,'Fish and Chip',FALSE,1,10,'Savory','Easy','American')
+INSERT INTO FOODS VALUES(2,'California Burger',FALSE,1,20,'Sweet','Medium','Australian')
 
-INSERT INTO FOODS VALUES(3,'Pad Thai',FALSE,3,30,"Spicy","Hard","American")
-INSERT INTO FOODS VALUES(4,'Japan Ramen',FALSE,3,10,"Sweet","Expert","Japanese")
-INSERT INTO FOODS VALUES(5,'Jimgatang',TRUE,5,20,"Savory","Medium","American")
+INSERT INTO FOODS VALUES(3,'Pad Thai',FALSE,3,30,'Spicy','Hard','American')
+INSERT INTO FOODS VALUES(4,'Japan Ramen',FALSE,3,10,'Sweet','Expert','Japanese')
+INSERT INTO FOODS VALUES(5,'Jimgatang',TRUE,5,20,'Savory','Medium','American')
 
-INSERT INTO FOODS VALUES(6,'Ceaser Salad',TRUE,7,30,"Other","Hard","Vietnamese")
+INSERT INTO FOODS VALUES(6,'Ceaser Salad',TRUE,7,30,'Other','Hard','Vietnamese')
 
 INSERT INTO CATEGORYS VALUES(1,'Meat')
 INSERT INTO CATEGORYS VALUES(2,'Vegetable')
