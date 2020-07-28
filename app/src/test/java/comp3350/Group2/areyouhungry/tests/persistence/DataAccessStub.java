@@ -29,6 +29,7 @@ public class DataAccessStub implements DataAccess{
     private ArrayList<FC> fcs;
     private ArrayList<Categorys> categorysList;
     private ArrayList<User> users;
+    private ArrayList<Question> questions;
     private Map<String,Food> Food_map;
 
     public DataAccessStub(String dbName){
@@ -45,27 +46,28 @@ public class DataAccessStub implements DataAccess{
         Categorys categorys;
         FC fc;
         User user;
+        Question question;
 
-//        foods = new ArrayList<Food>();
-//        Food_map = new HashMap<>();
-//        food = new Food(1,"Fish");
-//        foods.add(food);
-//        Food_map.put(String.valueOf(food.getFoodID()),food);
-//        food = new Food(2,"Burger");
-//        foods.add(food);
-//        Food_map.put(String.valueOf(food.getFoodID()),food);
-//        food = new Food(3,"Pie");
-//        foods.add(food);
-//        Food_map.put(String.valueOf(food.getFoodID()),food);
-//        food = new Food(4,"Cake");
-//        foods.add(food);
-//        Food_map.put(String.valueOf(food.getFoodID()),food);
-//        food = new Food(5,"Fries");
-//        foods.add(food);
-//        Food_map.put(String.valueOf(food.getFoodID()),food);
-//        food = new Food(6,"veggies");
-//        foods.add(food);
-//        Food_map.put(String.valueOf(food.getFoodID()),food);
+        foods = new ArrayList<Food>();
+        Food_map = new HashMap<>();
+        food = new Food(1, "Fish and Chip",1,10, "Savory", "Easy", "American");
+        foods.add(food);
+        Food_map.put(String.valueOf(food.getFoodID()),food);
+        food = new Food(2, "California Burger",1,20, "Sweet", "Medium", "Australian");
+        foods.add(food);
+        Food_map.put(String.valueOf(food.getFoodID()),food);
+        food = new Food(3, "Pad Thai",3,30, "Spicy", "Hard", "American");
+        foods.add(food);
+        Food_map.put(String.valueOf(food.getFoodID()),food);
+        food = new Food(4, "Japan Ramen",3,10, "Sweet", "Expert", "Japanese");
+        foods.add(food);
+        Food_map.put(String.valueOf(food.getFoodID()),food);
+        food = new Food(5, "Jimgatang",5,20, "Savory", "Medium", "American");
+        foods.add(food);
+        Food_map.put(String.valueOf(food.getFoodID()),food);
+        food = new Food(6, "Ceaser Salad",7,30, "Other", "Hard", "Vietnamese");
+        foods.add(food);
+        Food_map.put(String.valueOf(food.getFoodID()),food);
 
         categorysList = new ArrayList<Categorys>();
         categorys = new Categorys(1,"Meat");
@@ -97,6 +99,17 @@ public class DataAccessStub implements DataAccess{
         user = new User(3,"new user");
         users.add(user);
 
+        questions = new ArrayList<Question>();
+        question = new Question("You are on fear factor and the following items are presented for you to feast on. A blue substance you cant tell is bleach or gatorade, An Ant Hill, Hot Rocks, or a Mystery Box the host insists is much worse.What do you choose?", "Its worth the risk for sweet sweet Gatorade", "Ants are like little chips... right?", "Mmmmm hot rocks go brrrr", "The box cant possibly be worse!");
+        questions.add(question);
+        question = new Question("Im so hungry i could eat a...", "Horse", "Slightly larger Horse", "Wow thats a big horse", "A horse bred so large for the purpose to stop this dumb statement");
+        questions.add(question);
+        question = new Question("Which would you rather do?", "Defuse a bomb with 10 seconds left", "Sit in the \"slow\" McDonalds line", "Spend four years getting a degree in theoretical phys-ed", "Play a game of Monopoly");
+        questions.add(question);
+        question = new Question("You invite someone over saying you will cook for them knowing very well that you infact cant cook. What do you make?", "Everyone likes Lucky Charms!", "A nice bowl of Kraft Dinner", "Something that requires to be cooked to a certain temperature", "The thing the Rat in Ratatouille made");
+        questions.add(question);
+        question = new Question("Ah yes the classic why did the chicken cross the road dilema, except the chicken is in the airport and is booking a flight to your favourite vacation spot which is...", "The place where the toilet water spins the other way", "Cant have a high amount of covid cases if we dont test land", "Japan c:", "The only country that beat USA in a war");
+        questions.add(question);
         System.out.println("Opened " +dbType +" database " +dbName);
     }
 
@@ -166,19 +179,6 @@ public class DataAccessStub implements DataAccess{
         return null;
     }
 
-    @Override
-    public String setFoodToFavourite(String curr_id, boolean favourite){
-        Iterator<Food> foodIterator = foods.iterator(); /* This iterates through the foods list. */
-        Food food;
-        while(foodIterator.hasNext()){
-            food = foodIterator.next();
-            if(food.getFoodID().equals(curr_id)){
-                food.setFavourite(favourite);
-            }
-        }
-        return null;
-    }
-
     public String addFood(Food newFood){
         if(newFood != null){
             if(newFood.getFoodID() != "" && newFood.getFoodName() != ""){
@@ -211,12 +211,18 @@ public class DataAccessStub implements DataAccess{
 
     @Override
     public List<Question> getAllQuestions(){
-        return null;
+        List<Question> questionList = new ArrayList<>();
+        Question question;
+        for(int i =0; i<5; i++){
+            question = questions.get(i);
+            questionList.add(question);
+        }
+        return questionList;
     }
 
     @Override
     public int getTotalQuestions(){
-        return 0;
+        return questions.size();
     }
 
     public User getDefault() {
