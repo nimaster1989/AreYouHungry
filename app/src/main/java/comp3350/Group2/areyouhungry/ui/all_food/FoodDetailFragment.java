@@ -1,10 +1,13 @@
 package comp3350.Group2.areyouhungry.ui.all_food;
 
 import android.app.Activity;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.text.Html;
@@ -60,8 +63,17 @@ public class FoodDetailFragment extends Fragment{
                              Bundle savedInstanceState){
         TextView rootView = (TextView) inflater.inflate(R.layout.food_detail, container, false);
         if (mFood != null){
-            //((TextView) rootView.findViewById(R.id.food_detail)).setText(Html.fromHtml("<a href=" + mFood.getRecipeLink() + "> Link"));
-            rootView.setMovementMethod(LinkMovementMethod.getInstance());
+
+            // imageID works by grabbing a "name", "defType", and package. Make sure the 1st parameter or "name" is an image that exists in the res/drawable folder
+            // example: spaghetti.jpg image in drawable folder, "name" will be spaghetti, placeholder.png "name" would be ramen. We can somehow link imageID to FOOD or whatever class later.
+            int imageID = getResources().getIdentifier("placeholder", "drawable", getContext().getPackageName());
+            Drawable foodImage = ContextCompat.getDrawable(getContext(), imageID);
+
+            // Method below may need changing depending on dimensions of the users device. I made it so that the width is streched to the width of the device.
+            // An issue is that aspect ratio may/will not be the same after resizing
+            foodImage.setBounds(0, 0, Resources.getSystem().getDisplayMetrics().widthPixels, 500);
+            rootView.setCompoundDrawables(null, foodImage, null, null);
+            ((TextView) rootView.findViewById(R.id.food_detail)).setText("Some text here. We can replace this later with ingredients, directions, etc.");
         }else{
             System.out.println("FoodDetailFragment oncreate view mFood is null");
         }
