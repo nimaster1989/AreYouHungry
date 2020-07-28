@@ -27,6 +27,9 @@ public class PreferredSearchActivity extends AppCompatActivity {
     private Answers answer;
     private Button homeButton;
     private Button recipeButton;
+
+    private String foodId = "1"; //Placeholder variable. change it when we have our SQL query. if SQL query returns an integer, turn into string
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         answer = (Answers) getIntent().getSerializableExtra("Answers");
@@ -57,8 +60,13 @@ public class PreferredSearchActivity extends AppCompatActivity {
         recipeButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(PreferredSearchActivity.this, HomeActivity.class);
-                PreferredSearchActivity.this.startActivity(intent);
+                Context context = view.getContext();
+
+                Intent intent = new Intent(context, FoodDetailActivity.class);
+
+                // Takes the argument (FoodDetailFragment.ARG_ITEM_ID, and FOODID value (string))
+                intent.putExtra(FoodDetailFragment.ARG_ITEM_ID, foodId);
+                context.startActivity(intent);
             }
         });
 
