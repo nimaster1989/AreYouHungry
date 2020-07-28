@@ -14,8 +14,9 @@ import comp3350.Group2.areyouhungry.objects.Direction;
 import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.Ingredient;
 import comp3350.Group2.areyouhungry.objects.Question;
+import comp3350.Group2.areyouhungry.objects.User;
 
-public class DataAccessObject implements DataAccess {
+public class DataAccessObject implements DataAccess{
     private Statement st1,st2,st3;
     private Connection c1;
     private ResultSet rs2,rs3,rs4,rs5;
@@ -78,6 +79,65 @@ public class DataAccessObject implements DataAccess {
         }
         return ret_food_map;
     }
+    @Override
+    public String getUserSequential(List<User> userResult){
+        System.out.println("-----------");
+        System.out.println("getUserSequential()");
+        System.out.println("-----------");
+        User user;
+        int myUserID;
+        String myUserName;
+        myUserID = -1;
+        myUserName= EOF;
+
+        result = null;
+        try{
+            cmdString = "Select * from USERS";
+            rs3 = st2.executeQuery(cmdString);
+            while (rs3.next()){
+                myUserID = rs3.getInt("USERID");
+                System.out.println("get ID: "+myUserID);
+                myUserName = rs3.getString("USERNAME");
+                System.out.println("get name: "+myUserName);
+                user = new User(myUserID,myUserName);
+                userResult.add(user);
+            }
+            rs3.close();
+        }catch (Exception e){
+            processSQLError(e);
+        }
+        return result;
+    }
+
+    @Override
+    public User getUser(int userID){
+        System.out.println("-----------");
+        System.out.println("getUserFromId: "+userID );
+        System.out.println("-----------");
+        User userByID = null;
+        int myID;
+        String myUserName;
+        myID = -1;
+        myUserName= EOF;
+        result = null;
+        try{
+            cmdString = "SELECT * from USERS  WHERE USERID = '"+userID+"'";
+            rs5 = st3.executeQuery(cmdString);
+            while (rs5.next()){
+                myID = rs5.getInt("USERID");
+                System.out.println("get ID: "+myID);
+                myUserName = rs5.getString("USERNAME");
+                System.out.println("get name: "+myUserName);
+                userByID = new User(userID,myUserName);
+            }
+            rs5.close();
+        }catch (Exception e){
+            processSQLError(e);
+        }
+        return userByID;
+    }
+
+
 
     public String getFoodSequential(List<Food> foodResult){
         System.out.println("-----------");
@@ -157,6 +217,7 @@ public class DataAccessObject implements DataAccess {
         }
 
     }
+
 
     public String getFavouriteFoodSequential(List<Food> foodResult){
         System.out.println("-----------");
@@ -300,6 +361,112 @@ public class DataAccessObject implements DataAccess {
         return count;
     }
 
+    @Override
+    public User getDefault(){
+        System.out.println("-----------");
+        System.out.println("getDefaultUser: ");
+        System.out.println("-----------");
+        User myUser = null;
+        int myUserID;
+        String myUsername;
+        myUserID = 0;
+        myUsername = null;
+
+        result = null;
+        try{
+            cmdString = "SELECT * from USERS WHERE USERID = 1";
+            rs4 = st2.executeQuery(cmdString);
+            while (rs4.next()){
+                myUserID = rs4.getInt("USERID");
+                System.out.println("get ID: "+myUserID);
+                myUsername = rs4.getString("USERNAME");
+                System.out.println("get name: "+myUsername);
+                myUser = new User(myUserID,myUsername);
+            }
+            rs4.close();
+        }catch (Exception e){
+            processSQLError(e);
+        }
+        return myUser;
+    }
+
+
+    public String getFavouriteFoodByUserSequential(User user, List<Food> foodResult){
+        System.out.println("-----------");
+        System.out.println("getFavouriteFoodSequential()");
+        System.out.println("-----------");
+        Food food;
+        String myID,myFoodName,myRecipe;
+        Boolean myFavourite;
+        myID = EOF;
+        myFoodName = EOF;
+
+        result = null;
+        try{
+            cmdString = "select * from FOODS,USERSFAVOURITE,USERS\n" +
+                    "where fOODS.FOODID = USERSFAVOURITE.FOODID\n" +
+                    "and USERS.USERID = '"+user.getUserID()+"'\n" +
+                    "and USERS.USERID = USERSFAVOURITE.USERID";
+            rs5 = st3.executeQuery(cmdString);
+            if (rs5 == null) System.out.println("return state 5 is null");
+            while (rs5.next()){
+                myID = rs5.getString("FoodID");
+                System.out.println("get ID: "+myID);
+                myFoodName = rs5.getString("FoodName");
+                System.out.println("get name: "+myFoodName);
+                myRecipe = rs5.getString("Recipe");
+                System.out.println("get recipe: "+myRecipe);
+                myFavourite = rs5.getBoolean("Favourite");
+                System.out.println("get favourite: "+myFavourite);
+                food = new Food(Integer.valueOf(myID),myFoodName,myRecipe,myFavourite);
+                foodResult.add(food);
+            }
+            rs5.close();
+        }catch (Exception e){
+            processSQLError(e);
+        }
+        return result;
+    }
+
+    @Override
+    public String setFoodToFavouriteByUser(User user, String curr_id, boolean b){
+        String values;
+        cmdString = "";
+        result = null;
+        try{
+            if(b){
+                cmdString = "INSERT INTO USERSFAVOURITE VALUES(" + user.getUserID() + "," + curr_id + ")";
+            }else{
+                cmdString = "DELETE FROM USERSFAVOURITE WHERE USERID = '"+user.getUserID()+"' and FOODID = '"+curr_id+"'";
+            }
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+        return result;
+    }
+
+    @Override
+    public boolean getFoodFavByUser(User user, Food food){
+        Boolean ret = false;
+        try{
+            cmdString = "SELECT * FROM USERSFAVOURITE WHERE USERID = '"+user.getUserID()+"' and FOODID = '"+food.getFoodID()+"'";
+            rs5 = st3.executeQuery(cmdString);
+            if (rs5.next()){
+                ret = true;
+            }else
+                ret = false;
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+        return ret;
+    }
+
+
+
     public int getIDByFood(Food food){
         System.out.println("-----------");
         System.out.println("get id by food" );
@@ -355,6 +522,22 @@ public class DataAccessObject implements DataAccess {
             result = processSQLError(e);
         }
         return result;
+    }
+
+    @Override
+    public User setNewUser(int id,String username){
+        String values;
+        System.out.println("in add new user");
+        result = null;
+        try{
+            cmdString = "Insert into USERS Values("+id +", '"+username+"')";
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+        return new User(id,username);
     }
 
     public String addFood(Food addFood){

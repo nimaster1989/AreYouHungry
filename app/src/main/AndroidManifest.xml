@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.user.UserActivity"
+            android:label="Switch User" />
+        <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
             <intent-filter>
@@ -22,16 +25,18 @@
         </activity>
         <activity
             android:name=".ui.add_food.AddActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize"
-            android:parentActivityName=".ui.more.MoreActivity"/>
-        <activity android:name=".ui.preferred.PreferredSearchActivity"
+            android:parentActivityName=".ui.more.MoreActivity" /> <!-- android:windowSoftInputMode="stateHidden|adjustResize" -->
+        <activity
+            android:name=".ui.preferred.PreferredSearchActivity"
             android:label="search result"
-            android:parentActivityName=".ui.preferred.PreferredActivity"/>
-        <activity android:name=".ui.preferred.PreferredActivity"
-            android:label="search"/>
+            android:parentActivityName=".ui.preferred.PreferredActivity" />
+        <activity
+            android:name=".ui.preferred.PreferredActivity"
+            android:label="search" />
         <activity android:name=".ui.home.HomeActivity" />
-        <activity android:name=".ui.more.MoreActivity"
-            android:label="@string/title_more"/>
+        <activity
+            android:name=".ui.more.MoreActivity"
+            android:label="@string/title_more" />
         <activity
             android:name=".ui.favorites.FavouriteFoodListActivity"
             android:label="@string/title_favouritefood_list"
@@ -58,9 +63,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="comp3350.Group2.areyouhungry.ui.all_food.FoodListActivity" />
         </activity>
-        <activity android:name=".ui.random.RandomActivity"
-            android:label="random"/>
-
     </application>
 
 </manifest>

@@ -1,12 +1,14 @@
 package comp3350.Group2.areyouhungry.persistence;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.Question;
+import comp3350.Group2.areyouhungry.objects.User;
 
-public interface DataAccess {
+public interface DataAccess{
     void open(String string);
 
     void close();
@@ -38,4 +40,18 @@ public interface DataAccess {
     public List<Question> getAllQuestions();
 
     public int getTotalQuestions();
+
+    User getDefault();
+
+    String getFavouriteFoodByUserSequential(User user, List<Food> favouriteFoodList);
+
+    String setFoodToFavouriteByUser(User user,String curr_id, boolean b);
+
+    boolean getFoodFavByUser(User user, Food food);
+
+    String getUserSequential(List<User> userResult);
+
+    User getUser(int userID);
+
+    User setNewUser(int userID, String username);
 }

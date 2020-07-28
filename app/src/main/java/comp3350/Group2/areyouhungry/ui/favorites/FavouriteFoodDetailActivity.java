@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.R;
 import comp3350.Group2.areyouhungry.business.AccessFoods;
 import comp3350.Group2.areyouhungry.objects.Food;
@@ -54,7 +55,8 @@ public class FavouriteFoodDetailActivity extends AppCompatActivity {
         }
         fab = (FloatingActionButton) findViewById(R.id.fab);
         if(this.curr_food != null ){
-            if(this.curr_food.getFavourite()){
+            curr_food.setFavourite(accessFoods.getFoodFavouriteByUser(MainActivity.currentUser,curr_food));
+            if(curr_food.getFavourite()){
                 fab.setImageDrawable(getDrawable(R.drawable.ic_baseline_favorite_24));
             }else{
                 fab.setImageDrawable(getDrawable(R.drawable.ic_baseline_favorite_border_24));
@@ -67,12 +69,14 @@ public class FavouriteFoodDetailActivity extends AppCompatActivity {
                 if (curr_food.getFavourite()){
                     curr_food.setFavourite(false);
                     accessFoods.setFoodFavourite(curr_id,false);
+                    accessFoods.setFoodFavouriteByUser(MainActivity.currentUser,curr_id,false);
                     fab.setImageDrawable(getDrawable(R.drawable.ic_baseline_favorite_border_24));
                     Snackbar.make(view, "You unlike this food!", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).setAnchorView(R.id.nav_view).show();
                 } else{
                     curr_food.setFavourite(true);
                     accessFoods.setFoodFavourite(curr_id,true);
+                    accessFoods.setFoodFavouriteByUser(MainActivity.currentUser,curr_id,true);
                     fab.setImageDrawable(getDrawable(R.drawable.ic_baseline_favorite_24));
                     Snackbar.make(view, "You like this food!", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).setAnchorView(R.id.nav_view).show();

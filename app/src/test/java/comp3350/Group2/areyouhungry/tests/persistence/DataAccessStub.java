@@ -13,6 +13,7 @@ import comp3350.Group2.areyouhungry.objects.FC;
 import comp3350.Group2.areyouhungry.objects.Food;
 
 import comp3350.Group2.areyouhungry.objects.Question;
+import comp3350.Group2.areyouhungry.objects.User;
 import comp3350.Group2.areyouhungry.persistence.DataAccess;
 
 import static comp3350.Group2.areyouhungry.MainActivity.dbName;
@@ -25,7 +26,7 @@ public class DataAccessStub implements DataAccess{
     private ArrayList<Food> foods;
     private ArrayList<FC> fcs;
     private ArrayList<Categorys> categorysList;
-
+    private ArrayList<User> users;
     private Map<String,Food> Food_map;
 
     public DataAccessStub(String dbName){
@@ -41,6 +42,7 @@ public class DataAccessStub implements DataAccess{
         Food food;
         Categorys categorys;
         FC fc;
+        User user;
 
         foods = new ArrayList<Food>();
         Food_map = new HashMap<>();
@@ -84,6 +86,14 @@ public class DataAccessStub implements DataAccess{
         fcs.add(fc);
         fc = new FC(3,3);
         fcs.add(fc);
+
+        users = new ArrayList<User>();
+        user = new User(1,"default user");
+        users.add(user);
+        user = new User(2,"sample user");
+        users.add(user);
+        user = new User(3,"new user");
+        users.add(user);
 
         System.out.println("Opened " +dbType +" database " +dbName);
     }
@@ -206,5 +216,35 @@ public class DataAccessStub implements DataAccess{
     public int getTotalQuestions(){
         return 0;
     }
+
+    public User getDefault() {
+        return users.get(0);
+    }
+
+    public String getFavouriteFoodByUserSequential(User user, List<Food> favouriteFoodList){
+        return null;
+    }
+
+    public String setFoodToFavouriteByUser(User user, String curr_id, boolean b){
+        return null;
+    }
+
+    public boolean getFoodFavByUser(User user, Food food){
+        return false;
+    }
+
+    public String getUserSequential(List<User> userResult){
+        return null;
+    }
+
+    public User getUser(int userID){
+        return null;
+    }
+
+    public User setNewUser(int userID, String username){
+        return null;
+    }
+    // TODO: 27/07/20
+    //add the access methods to stub database
 
 }

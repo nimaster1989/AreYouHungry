@@ -4,6 +4,7 @@ import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.Services;
 import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.Question;
+import comp3350.Group2.areyouhungry.objects.User;
 import comp3350.Group2.areyouhungry.persistence.DataAccess;
 
 
@@ -61,6 +62,11 @@ public class AccessFoods {
         return duplicate;
     }
 
+    public String getFavouriteFoodsByUser(User user, ArrayList<Food> favouriteFoodList){
+        favouriteFoodList.clear();
+        return dataAccess.getFavouriteFoodByUserSequential(user, favouriteFoodList);
+    }
+
     public String getFavouriteFoods(ArrayList<Food> favouriteFoodList){
         favouriteFoodList.clear();
         return dataAccess.getFavouriteFoodSequential(favouriteFoodList);
@@ -103,4 +109,11 @@ public class AccessFoods {
         return dataAccess.getIDByFood(food);
     }
 
+    public String setFoodFavouriteByUser(User user,String curr_id, boolean b){
+        return dataAccess.setFoodToFavouriteByUser(user,curr_id,b);
+    }
+
+    public boolean getFoodFavouriteByUser(User user,Food food){
+        return dataAccess.getFoodFavByUser(user,food);
+    }
 }
