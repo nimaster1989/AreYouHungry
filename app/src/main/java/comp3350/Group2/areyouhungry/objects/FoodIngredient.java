@@ -6,7 +6,7 @@ import java.util.List;
 import comp3350.Group2.areyouhungry.business.AccessDirections;
 import comp3350.Group2.areyouhungry.business.AccessIngredients;
 
-public class FoodIngredient {
+public class FoodIngredient{
     private Food food;
     private List<Ingredient> ingredients;
 
@@ -21,11 +21,11 @@ public class FoodIngredient {
         ingredients = ingredients;
     }
 
-    public Food getFood() {
+    public Food getFood(){
         return food;
     }
 
-    public List<Ingredient> getIngredients() {
+    public List<Ingredient> getIngredients(){
         return ingredients;
     }
 }

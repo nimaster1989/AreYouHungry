@@ -34,7 +34,7 @@ import comp3350.Group2.areyouhungry.ui.more.MoreActivity;
    item details are presented side-by-side with a list of items
    in a FavouriteFoodListActivity. */
 
-public class FavouriteFoodDetailActivity extends AppCompatActivity {
+public class FavouriteFoodDetailActivity extends AppCompatActivity{
 
     private String curr_id = null;
     private AccessFoods accessFoods;

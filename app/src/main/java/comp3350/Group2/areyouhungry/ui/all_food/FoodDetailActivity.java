@@ -31,7 +31,7 @@ import comp3350.Group2.areyouhungry.objects.User;
 
 /* This is the page that appears when you double click a food item for
    more details. */
-public class FoodDetailActivity extends AppCompatActivity {
+public class FoodDetailActivity extends AppCompatActivity{
 
     private String curr_id = null;
     private AccessFoods accessFoods;
@@ -61,7 +61,7 @@ public class FoodDetailActivity extends AppCompatActivity {
             ai.getIngredient(curr_food,ins);
             System.out.println("for currentfood:"+curr_food.getFoodName());
             System.out.println("have "+ins.size()+" ingredient");
-            for(Ingredient in:ins) {
+            for(Ingredient in:ins){
                 System.out.println(in.toString());
             }
 
@@ -71,7 +71,7 @@ public class FoodDetailActivity extends AppCompatActivity {
             ad.getDirection(curr_food,ds);
             System.out.println("for currentfood:"+curr_food.getFoodName());
             System.out.println("have "+ds.size()+" directions");
-            for(Direction d:ds) {
+            for(Direction d:ds){
                 System.out.println(d.toString());
             }
         }

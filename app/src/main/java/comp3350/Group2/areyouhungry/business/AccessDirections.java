@@ -9,7 +9,7 @@ import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.Ingredient;
 import comp3350.Group2.areyouhungry.persistence.DataAccess;
 
-public class AccessDirections {
+public class AccessDirections{
 
 
     private DataAccess dataAccess;
@@ -20,7 +20,7 @@ public class AccessDirections {
         directions = null;
     }
 
-    public String getDirection(Food food, List<Direction> directions) {
+    public String getDirection(Food food, List<Direction> directions){
         return dataAccess.getDirectionByFood(food,directions);
     }
 }

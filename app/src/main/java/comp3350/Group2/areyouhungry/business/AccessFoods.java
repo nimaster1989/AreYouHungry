@@ -13,7 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class AccessFoods {
+public class AccessFoods{
     private DataAccess dataAccess;
     private List<Food> foods;
     private Food food;

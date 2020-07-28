@@ -5,7 +5,7 @@ import java.util.List;
 
 import comp3350.Group2.areyouhungry.business.AccessDirections;
 
-public class FoodDirection {
+public class FoodDirection{
     private Food food;
     private ArrayList<Direction> directions;
 
@@ -20,11 +20,11 @@ public class FoodDirection {
         directions = directions;
     }
 
-    public Food getFood() {
+    public Food getFood(){
         return food;
     }
 
-    public ArrayList<Direction> getDirections() {
+    public ArrayList<Direction> getDirections(){
         return directions;
     }
 }

@@ -193,10 +193,10 @@ public class DataAccessObject implements DataAccess{
         Boolean myFavourite=false;
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         ArrayList<Direction> directions = new ArrayList<>();
-        try {
+        try{
             rs5 = st3.executeQuery(cmdString);
             if (rs5 == null) System.out.println("return state 5 is null");
-            while (rs5.next()) {
+            while (rs5.next()){
                 myID = rs5.getString("FoodID");
                 System.out.println("get ID: " + myID);
                 if(!currentID.equals(myID)){
@@ -229,7 +229,7 @@ public class DataAccessObject implements DataAccess{
                     myIngredientId = rs5.getString("INGREDIENTID");
                     myIngredientMeasure = rs5.getString("INGREDIENTMEASUREMENT");
                     Ingredient newIngredient = new Ingredient(Integer.valueOf(myIngredientId), myIngredientName, myIngredientMeasure);
-                    if (!ingredients.contains(newIngredient)) {
+                    if (!ingredients.contains(newIngredient)){
                         ingredients.add(newIngredient);
                     }
                     //Checking if this result sets direction has been added or not
@@ -237,7 +237,7 @@ public class DataAccessObject implements DataAccess{
                     myDirectionDesc = rs5.getString("DIRECTIONDESCRIPTION");
                     myDirectionStep = rs5.getString("DIRECTIONSTEPNUMBER");
                     Direction newDirection = new Direction(Integer.valueOf(myDirectionID), myDirectionDesc,Integer.valueOf( myDirectionStep));
-                    if(!directions.contains(newDirection)) {
+                    if(!directions.contains(newDirection)){
                         directions.add(newDirection);
                     }
                 }
@@ -605,7 +605,7 @@ public class DataAccessObject implements DataAccess{
     }
 
     @Override
-    public String getIngredientByFood(Food food, List<Ingredient> ingredients) {
+    public String getIngredientByFood(Food food, List<Ingredient> ingredients){
         System.out.println("-----------");
         System.out.println("getIngrdientByFood()");
         System.out.println("-----------");
@@ -635,7 +635,7 @@ public class DataAccessObject implements DataAccess{
     }
 
     @Override
-    public String getDirectionByFood(Food food, List<Direction> directions) {
+    public String getDirectionByFood(Food food, List<Direction> directions){
         System.out.println("-----------");
         System.out.println("getDirectionByFood()");
         System.out.println("-----------");

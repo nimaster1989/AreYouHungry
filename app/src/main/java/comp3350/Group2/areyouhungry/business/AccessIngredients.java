@@ -8,7 +8,7 @@ import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.Ingredient;
 import comp3350.Group2.areyouhungry.persistence.DataAccess;
 
-public class AccessIngredients {
+public class AccessIngredients{
     private DataAccess dataAccess;
     private List<Ingredient> ingredients;
 
