@@ -1,6 +1,8 @@
 package comp3350.Group2.areyouhungry.ui.preferred;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +13,8 @@ import comp3350.Group2.areyouhungry.R;
 import comp3350.Group2.areyouhungry.business.AccessQuestions;
 import comp3350.Group2.areyouhungry.objects.Answers;
 import comp3350.Group2.areyouhungry.objects.Food;
+import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailActivity;
+import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailFragment;
 import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
 
 

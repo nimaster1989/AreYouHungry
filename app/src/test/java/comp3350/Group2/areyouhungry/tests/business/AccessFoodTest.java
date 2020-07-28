@@ -9,7 +9,9 @@ import java.util.Iterator;
 import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.Services;
 import comp3350.Group2.areyouhungry.business.AccessFoods;
+import comp3350.Group2.areyouhungry.business.AccessUsers;
 import comp3350.Group2.areyouhungry.objects.Food;
+import comp3350.Group2.areyouhungry.objects.User;
 import comp3350.Group2.areyouhungry.persistence.DataAccess;
 import comp3350.Group2.areyouhungry.persistence.DataAccessObject;
 import comp3350.Group2.areyouhungry.tests.persistence.DataAccessStub;
@@ -19,12 +21,24 @@ import static comp3350.Group2.areyouhungry.MainActivity.dbName;
 
 public class AccessFoodTest extends TestCase {
 
+    private DataAccess dataAccess;
     public static String dbName = MainActivity.dbName;
-
+    private static boolean stubdb = true;
     public AccessFoodTest(String arg0){
         super(arg0);
     }
 
+    public void setUp(){
+        if(stubdb){
+            System.out.println("\nStarting Persistence test DataAccess (using stub)");
+            dataAccess = new DataAccessStub();
+            dataAccess.open("Stub");
+        }else{
+            System.out.println("\nStarting Persistence test DataAccess (using HSQL)");
+            dataAccess = new DataAccessObject(MainActivity.dbName);
+            dataAccess.open(MainActivity.getDBPathName());
+        }
+    }
     // TODO: 27/07/20 update test favourite because it now depend on different user
     public void testGetEmptyFavourites(){
         //System.out.println("Running test to test favouriting foods in the database");
@@ -41,12 +55,15 @@ public class AccessFoodTest extends TestCase {
         Services.closeDataAccess();
         Services.createDataAccess(new DataAccessStub(dbName));
         AccessFoods accessFood = new AccessFoods();
+        AccessUsers accessUsers = new AccessUsers();
         ArrayList<Food> foodList = new ArrayList<>();
+        User testUser = accessUsers.getUserByID(1);
+
         //This portion grabs a random food, favourites it, clears our foodList and fills foodList with all our favourited foods.
         accessFood.getRandom(foodList);
         foodList.get(0).setFavourite(true);
         foodList.clear();
-        //accessFood.getFavouriteFoods(foodList);
+        accessFood.getFavouriteFoodsByUser(testUser,foodList);
         assertFalse(foodList.isEmpty()); //This should not be empty now as we have a favourited food!!
         //Removing the favourite food for future tests
         foodList.get(0).setFavourite(false);
