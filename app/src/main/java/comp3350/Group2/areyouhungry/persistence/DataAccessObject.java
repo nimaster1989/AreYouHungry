@@ -164,7 +164,6 @@ public class DataAccessObject implements DataAccess {
         System.out.println("-----------");
         result = null;
         cmdString = "SELECT * from FOODS as f INNER JOIN FOODINGREDIENT as fi ON (f.FOODID = fi.FOODID) INNER JOIN INGREDIENT as i ON(fi.INGREDIENTID = i.INGREDIENTID) INNER JOIN FOODDIRECTION as fd ON (f.FOODID = fd.FOODID) INNER JOIN DIRECTION as d ON(fd.DIRECTIONID = d.DIRECTIONID) WHERE Favourite = TRUE ORDER BY FoodID";
-        //cmdString = "SELECT * from Foods WHERE Favourite = TRUE";
         fillFoodObject(cmdString,foodResult);
         return result;
     }
@@ -308,7 +307,7 @@ public class DataAccessObject implements DataAccess {
         result = null;
         int myID = -1;
         try{
-            cmdString = "Select * from Foods where Foods.foodname = '"+food.getFoodName();//TODO Append on new variables here;
+            cmdString = "Select * from Foods where Foods.foodname = '"+food.getFoodName();
             rs5 = st3.executeQuery(cmdString);
             while (rs5.next()){
                 myID = rs5.getInt("FoodID");

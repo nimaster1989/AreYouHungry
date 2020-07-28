@@ -14,25 +14,6 @@ public class Food {
     private String difficulty;
     private String ethnicity;
 
-    public Food(int newFoodID, String newFoodName) {
-        this.foodID = newFoodID;
-        this.foodName = newFoodName;
-    }
-    public Food(int newFoodID, String newFoodName,Boolean favourite,int portionSize, int prepTime,String flavour,String difficulty,String ethnicity) {
-        this.foodID = newFoodID;
-        this.foodName = newFoodName;
-        this.favourite = favourite;
-        this.portionSize = portionSize;
-        this.prepTime = prepTime;
-        this.flavour = flavour;
-        this.difficulty = difficulty;
-        this.ethnicity = ethnicity;
-    }
-    public Food(int newFoodID, String newFoodName,Boolean favourite) {
-        this.foodID = newFoodID;
-        this.foodName = newFoodName;
-        this.favourite = favourite;
-    }
     public Food(int foodID, String foodName, int portionSize, int prepTime, ArrayList<Ingredient> ingredientList,ArrayList<Direction> directionList, String flavour,String difficulty,String ethnicity,Boolean favourite){
         this.foodID = foodID;
         this.foodName = foodName;
