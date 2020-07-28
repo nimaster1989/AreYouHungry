@@ -137,7 +137,21 @@ public class DataAccessObject implements DataAccess{
         return userByID;
     }
 
-
+    public String getFoodFromQuestions(List<Food> foodResult){
+        System.out.println("-----------");
+        System.out.println("getFoodSequential()");
+        System.out.println("-----------");
+        Food food = foodResult.get(0);
+        String flavor = food.getFlavour();
+        int preptime = food.getPrepTime();
+        int serves = food.getPortionSize();
+        String difficulty = food.getDifficulty();
+        String ethnicity = food.getEthnicity();
+        result = null;
+        cmdString = "SELECT * FROM foods WHERE " ;
+        fillFoodObject(cmdString,foodResult);
+        return result;
+    }
 
     public String getFoodSequential(List<Food> foodResult){
         System.out.println("-----------");

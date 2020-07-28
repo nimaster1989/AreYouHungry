@@ -57,7 +57,7 @@ public class PreferredSearchActivity extends AppCompatActivity {
         textViewServes = findViewById(R.id.portionSizeTextView);
         textViewEthnicity = findViewById(R.id.ethnicityTextView);
         dishImage = findViewById(R.id.image);
-        setFood();
+        setFood(answer);
 
 
 
@@ -72,13 +72,14 @@ public class PreferredSearchActivity extends AppCompatActivity {
 
     }
 
-        private void setFood(){
-            textViewName.setText("Its all Spaghetti");
-            textViewDifficulty.setText(answer.getDifficulty());
-            textViewPrepTime.setText(answer.getPreptime());
-            textViewFlavor.setText(answer.getFlavor());
-            textViewServes.setText(answer.getPortionSize());
-            textViewEthnicity.setText(answer.getEthnicity());
+        private void setFood(Answers answers){
+            Food food = answers.getFood();
+            textViewName.setText(food.getFoodName());
+            textViewDifficulty.setText("Difficulty: " +food.getDifficulty());
+            textViewPrepTime.setText("Preptime: "+food.getPrepTime()+" minutes");
+            textViewFlavor.setText("Flavor: "+food.getFlavour());
+            textViewServes.setText("Serves: "+answer.getPortionSize()+" people");
+            textViewEthnicity.setText("Ethnicity: "+food.getEthnicity());
         }
 
 }

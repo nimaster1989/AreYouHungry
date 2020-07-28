@@ -2,7 +2,10 @@ package comp3350.Group2.areyouhungry.objects;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import comp3350.Group2.areyouhungry.business.AccessFoods;
 
 public class Answers implements Serializable {
 
@@ -12,7 +15,7 @@ public class Answers implements Serializable {
     private String preptime;
     private String difficulty;
     private String ethnicity;
-
+    private AccessFoods accessFoods;
 
     public Answers(List<Integer> newAnswers){
         answers = newAnswers;
@@ -20,63 +23,63 @@ public class Answers implements Serializable {
             int answer = newAnswers.get(i);
             if(i == 0){
                 if(answer== 0){
-                    flavor = "Flavor: Sweet";
+                    flavor = "Sweet";
                 }else if(answer ==1){
-                    flavor = "Flavor: Savory";
+                    flavor = "Savory";
                 }else if(answer ==2){
-                    flavor = "Flavor: Spicy";
+                    flavor = "Spicy";
                 }else if(answer ==3){
-                    flavor = "Flavor: Other";
+                    flavor = "Other";
                 }else{
                     flavor = "Flavor: Unknown";
                 }
             }else if(i == 1){
                 if(answer== 0){
-                    portionSize = "Serves: 1 - 2 People";
+                    portionSize = "1";
                 }else if(answer ==1){
-                    portionSize = "Serves: 3 - 4 People";
+                    portionSize = "3";
                 }else if(answer ==2){
-                    portionSize = "Serves: 4 - 6 People";
+                    portionSize = "5";
                 }else if(answer ==3){
-                    portionSize = "Serves: 6 - 8 People";
+                    portionSize = "7";
                 }else{
-                    portionSize = "Serves: Unknown";
+                    portionSize = "Unknown";
                 }
             }else if(i == 2){
                 if(answer== 0){
-                    preptime = "Preparation Time: 10 minutes";
+                    preptime = "10";
                 }else if(answer== 1){
-                    preptime = "Preparation Time: 20 minutes";
+                    preptime = "20";
                 }else if(answer== 2){
-                    preptime = "Preparation Time: 30 minutes";
+                    preptime = "30";
                 }else if(answer ==3){
-                    preptime = "Preparation Time: 40 minutes";
+                    preptime = "40";
                 }else{
                     preptime = "Preparation Time: Unknown";
                 }
             }else if(i == 3){
                 if(answer== 0){
-                    difficulty = "Difficulty: Easy";
+                    difficulty = "Easy";
                 }else if(answer== 1){
-                    difficulty = "Difficulty: Medium";
+                    difficulty = "Medium";
                 }else if(answer== 2){
-                    difficulty = "Difficulty: Hard";
+                    difficulty = "Hard";
                 }else if(answer ==3){
-                    difficulty = "Difficulty: Chef Ramsey";
+                    difficulty = "Expert";
                 }else{
-                    difficulty = "Difficulty: Unknown";
+                    difficulty = "Unknown";
                 }
             }else if(i == 4){
                 if(answer== 0){
-                    ethnicity = "Ethnicity: Australian";
+                    ethnicity = "Australian";
                 }else if(answer== 1){
-                    ethnicity = "Ethnicity: American";
+                    ethnicity = "American";
                 }else if(answer== 2){
-                    ethnicity = "Ethnicity: Japanese";
+                    ethnicity = "Japanese";
                 }else if(answer ==3){
-                    ethnicity = "Ethnicity: Vietnamese";
+                    ethnicity = "Vietnamese";
                 }else{
-                    ethnicity = "Ethnicity: Unknown";
+                    ethnicity = "Unknown";
                 }
             }
 
@@ -133,6 +136,43 @@ public class Answers implements Serializable {
     }
 
 
+    public Food getFood() {
+        accessFoods = new AccessFoods();
+        List<Food> foods = new ArrayList<Food>();
+        accessFoods.getFoods(foods);
+        Iterator<Food> foodIterator = foods.iterator(); /* This iterates through the foods list. */
+        Food curr_food = null;
+        while(foodIterator.hasNext()){
+            curr_food = foodIterator.next();
+            System.out.println("Name: "+curr_food.getFoodName());
+            System.out.println("Time: "+curr_food.getPrepTime());
+            System.out.println("Flavor: "+curr_food.getFlavour());
+            System.out.println("Ethnicity: "+curr_food.getEthnicity());
+            System.out.println("Difficulty: "+curr_food.getDifficulty());
+            System.out.println("Size: "+curr_food.getPortionSize());
+//            if(checkValid(curr_food)) {
+//                if ((curr_food.getPrepTime() == Integer.parseInt(preptime.trim())) &&
+//                        curr_food.getFlavour().equals(flavor) &&
+//                        curr_food.getEthnicity().equals(ethnicity) &&
+//                        curr_food.getDifficulty().equals(difficulty) &&
+//                        curr_food.getPortionSize() == Integer.parseInt(portionSize.trim())) {
+//                    return curr_food;
+//                }
+//            }
+        }
 
+        return curr_food;
+    }
 
+    private boolean checkValid(Food food){
+        boolean valid = false;
+        if(food.getPrepTime() != 0 &&
+            food.getPortionSize() != 0 &&
+            food.getDifficulty() != null &&
+            food.getFlavour() != null &&
+            food.getEthnicity() != null){
+            valid = true;
+        }
+        return valid;
+    }
 }
