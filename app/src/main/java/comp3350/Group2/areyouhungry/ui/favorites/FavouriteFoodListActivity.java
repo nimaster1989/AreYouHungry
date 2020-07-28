@@ -24,6 +24,7 @@ import comp3350.Group2.areyouhungry.R;
 
 import comp3350.Group2.areyouhungry.business.AccessFoods;
 import comp3350.Group2.areyouhungry.objects.Food;
+import comp3350.Group2.areyouhungry.objects.User;
 import comp3350.Group2.areyouhungry.ui.all_food.FoodListActivity;
 import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
 import comp3350.Group2.areyouhungry.ui.more.MoreActivity;
@@ -105,7 +106,9 @@ public class FavouriteFoodListActivity extends AppCompatActivity {
     private void setupRecyclerView(@NonNull RecyclerView recyclerView){
         accessFoods = new AccessFoods();
         favouriteFoodList = new ArrayList<Food>();
-        accessFoods.getFavouriteFoodsByUser(MainActivity.currentUser,favouriteFoodList);
+        User currentUser = MainActivity.currentUser;
+        System.out.println("user:"+currentUser.getUserName());
+        accessFoods.getFavouriteFoodsByUser(currentUser,favouriteFoodList);
         //accessFoods.getFavouriteFoods(favouriteFoodList);
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, favouriteFoodList, mTwoPane));
     }
