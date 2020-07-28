@@ -14,13 +14,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import comp3350.Group2.areyouhungry.business.AccessQuestions;
 import comp3350.Group2.areyouhungry.R;
 import comp3350.Group2.areyouhungry.objects.Answers;
 import comp3350.Group2.areyouhungry.objects.Question;
-import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
+
 
 
 /* This is the page that loads when the user selects. */

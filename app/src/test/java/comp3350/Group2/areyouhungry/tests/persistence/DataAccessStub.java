@@ -166,19 +166,6 @@ public class DataAccessStub implements DataAccess{
         return null;
     }
 
-    @Override
-    public String setFoodToFavourite(String curr_id, boolean favourite){
-        Iterator<Food> foodIterator = foods.iterator(); /* This iterates through the foods list. */
-        Food food;
-        while(foodIterator.hasNext()){
-            food = foodIterator.next();
-            if(food.getFoodID().equals(curr_id)){
-                food.setFavourite(favourite);
-            }
-        }
-        return null;
-    }
-
     public String addFood(Food newFood){
         if(newFood != null){
             if(newFood.getFoodID() != "" && newFood.getFoodName() != ""){

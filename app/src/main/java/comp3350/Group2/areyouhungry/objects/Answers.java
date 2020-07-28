@@ -19,81 +19,83 @@ public class Answers implements Serializable {
 
     public Answers(List<Integer> newAnswers){
         answers = newAnswers;
-        for(int i = 0; i < 5; i++){
-            int answer = newAnswers.get(i);
-            if(i == 0){
-                if(answer== 0){
-                    flavor = "Sweet";
-                }else if(answer ==1){
-                    flavor = "Savory";
-                }else if(answer ==2){
-                    flavor = "Spicy";
-                }else if(answer ==3){
-                    flavor = "Other";
-                }else{
-                    flavor = "Flavor: Unknown";
+        if(newAnswers.size() > 0) {
+            for (int i = 0; i < newAnswers.size(); i++) {
+                int answer = newAnswers.get(i);
+                if (i == 0) {
+                    if (answer == 0) {
+                        flavor = "Sweet";
+                    } else if (answer == 1) {
+                        flavor = "Savory";
+                    } else if (answer == 2) {
+                        flavor = "Spicy";
+                    } else if (answer == 3) {
+                        flavor = "Other";
+                    } else {
+                        flavor = "Unknown";
+                    }
+                } else if (i == 1) {
+                    if (answer == 0) {
+                        portionSize = "1";
+                    } else if (answer == 1) {
+                        portionSize = "3";
+                    } else if (answer == 2) {
+                        portionSize = "5";
+                    } else if (answer == 3) {
+                        portionSize = "7";
+                    } else {
+                        portionSize = "Unknown";
+                    }
+                } else if (i == 2) {
+                    if (answer == 0) {
+                        preptime = "10";
+                    } else if (answer == 1) {
+                        preptime = "20";
+                    } else if (answer == 2) {
+                        preptime = "30";
+                    } else if (answer == 3) {
+                        preptime = "40";
+                    } else {
+                        preptime = "Unknown";
+                    }
+                } else if (i == 3) {
+                    if (answer == 0) {
+                        difficulty = "Easy";
+                    } else if (answer == 1) {
+                        difficulty = "Medium";
+                    } else if (answer == 2) {
+                        difficulty = "Hard";
+                    } else if (answer == 3) {
+                        difficulty = "Expert";
+                    } else {
+                        difficulty = "Unknown";
+                    }
+                } else if (i == 4) {
+                    if (answer == 0) {
+                        ethnicity = "Australian";
+                    } else if (answer == 1) {
+                        ethnicity = "American";
+                    } else if (answer == 2) {
+                        ethnicity = "Japanese";
+                    } else if (answer == 3) {
+                        ethnicity = "Vietnamese";
+                    } else {
+                        ethnicity = "Unknown";
+                    }
                 }
-            }else if(i == 1){
-                if(answer== 0){
-                    portionSize = "1";
-                }else if(answer ==1){
-                    portionSize = "3";
-                }else if(answer ==2){
-                    portionSize = "5";
-                }else if(answer ==3){
-                    portionSize = "7";
-                }else{
-                    portionSize = "Unknown";
-                }
-            }else if(i == 2){
-                if(answer== 0){
-                    preptime = "10";
-                }else if(answer== 1){
-                    preptime = "20";
-                }else if(answer== 2){
-                    preptime = "30";
-                }else if(answer ==3){
-                    preptime = "40";
-                }else{
-                    preptime = "Preparation Time: Unknown";
-                }
-            }else if(i == 3){
-                if(answer== 0){
-                    difficulty = "Easy";
-                }else if(answer== 1){
-                    difficulty = "Medium";
-                }else if(answer== 2){
-                    difficulty = "Hard";
-                }else if(answer ==3){
-                    difficulty = "Expert";
-                }else{
-                    difficulty = "Unknown";
-                }
-            }else if(i == 4){
-                if(answer== 0){
-                    ethnicity = "Australian";
-                }else if(answer== 1){
-                    ethnicity = "American";
-                }else if(answer== 2){
-                    ethnicity = "Japanese";
-                }else if(answer ==3){
-                    ethnicity = "Vietnamese";
-                }else{
-                    ethnicity = "Unknown";
-                }
-            }
 
+            }
+        }else{
+            flavor = "Unknown";
+            preptime = "Unknown";
+            portionSize = "Unknown";
+            difficulty = "Unknown";
+            ethnicity = "Unknown";
         }
 
 
     }
-    public List<Integer> getAnswers(){
-        return answers;
-    }
 
-    public void setAnswers(List<Integer> answers){
-        this.answers = answers;
-    }
 
     public String getFlavor(){
         return flavor;
@@ -136,7 +138,7 @@ public class Answers implements Serializable {
     }
 
 
-    public Food getFood() {
+    public Food getFoodBasedOnAnswers() {
         accessFoods = new AccessFoods();
         List<Food> foods = new ArrayList<Food>();
         String result = accessFoods.getFoods(foods);
