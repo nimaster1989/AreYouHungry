@@ -8,7 +8,7 @@ import comp3350.Group2.areyouhungry.persistence.DataAccess;
 
 import java.util.List;
 
-public class AccessQuestions {
+public class AccessQuestions{
     private DataAccess dataAccess;
 
     public AccessQuestions(){

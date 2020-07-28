@@ -28,7 +28,7 @@ import comp3350.Group2.areyouhungry.objects.Food;
    This fragment is either contained in a FoodListActivity
    in two-pane mode (on tablets) or a FoodDetailActivity
    on handsets. */
-public class FoodDetailFragment extends Fragment {
+public class FoodDetailFragment extends Fragment{
     /* The fragment argument representing the item ID that this fragment
        represents. */
 

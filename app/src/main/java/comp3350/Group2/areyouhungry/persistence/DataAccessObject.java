@@ -137,31 +137,52 @@ public class DataAccessObject implements DataAccess{
         return userByID;
     }
 
-    public String getFoodFromQuestions(List<Food> foodResult){
-        System.out.println("-----------");
-        System.out.println("getFoodSequential()");
-        System.out.println("-----------");
-        Food food = foodResult.get(0);
-        String flavor = food.getFlavour();
-        int preptime = food.getPrepTime();
-        int serves = food.getPortionSize();
-        String difficulty = food.getDifficulty();
-        String ethnicity = food.getEthnicity();
-        result = null;
-        cmdString = "SELECT * FROM foods WHERE " ;
-        fillFoodObject(cmdString,foodResult);
-        return result;
-    }
-
     public String getFoodSequential(List<Food> foodResult){
         System.out.println("-----------");
         System.out.println("getFoodSequential()");
         System.out.println("-----------");
+        Food food;
+        int myFoodID,myPrepTime,myPortionSize;
+        String myFoodName=EOF,myFlavour=EOF,myDifficulty=EOF,myEthnicity=EOF;
+
         result = null;
-        cmdString = "SELECT * from FOODS as f INNER JOIN FOODINGREDIENT as fi ON (f.FOODID = fi.FOODID) INNER JOIN INGREDIENT as i ON(fi.INGREDIENTID = i.INGREDIENTID) INNER JOIN FOODDIRECTION as fd ON (f.FOODID = fd.FOODID) INNER JOIN DIRECTION as d ON(fd.DIRECTIONID = d.DIRECTIONID) ORDER BY FoodID";
-        fillFoodObject(cmdString,foodResult);
+        try{
+            cmdString = "SELECT DISTINCT FOODS.* from FOODS,FOODINGREDIENT,FOODDIRECTION where FOODS.FOODID = FOODDIRECTION.FOODID and FOODS.FOODID = FOODINGREDIENT.FOODID";
+            rs3 = st2.executeQuery(cmdString);
+            while (rs3.next()){
+                myFoodID = rs3.getInt("FOODID");
+                System.out.println("get ID: "+myFoodID);
+                myFoodName = rs3.getString("FOODNAME");
+                System.out.println("get food name: "+myFoodName);
+                myPortionSize = rs3.getInt("PORTIONSIZE");
+                System.out.println("get PORTIONSIZE: "+myPortionSize);
+                myPrepTime = rs3.getInt("PREPTIME");
+                System.out.println("get PREPTIME: "+myPrepTime);
+                myFlavour = rs3.getString("FLAVOUR");
+                System.out.println("get FLAVOUR: "+myFlavour);
+                myDifficulty = rs3.getString("DIFFICULTY");
+                System.out.println("get DIFFICULTY: "+myDifficulty);
+                myEthnicity = rs3.getString("ETHNICITY");
+                System.out.println("get ETHNICITY: "+myEthnicity);
+                food = new Food(myFoodID,myFoodName,myPortionSize,myPrepTime,myFlavour,myDifficulty,myEthnicity);
+                foodResult.add(food);
+            }
+            rs3.close();
+        }catch (Exception e){
+            processSQLError(e);
+        }
         return result;
     }
+
+//    public String getFoodSequential(List<Food> foodResult){
+//        System.out.println("-----------");
+//        System.out.println("getFoodSequential()");
+//        System.out.println("-----------");
+//        result = null;
+//        cmdString = "SELECT * from FOODS as f INNER JOIN FOODINGREDIENT as fi ON (f.FOODID = fi.FOODID) INNER JOIN INGREDIENT as i ON(fi.INGREDIENTID = i.INGREDIENTID) INNER JOIN FOODDIRECTION as fd ON (f.FOODID = fd.FOODID) INNER JOIN DIRECTION as d ON(fd.DIRECTIONID = d.DIRECTIONID) ORDER BY FoodID";
+//        fillFoodObject(cmdString,foodResult);
+//        return result;
+//    }
 
     private void fillFoodObject(String cmdString,List<Food> foodResult){
         String myID="",myFoodName="",myFlavour="",myDifficulty="",myEthnicity="",myIngredientName="",myIngredientMeasure="",myIngredientId="",myDirectionID="",myDirectionDesc="",myDirectionStep="";
@@ -172,16 +193,16 @@ public class DataAccessObject implements DataAccess{
         Boolean myFavourite=false;
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         ArrayList<Direction> directions = new ArrayList<>();
-        try {
+        try{
             rs5 = st3.executeQuery(cmdString);
             if (rs5 == null) System.out.println("return state 5 is null");
-            while (rs5.next()) {
+            while (rs5.next()){
                 myID = rs5.getString("FoodID");
                 System.out.println("get ID: " + myID);
                 if(!currentID.equals(myID)){
                     //Checking if there is variables set to add to a food
                     if(!currentID.equals("-1")){
-                        Food foundFood = new Food(Integer.valueOf(currentID), myFoodName,myPortionSize,myPrepTime,ingredients,directions,myFlavour,myDifficulty,myEthnicity,myFavourite);
+                        Food foundFood = new Food(Integer.valueOf(currentID), myFoodName,myPortionSize,myPrepTime,myFlavour,myDifficulty,myEthnicity);
                         foodResult.add(foundFood);
                         ingredients = new ArrayList<>();
                         directions = new ArrayList<>();
@@ -208,7 +229,7 @@ public class DataAccessObject implements DataAccess{
                     myIngredientId = rs5.getString("INGREDIENTID");
                     myIngredientMeasure = rs5.getString("INGREDIENTMEASUREMENT");
                     Ingredient newIngredient = new Ingredient(Integer.valueOf(myIngredientId), myIngredientName, myIngredientMeasure);
-                    if (!ingredients.contains(newIngredient)) {
+                    if (!ingredients.contains(newIngredient)){
                         ingredients.add(newIngredient);
                     }
                     //Checking if this result sets direction has been added or not
@@ -216,14 +237,14 @@ public class DataAccessObject implements DataAccess{
                     myDirectionDesc = rs5.getString("DIRECTIONDESCRIPTION");
                     myDirectionStep = rs5.getString("DIRECTIONSTEPNUMBER");
                     Direction newDirection = new Direction(Integer.valueOf(myDirectionID), myDirectionDesc,Integer.valueOf( myDirectionStep));
-                    if(!directions.contains(newDirection)) {
+                    if(!directions.contains(newDirection)){
                         directions.add(newDirection);
                     }
                 }
                 currentID = myID;
             }
             //Adding the last food returned from the query
-            Food foundFood = new Food(Integer.valueOf(myID), myFoodName,myPortionSize,myPrepTime,ingredients,directions,myFlavour,myDifficulty,myEthnicity,myFavourite);
+            Food foundFood = new Food(Integer.valueOf(myID), myFoodName,myPortionSize,myPrepTime,myFlavour,myDifficulty,myEthnicity);
             foodResult.add(foundFood);
             rs5.close();
         }catch(Exception e){
@@ -233,15 +254,43 @@ public class DataAccessObject implements DataAccess{
     }
 
 
-    public String getFavouriteFoodSequential(List<Food> foodResult){
-        System.out.println("-----------");
-        System.out.println("getFavouriteFoodSequential()");
-        System.out.println("-----------");
-        result = null;
-        cmdString = "SELECT * from FOODS as f INNER JOIN FOODINGREDIENT as fi ON (f.FOODID = fi.FOODID) INNER JOIN INGREDIENT as i ON(fi.INGREDIENTID = i.INGREDIENTID) INNER JOIN FOODDIRECTION as fd ON (f.FOODID = fd.FOODID) INNER JOIN DIRECTION as d ON(fd.DIRECTIONID = d.DIRECTIONID) WHERE Favourite = TRUE ORDER BY FoodID";
-        fillFoodObject(cmdString,foodResult);
-        return result;
-    }
+//    public String getFavouriteFoodSequential(List<Food> foodResult){
+//
+//        System.out.println("-----------");
+//        System.out.println("getFavouriteFoodSequential()");
+//        System.out.println("-----------");
+//        Food food;
+//        int myFoodID,myPrepTime,myPortionSize;
+//        String myFoodName=EOF,myFlavour=EOF,myDifficulty=EOF,myEthnicity=EOF;
+//
+//        result = null;
+//        try{
+//            cmdString = "SELECT DISTINCT FOODS.* from FOODS,FOODINGREDIENT,FOODDIRECTION where FOODS.FOODID = FOODDIRECTION.FOODID and FOODS.FOODID = FOODINGREDIENT.FOODID";
+//            rs3 = st2.executeQuery(cmdString);
+//            while (rs3.next()){
+//                myFoodID = rs3.getInt("FOODID");
+//                System.out.println("get ID: "+myFoodID);
+//                myFoodName = rs3.getString("FOODNAME");
+//                System.out.println("get food name: "+myFoodName);
+//                myPortionSize = rs3.getInt("PORTIONSIZE");
+//                System.out.println("get PORTIONSIZE: "+myPortionSize);
+//                myPrepTime = rs3.getInt("PREPTIME");
+//                System.out.println("get PREPTIME: "+myPrepTime);
+//                myFlavour = rs3.getString("FLAVOUR");
+//                System.out.println("get FLAVOUR: "+myFlavour);
+//                myDifficulty = rs3.getString("DIFFICULTY");
+//                System.out.println("get DIFFICULTY: "+myDifficulty);
+//                myEthnicity = rs3.getString("ETHNICITY");
+//                System.out.println("get ETHNICITY: "+myEthnicity);
+//                food = new Food(myFoodID,myFoodName,myPortionSize,myPrepTime,myFlavour,myDifficulty,myEthnicity);
+//                foodResult.add(food);
+//            }
+//            rs3.close();
+//        }catch (Exception e){
+//            processSQLError(e);
+//        }
+//        return result;
+//    }
 
     public String getFoodRandom(List<Food> foodResult){
         System.out.println("-----------");
@@ -269,49 +318,49 @@ public class DataAccessObject implements DataAccess{
         System.out.println("getFoodFromId: "+foodID );
         System.out.println("-----------");
         Food foodByID = null;
-        String myID,myFoodName;
-        Boolean myFavourite;
-        myID = EOF;
-        myFoodName = EOF;
-
         result = null;
         try{
-            cmdString = "SELECT * from FOODS  WHERE FOODID = '"+foodID+"'";
-            rs5 = st3.executeQuery(cmdString);
-            if (rs5 == null){
-                System.out.println("return state 5 is null");
+            cmdString = "SELECT * from FOODS WHERE FOODS.FOODID = '"+foodID+"'";
+            rs3 = st3.executeQuery(cmdString);
+            while (rs3.next()){
+                int myFoodID = rs3.getInt("FOODID");
+                System.out.println("get ID: "+myFoodID);
+                String myFoodName = rs3.getString("FOODNAME");
+                System.out.println("get food name: "+myFoodName);
+                int myPortionSize = rs3.getInt("PORTIONSIZE");
+                System.out.println("get PORTIONSIZE: "+myPortionSize);
+                int myPrepTime = rs3.getInt("PREPTIME");
+                System.out.println("get PREPTIME: "+myPrepTime);
+                String myFlavour = rs3.getString("FLAVOUR");
+                System.out.println("get FLAVOUR: "+myFlavour);
+                String myDifficulty = rs3.getString("DIFFICULTY");
+                System.out.println("get DIFFICULTY: "+myDifficulty);
+                String myEthnicity = rs3.getString("ETHNICITY");
+                System.out.println("get ETHNICITY: "+myEthnicity);
+                foodByID = new Food(myFoodID,myFoodName,myPortionSize,myPrepTime,myFlavour,myDifficulty,myEthnicity);
             }
-            while (rs5.next()){
-                myID = rs5.getString("FoodID");
-                System.out.println("get ID: "+myID);
-                myFoodName = rs5.getString("FoodName");
-                System.out.println("get name: "+myFoodName);
-                myFavourite = rs5.getBoolean("Favourite");
-                System.out.println("get favourite: "+myFavourite);
-                //foodByID = new Food(Integer.valueOf(myID),myFoodName,myFavourite);
-            }
-            rs5.close();
+            rs3.close();
         }catch (Exception e){
             processSQLError(e);
         }
         return foodByID;
     }
 
-    @Override
-    public String setFoodToFavourite(String FoodID, boolean favourite){
-        String values;
-        String where;
-
-        result = null;
-        try{
-            cmdString = "Update Foods Set Favourite = '" +favourite +"' where Foods.foodID = '"+FoodID+"'";
-            updateCount = st1.executeUpdate(cmdString);
-            result = checkWarning(st1, updateCount);
-        } catch (Exception e){
-            result = processSQLError(e);
-        }
-        return result;
-    }
+//    @Override
+//    public String setFoodToFavourite(String FoodID, boolean favourite){
+//        String values;
+//        String where;
+//
+//        result = null;
+//        try{
+//            cmdString = "Update Foods Set Favourite = '" +favourite +"' where Foods.foodID = '"+FoodID+"'";
+//            updateCount = st1.executeUpdate(cmdString);
+//            result = checkWarning(st1, updateCount);
+//        } catch (Exception e){
+//            result = processSQLError(e);
+//        }
+//        return result;
+//    }
 
     public int getFoodTableRow(){
         System.out.println("-----------");
@@ -407,35 +456,35 @@ public class DataAccessObject implements DataAccess{
 
     public String getFavouriteFoodByUserSequential(User user, List<Food> foodResult){
         System.out.println("-----------");
-        System.out.println("getFavouriteFoodSequential()");
+        System.out.println("getFoodSequential()");
         System.out.println("-----------");
         Food food;
-        String myID,myFoodName,myRecipe;
-        Boolean myFavourite;
-        myID = EOF;
-        myFoodName = EOF;
+        int myFoodID,myPrepTime,myPortionSize;
+        String myFoodName=EOF,myFlavour=EOF,myDifficulty=EOF,myEthnicity=EOF;
 
         result = null;
         try{
-            cmdString = "select * from FOODS,USERSFAVOURITE,USERS\n" +
-                    "where fOODS.FOODID = USERSFAVOURITE.FOODID\n" +
-                    "and USERS.USERID = '"+user.getUserID()+"'\n" +
-                    "and USERS.USERID = USERSFAVOURITE.USERID";
-            rs5 = st3.executeQuery(cmdString);
-            if (rs5 == null) System.out.println("return state 5 is null");
-            while (rs5.next()){
-                myID = rs5.getString("FoodID");
-                System.out.println("get ID: "+myID);
-                myFoodName = rs5.getString("FoodName");
-                System.out.println("get name: "+myFoodName);
-                myRecipe = rs5.getString("Recipe");
-                System.out.println("get recipe: "+myRecipe);
-                myFavourite = rs5.getBoolean("Favourite");
-                System.out.println("get favourite: "+myFavourite);
-                //food = new Food(Integer.valueOf(myID),myFoodName,myRecipe,myFavourite);
-                //foodResult.add(food);
+            cmdString = "SELECT DISTINCT FOODS.* from FOODS,FOODINGREDIENT,FOODDIRECTION,USERSFAVOURITE where FOODS.FOODID = FOODDIRECTION.FOODID and FOODS.FOODID = FOODINGREDIENT.FOODID and FOODS.FOODID = USERSFAVOURITE.FOODID and USERSFAVOURITE.USERID = '"+user.getUserID()+"'";
+            rs3 = st2.executeQuery(cmdString);
+            while (rs3.next()){
+                myFoodID = rs3.getInt("FOODID");
+                System.out.println("get ID: "+myFoodID);
+                myFoodName = rs3.getString("FOODNAME");
+                System.out.println("get food name: "+myFoodName);
+                myPortionSize = rs3.getInt("PORTIONSIZE");
+                System.out.println("get PORTIONSIZE: "+myPortionSize);
+                myPrepTime = rs3.getInt("PREPTIME");
+                System.out.println("get PREPTIME: "+myPrepTime);
+                myFlavour = rs3.getString("FLAVOUR");
+                System.out.println("get FLAVOUR: "+myFlavour);
+                myDifficulty = rs3.getString("DIFFICULTY");
+                System.out.println("get DIFFICULTY: "+myDifficulty);
+                myEthnicity = rs3.getString("ETHNICITY");
+                System.out.println("get ETHNICITY: "+myEthnicity);
+                food = new Food(myFoodID,myFoodName,myPortionSize,myPrepTime,myFlavour,myDifficulty,myEthnicity);
+                foodResult.add(food);
             }
-            rs5.close();
+            rs3.close();
         }catch (Exception e){
             processSQLError(e);
         }
@@ -444,6 +493,7 @@ public class DataAccessObject implements DataAccess{
 
     @Override
     public String setFoodToFavouriteByUser(User user, String curr_id, boolean b){
+        System.out.println("set user"+user.getUserName()+" foodid:"+curr_id+"to fav?: "+b);
         String values;
         cmdString = "";
         result = null;
@@ -552,6 +602,66 @@ public class DataAccessObject implements DataAccess{
             result = processSQLError(e);
         }
         return new User(id,username);
+    }
+
+    @Override
+    public String getIngredientByFood(Food food, List<Ingredient> ingredients){
+        System.out.println("-----------");
+        System.out.println("getIngrdientByFood()");
+        System.out.println("-----------");
+        Ingredient ingredient;
+        int myIngredientID;
+        String myIngredientName,myIngredientMeasurement;
+
+        result = null;
+        try{
+            cmdString = "select INGREDIENT.* from INGREDIENT,FOODINGREDIENT where FOODINGREDIENT.INGREDIENTID = INGREDIENT.INGREDIENTID and FOODINGREDIENT.FOODID = '"+food.getFoodID()+"'";
+            rs3 = st2.executeQuery(cmdString);
+            while (rs3.next()){
+                myIngredientID = rs3.getInt("INGREDIENTID");
+                System.out.println("get ID: "+myIngredientID);
+                myIngredientName = rs3.getString("INGREDIENTNAME");
+                System.out.println("get ingredient name: "+myIngredientName);
+                myIngredientMeasurement = rs3.getString("INGREDIENTMEASUREMENT");
+                System.out.println("get mingredientMeasurement: "+myIngredientMeasurement);
+                ingredient = new Ingredient(myIngredientID,myIngredientName,myIngredientMeasurement);
+                ingredients.add(ingredient);
+            }
+            rs3.close();
+        }catch (Exception e){
+            processSQLError(e);
+        }
+        return result;
+    }
+
+    @Override
+    public String getDirectionByFood(Food food, List<Direction> directions){
+        System.out.println("-----------");
+        System.out.println("getDirectionByFood()");
+        System.out.println("-----------");
+        Direction direction;
+        int myDirectionId,myDirecitonSteps;
+        String nyDirecitionDescription;
+
+        result = null;
+        try{
+            cmdString = "select DIRECTION.* from DIRECTION,FOODDIRECTION where FOODDIRECTION.DIRECTIONID = DIRECTION.DIRECTIONID and FOODDIRECTION.FOODID = '"+food.getFoodID()+"'";
+            rs3 = st2.executeQuery(cmdString);
+            while (rs3.next()){
+                myDirectionId = rs3.getInt("DIRECTIONID");
+                System.out.println("get ID: "+myDirectionId);
+                nyDirecitionDescription = rs3.getString("DIRECTIONDESCRIPTION");
+                System.out.println("get nyDirecitionDescription : "+nyDirecitionDescription);
+                myDirecitonSteps = rs3.getInt("DIRECTIONSTEPNUMBER");
+                System.out.println("get mingredientMeasurement: "+myDirecitonSteps);
+                direction = new Direction(myDirectionId,nyDirecitionDescription,myDirecitonSteps);
+                directions.add(direction);
+            }
+            rs3.close();
+        }catch (Exception e){
+            processSQLError(e);
+        }
+        return result;
     }
 
     public String addFood(Food addFood){

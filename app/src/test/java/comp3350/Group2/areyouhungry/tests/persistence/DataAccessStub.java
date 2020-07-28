@@ -9,9 +9,11 @@ import java.util.Random;
 
 import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.objects.Categorys;
+import comp3350.Group2.areyouhungry.objects.Direction;
 import comp3350.Group2.areyouhungry.objects.FC;
 import comp3350.Group2.areyouhungry.objects.Food;
 
+import comp3350.Group2.areyouhungry.objects.Ingredient;
 import comp3350.Group2.areyouhungry.objects.Question;
 import comp3350.Group2.areyouhungry.objects.User;
 import comp3350.Group2.areyouhungry.persistence.DataAccess;
@@ -44,26 +46,26 @@ public class DataAccessStub implements DataAccess{
         FC fc;
         User user;
 
-        foods = new ArrayList<Food>();
-        Food_map = new HashMap<>();
-        food = new Food(1,"Fish");
-        foods.add(food);
-        Food_map.put(String.valueOf(food.getFoodID()),food);
-        food = new Food(2,"Burger");
-        foods.add(food);
-        Food_map.put(String.valueOf(food.getFoodID()),food);
-        food = new Food(3,"Pie");
-        foods.add(food);
-        Food_map.put(String.valueOf(food.getFoodID()),food);
-        food = new Food(4,"Cake");
-        foods.add(food);
-        Food_map.put(String.valueOf(food.getFoodID()),food);
-        food = new Food(5,"Fries");
-        foods.add(food);
-        Food_map.put(String.valueOf(food.getFoodID()),food);
-        food = new Food(6,"veggies");
-        foods.add(food);
-        Food_map.put(String.valueOf(food.getFoodID()),food);
+//        foods = new ArrayList<Food>();
+//        Food_map = new HashMap<>();
+//        food = new Food(1,"Fish");
+//        foods.add(food);
+//        Food_map.put(String.valueOf(food.getFoodID()),food);
+//        food = new Food(2,"Burger");
+//        foods.add(food);
+//        Food_map.put(String.valueOf(food.getFoodID()),food);
+//        food = new Food(3,"Pie");
+//        foods.add(food);
+//        Food_map.put(String.valueOf(food.getFoodID()),food);
+//        food = new Food(4,"Cake");
+//        foods.add(food);
+//        Food_map.put(String.valueOf(food.getFoodID()),food);
+//        food = new Food(5,"Fries");
+//        foods.add(food);
+//        Food_map.put(String.valueOf(food.getFoodID()),food);
+//        food = new Food(6,"veggies");
+//        foods.add(food);
+//        Food_map.put(String.valueOf(food.getFoodID()),food);
 
         categorysList = new ArrayList<Categorys>();
         categorys = new Categorys(1,"Meat");
@@ -242,6 +244,16 @@ public class DataAccessStub implements DataAccess{
     }
 
     public User setNewUser(int userID, String username){
+        return null;
+    }
+
+    @Override
+    public String getIngredientByFood(Food food, List<Ingredient> ingredients) {
+        return null;
+    }
+
+    @Override
+    public String getDirectionByFood(Food food, List<Direction> directions) {
         return null;
     }
     // TODO: 27/07/20

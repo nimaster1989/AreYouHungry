@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import comp3350.Group2.areyouhungry.objects.Direction;
 import comp3350.Group2.areyouhungry.objects.Food;
+import comp3350.Group2.areyouhungry.objects.Ingredient;
 import comp3350.Group2.areyouhungry.objects.Question;
 import comp3350.Group2.areyouhungry.objects.User;
 
@@ -17,7 +19,7 @@ public interface DataAccess{
 
     public String getFoodSequential(List<Food> foodResult);
 
-    public String getFavouriteFoodSequential(List<Food> foodResult);
+    //public String getFavouriteFoodSequential(List<Food> foodResult);
 
     public String getFoodRandom(List<Food> foodResult);
 
@@ -27,7 +29,7 @@ public interface DataAccess{
 
     public Food getFoodFromID(String foodID);
 
-    public String setFoodToFavourite(String curr_id, boolean favourite);
+    //public String setFoodToFavourite(String curr_id, boolean favourite);
 
     public String addFood(Food addFood);
 
@@ -56,4 +58,8 @@ public interface DataAccess{
     User getUser(int userID);
 
     User setNewUser(int userID, String username);
+
+    String getIngredientByFood(Food food,List<Ingredient> ingredients);
+
+    String getDirectionByFood(Food food, List<Direction> directions);
 }

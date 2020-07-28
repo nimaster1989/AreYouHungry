@@ -13,7 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class AccessFoods {
+public class AccessFoods{
     private DataAccess dataAccess;
     private List<Food> foods;
     private Food food;
@@ -67,10 +67,10 @@ public class AccessFoods {
         return dataAccess.getFavouriteFoodByUserSequential(user, favouriteFoodList);
     }
 
-    public String getFavouriteFoods(ArrayList<Food> favouriteFoodList){
-        favouriteFoodList.clear();
-        return dataAccess.getFavouriteFoodSequential(favouriteFoodList);
-    }
+//    public String getFavouriteFoods(ArrayList<Food> favouriteFoodList){
+//        favouriteFoodList.clear();
+//        return dataAccess.getFavouriteFoodSequential(favouriteFoodList);
+//    }
 
     public String getRandom(List<Food> foods){
         foods.clear();
@@ -90,9 +90,9 @@ public class AccessFoods {
         return dataAccess.addFood(addedFood);
     }
 
-    public String setFoodFavourite(String curr_id,boolean favourite){
-        return dataAccess.setFoodToFavourite(curr_id,favourite);
-    }
+//    public String setFoodFavourite(String curr_id,boolean favourite){
+//        return dataAccess.setFoodToFavourite(curr_id,favourite);
+//    }
 
     public String addFoodCategory(Food newFood, String categoryName){
         int foodID = getFoodID(newFood);

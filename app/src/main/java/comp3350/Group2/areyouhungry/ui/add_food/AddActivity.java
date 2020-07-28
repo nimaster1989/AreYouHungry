@@ -20,7 +20,7 @@ import comp3350.Group2.areyouhungry.business.AccessFoods;
 import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.ui.all_food.FoodListActivity;
 
-public class AddActivity extends AppCompatActivity {
+public class AddActivity extends AppCompatActivity{
 
     private AccessFoods accessFoods;
     private ArrayList<Food> foods;

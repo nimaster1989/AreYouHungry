@@ -1,6 +1,6 @@
 package comp3350.Group2.areyouhungry.objects;
 
-public class Ingredient {
+public class Ingredient{
     private int ingredientID;
     private String ingredientName;
     private String measurement;

@@ -8,23 +8,20 @@ public class Food {
     private boolean favourite;
     private int portionSize;
     private int prepTime;
-    private ArrayList<Ingredient> ingredientList;
-    private ArrayList<Direction> directionList;
+
     private String flavour;
     private String difficulty;
     private String ethnicity;
 
-    public Food(int foodID, String foodName, int portionSize, int prepTime, ArrayList<Ingredient> ingredientList,ArrayList<Direction> directionList, String flavour,String difficulty,String ethnicity,Boolean favourite){
+    public Food(int foodID, String foodName, int portionSize, int prepTime,String flavour,String difficulty,String ethnicity){
         this.foodID = foodID;
         this.foodName = foodName;
         this.portionSize = portionSize;
         this.prepTime = prepTime;
-        this.ingredientList = ingredientList;
-        this.directionList = directionList;
         this.flavour = flavour;
         this.difficulty = difficulty;
         this.ethnicity = ethnicity;
-        this.favourite = favourite;
+        this.favourite = false;
     }
 
     public String getFoodID(){
@@ -45,14 +42,6 @@ public class Food {
 
     public int getPrepTime(){
         return prepTime;
-    }
-
-    public ArrayList<Ingredient> getIngredientList(){
-        return ingredientList;
-    }
-
-    public ArrayList<Direction> getDirectionList(){
-        return directionList;
     }
 
     public String getFlavour(){
@@ -87,14 +76,6 @@ public class Food {
         this.prepTime = prepTime;
     }
 
-    public void setIngredientList(ArrayList<Ingredient> ingredientList){
-        this.ingredientList = ingredientList;
-    }
-
-    public void setDirectionList(ArrayList<Direction> directionList){
-        this.directionList = directionList;
-    }
-
     public void setFlavour(String flavour){
         this.flavour = flavour;
     }
@@ -109,7 +90,7 @@ public class Food {
 
     @Override
     public String toString(){
-        return "ID: " + foodID + "\n  foodName: " + foodName + "\n  favourited: " + favourite + "\n" +ingredientList.toString() +"\n"+directionList.toString();
+        return "ID: " + foodID + "\n  foodName: " + foodName + "\n  favourited: " + favourite + "\n";
     }
 
     @Override
