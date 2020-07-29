@@ -8,10 +8,10 @@ import java.util.List;
 import comp3350.Group2.areyouhungry.objects.Answers;
 import comp3350.Group2.areyouhungry.objects.Food;
 
-public class AnswersTest extends TestCase {
+public class AnswersTest extends TestCase{
 
     public AnswersTest(String arg0)
-    {
+   {
         super(arg0);
     }
 

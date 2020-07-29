@@ -11,7 +11,7 @@ import comp3350.Group2.areyouhungry.tests.objects.QuestionTest;
 import comp3350.Group2.areyouhungry.tests.persistence.DataAccessTest;
 
 //This class when run tests all the other testing suites
-public class AllTests {
+public class AllTests{
 
     public static TestSuite suite;
 

@@ -18,7 +18,7 @@ import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailFragment;
 import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
 
 
-public class PreferredSearchActivity extends AppCompatActivity {
+public class PreferredSearchActivity extends AppCompatActivity{
     private AccessQuestions accessQuestions;
 
     private TextView textViewName;

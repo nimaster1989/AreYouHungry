@@ -8,7 +8,7 @@ import java.util.List;
 import comp3350.Group2.areyouhungry.objects.Question;
 
 
-public class QuestionTest extends TestCase {
+public class QuestionTest extends TestCase{
     public void testQuestionCreation(){
         Question question;
         String theQuestion = "What time is it";

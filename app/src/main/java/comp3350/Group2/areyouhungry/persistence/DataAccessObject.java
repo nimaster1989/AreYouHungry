@@ -588,7 +588,7 @@ public class DataAccessObject implements DataAccess{
         result = null;
 
         try{
-            if(id >=1 && username!=null) {
+            if(id >=1 && username!=null){
                 cmdString = "Insert into USERS Values(" + id + ", '" + username + "')";
                 updateCount = st1.executeUpdate(cmdString);
                 result = checkWarning(st1, updateCount);

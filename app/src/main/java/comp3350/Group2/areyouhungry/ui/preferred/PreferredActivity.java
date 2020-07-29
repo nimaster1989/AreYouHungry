@@ -23,7 +23,7 @@ import comp3350.Group2.areyouhungry.objects.Question;
 
 
 /* This is the page that loads when the user selects. */
-public class PreferredActivity extends AppCompatActivity  {
+public class PreferredActivity extends AppCompatActivity {
     private AccessQuestions accessQuestions;
 
     private TextView textViewQuestion;

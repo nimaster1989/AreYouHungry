@@ -1,6 +1,6 @@
 package comp3350.Group2.areyouhungry.objects;
 
-public class Categorys {
+public class Categorys{
     private int categoryID;
     private String categoryName;
     public Categorys(int categoryID,String categoryName){

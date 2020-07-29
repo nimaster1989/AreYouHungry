@@ -225,7 +225,7 @@ public class DataAccessStub implements DataAccess{
         return questions.size();
     }
 
-    public User getDefault() {
+    public User getDefault(){
         return users.get(0);
     }
 
@@ -254,12 +254,12 @@ public class DataAccessStub implements DataAccess{
     }
 
     @Override
-    public String getIngredientByFood(Food food, List<Ingredient> ingredients) {
+    public String getIngredientByFood(Food food, List<Ingredient> ingredients){
         return null;
     }
 
     @Override
-    public String getDirectionByFood(Food food, List<Direction> directions) {
+    public String getDirectionByFood(Food food, List<Direction> directions){
         return null;
     }
     // TODO: 27/07/20
