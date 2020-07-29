@@ -10,6 +10,7 @@ import comp3350.Group2.areyouhungry.objects.FoodIngredient;
 import comp3350.Group2.areyouhungry.objects.Ingredient;
 import comp3350.Group2.areyouhungry.tests.business.AccessFoodTest;
 import comp3350.Group2.areyouhungry.tests.business.AccessQuestionTest;
+import comp3350.Group2.areyouhungry.tests.business.AccessUsersTest;
 import comp3350.Group2.areyouhungry.tests.objects.AnswersTest;
 import comp3350.Group2.areyouhungry.tests.objects.CategorysTest;
 import comp3350.Group2.areyouhungry.tests.objects.DirectionTest;
@@ -40,8 +41,11 @@ public class AllTests{
 
     @Test
     private static void testBusiness(){
-        suite.addTestSuite(AccessFoodTest.class);
+        suite.addTestSuite(AccessFoodsTest.class);
         suite.addTestSuite(AccessQuestionTest.class);
+        suite.addTestSuite(AccessUsersTest.class);
+        suite.addTestSuite(AccessIngredientsTest.class);
+        suite.addTestSuite(AccessDirectionsTest.class);
     }
 
     @Test

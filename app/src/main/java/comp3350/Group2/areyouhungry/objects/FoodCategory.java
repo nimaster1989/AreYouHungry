@@ -35,7 +35,7 @@ public class FoodCategory{
         boolean equal = false;
         if(otherObject instanceof FoodCategory){
             FoodCategory otherFoodCategory = (FoodCategory)otherObject;
-            if(this.foodID == otherFoodCategory.getFoodID()){
+            if(this.getFoodID() == otherFoodCategory.getFoodID() && this.getCategoryID() == otherFoodCategory.getCategoryID()){
                 equal = true;
             }
         }

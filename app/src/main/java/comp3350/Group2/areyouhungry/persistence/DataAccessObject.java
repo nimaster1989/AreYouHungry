@@ -12,6 +12,7 @@ import java.util.Map;
 
 import comp3350.Group2.areyouhungry.objects.Direction;
 import comp3350.Group2.areyouhungry.objects.Food;
+import comp3350.Group2.areyouhungry.objects.FoodCategory;
 import comp3350.Group2.areyouhungry.objects.Ingredient;
 import comp3350.Group2.areyouhungry.objects.Question;
 import comp3350.Group2.areyouhungry.objects.User;
@@ -523,27 +524,6 @@ public class DataAccessObject implements DataAccess{
     }
 
 
-
-    public int getIDByFood(Food food){
-        System.out.println("-----------");
-        System.out.println("get id by food" );
-        System.out.println("-----------");
-        result = null;
-        int myID = -1;
-        try{
-            cmdString = "Select * from Foods where Foods.foodname = '"+food.getFoodName();
-            rs5 = st3.executeQuery(cmdString);
-            while (rs5.next()){
-                myID = rs5.getInt("FoodID");
-            }
-            rs5.close();
-        }
-        catch (Exception e){
-            result = processSQLError(e);
-        }
-        return myID;
-    }
-
     @Override
     public int getCategoryIDbyName(String categoryName){
         System.out.println("-----------");
@@ -566,19 +546,23 @@ public class DataAccessObject implements DataAccess{
         return myID;
     }
 
-    public String addFoodCategory(int foodID, int categoryID){
+    public FoodCategory addFoodCategory(int foodID, int categoryID){
         String values;
 
-        result = null;
+        FoodCategory addedFoodCategory = null;
+        String result = null;
         try{
-            cmdString ="INSERT INTO FOODSCATEGORY VALUES("+ foodID+","+ categoryID+")";
-            updateCount = st1.executeUpdate(cmdString);
-            result = checkWarning(st1, updateCount);
+            if(foodID >= 1 && categoryID >=1){
+                cmdString = "INSERT INTO FOODSCATEGORY VALUES(" + foodID + "," + categoryID + ")";
+                updateCount = st1.executeUpdate(cmdString);
+                result = checkWarning(st1, updateCount);
+                addedFoodCategory = new FoodCategory(foodID, categoryID);
+            }
         }
         catch (Exception e){
             result = processSQLError(e);
         }
-        return result;
+        return addedFoodCategory;
     }
 
     @Override

@@ -2,8 +2,8 @@ package comp3350.Group2.areyouhungry.business;
 
 import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.Services;
+import comp3350.Group2.areyouhungry.objects.FoodCategory;
 import comp3350.Group2.areyouhungry.objects.Food;
-import comp3350.Group2.areyouhungry.objects.Question;
 import comp3350.Group2.areyouhungry.objects.User;
 import comp3350.Group2.areyouhungry.persistence.DataAccess;
 
@@ -89,8 +89,8 @@ public class AccessFoods{
 //        return dataAccess.setFoodToFavourite(curr_id,favourite);
 //    }
 
-    public String addFoodCategory(Food newFood, String categoryName){
-        int foodID = getFoodID(newFood);
+    public FoodCategory addFoodCategory(Food newFood, String categoryName){
+        int foodID = Integer.parseInt(newFood.getFoodID());
         int categoryID = getCategoryID(categoryName);
         return dataAccess.addFoodCategory(foodID, categoryID);
     }
@@ -99,10 +99,6 @@ public class AccessFoods{
         return dataAccess.getCategoryIDbyName(categoryName);
     }
 
-    /* If not found, should return -1. */
-    public int getFoodID(Food food){
-        return dataAccess.getIDByFood(food);
-    }
 
     public String setFoodFavouriteByUser(User user,String curr_id, boolean b){
         return dataAccess.setFoodToFavouriteByUser(user,curr_id,b);

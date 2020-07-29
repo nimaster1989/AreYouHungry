@@ -10,20 +10,13 @@ public class FoodIngredient{
     private Food food;
     private List<Ingredient> ingredients;
 
-    public FoodIngredient(Food food){
-        if(food != null){
-            AccessIngredients ai = new AccessIngredients();
-            ai.getIngredient(food,ingredients);
-        }else{
-            throw new NullPointerException();
-        }
-
-    }
 
     public FoodIngredient(Food food, ArrayList ingredients){
         if(food != null && ingredients.size() > 0) {
-            this.food = food;
-            this.ingredients = ingredients;
+          this.food = food;
+          this.ingredients = new ArrayList<>();
+          this.ingredients.clear();
+          this.ingredients.addAll(ingredients);
         }else{
             throw new NullPointerException();
         }

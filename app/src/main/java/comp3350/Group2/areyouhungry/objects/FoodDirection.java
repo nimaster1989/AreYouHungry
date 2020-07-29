@@ -8,31 +8,24 @@ public class FoodDirection{
     private Food food;
     private ArrayList<Direction> directions;
 
-    public FoodDirection(Food food){
-        if(food != null) {
-            AccessDirections ad = new AccessDirections();
-            ad.getDirection(food, directions);
-        }
-        else{
-            throw new NullPointerException();
-        }
-    }
 
     public FoodDirection(Food food,ArrayList directions){
         if(food != null && directions.size() > 0){
-            this.food = food;
-            this.directions = directions;
+          this.food = food;
+          this.directions = new ArrayList<>();
+          this.directions.clear();
+          this.directions.addAll(directions);
         }else{
             throw new NullPointerException();
         }
     }
 
     public Food getFood(){
-        return food;
+        return this.food;
     }
 
     public ArrayList<Direction> getDirections(){
-        return directions;
+        return this.directions;
     }
 
     public boolean equals(Object otherObject){

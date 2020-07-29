@@ -17,7 +17,7 @@ public class AccessIngredients{
         ingredients = null;
     }
 
-    public String getIngredient(Food food, List ingredients){
+    public String getIngredient(Food food, List<Ingredient> ingredients){
         return dataAccess.getIngredientByFood(food,ingredients);
     }
 }
