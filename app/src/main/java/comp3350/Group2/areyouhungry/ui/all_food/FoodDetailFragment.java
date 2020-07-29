@@ -76,21 +76,20 @@ public class FoodDetailFragment extends Fragment{
                              Bundle savedInstanceState){
         TextView rootView = (TextView) inflater.inflate(R.layout.food_detail, container, false);
         if (mFood != null){
+            Food theFood = accessFoods.getFoodByID(mFood.getFoodID());
 
             // imageID works by grabbing a "name", "defType", and package. Make sure the 1st parameter or "name" is an image that exists in the res/drawable folder
             // example: spaghetti.jpg image in drawable folder, "name" will be spaghetti, placeholder.png "name" would be ramen. We can somehow link imageID to FOOD or whatever class later.
-            int imageID = getResources().getIdentifier("spaghetti", "drawable", getContext().getPackageName());
+            int imageID = getResources().getIdentifier("food" + theFood.getFoodID(), "drawable", getContext().getPackageName());
 
             if(imageID != 0) { // imageID returns 0 if no resource was found.
                 Drawable foodImage = ContextCompat.getDrawable(getContext(), imageID);
 
                 // Method below may need changing depending on dimensions of the users device. I made it so that the width is streched to the width of the device.
                 // An issue is that aspect ratio may/will not be the same after resizing
-                foodImage.setBounds(0, 0, Resources.getSystem().getDisplayMetrics().widthPixels, 500);
+                foodImage.setBounds(0, 0, Resources.getSystem().getDisplayMetrics().widthPixels, Resources.getSystem().getDisplayMetrics().heightPixels/2);
                 rootView.setCompoundDrawables(null, foodImage, null, null);
-
             }
-            Food theFood = accessFoods.getFoodByID(mFood.getFoodID());
 
             AccessIngredients ai = new AccessIngredients();
             AccessDirections ad = new AccessDirections();
