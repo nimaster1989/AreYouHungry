@@ -9,6 +9,7 @@ import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.Ingredient;
 import comp3350.Group2.areyouhungry.objects.Question;
 import comp3350.Group2.areyouhungry.objects.User;
+import comp3350.Group2.areyouhungry.objects.FC;
 
 public interface DataAccess{
     void open(String string);
@@ -29,7 +30,7 @@ public interface DataAccess{
 
     public int getFoodTableRow();
 
-    public String addFoodCategory(int foodID,int categoryID);
+    public FC addFoodCategory(int foodID,int categoryID);
 
     public int getIDByFood(Food food);
 

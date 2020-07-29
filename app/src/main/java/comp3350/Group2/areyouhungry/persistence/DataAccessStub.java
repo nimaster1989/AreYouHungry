@@ -201,7 +201,7 @@ public class DataAccessStub implements DataAccess{
     }
 
     @Override
-    public String addFoodCategory(int foodID, int categoryID){
+    public FC addFoodCategory(int foodID, int categoryID){
         return null;
     }
 
