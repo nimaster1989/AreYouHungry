@@ -10,7 +10,7 @@ import comp3350.Group2.areyouhungry.tests.business.AccessIngredientsTest;
 import comp3350.Group2.areyouhungry.tests.business.AccessQuestionTest;
 import comp3350.Group2.areyouhungry.tests.business.AccessUsersTest;
 import comp3350.Group2.areyouhungry.tests.objects.AnswersTest;
-import comp3350.Group2.areyouhungry.tests.objects.CategorysTest;
+import comp3350.Group2.areyouhungry.tests.objects.CategoriesTest;
 import comp3350.Group2.areyouhungry.tests.objects.DirectionTest;
 import comp3350.Group2.areyouhungry.tests.objects.FoodCategoryTest;
 import comp3350.Group2.areyouhungry.tests.objects.FoodDirectionTest;
@@ -21,12 +21,12 @@ import comp3350.Group2.areyouhungry.tests.objects.QuestionTest;
 import comp3350.Group2.areyouhungry.tests.objects.UserTest;
 import comp3350.Group2.areyouhungry.tests.persistence.DataAccessTest;
 
-//This class when run tests all the other testing suites
+/* This class when run tests all the other testing suites. */
 public class AllTests{
 
     public static TestSuite suite;
 
-    //This method runs ALL the test suites
+    /* This method runs ALL the test suites. */
     public static TestSuite suite(){
         suite = new TestSuite("All Tests");
         testBusiness();
@@ -35,7 +35,7 @@ public class AllTests{
         return suite;
     }
 
-    //This will add all the tests from the Database testing suite
+    /* This will add all the tests from the Database testing suite. */
 
     @Test
     private static void testBusiness(){
@@ -49,7 +49,7 @@ public class AllTests{
     @Test
     private static void testObject(){
         suite.addTestSuite(AnswersTest.class);
-        suite.addTestSuite(CategorysTest.class);
+        suite.addTestSuite(CategoriesTest.class);
         suite.addTestSuite(DirectionTest.class);
         suite.addTestSuite(FoodCategoryTest.class);
         suite.addTestSuite(FoodDirectionTest.class);

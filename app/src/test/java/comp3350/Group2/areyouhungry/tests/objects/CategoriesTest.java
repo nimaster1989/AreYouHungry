@@ -2,21 +2,21 @@ package comp3350.Group2.areyouhungry.tests.objects;
 
 import junit.framework.TestCase;
 
-import comp3350.Group2.areyouhungry.objects.Categorys;
+import comp3350.Group2.areyouhungry.objects.Categories;
 
-public class CategorysTest extends TestCase{
+public class CategoriesTest extends TestCase{
 
-    public CategorysTest(String arg0){
+    public CategoriesTest(String arg0){
         super(arg0);
     }
 
-    public void testCategoryCreation(){
-        Categorys categorys;
+    public void testCategoriesCreation(){
+        Categories categories;
         int catID = 10;
         String catName = "Test Categories";
         int testNum = 0;
         try{
-            categorys = new Categorys(catID, catName);
+            categories = new Categories(catID, catName);
             testNum = 1;
         }catch(Exception e){
             testNum = 0;
@@ -25,12 +25,12 @@ public class CategorysTest extends TestCase{
     }
 
     public void testNullNameCreation(){
-        Categorys categorys;
+        Categories categories;
         int catID = 10;
         String catName = null;
         int testNum = 0;
         try{
-            categorys = new Categorys(catID, catName);
+            categories = new Categories(catID, catName);
         }catch (Exception e){
             testNum = 1;
         }
@@ -38,12 +38,12 @@ public class CategorysTest extends TestCase{
     }
 
     public void testNegativeIDCreation(){
-        Categorys categorys;
+        Categories categories;
         int catID = -1;
         String catName = "Test Category";
         int testNum = 0;
         try{
-            categorys = new Categorys(catID, catName);
+            categories = new Categories(catID, catName);
         }catch (Exception e){
             testNum = 1;
         }
@@ -51,49 +51,49 @@ public class CategorysTest extends TestCase{
     }
 
     public void testBadParameters(){
-        Categorys categorys;
+        Categories categories;
         int catID = -1;
         String catName = null;
         int testNum = 0;
         try{
-            categorys = new Categorys(catID, catName);
+            categories = new Categories(catID, catName);
         }catch (Exception e){
             testNum = 1;
         }
         assertEquals(1,testNum);
     }
     public void testGetCategoryID(){
-        Categorys categorys;
+        Categories categories;
         int catID = 10;
         String catName = "Test Categories";
 
-        categorys = new Categorys(catID, catName);
-        assertEquals(catID,categorys.getCategoryID());
+        categories = new Categories(catID, catName);
+        assertEquals(catID,categories.getCategoryID());
     }
     public void testGetCategoryName(){
-        Categorys categorys;
+        Categories categories;
         int catID = 10;
         String catName = "Test Categories";
-        categorys = new Categorys(catID, catName);
-        assertTrue(catName.equals(categorys.getCategoryName()));
+        categories = new Categories(catID, catName);
+        assertTrue(catName.equals(categories.getCategoryName()));
     }
 
     public void testEquals(){
         int catID = 10;
         String catName = "Test Categories";
-        Categorys categorys1 = new Categorys(catID, catName);
-        Categorys categorys2 = new Categorys(catID, catName);
-        Categorys categorys3= new Categorys(11, catName);
-        assertTrue(categorys1.equals(categorys2));
-        assertFalse(categorys1.equals(categorys3));
+        Categories categories1 = new Categories(catID, catName);
+        Categories categories2 = new Categories(catID, catName);
+        Categories categories3= new Categories(11, catName);
+        assertTrue(categories1.equals(categories2));
+        assertFalse(categories1.equals(categories3));
     }
 
     public void testToString(){
         int catID = 10;
         String catName = "Test Categories";
-        Categorys categorys = new Categorys(catID, catName);
+        Categories categories = new Categories(catID, catName);
         String test = "categoryID: 10\n  categoryName: Test Categories\n";
-        assertTrue(categorys.toString().equals(test));
+        assertTrue(categories.toString().equals(test));
     }
 
 }

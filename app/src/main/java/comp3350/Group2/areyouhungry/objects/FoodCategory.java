@@ -1,6 +1,6 @@
 package comp3350.Group2.areyouhungry.objects;
 
-//FoodCategory stands for food-Categorys
+//FoodCategory stands for food-Categories
 public class FoodCategory{
     private int foodID;
     private int categoryID;
