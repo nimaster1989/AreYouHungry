@@ -81,7 +81,6 @@ public class FoodDetailFragment extends Fragment{
             // An issue is that aspect ratio may/will not be the same after resizing
             foodImage.setBounds(0, 0, Resources.getSystem().getDisplayMetrics().widthPixels, 500);
             rootView.setCompoundDrawables(null, foodImage, null, null);
-            System.out.println("This is the id of the food: "+ mFood.getFoodID());
             Food theFood = accessFoods.getFoodByID(mFood.getFoodID());
 
             AccessIngredients ai = new AccessIngredients();
@@ -105,8 +104,6 @@ public class FoodDetailFragment extends Fragment{
                 test = test + currDirection.getStepNumber() + ". "+currDirection.getDirectionDescription()+ "\n";
             }
 
-
-            //test = "Ingredients:\n"+ingredients.get(0).getIngredientName() + " "; //
             ((TextView) rootView.findViewById(R.id.food_detail)).setText(test);
         }else{
             System.out.println("FoodDetailFragment oncreate view mFood is null");
