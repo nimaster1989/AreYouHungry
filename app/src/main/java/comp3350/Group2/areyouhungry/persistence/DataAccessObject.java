@@ -573,7 +573,7 @@ public class DataAccessObject implements DataAccess{
         FC addedFoodCategory = null;
         String result = null;
         try{
-            if(foodID >= 1 && categoryID >=1) {
+            if(foodID >= 1 && categoryID >=1){
                 cmdString = "INSERT INTO FOODSCATEGORY VALUES(" + foodID + "," + categoryID + ")";
                 updateCount = st1.executeUpdate(cmdString);
                 result = checkWarning(st1, updateCount);
