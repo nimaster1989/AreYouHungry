@@ -112,12 +112,14 @@ public class DataAccessTest extends TestCase{
         assertNull(user1);
     }
 
-    public void testAddNewFoodCategory(){
+    public void testAddNewANDDeleteFoodCategory(){
         int id=1;
         int category=3;
+        //add
         FoodCategory test = new FoodCategory(id,category);
         FoodCategory result = dataAccess.addFoodCategory(id,category);
         assertEquals(test, result);
+        dataAccess.deleteFoodCategory(1,3);
     }
 
     public void testAddDuplicateFoodCategory(){

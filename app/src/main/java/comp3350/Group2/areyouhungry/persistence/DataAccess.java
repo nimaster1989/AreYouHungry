@@ -31,6 +31,8 @@ public interface DataAccess{
 
     public FoodCategory addFoodCategory(int foodID, int categoryID);
 
+    public void deleteFoodCategory(int foodID, int categoryID);
+
     public int getCategoryIDbyName(String categoryName);
 
     public List<Question> getAllQuestions();
