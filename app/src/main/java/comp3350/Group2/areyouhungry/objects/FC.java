@@ -16,4 +16,15 @@ public class FC{
     public int getCategoryID(){
         return categoryID;
     }
+
+    public boolean equals(Object otherObject){
+        boolean equal = false;
+        if(otherObject instanceof FC){
+            FC otherFoodCategory = (FC)otherObject;
+            if(this.getFoodID() == otherFoodCategory.getFoodID() && this.getCategoryID() == otherFoodCategory.getCategoryID()){
+                equal = true;
+            }
+        }
+        return equal;
+    }
 }

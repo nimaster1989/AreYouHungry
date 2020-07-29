@@ -2,6 +2,7 @@ package comp3350.Group2.areyouhungry.business;
 
 import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.Services;
+import comp3350.Group2.areyouhungry.objects.FC;
 import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.Question;
 import comp3350.Group2.areyouhungry.objects.User;
@@ -89,7 +90,7 @@ public class AccessFoods{
 //        return dataAccess.setFoodToFavourite(curr_id,favourite);
 //    }
 
-    public String addFoodCategory(Food newFood, String categoryName){
+    public FC addFoodCategory(Food newFood, String categoryName){
         int foodID = getFoodID(newFood);
         int categoryID = getCategoryID(categoryName);
         return dataAccess.addFoodCategory(foodID, categoryID);

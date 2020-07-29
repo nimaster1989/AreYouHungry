@@ -15,6 +15,7 @@ import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.Ingredient;
 import comp3350.Group2.areyouhungry.objects.Question;
 import comp3350.Group2.areyouhungry.objects.User;
+import comp3350.Group2.areyouhungry.objects.FC;
 
 public class DataAccessObject implements DataAccess{
     private Statement st1,st2,st3;
@@ -566,19 +567,23 @@ public class DataAccessObject implements DataAccess{
         return myID;
     }
 
-    public String addFoodCategory(int foodID, int categoryID){
+    public FC addFoodCategory(int foodID, int categoryID){
         String values;
 
-        result = null;
+        FC addedFoodCategory = null;
+        String result = null;
         try{
-            cmdString ="INSERT INTO FOODSCATEGORY VALUES("+ foodID+","+ categoryID+")";
-            updateCount = st1.executeUpdate(cmdString);
-            result = checkWarning(st1, updateCount);
+            if(foodID >= 1 && categoryID >=1) {
+                cmdString = "INSERT INTO FOODSCATEGORY VALUES(" + foodID + "," + categoryID + ")";
+                updateCount = st1.executeUpdate(cmdString);
+                result = checkWarning(st1, updateCount);
+                addedFoodCategory = new FC(foodID, categoryID);
+            }
         }
         catch (Exception e){
             result = processSQLError(e);
         }
-        return result;
+        return addedFoodCategory;
     }
 
     @Override
