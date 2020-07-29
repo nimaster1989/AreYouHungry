@@ -440,4 +440,9 @@ public class DataAccessStub implements DataAccess{
         return null;
     }
 
+    @Override
+    public int getTotalUser() {
+        return users.size();
+    }
+
 }

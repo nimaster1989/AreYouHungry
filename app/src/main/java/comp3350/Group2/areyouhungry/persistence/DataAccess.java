@@ -55,4 +55,5 @@ public interface DataAccess{
 
     String getDirectionByFood(Food food, List<Direction> directions);
 
+    int getTotalUser();
 }

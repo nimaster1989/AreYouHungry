@@ -84,7 +84,7 @@ public class DataAccessTest extends TestCase{
     }
 
     public void testSetNewUser(){
-        int id = 99;
+        int id = dataAccess.getTotalUser() + 1;
         String username = "Test User";
         User user1 = new User(id,username);
         User userSet = dataAccess.setNewUser(id,username);

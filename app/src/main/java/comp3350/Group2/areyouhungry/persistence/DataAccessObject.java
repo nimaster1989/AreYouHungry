@@ -569,7 +569,21 @@ public class DataAccessObject implements DataAccess{
         }
 
     }
-
+    public int getTotalUser() {
+        result = null;
+        int count = 0;
+        try{
+            cmdString = "Select * from USERS";
+            rs5 = st3.executeQuery(cmdString);
+            while(rs5.next()){
+                count++;
+            }
+            rs5.close();
+        }catch (Exception e){
+            result = processSQLError(e);
+        }
+        return count;
+    }
     @Override
     public User setNewUser(int id,String username){
         User setUser = null;
