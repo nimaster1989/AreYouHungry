@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.User;
+import comp3350.Group2.areyouhungry.objects.FC;
 import comp3350.Group2.areyouhungry.persistence.DataAccess;
 import comp3350.Group2.areyouhungry.persistence.DataAccessObject;
 import comp3350.Group2.areyouhungry.persistence.DataAccessStub;
@@ -93,7 +94,7 @@ public class DataAccessTest extends TestCase{
     public void testDuplicateSetNewUser(){
         int id = 4;
         String username = "Test User";
-        User user1 = dataAccess.setNewUser(id,username);
+        dataAccess.setNewUser(id,username);
         User user2 =  dataAccess.setNewUser(id,username);
         assertNull(user2);
     }
@@ -111,8 +112,35 @@ public class DataAccessTest extends TestCase{
         assertNull(user1);
     }
 
+    public void testAddNewFoodCategory(){
+        int id=1;
+        int category=3;
+        FC test = new FC(id,category);
+        FC result = dataAccess.addFoodCategory(id,category);
+        System.out.println(result);
+        System.out.println(test);
+        assertTrue(test.equals(result));
+    }
 
+    public void testAddDuplicateFoodCategory(){
+        int id = 1;
+        int category=2;
+        FC result = dataAccess.addFoodCategory(id, category);
+        assertNull(result);
+    }
 
+    public void testNegativeIDAddFoodCategory(){
+        int id = -1;
+        int category=4;
+        FC result = dataAccess.addFoodCategory(id,category);
+        assertNull(result);
+    }
 
+    public void testNegativeCategoryAddFoodCategory(){
+        int id = 1;
+        int category=-4;
+        FC result = dataAccess.addFoodCategory(id,category);
+        assertNull(result);
+    }
 
 }
