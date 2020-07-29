@@ -1,0 +1,120 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="1.Food">
+
+        <EditTextPreference
+            app:key="food name"
+            app:title="food's name"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:defaultValue="1"
+            app:entries="@array/portion_size_entries"
+            app:entryValues="@array/portion_size_values"
+            app:key="portion"
+            app:title="portion size"
+            app:summary="serve with N people" />
+        <ListPreference
+            app:defaultValue="10"
+            app:entries="@array/prep_time_entries"
+            app:entryValues="@array/prep_time_values"
+            app:key="preptime"
+            app:title="prepare time"
+            app:summary="time use to cool " />
+        <ListPreference
+            app:defaultValue="Spicy"
+            app:entries="@array/flavour_entires"
+            app:entryValues="@array/flavour_values"
+            app:key="flavour"
+            app:title="flavour"
+            app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            app:defaultValue="Easy"
+            app:entries="@array/difficulty_entires"
+            app:entryValues="@array/difficulty_values"
+            app:key="difficulty"
+            app:title="difficulty"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="2.Favourite">
+
+        <SwitchPreferenceCompat
+            app:key="favourite"
+            app:title="set as favourite" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="3.Category">
+
+        <MultiSelectListPreference
+            app:entries="@array/category_entires"
+            app:entryValues="@array/category_values"
+            app:key="category"
+            app:title="Category"
+            app:useSimpleSummaryProvider="true"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="4.Ingredients">
+
+        <EditTextPreference
+            app:key="ingredient"
+            app:title="ingredient"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            app:key="ingredient2"
+            app:title="ingredient2"
+            app:summary="add a new ingredient"
+            app:isPreferenceVisible="false"/>
+        <EditTextPreference
+            app:key="ingredient3"
+            app:title="ingredient3"
+            app:summary="add a new ingredient"
+            app:isPreferenceVisible="false"/>
+        <EditTextPreference
+            app:key="ingredient4"
+            app:title="ingredient4"
+            app:summary="add a new ingredient"
+            app:isPreferenceVisible="false"/>
+        <EditTextPreference
+            app:key="ingredient5"
+            app:title="ingredient5"
+            app:summary="add a new ingredient"
+            app:isPreferenceVisible="false"/>
+
+    </PreferenceCategory>
+    <PreferenceCategory app:title="5.Instructions">
+
+        <EditTextPreference
+            app:key="instruction"
+            app:title="instruction"
+            app:useSimpleSummaryProvider="true"
+            app:isPreferenceVisible="true"/>
+        <EditTextPreference
+            app:key="instruction2"
+            app:title="instruction2"
+            app:summary="add a new instrction"
+            app:isPreferenceVisible="false"/>
+        <EditTextPreference
+            app:key="instruction3"
+            app:title="instruction3"
+            app:summary="add a new instrction"
+            app:isPreferenceVisible="false"/>
+        <EditTextPreference
+            app:key="instruction4"
+            app:title="instruction4"
+            app:summary="add a new instrction"
+            app:isPreferenceVisible="false"/>
+        <EditTextPreference
+            app:key="instruction5"
+            app:title="instruction5"
+            app:summary="add a new instrction"
+            app:isPreferenceVisible="false"/>
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

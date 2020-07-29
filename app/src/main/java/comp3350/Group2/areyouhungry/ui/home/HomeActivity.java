@@ -12,7 +12,7 @@ import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import comp3350.Group2.areyouhungry.R;
-import comp3350.Group2.areyouhungry.ui.add_food.AddActivity;
+import comp3350.Group2.areyouhungry.ui.add_food.AddFoodActivity;
 import comp3350.Group2.areyouhungry.ui.favorites.FavouriteFoodListActivity;
 import comp3350.Group2.areyouhungry.ui.more.MoreActivity;
 import comp3350.Group2.areyouhungry.ui.preferred.PreferredActivity;
@@ -67,7 +67,8 @@ public class HomeActivity extends AppCompatActivity{
     }
 
     public void addFoodOnClick(){
-        Intent intent = new Intent(this, AddActivity.class);
+//        Intent intent = new Intent(this, AddActivity.class);
+        Intent intent = new Intent(this, AddFoodActivity.class);
         this.startActivity(intent);
     }
 }

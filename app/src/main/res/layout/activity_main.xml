@@ -46,6 +46,7 @@
         android:text="Add Food"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/nav_view"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="foodAddOnClick"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
