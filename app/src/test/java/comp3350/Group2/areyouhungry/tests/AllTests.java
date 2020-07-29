@@ -3,12 +3,10 @@ package comp3350.Group2.areyouhungry.tests;
 import org.junit.Test;
 import junit.framework.TestSuite;
 
-import comp3350.Group2.areyouhungry.objects.Categorys;
-import comp3350.Group2.areyouhungry.objects.Direction;
-import comp3350.Group2.areyouhungry.objects.FoodCategory;
-import comp3350.Group2.areyouhungry.objects.FoodIngredient;
-import comp3350.Group2.areyouhungry.objects.Ingredient;
-import comp3350.Group2.areyouhungry.tests.business.AccessFoodTest;
+
+import comp3350.Group2.areyouhungry.tests.business.AccessDirectionsTest;
+import comp3350.Group2.areyouhungry.tests.business.AccessFoodsTest;
+import comp3350.Group2.areyouhungry.tests.business.AccessIngredientsTest;
 import comp3350.Group2.areyouhungry.tests.business.AccessQuestionTest;
 import comp3350.Group2.areyouhungry.tests.business.AccessUsersTest;
 import comp3350.Group2.areyouhungry.tests.objects.AnswersTest;
