@@ -4,10 +4,10 @@ import junit.framework.TestCase;
 
 import comp3350.Group2.areyouhungry.objects.Ingredient;
 
-public class IngredientTest extends TestCase {
+public class IngredientTest extends TestCase{
 
     public IngredientTest(String arg0)
-    {
+   {
         super(arg0);
     }
 

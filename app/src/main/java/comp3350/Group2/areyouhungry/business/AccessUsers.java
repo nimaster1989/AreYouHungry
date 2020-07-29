@@ -29,7 +29,7 @@ public class AccessUsers{
     }
 
     public User newUsers(String m_text){
-        if(!m_text.equals("")) {
+        if(!m_text.equals("")){
             List users = new ArrayList<User>();
             users.clear();
             dataAccess.getUserSequential(users);

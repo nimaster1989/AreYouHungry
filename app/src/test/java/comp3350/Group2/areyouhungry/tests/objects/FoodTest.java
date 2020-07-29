@@ -10,7 +10,7 @@ import comp3350.Group2.areyouhungry.objects.Food;
 public class FoodTest extends TestCase{
 
     public FoodTest(String arg0)
-    {
+   {
         super(arg0);
     }
 

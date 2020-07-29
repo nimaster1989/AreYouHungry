@@ -4,7 +4,7 @@ public class Categorys{
     private int categoryID;
     private String categoryName;
     public Categorys(int categoryID,String categoryName){
-        if(categoryID >= 0 && !categoryName.isEmpty()) {
+        if(categoryID >= 0 && !categoryName.isEmpty()){
             this.categoryID = categoryID;
             this.categoryName = categoryName;
         }

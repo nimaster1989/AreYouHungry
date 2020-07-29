@@ -12,7 +12,7 @@ public class FoodIngredient{
 
 
     public FoodIngredient(Food food, ArrayList ingredients){
-        if(food != null && ingredients.size() > 0) {
+        if(food != null && ingredients.size() > 0){
           this.food = food;
           this.ingredients = new ArrayList<>();
           this.ingredients.clear();

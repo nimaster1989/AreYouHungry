@@ -10,11 +10,11 @@ import comp3350.Group2.areyouhungry.objects.FoodDirection;
 
 
 
-public class FoodDirectionTest extends TestCase {
+public class FoodDirectionTest extends TestCase{
 
 
     public FoodDirectionTest(String arg0)
-    {
+   {
         super(arg0);
     }
 

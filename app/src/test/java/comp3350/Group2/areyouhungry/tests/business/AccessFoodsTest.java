@@ -148,7 +148,7 @@ public class AccessFoodsTest extends TestCase{
         ArrayList<Food> foodList = new ArrayList<>();
         Food food;
         int testnum = 0;
-        try {
+        try{
             food = new Food(7, "", 7, 100, "test", "test", "test");
              testnum = 1;
         }catch(Exception e){
