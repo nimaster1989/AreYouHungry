@@ -50,7 +50,7 @@ public class AnswersTest extends TestCase {
 
     public void testSetters(){
         Answers answer;
-        List<Integer> answers = new ArrayList<>();;
+        List<Integer> answers = new ArrayList<>();
         answers.add(0);
         answers.add(0);
         answers.add(0);

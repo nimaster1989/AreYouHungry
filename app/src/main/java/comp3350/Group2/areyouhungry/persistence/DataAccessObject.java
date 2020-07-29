@@ -511,10 +511,7 @@ public class DataAccessObject implements DataAccess{
         try{
             cmdString = "SELECT * FROM USERSFAVOURITE WHERE USERID = '"+user.getUserID()+"' and FOODID = '"+food.getFoodID()+"'";
             rs5 = st3.executeQuery(cmdString);
-            if (rs5.next()){
-                ret = true;
-            }else
-                ret = false;
+            ret = rs5.next();
         }
         catch (Exception e){
             result = processSQLError(e);

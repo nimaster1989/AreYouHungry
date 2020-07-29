@@ -15,29 +15,29 @@ public interface DataAccess{
 
     void close();
 
-    public Map getFoodMap(Map ret_food_map);
+    Map getFoodMap(Map ret_food_map);
 
-    public String getFoodSequential(List<Food> foodResult);
+    String getFoodSequential(List<Food> foodResult);
 
-    public String getFoodRandom(List<Food> foodResult);
+    String getFoodRandom(List<Food> foodResult);
 
-    public String getFoodPreferred(List<Food> foodResult, String food);
+    String getFoodPreferred(List<Food> foodResult, String food);
 
-    public Food getFoodFromID(String foodID);
+    Food getFoodFromID(String foodID);
 
-    public String addFood(Food addFood);
+    String addFood(Food addFood);
 
-    public int getFoodTableRow();
+    int getFoodTableRow();
 
-    public String addFoodCategory(int foodID,int categoryID);
+    String addFoodCategory(int foodID, int categoryID);
 
-    public int getIDByFood(Food food);
+    int getIDByFood(Food food);
 
-    public int getCategoryIDbyName(String categoryName);
+    int getCategoryIDbyName(String categoryName);
 
-    public List<Question> getAllQuestions();
+    List<Question> getAllQuestions();
 
-    public int getTotalQuestions();
+    int getTotalQuestions();
 
     User getDefault();
 

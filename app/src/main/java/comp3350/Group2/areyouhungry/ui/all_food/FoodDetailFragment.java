@@ -101,7 +101,7 @@ public class FoodDetailFragment extends Fragment{
 
             for(int i = 0; i<directions.size(); i++){
                 Direction currDirection = directions.get(i);
-                test = test + currDirection.getStepNumber() + ". "+currDirection.getDirectionDescription()+ "\n";
+                test = test + currDirection.getStepNumber() + ". "+currDirection.getDirectionDescription()+ "\n\n";
             }
 
             ((TextView) rootView.findViewById(R.id.food_detail)).setText(test);
