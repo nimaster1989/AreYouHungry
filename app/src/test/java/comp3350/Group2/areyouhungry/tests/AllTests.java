@@ -3,8 +3,12 @@ package comp3350.Group2.areyouhungry.tests;
 import org.junit.Test;
 import junit.framework.TestSuite;
 
-import comp3350.Group2.areyouhungry.tests.business.AccessFoodTest;
+import comp3350.Group2.areyouhungry.business.AccessIngredients;
+import comp3350.Group2.areyouhungry.tests.business.AccessDirectionsTest;
+import comp3350.Group2.areyouhungry.tests.business.AccessFoodsTest;
+import comp3350.Group2.areyouhungry.tests.business.AccessIngredientsTest;
 import comp3350.Group2.areyouhungry.tests.business.AccessQuestionTest;
+import comp3350.Group2.areyouhungry.tests.business.AccessUsersTest;
 import comp3350.Group2.areyouhungry.tests.objects.AnswersTest;
 import comp3350.Group2.areyouhungry.tests.objects.FoodTest;
 import comp3350.Group2.areyouhungry.tests.objects.QuestionTest;
@@ -28,8 +32,11 @@ public class AllTests{
 
     @Test
     private static void testBusiness(){
-        suite.addTestSuite(AccessFoodTest.class);
+        suite.addTestSuite(AccessFoodsTest.class);
         suite.addTestSuite(AccessQuestionTest.class);
+        suite.addTestSuite(AccessUsersTest.class);
+        suite.addTestSuite(AccessIngredientsTest.class);
+        suite.addTestSuite(AccessDirectionsTest.class);
     }
 
     @Test

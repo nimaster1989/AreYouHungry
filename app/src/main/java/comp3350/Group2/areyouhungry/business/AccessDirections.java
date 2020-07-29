@@ -10,8 +10,6 @@ import comp3350.Group2.areyouhungry.objects.Ingredient;
 import comp3350.Group2.areyouhungry.persistence.DataAccess;
 
 public class AccessDirections{
-
-
     private DataAccess dataAccess;
     private List<Direction> directions;
 

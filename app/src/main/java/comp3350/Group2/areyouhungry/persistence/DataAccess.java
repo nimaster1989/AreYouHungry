@@ -1,6 +1,5 @@
 package comp3350.Group2.areyouhungry.persistence;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +8,7 @@ import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.Ingredient;
 import comp3350.Group2.areyouhungry.objects.Question;
 import comp3350.Group2.areyouhungry.objects.User;
-import comp3350.Group2.areyouhungry.objects.FC;
+import comp3350.Group2.areyouhungry.objects.FoodCategory;
 
 public interface DataAccess{
     void open(String string);
@@ -30,9 +29,7 @@ public interface DataAccess{
 
     public int getFoodTableRow();
 
-    public FC addFoodCategory(int foodID,int categoryID);
-
-    public int getIDByFood(Food food);
+    public FoodCategory addFoodCategory(int foodID, int categoryID);
 
     public int getCategoryIDbyName(String categoryName);
 

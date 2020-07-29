@@ -9,22 +9,20 @@ public class FoodDirection{
     private Food food;
     private ArrayList<Direction> directions;
 
-    public FoodDirection(Food food){
-        AccessDirections ad = new AccessDirections();
-        ad.getDirection(food,directions);
-    }
-    // OR
 
     public FoodDirection(Food food,ArrayList directions){
-        food = food;
-        directions = directions;
+        this.food = food;
+        this.directions = new ArrayList<>();
+        this.directions.clear();
+        this.directions.addAll(directions);
     }
 
     public Food getFood(){
-        return food;
+        return this.food;
     }
 
     public ArrayList<Direction> getDirections(){
-        return directions;
+        return this.directions;
     }
+
 }
