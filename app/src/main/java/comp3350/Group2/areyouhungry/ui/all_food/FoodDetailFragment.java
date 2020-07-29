@@ -17,12 +17,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import comp3350.Group2.areyouhungry.R;
+import comp3350.Group2.areyouhungry.business.AccessDirections;
 import comp3350.Group2.areyouhungry.business.AccessFoods;
+import comp3350.Group2.areyouhungry.business.AccessIngredients;
+import comp3350.Group2.areyouhungry.objects.Direction;
 import comp3350.Group2.areyouhungry.objects.Food;
+import comp3350.Group2.areyouhungry.objects.FoodDirection;
+import comp3350.Group2.areyouhungry.objects.FoodIngredient;
+import comp3350.Group2.areyouhungry.objects.Ingredient;
 
 /* A fragment representing a single Food detail screen.
    This fragment is either contained in a FoodListActivity
@@ -66,14 +74,40 @@ public class FoodDetailFragment extends Fragment{
 
             // imageID works by grabbing a "name", "defType", and package. Make sure the 1st parameter or "name" is an image that exists in the res/drawable folder
             // example: spaghetti.jpg image in drawable folder, "name" will be spaghetti, placeholder.png "name" would be ramen. We can somehow link imageID to FOOD or whatever class later.
-            int imageID = getResources().getIdentifier("placeholder", "drawable", getContext().getPackageName());
+            int imageID = getResources().getIdentifier("spaghetti", "drawable", getContext().getPackageName());
             Drawable foodImage = ContextCompat.getDrawable(getContext(), imageID);
 
             // Method below may need changing depending on dimensions of the users device. I made it so that the width is streched to the width of the device.
             // An issue is that aspect ratio may/will not be the same after resizing
             foodImage.setBounds(0, 0, Resources.getSystem().getDisplayMetrics().widthPixels, 500);
             rootView.setCompoundDrawables(null, foodImage, null, null);
-            ((TextView) rootView.findViewById(R.id.food_detail)).setText("Some text here. We can replace this later with ingredients, directions, etc.");
+            System.out.println("This is the id of the food: "+ mFood.getFoodID());
+            Food theFood = accessFoods.getFoodByID(mFood.getFoodID());
+
+            AccessIngredients ai = new AccessIngredients();
+            AccessDirections ad = new AccessDirections();
+
+            List<Direction> directions = new ArrayList<>();
+            List<Ingredient> ingredients = new ArrayList<>();
+
+            ad.getDirection(theFood, directions);
+            ai.getIngredient(theFood, ingredients);
+            String test = "Ingredients: \n";
+            for(int i = 0; i<ingredients.size(); i++){
+                Ingredient currIngredient = ingredients.get(i);
+                test = test + currIngredient.getMeasurement() + " " + currIngredient.getIngredientName() + "\n";
+            }
+
+            test = test + "\n\nDirections: \n";
+
+            for(int i = 0; i<directions.size(); i++){
+                Direction currDirection = directions.get(i);
+                test = test + currDirection.getStepNumber() + ". "+currDirection.getDirectionDescription()+ "\n";
+            }
+
+
+            //test = "Ingredients:\n"+ingredients.get(0).getIngredientName() + " "; //
+            ((TextView) rootView.findViewById(R.id.food_detail)).setText(test);
         }else{
             System.out.println("FoodDetailFragment oncreate view mFood is null");
         }

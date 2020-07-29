@@ -151,19 +151,12 @@ public class DataAccessObject implements DataAccess{
             rs3 = st2.executeQuery(cmdString);
             while (rs3.next()){
                 myFoodID = rs3.getInt("FOODID");
-                System.out.println("get ID: "+myFoodID);
                 myFoodName = rs3.getString("FOODNAME");
-                System.out.println("get food name: "+myFoodName);
                 myPortionSize = rs3.getInt("PORTIONSIZE");
-                System.out.println("get PORTIONSIZE: "+myPortionSize);
                 myPrepTime = rs3.getInt("PREPTIME");
-                System.out.println("get PREPTIME: "+myPrepTime);
                 myFlavour = rs3.getString("FLAVOUR");
-                System.out.println("get FLAVOUR: "+myFlavour);
                 myDifficulty = rs3.getString("DIFFICULTY");
-                System.out.println("get DIFFICULTY: "+myDifficulty);
                 myEthnicity = rs3.getString("ETHNICITY");
-                System.out.println("get ETHNICITY: "+myEthnicity);
                 food = new Food(myFoodID,myFoodName,myPortionSize,myPrepTime,myFlavour,myDifficulty,myEthnicity);
                 foodResult.add(food);
             }

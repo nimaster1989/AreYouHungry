@@ -78,6 +78,7 @@ public class PreferredSearchActivity extends AppCompatActivity {
 
         private void setFood(Answers answers){
             Food food = answers.getFoodBasedOnAnswers();
+            foodId = food.getFoodID();
             textViewName.setText(food.getFoodName());
             textViewDifficulty.setText("Difficulty: " +food.getDifficulty());
             textViewPrepTime.setText("Preptime: "+food.getPrepTime()+" minutes");
