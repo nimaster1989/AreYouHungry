@@ -5,8 +5,7 @@ import junit.framework.TestCase;
 import comp3350.Group2.areyouhungry.objects.FoodCategory;
 
 public class FoodCategoryTest extends TestCase{
-    public FoodCategoryTest(String arg0)
-   {
+    public FoodCategoryTest(String arg0){
         super(arg0);
     }
 

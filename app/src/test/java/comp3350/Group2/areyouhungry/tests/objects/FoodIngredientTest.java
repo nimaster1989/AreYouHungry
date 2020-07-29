@@ -12,10 +12,9 @@ import comp3350.Group2.areyouhungry.objects.FoodIngredient;
 import comp3350.Group2.areyouhungry.objects.Ingredient;
 
 
-public class FoodIngredientTest extends TestCase {
+public class FoodIngredientTest extends TestCase{
 
-    public FoodIngredientTest(String arg0)
-    {
+    public FoodIngredientTest(String arg0){
         super(arg0);
     }
 

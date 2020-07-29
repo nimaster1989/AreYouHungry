@@ -6,8 +6,7 @@ import comp3350.Group2.areyouhungry.objects.Direction;
 
 public class DirectionTest extends TestCase{
 
-    public DirectionTest(String arg0)
-   {
+    public DirectionTest(String arg0){
         super(arg0);
     }
 

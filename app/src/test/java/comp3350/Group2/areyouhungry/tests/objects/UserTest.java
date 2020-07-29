@@ -5,8 +5,7 @@ import junit.framework.TestCase;
 import comp3350.Group2.areyouhungry.objects.User;
 
 public class UserTest extends TestCase{
-    public UserTest(String arg0)
-   {
+    public UserTest(String arg0){
         super(arg0);
     }
 

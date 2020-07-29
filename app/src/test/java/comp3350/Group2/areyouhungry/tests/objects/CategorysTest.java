@@ -6,8 +6,7 @@ import comp3350.Group2.areyouhungry.objects.Categorys;
 
 public class CategorysTest extends TestCase{
 
-    public CategorysTest(String arg0)
-   {
+    public CategorysTest(String arg0){
         super(arg0);
     }
 
