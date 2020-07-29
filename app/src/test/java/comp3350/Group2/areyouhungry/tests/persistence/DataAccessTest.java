@@ -124,7 +124,7 @@ public class DataAccessTest extends TestCase{
 
     public void testAddDuplicateFoodCategory(){
         int id = 1;
-        int category=2;
+        int category = 1;
         FoodCategory result = dataAccess.addFoodCategory(id, category);
         assertNull(result);
     }
