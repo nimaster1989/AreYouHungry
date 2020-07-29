@@ -10,15 +10,12 @@ public class FoodIngredient{
     private Food food;
     private List<Ingredient> ingredients;
 
-    public FoodIngredient(Food food){
-        AccessIngredients ai = new AccessIngredients();
-        ai.getIngredient(food,ingredients);
-    }
-    // OR
 
     public FoodIngredient(Food food, ArrayList ingredients){
-        food = food;
-        ingredients = ingredients;
+        this.food = food;
+        this.ingredients = new ArrayList<>();
+        this.ingredients.clear();
+        this.ingredients.addAll(ingredients);
     }
 
     public Food getFood(){

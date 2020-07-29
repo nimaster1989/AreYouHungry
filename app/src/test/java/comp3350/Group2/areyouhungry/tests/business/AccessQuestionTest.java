@@ -9,8 +9,7 @@ import comp3350.Group2.areyouhungry.Services;
 import comp3350.Group2.areyouhungry.business.AccessQuestions;
 import comp3350.Group2.areyouhungry.objects.Question;
 import comp3350.Group2.areyouhungry.persistence.DataAccess;
-import comp3350.Group2.areyouhungry.persistence.DataAccessObject;
-import comp3350.Group2.areyouhungry.persistence.DataAccessStub;
+import comp3350.Group2.areyouhungry.tests.persistence.DataAccessStub;
 
 public class AccessQuestionTest extends TestCase{
     private DataAccess dataAccess;
@@ -19,17 +18,7 @@ public class AccessQuestionTest extends TestCase{
     public AccessQuestionTest(String arg0){
         super(arg0);
     }
-    public void setUp(){
-        if(stubdb){
-            System.out.println("\nStarting Persistence test DataAccess (using stub)");
-            dataAccess = new DataAccessStub();
-            dataAccess.open("Stub");
-        }else{
-            System.out.println("\nStarting Persistence test DataAccess (using HSQL)");
-            dataAccess = new DataAccessObject(MainActivity.dbName);
-            dataAccess.open(MainActivity.getDBPathName());
-        }
-    }
+
     public void testGetQuestions(){
         Services.closeDataAccess();
         Services.createDataAccess(new DataAccessStub(dbName));

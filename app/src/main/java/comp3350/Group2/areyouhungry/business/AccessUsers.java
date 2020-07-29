@@ -29,10 +29,13 @@ public class AccessUsers{
     }
 
     public User newUsers(String m_text){
-        List users = new ArrayList<User>();
-        users.clear();
-        dataAccess.getUserSequential(users);
-        int newId = users.size()+1;
-        return dataAccess.setNewUser(newId,m_text);
+        if(!m_text.equals("")) {
+            List users = new ArrayList<User>();
+            users.clear();
+            dataAccess.getUserSequential(users);
+            int newId = users.size() + 1;
+            return dataAccess.setNewUser(newId, m_text);
+        }
+        return null;
     }
 }

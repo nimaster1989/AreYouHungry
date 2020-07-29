@@ -7,17 +7,15 @@ import java.util.ArrayList;
 import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.User;
-import comp3350.Group2.areyouhungry.objects.FC;
+import comp3350.Group2.areyouhungry.objects.FoodCategory;
 import comp3350.Group2.areyouhungry.persistence.DataAccess;
 import comp3350.Group2.areyouhungry.persistence.DataAccessObject;
-import comp3350.Group2.areyouhungry.persistence.DataAccessStub;
 
 
 public class DataAccessTest extends TestCase{
     private DataAccess dataAccess;
 
-    public DataAccessTest(String arg0)
-   {
+    public DataAccessTest(String arg0){
         super(arg0);
     }
 
@@ -25,11 +23,11 @@ public class DataAccessTest extends TestCase{
         System.out.println("\nStarting Persistence test DataAccess (using stub)");
 
         // Use the following statements to run with the stub database:
-        //dataAccess = new DataAccessStub();
-        //dataAccess.open("Stub");
+//        dataAccess = new DataAccessStub();
+//        dataAccess.open("Stub");
         // or switch to the real database:
         dataAccess = new DataAccessObject(MainActivity.dbName);
-         dataAccess.open(MainActivity.getDBPathName());
+        dataAccess.open(MainActivity.getDBPathName());
         // Note the increase in test execution time.
     }
     public void tearDown(){
@@ -83,12 +81,12 @@ public class DataAccessTest extends TestCase{
     }
 
     public void testSetNewUser(){
-        int id = 3;
+        int id = 77;
         String username = "Test User";
         User user1 = new User(id,username);
         User userSet = dataAccess.setNewUser(id,username);
         System.out.println(userSet.toString());
-        assertTrue(user1.equals(userSet));
+        assertEquals(user1, userSet);
     }
 
     public void testDuplicateSetNewUser(){
@@ -115,31 +113,31 @@ public class DataAccessTest extends TestCase{
     public void testAddNewFoodCategory(){
         int id=1;
         int category=3;
-        FC test = new FC(id,category);
-        FC result = dataAccess.addFoodCategory(id,category);
+        FoodCategory test = new FoodCategory(id,category);
+        FoodCategory result = dataAccess.addFoodCategory(id,category);
         System.out.println(result);
         System.out.println(test);
-        assertTrue(test.equals(result));
+        assertEquals(test, result);
     }
 
     public void testAddDuplicateFoodCategory(){
         int id = 1;
         int category=2;
-        FC result = dataAccess.addFoodCategory(id, category);
+        FoodCategory result = dataAccess.addFoodCategory(id, category);
         assertNull(result);
     }
 
     public void testNegativeIDAddFoodCategory(){
         int id = -1;
         int category=4;
-        FC result = dataAccess.addFoodCategory(id,category);
+        FoodCategory result = dataAccess.addFoodCategory(id,category);
         assertNull(result);
     }
 
     public void testNegativeCategoryAddFoodCategory(){
         int id = 1;
         int category=-4;
-        FC result = dataAccess.addFoodCategory(id,category);
+        FoodCategory result = dataAccess.addFoodCategory(id,category);
         assertNull(result);
     }
 
