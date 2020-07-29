@@ -10,7 +10,7 @@ import java.util.Random;
 import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.objects.Categorys;
 import comp3350.Group2.areyouhungry.objects.Direction;
-import comp3350.Group2.areyouhungry.objects.FC;
+import comp3350.Group2.areyouhungry.objects.FoodCategory;
 import comp3350.Group2.areyouhungry.objects.Food;
 
 import comp3350.Group2.areyouhungry.objects.Ingredient;
@@ -26,7 +26,7 @@ public class DataAccessStub implements DataAccess{
     private String dbType = "stub";
 
     private ArrayList<Food> foods;
-    private ArrayList<FC> fcs;
+    private ArrayList<FoodCategory> fcs;
     private ArrayList<Categorys> categorysList;
     private ArrayList<User> users;
     private ArrayList<Question> questions;
@@ -44,7 +44,7 @@ public class DataAccessStub implements DataAccess{
     public void open(String dbPath){
         Food food;
         Categorys categorys;
-        FC fc;
+        FoodCategory fc;
         User user;
         Question question;
 
@@ -77,18 +77,18 @@ public class DataAccessStub implements DataAccess{
         categorys = new Categorys(3,"Vegetable");
         categorysList.add(categorys);
 
-        fcs = new ArrayList<FC>();
-        fc = new FC(1,1);
+        fcs = new ArrayList<FoodCategory>();
+        fc = new FoodCategory(1,1);
         fcs.add(fc);
-        fc = new FC(1,2);
+        fc = new FoodCategory(1,2);
         fcs.add(fc);
-        fc = new FC(2,1);
+        fc = new FoodCategory(2,1);
         fcs.add(fc);
-        fc = new FC(2,3);
+        fc = new FoodCategory(2,3);
         fcs.add(fc);
-        fc = new FC(3,1);
+        fc = new FoodCategory(3,1);
         fcs.add(fc);
-        fc = new FC(3,3);
+        fc = new FoodCategory(3,3);
         fcs.add(fc);
 
         users = new ArrayList<User>();

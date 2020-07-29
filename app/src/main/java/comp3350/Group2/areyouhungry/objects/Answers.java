@@ -19,7 +19,7 @@ public class Answers implements Serializable{
 
     public Answers(List<Integer> newAnswers){
         answers = newAnswers;
-        if(newAnswers.size() > 0){
+        if(newAnswers.size() == 5){
             for (int i = 0; i < newAnswers.size(); i++){
                 int answer = newAnswers.get(i);
                 if (i == 0){
@@ -86,11 +86,7 @@ public class Answers implements Serializable{
 
             }
         }else{
-            flavor = "Unknown";
-            preptime = "Unknown";
-            portionSize = "Unknown";
-            difficulty = "Unknown";
-            ethnicity = "Unknown";
+            throw new NullPointerException();
         }
 
 
@@ -137,7 +133,6 @@ public class Answers implements Serializable{
         this.ethnicity = ethnicity;
     }
 
-
     public Food getFoodBasedOnAnswers(){
         accessFoods = new AccessFoods();
         List<Food> foods = new ArrayList<Food>();
@@ -170,5 +165,24 @@ public class Answers implements Serializable{
             valid = true;
         }
         return valid;
+    }
+
+    public boolean equals(Object otherObject){
+        boolean equal = false;
+        if(otherObject instanceof Answers){
+            Answers otherAnswer = (Answers)otherObject;
+            if(flavor.equals(otherAnswer.getFlavor()) &&
+                portionSize.equals(otherAnswer.getPortionSize()) &&
+                preptime.equals(otherAnswer.getPreptime()) &&
+                difficulty.equals(otherAnswer.getDifficulty()) &&
+                ethnicity.equals(otherAnswer.getEthnicity())){
+                equal = true;
+            }
+        }
+        return equal;
+    }
+
+    public String toString(){
+        return "Flavor: " + flavor +"\n  PortionSize: "+portionSize+"\n  PrepTime: "+preptime+"\n  Difficulty: "+difficulty+"\n  Ethnicity: "+ethnicity+"\n";
     }
 }

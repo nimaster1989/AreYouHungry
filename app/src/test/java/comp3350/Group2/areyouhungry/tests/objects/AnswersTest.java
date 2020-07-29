@@ -5,29 +5,55 @@ import junit.framework.TestCase;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import comp3350.Group2.areyouhungry.MainActivity;
+import comp3350.Group2.areyouhungry.Services;
 import comp3350.Group2.areyouhungry.objects.Answers;
 import comp3350.Group2.areyouhungry.objects.Food;
+import comp3350.Group2.areyouhungry.persistence.DataAccess;
+import comp3350.Group2.areyouhungry.persistence.DataAccessObject;
+import comp3350.Group2.areyouhungry.persistence.DataAccessStub;
+
 
 public class AnswersTest extends TestCase{
+    private DataAccess dataAccess;
+    public static String dbName = MainActivity.dbName;
+    private boolean stubdb = true;
 
     public AnswersTest(String arg0)
    {
         super(arg0);
     }
 
+    public void setUp(){
+        if(stubdb){
+            System.out.println("\nStarting Persistence test DataAccess (using stub)");
+            dataAccess = new DataAccessStub();
+            dataAccess.open("Stub");
+        }else{
+            System.out.println("\nStarting Persistence test DataAccess (using HSQL)");
+            dataAccess = new DataAccessObject(MainActivity.dbName);
+            dataAccess.open(MainActivity.getDBPathName());
+        }
+    }
+
     public void testAnswerCreation(){
         Answers answer;
         List<Integer> answers;
-
-        System.out.println("\n Starting testAnswerCreation");
         answers = new ArrayList<>();
         answers.add(0);
         answers.add(0);
         answers.add(0);
         answers.add(0);
         answers.add(0);
-        answer = new Answers(answers);
-        assertNotNull(answer);
+        int testNum = 0;
+        try{
+            answer = new Answers(answers);
+            testNum = 1;
+        }catch (Exception e){
+            testNum = 0;
+        }
+        assertEquals(1,testNum);
     }
 
     public void testGetters(){
@@ -41,11 +67,11 @@ public class AnswersTest extends TestCase{
         answers.add(0);
         answer = new Answers(answers);
 
-        assertNotNull(answer.getFlavor());
-        assertNotNull(answer.getPortionSize());
-        assertNotNull(answer.getPreptime());
-        assertNotNull(answer.getDifficulty());
-        assertNotNull(answer.getEthnicity());
+        assertTrue("Sweet".equals(answer.getFlavor()));
+        assertTrue("1".equals(answer.getPortionSize()));
+        assertTrue("10".equals(answer.getPreptime()));
+        assertTrue("Easy".equals(answer.getDifficulty()));
+        assertTrue("Australian".equals(answer.getEthnicity()));
     }
 
     public void testSetters(){
@@ -100,25 +126,23 @@ public class AnswersTest extends TestCase{
     public void testNotEnoughAnswers(){
         Answers answer;
         List<Integer> answers;
-
-        System.out.println("\n Starting testNotEnoughAnswers");
         answers = new ArrayList<>();
         answers.add(0);
         answers.add(0);
         answers.add(0);
         answers.add(0);
+        int testNum = 0;
         try{
             answer = new Answers(answers);
         }catch(Exception e){
-            assertNotNull(e);
+            testNum = 1;
         }
+        assertEquals(1,testNum);
     }
 
     public void testTooManyAnswers(){
         Answers answer;
         List<Integer> answers;
-
-        System.out.println("\n Starting testNotEnoughAnswers");
         answers = new ArrayList<>();
         answers.add(0);
         answers.add(0);
@@ -126,29 +150,53 @@ public class AnswersTest extends TestCase{
         answers.add(0);
         answers.add(0);
         answers.add(0);
+        int testNum = 0;
         try{
             answer = new Answers(answers);
         }catch(Exception e){
-            assertNotNull(e);
+            testNum = 1;
         }
+        assertEquals(1,testNum);
     }
 
     public void testNoAnswers(){
         Answers answer;
         List<Integer> answers;
         answers = new ArrayList<>();
-        answer = new Answers(answers);
-        assertTrue(answer.getFlavor().equals("Unknown"));
-        assertTrue(answer.getPortionSize().equals("Unknown"));
-        assertTrue(answer.getPreptime().equals("Unknown"));
-        assertTrue(answer.getDifficulty().equals("Unknown"));
-        assertTrue(answer.getEthnicity().equals("Unknown"));
+        int testNum = 0;
+        try{
+            answer = new Answers(answers);
+        }catch(Exception e){
+            testNum = 1;
+        }
+        assertEquals(1,testNum);
     }
 
     public void testGetFoodBasedOnAnswers(){
-    //TODO Set up this test function
+        Services.closeDataAccess();
+        Services.createDataAccess(dataAccess);
+        Answers answer;
+        List<Integer> answers;
+        answers = new ArrayList<>();
+        answers.add(0);
+        answers.add(0);
+        answers.add(0);
+        answers.add(0);
+        answers.add(0);
+        answer = new Answers(answers);
+        answer.setFlavor("Savory");
+        answer.setPortionSize("1");
+        answer.setPreptime("10");
+        answer.setDifficulty("Easy");
+        answer.setEthnicity("American");
+        Food food1 = answer.getFoodBasedOnAnswers();
+        Food food2 = new Food(1, "Fish and Chip",1,10, "Savory", "Easy", "American");
+        assertTrue(food1.equals(food2));
+        Services.closeDataAccess();
     }
 
+    /* We understood that tests are suppsoe to avoid if/else and loops but this saves so much
+       time for testing all possible options. */
     public void testAllOptions(){
         Answers answer;
         List<Integer> answers;
@@ -249,6 +297,39 @@ public class AnswersTest extends TestCase{
 
 
 
+    }
+
+    public void testEquals(){
+
+        List<Integer> answers = new ArrayList<>();;
+        answers.add(0);
+        answers.add(0);
+        answers.add(0);
+        answers.add(0);
+        answers.add(0);
+        Answers answer1 = new Answers(answers);
+        Answers answer2 = new Answers(answers);
+        answers = new ArrayList<>();;
+        answers.add(1);
+        answers.add(0);
+        answers.add(0);
+        answers.add(0);
+        answers.add(0);
+        Answers answer3 = new Answers(answers);
+        assertTrue(answer1.equals(answer2));
+        assertFalse(answer1.equals(answer3));
+    }
+
+    public void testToString(){
+        List<Integer> answers = new ArrayList<>();;
+        answers.add(0);
+        answers.add(0);
+        answers.add(0);
+        answers.add(0);
+        answers.add(0);
+        Answers answer = new Answers(answers);
+        String test = "Flavor: Sweet\n  PortionSize: 1\n  PrepTime: 10\n  Difficulty: Easy\n  Ethnicity: Australian\n";
+        assertTrue(answer.toString().equals(test));
     }
 
 }

@@ -32,7 +32,7 @@ public class AccessQuestionTest extends TestCase{
     }
     public void testGetQuestions(){
         Services.closeDataAccess();
-        Services.createDataAccess(new DataAccessStub(dbName));
+        Services.createDataAccess(dataAccess);
         AccessQuestions accessQuestion = new AccessQuestions();
         List<Question> questionList =  accessQuestion.getQuestions();
         assertFalse(questionList.isEmpty());
@@ -43,7 +43,7 @@ public class AccessQuestionTest extends TestCase{
 
     public void testGetTotalQuestions(){
         Services.closeDataAccess();
-        Services.createDataAccess(new DataAccessStub(dbName));
+        Services.createDataAccess(dataAccess);
         AccessQuestions accessQuestion = new AccessQuestions();
         List<Question> questionList =  accessQuestion.getQuestions();
         int questionTotal =  accessQuestion.getTotalQuestions();

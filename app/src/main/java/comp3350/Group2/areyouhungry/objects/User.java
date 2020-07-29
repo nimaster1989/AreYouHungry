@@ -5,8 +5,12 @@ public class User{
     private String UserName;
 
     public User(int userID, String userName){
-        UserID = userID;
-        UserName = userName;
+        if(userID >= 0 && !userName.isEmpty()){
+            UserID = userID;
+            UserName = userName;
+        }else{
+            throw new NullPointerException();
+        }
     }
     public int getUserID(){
         return UserID;
@@ -14,7 +18,12 @@ public class User{
     public String getUserName(){
         return UserName;
     }
-
+    public void setUserID(int UserID){
+        this.UserID = UserID;
+    }
+    public void setUserName(String UserName){
+        this.UserName = UserName;
+    }
     public boolean equals(Object otherObject){
         boolean equal = false;
         if(otherObject instanceof User){
@@ -24,5 +33,10 @@ public class User{
             }
         }
         return equal;
+    }
+
+
+    public String toString(){
+        return "UserID: " + UserID + "\n  UserName: " + UserName + "\n";
     }
 }
