@@ -300,6 +300,11 @@ public class DataAccessStub implements DataAccess{
         if(foodID > 0 && categoryID > 0){
             if(foodID <= foods.size() && categoryID <= categoriesList.size()){
                 FoodCategory newFoodCategory = new FoodCategory(foodID,categoryID);
+                for(int i = 0; i<foodCategories.size(); i++){
+                    if(newFoodCategory.equals(foodCategories.get(i))){
+                        return null;
+                    }
+                }
                 foodCategories.add(newFoodCategory);
                 return newFoodCategory;
             }
@@ -315,6 +320,19 @@ public class DataAccessStub implements DataAccess{
             foodCategory = foodCategoryIterator.next();
             if(foodCategory.getFoodID() == foodID && foodCategory.getCategoryID() == categoryID){
                 foodCategoryIterator.remove();
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void deleteUser(int userID) {
+        Iterator<User> userIterator = users.iterator(); /* This iterates through the foods list. */
+        User user;
+        while(userIterator.hasNext()){
+            user = userIterator.next();
+            if(user.getUserID() == userID){
+                userIterator.remove();
                 break;
             }
         }
