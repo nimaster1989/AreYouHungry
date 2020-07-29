@@ -14,15 +14,4 @@ public class User{
     public String getUserName(){
         return UserName;
     }
-
-    public boolean equals(Object otherObject){
-        boolean equal = false;
-        if(otherObject instanceof User){
-            User otherUser = (User)otherObject;
-            if(this.getUserID() == otherUser.getUserID()){
-                equal = true;
-            }
-        }
-        return equal;
-    }
 }

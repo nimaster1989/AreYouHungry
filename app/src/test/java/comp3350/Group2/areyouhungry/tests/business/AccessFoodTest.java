@@ -14,7 +14,10 @@ import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.User;
 import comp3350.Group2.areyouhungry.persistence.DataAccess;
 import comp3350.Group2.areyouhungry.persistence.DataAccessObject;
-import comp3350.Group2.areyouhungry.persistence.DataAccessStub;
+import comp3350.Group2.areyouhungry.tests.persistence.DataAccessStub;
+
+
+import static comp3350.Group2.areyouhungry.MainActivity.dbName;
 
 public class AccessFoodTest extends TestCase {
 

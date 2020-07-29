@@ -1,4 +1,4 @@
-package comp3350.Group2.areyouhungry.persistence;
+package comp3350.Group2.areyouhungry.tests.persistence;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -172,7 +172,7 @@ public class DataAccessStub implements DataAccess{
         Food food;
         while(foodIterator.hasNext()){
             food = foodIterator.next();
-            if(food.getFoodID().equals(foodID)){
+            if(food.getFoodID() == foodID){
                 return food;
             }
         }

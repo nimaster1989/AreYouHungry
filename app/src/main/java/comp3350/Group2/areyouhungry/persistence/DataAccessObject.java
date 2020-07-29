@@ -583,22 +583,18 @@ public class DataAccessObject implements DataAccess{
 
     @Override
     public User setNewUser(int id,String username){
-        User setUser = null;
+        String values;
         System.out.println("in add new user");
         result = null;
-
         try{
-            if(id >=1 && username!=null) {
-                cmdString = "Insert into USERS Values(" + id + ", '" + username + "')";
-                updateCount = st1.executeUpdate(cmdString);
-                result = checkWarning(st1, updateCount);
-                setUser = new User(id, username);
-            }
+            cmdString = "Insert into USERS Values("+id +", '"+username+"')";
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
         }
         catch (Exception e){
             result = processSQLError(e);
         }
-        return setUser;
+        return new User(id,username);
     }
 
     @Override

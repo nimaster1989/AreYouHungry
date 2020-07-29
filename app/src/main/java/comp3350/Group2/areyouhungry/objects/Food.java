@@ -90,8 +90,7 @@ public class Food {
 
     @Override
     public String toString(){
-        return "ID: " + foodID + "\n  FoodName: " + foodName + "\n  Favourited: " + favourite + "\n  PortionSize: " + portionSize + "\n  PrepTime: "
-                + prepTime + "\n  Flavour: " + flavour + "\n  Difficulty: " + difficulty + "\n Ethnicity: " + ethnicity;
+        return "ID: " + foodID + "\n  foodName: " + foodName + "\n  favourited: " + favourite + "\n";
     }
 
     @Override
