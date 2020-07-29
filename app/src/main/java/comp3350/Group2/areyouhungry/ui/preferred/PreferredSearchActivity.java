@@ -85,6 +85,22 @@ public class PreferredSearchActivity extends AppCompatActivity{
             textViewFlavor.setText("Flavor: "+food.getFlavour());
             textViewServes.setText("Serves: "+answer.getPortionSize()+"-"+(Integer.parseInt(answer.getPortionSize())+1) +" people");
             textViewEthnicity.setText("Ethnicity: "+food.getEthnicity());
+            if(foodId.equals("1")){
+                dishImage.setImageResource(R.drawable.food1);
+            }else if(foodId.equals("2")){
+                dishImage.setImageResource(R.drawable.food2);
+            }else if(foodId.equals("3")){
+                dishImage.setImageResource(R.drawable.food3);
+            }
+            else if(foodId.equals("4")){
+                dishImage.setImageResource(R.drawable.food4);
+            }
+            else if(foodId.equals("5")){
+                dishImage.setImageResource(R.drawable.food5);
+            }
+            else if(foodId.equals("6")){
+                dishImage.setImageResource(R.drawable.food6);
+            }
         }
 
 }

@@ -55,7 +55,7 @@ public class AnswersTest extends TestCase{
         assertTrue("1".equals(answer.getPortionSize()));
         assertTrue("10".equals(answer.getPreptime()));
         assertTrue("Easy".equals(answer.getDifficulty()));
-        assertTrue("Australian".equals(answer.getEthnicity()));
+        assertTrue("Greek".equals(answer.getEthnicity()));
     }
 
     public void testSetters(){
@@ -84,7 +84,7 @@ public class AnswersTest extends TestCase{
         answer.setDifficulty("Hard");
         assertTrue(answer.getDifficulty().equals("Hard"));
 
-        assertTrue(answer.getEthnicity().equals("Australian"));
+        assertTrue(answer.getEthnicity().equals("Greek"));
         answer.setEthnicity("American");
         assertTrue(answer.getEthnicity().equals("American"));
     }
@@ -185,7 +185,7 @@ public class AnswersTest extends TestCase{
         answers.add(0);
         answers.add(0);
         Answers answer = new Answers(answers);
-        String test = "Flavor: Sweet\n  PortionSize: 1\n  PrepTime: 10\n  Difficulty: Easy\n  Ethnicity: Australian\n";
+        String test = "Flavor: Sweet\n  PortionSize: 1\n  PrepTime: 10\n  Difficulty: Easy\n  Ethnicity: Greek\n";
         assertTrue(answer.toString().equals(test));
     }
 
