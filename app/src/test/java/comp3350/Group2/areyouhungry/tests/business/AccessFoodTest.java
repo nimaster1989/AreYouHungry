@@ -42,9 +42,10 @@ public class AccessFoodTest extends TestCase{
         AccessFoods accessFood = new AccessFoods();
         ArrayList<Food> foodList = new ArrayList<>();
         //This portion checks if we can get favourited foods, and list should be empty since we have nothing favourited yet.
-        accessFood.getFavouriteFoodsByUser(MainActivity.currentUser,foodList);
-        assertTrue(foodList.isEmpty()); //True as we have no foods favourited yet.
-
+        User tempUser = new User(3,"i like no food");
+        accessFood.getFavouriteFoodsByUser(tempUser,foodList);
+        //True as we have no foods favourited yet.
+        assertTrue(foodList.isEmpty());
         Services.closeDataAccess();
     }
 
@@ -58,7 +59,9 @@ public class AccessFoodTest extends TestCase{
 
         //This portion grabs a random food, favourites it, clears our foodList and fills foodList with all our favourited foods.
         accessFood.getRandom(foodList);
-        foodList.get(0).setFavourite(true);
+        Food tempFood = foodList.get(0);
+        System.out.println(tempFood.getFoodName());
+        accessFood.setFoodFavouriteByUser(testUser,foodList.get(0).getFoodID(),true);
         foodList.clear();
         accessFood.getFavouriteFoodsByUser(testUser,foodList);
         assertFalse(foodList.isEmpty()); //This should not be empty now as we have a favourited food!!

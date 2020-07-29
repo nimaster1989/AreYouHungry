@@ -31,6 +31,8 @@ public class DataAccessStub implements DataAccess{
     private ArrayList<User> users;
     private ArrayList<Question> questions;
     private Map<String,Food> Food_map;
+    //stub map referencing user_favourite table in the HSQLDB database
+    private Map<Integer,Integer> User_favourite_map;
 
     public DataAccessStub(String dbName){
         this.dbName = dbName;
@@ -110,6 +112,10 @@ public class DataAccessStub implements DataAccess{
         questions.add(question);
         question = new Question("Ah yes the classic why did the chicken cross the road dilema, except the chicken is in the airport and is booking a flight to your favourite vacation spot which is...", "The place where the toilet water spins the other way", "Cant have a high amount of covid cases if we dont test land", "Japan c:", "The only country that beat USA in a war");
         questions.add(question);
+
+
+        Food_map = new HashMap<>();
+
         System.out.println("Opened " +dbType +" database " +dbName);
     }
 
@@ -234,6 +240,9 @@ public class DataAccessStub implements DataAccess{
     }
 
     public String setFoodToFavouriteByUser(User user, String curr_id, boolean b){
+        if(b){
+
+        }
         return null;
     }
 
