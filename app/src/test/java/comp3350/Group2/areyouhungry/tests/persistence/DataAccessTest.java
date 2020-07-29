@@ -83,7 +83,7 @@ public class DataAccessTest extends TestCase{
     }
 
     public void testSetNewUser(){
-        int id = 99;
+        int id = dataAccess.getTotalUser() + 1;
         String username = "Test User";
         User user1 = new User(id,username);
         User userSet = dataAccess.setNewUser(id,username);
@@ -111,12 +111,14 @@ public class DataAccessTest extends TestCase{
         assertNull(user1);
     }
 
-    public void testAddNewFoodCategory(){
+    public void testAddNewANDDeleteFoodCategory(){
         int id=1;
         int category=3;
+        //add
         FoodCategory test = new FoodCategory(id,category);
         FoodCategory result = dataAccess.addFoodCategory(id,category);
         assertEquals(test, result);
+        dataAccess.deleteFoodCategory(1,3);
     }
 
     public void testAddDuplicateFoodCategory(){

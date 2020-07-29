@@ -571,6 +571,37 @@ public class DataAccessObject implements DataAccess{
     }
 
     @Override
+    public void deleteFoodCategory(int foodID, int categoryID) {
+        System.out.println("deleting:"+foodID+":"+categoryID);
+        String values;
+        cmdString = "";
+        result = null;
+        try{
+            cmdString = "DELETE FROM FOODSCATEGORY WHERE FOODID = '"+foodID+"' and CATEGORYID = '"+categoryID+"'";
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+    }
+
+    public int getTotalUser() {
+        result = null;
+        int count = 0;
+        try{
+            cmdString = "Select * from USERS";
+            rs5 = st3.executeQuery(cmdString);
+            while(rs5.next()){
+                count++;
+            }
+            rs5.close();
+        }catch (Exception e){
+            result = processSQLError(e);
+        }
+        return count;
+    }
+    @Override
     public User setNewUser(int id,String username){
         User setUser = null;
         System.out.println("in add new user");

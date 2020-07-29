@@ -307,6 +307,19 @@ public class DataAccessStub implements DataAccess{
         return null;
     }
 
+    @Override
+    public void deleteFoodCategory(int foodID, int categoryID) {
+        Iterator<FoodCategory> foodCategoryIterator = foodCategories.iterator(); /* This iterates through the foods list. */
+        FoodCategory foodCategory;
+        while(foodCategoryIterator.hasNext()){
+            foodCategory = foodCategoryIterator.next();
+            if(foodCategory.getFoodID() == foodID && foodCategory.getCategoryID() == categoryID){
+                foodCategoryIterator.remove();
+                break;
+            }
+        }
+    }
+
 
     @Override
     public int getCategoryIDbyName(String categoryName){
@@ -438,6 +451,11 @@ public class DataAccessStub implements DataAccess{
             }
         }
         return null;
+    }
+
+    @Override
+    public int getTotalUser() {
+        return users.size();
     }
 
 }
