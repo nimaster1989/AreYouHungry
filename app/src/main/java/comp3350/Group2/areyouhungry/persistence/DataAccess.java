@@ -33,6 +33,8 @@ public interface DataAccess{
 
     public void deleteFoodCategory(int foodID, int categoryID);
 
+    public void deleteUser(int userID);
+
     public int getCategoryIDbyName(String categoryName);
 
     public List<Question> getAllQuestions();

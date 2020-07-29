@@ -26,8 +26,8 @@ public class DataAccessTest extends TestCase{
         System.out.println("\nStarting Persistence test DataAccess (using stub)");
 
         /* Use the following statements to run with the stub database. */
-        /* dataAccess = new DataAccessStub(); */
-        /* dataAccess.open("Stub"); */
+//         dataAccess = new DataAccessStub();
+//         dataAccess.open("Stub");
         /* or switch to the real database: */
         dataAccess = new DataAccessObject(MainActivity.dbName);
         dataAccess.open(MainActivity.getDBPathName());
@@ -82,12 +82,13 @@ public class DataAccessTest extends TestCase{
         assertEquals(totalTests,5);
     }
 
-    public void testSetNewUser(){
-        int id = dataAccess.getTotalUser() + 1;
+    public void testSetAndDeleteNewUser(){
+        int id = 4;
         String username = "Test User";
         User user1 = new User(id,username);
         User userSet = dataAccess.setNewUser(id,username);
         assertEquals(user1, userSet);
+
     }
 
     public void testDuplicateSetNewUser(){
@@ -96,6 +97,7 @@ public class DataAccessTest extends TestCase{
         dataAccess.setNewUser(id,username);
         User user2 =  dataAccess.setNewUser(id,username);
         assertNull(user2);
+        dataAccess.deleteUser(id);
     }
 
     public void testNegativeIDSetNewUser(){
@@ -111,10 +113,9 @@ public class DataAccessTest extends TestCase{
         assertNull(user1);
     }
 
-    public void testAddNewANDDeleteFoodCategory(){
+    public void testAddNewAndDeleteFoodCategory(){
         int id=1;
         int category=3;
-        //add
         FoodCategory test = new FoodCategory(id,category);
         FoodCategory result = dataAccess.addFoodCategory(id,category);
         assertEquals(test, result);

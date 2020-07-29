@@ -585,7 +585,20 @@ public class DataAccessObject implements DataAccess{
             result = processSQLError(e);
         }
     }
-
+    public void deleteUser(int userID) {
+        System.out.println("deleting user: "+userID);
+        String values;
+        cmdString = "";
+        result = null;
+        try{
+            cmdString = "DELETE FROM USERS WHERE USERID = '"+userID+"'";
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+    }
     public int getTotalUser() {
         result = null;
         int count = 0;
