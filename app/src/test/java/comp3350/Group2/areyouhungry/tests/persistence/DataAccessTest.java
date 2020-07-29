@@ -84,11 +84,10 @@ public class DataAccessTest extends TestCase{
     }
 
     public void testSetNewUser(){
-        int id = 77;
+        int id = 99;
         String username = "Test User";
         User user1 = new User(id,username);
         User userSet = dataAccess.setNewUser(id,username);
-        System.out.println(userSet.toString());
         assertEquals(user1, userSet);
     }
 
@@ -118,8 +117,6 @@ public class DataAccessTest extends TestCase{
         int category=3;
         FoodCategory test = new FoodCategory(id,category);
         FoodCategory result = dataAccess.addFoodCategory(id,category);
-        System.out.println(result);
-        System.out.println(test);
         assertEquals(test, result);
     }
 
@@ -148,7 +145,6 @@ public class DataAccessTest extends TestCase{
     public void testAllAnswerOptions(){
         Answers answer;
         List<Integer> answers;
-        System.out.println("\n Starting testAllOptions");
         for(int i =0; i<5; i++){
             for(int j =0; j<4; j++){
                 if(i == 0){

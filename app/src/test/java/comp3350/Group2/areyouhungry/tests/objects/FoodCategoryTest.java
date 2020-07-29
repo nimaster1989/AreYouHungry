@@ -13,7 +13,7 @@ public class FoodCategoryTest extends TestCase {
     public void testFoodCategoryCreation(){
         FoodCategory foodCategory;
         int foodID = 1;
-        int categoryID = 1;
+        int categoryID = 5;
         int testNum = 0;
         try{
             foodCategory = new FoodCategory(foodID, categoryID);

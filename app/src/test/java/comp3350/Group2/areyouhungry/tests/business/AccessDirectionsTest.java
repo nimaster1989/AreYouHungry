@@ -24,7 +24,7 @@ public class AccessDirectionsTest extends TestCase{
         Services.closeDataAccess();
         Services.createDataAccess(new DataAccessStub(dbName));
         AccessDirections accessDirections = new AccessDirections();
-        Food tempFood = new Food(777,"no food",7,77,"test","test","test");
+        Food tempFood = new Food(777,"no food",7,10,"Sweet","Easy","American");
         ArrayList<Direction> directionList = new ArrayList<>();
         accessDirections.getDirection(tempFood,directionList);
         assertTrue(directionList.isEmpty());

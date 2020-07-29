@@ -24,7 +24,7 @@ public class AccessIngredientsTest extends TestCase{
         Services.closeDataAccess();
         Services.createDataAccess(new DataAccessStub(dbName));
         AccessIngredients accessIngredients = new AccessIngredients();
-        Food tempFood = new Food(777,"no food",7,77,"test","test","test");
+        Food tempFood = new Food(777,"no food",7,10,"Sweet","Easy","American");
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         accessIngredients.getIngredient(tempFood,ingredients);
         assertTrue(ingredients.isEmpty());
