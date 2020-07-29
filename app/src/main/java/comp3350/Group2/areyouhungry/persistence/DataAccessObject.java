@@ -194,7 +194,7 @@ public class DataAccessObject implements DataAccess{
                 myID = rs5.getString("FoodID");
                 System.out.println("get ID: " + myID);
                 if(!currentID.equals(myID)){
-                    //Checking if there is variables set to add to a food
+                    /* Checking if there is variables set to add to a food. */
                     if(!currentID.equals("-1")){
                         Food foundFood = new Food(Integer.valueOf(currentID), myFoodName,myPortionSize,myPrepTime,myFlavour,myDifficulty,myEthnicity);
                         foodResult.add(foundFood);
@@ -203,7 +203,6 @@ public class DataAccessObject implements DataAccess{
                     }
                     myID = rs5.getString("FoodID");
                     myFoodName = rs5.getString("FoodName");
-                    myFavourite = rs5.getBoolean("Favourite");
                     myPortionSize = rs5.getInt("PORTIONSIZE");
                     myPrepTime = rs5.getInt("PREPTIME");
                     myFlavour = rs5.getString("FLAVOUR");

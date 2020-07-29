@@ -26,11 +26,11 @@ public class Answers implements Serializable{
                     if (answer == 0){
                         flavor = "Sweet";
                     } else if (answer == 1){
-                        flavor = "Savory";
+                        flavor = "Savoury";
                     } else if (answer == 2){
                         flavor = "Spicy";
                     } else if (answer == 3){
-                        flavor = "Other";
+                        flavor = "Fresh";
                     } else{
                         flavor = "Unknown";
                     }
@@ -72,13 +72,13 @@ public class Answers implements Serializable{
                     }
                 } else if (i == 4){
                     if (answer == 0){
-                        ethnicity = "Australian";
+                        ethnicity = "Greek";
                     } else if (answer == 1){
                         ethnicity = "American";
                     } else if (answer == 2){
-                        ethnicity = "Japanese";
+                        ethnicity = "Italian";
                     } else if (answer == 3){
-                        ethnicity = "Vietnamese";
+                        ethnicity = "Chinese";
                     } else{
                         ethnicity = "Unknown";
                     }
@@ -151,8 +151,8 @@ public class Answers implements Serializable{
                 }
             }
         }
-
-        return curr_food;
+        accessFoods.getRandom(foods);
+        return foods.get(0);
     }
 
     private boolean checkValid(Food food){
