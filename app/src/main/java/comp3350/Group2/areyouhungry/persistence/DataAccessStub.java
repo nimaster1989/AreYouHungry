@@ -50,7 +50,7 @@ public class DataAccessStub implements DataAccess{
 
         foods = new ArrayList<Food>();
         Food_map = new HashMap<>();
-        food = new Food(1, "Fish and ChipSSSSSS",1,10, "Savory", "Easy", "American");
+        food = new Food(1, "Fish and Chips",1,10, "Savory", "Easy", "American");
         foods.add(food);
         Food_map.put(String.valueOf(food.getFoodID()),food);
         food = new Food(2, "California Burger",1,20, "Sweet", "Medium", "Australian");
