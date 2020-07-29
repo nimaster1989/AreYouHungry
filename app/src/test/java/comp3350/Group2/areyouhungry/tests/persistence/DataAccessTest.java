@@ -16,7 +16,7 @@ public class DataAccessTest extends TestCase{
     private DataAccess dataAccess;
 
     public DataAccessTest(String arg0)
-    {
+   {
         super(arg0);
     }
 
@@ -52,7 +52,7 @@ public class DataAccessTest extends TestCase{
         assertTrue(food.equals(compareFood));
     }
 
-    public void testGetNegativeFoodByID() {
+    public void testGetNegativeFoodByID(){
         String foodID = "-1";
         Food food = dataAccess.getFoodFromID(foodID);
         assertNull(food);

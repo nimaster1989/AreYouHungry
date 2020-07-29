@@ -1,6 +1,6 @@
 package comp3350.Group2.areyouhungry.objects;
 
-public class Question {
+public class Question{
     private String question;
     private String option1;
     private String option2;

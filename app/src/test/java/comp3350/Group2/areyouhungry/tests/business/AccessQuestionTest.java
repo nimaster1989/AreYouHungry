@@ -12,7 +12,7 @@ import comp3350.Group2.areyouhungry.persistence.DataAccess;
 import comp3350.Group2.areyouhungry.persistence.DataAccessObject;
 import comp3350.Group2.areyouhungry.persistence.DataAccessStub;
 
-public class AccessQuestionTest extends TestCase {
+public class AccessQuestionTest extends TestCase{
     private DataAccess dataAccess;
     public static String dbName = MainActivity.dbName;
     private boolean stubdb = true;

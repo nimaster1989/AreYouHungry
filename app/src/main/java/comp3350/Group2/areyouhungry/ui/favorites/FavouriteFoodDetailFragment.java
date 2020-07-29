@@ -26,7 +26,7 @@ import comp3350.Group2.areyouhungry.objects.Food;
    in two-pane mode (on tablets) or a FavouriteFoodDetailActivity
    on handsets. */
 
-public class FavouriteFoodDetailFragment extends Fragment {
+public class FavouriteFoodDetailFragment extends Fragment{
     /* The fragment argument representing the item ID that this fragment
        represents. */
     public static final String ARG_ITEM_ID = "item_id";

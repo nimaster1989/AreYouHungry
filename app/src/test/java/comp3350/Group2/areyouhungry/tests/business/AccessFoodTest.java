@@ -16,7 +16,7 @@ import comp3350.Group2.areyouhungry.persistence.DataAccess;
 import comp3350.Group2.areyouhungry.persistence.DataAccessObject;
 import comp3350.Group2.areyouhungry.persistence.DataAccessStub;
 
-public class AccessFoodTest extends TestCase {
+public class AccessFoodTest extends TestCase{
 
     private DataAccess dataAccess;
     public static String dbName = MainActivity.dbName;

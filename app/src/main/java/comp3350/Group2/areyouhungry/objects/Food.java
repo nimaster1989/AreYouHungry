@@ -2,7 +2,7 @@ package comp3350.Group2.areyouhungry.objects;
 
 import java.util.ArrayList;
 
-public class Food {
+public class Food{
     private int foodID;
     private String foodName;
     private boolean favourite;

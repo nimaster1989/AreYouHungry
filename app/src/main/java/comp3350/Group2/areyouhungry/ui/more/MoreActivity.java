@@ -19,7 +19,7 @@ import comp3350.Group2.areyouhungry.ui.favorites.FavouriteFoodListActivity;
 import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
 import comp3350.Group2.areyouhungry.ui.user.UserActivity;
 
-public class MoreActivity extends AppCompatActivity {
+public class MoreActivity extends AppCompatActivity{
     TextView textView ;
     @Override
     protected void onCreate(Bundle savedInstanceState){

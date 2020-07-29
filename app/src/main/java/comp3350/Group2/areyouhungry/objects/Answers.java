@@ -7,7 +7,7 @@ import java.util.List;
 
 import comp3350.Group2.areyouhungry.business.AccessFoods;
 
-public class Answers implements Serializable {
+public class Answers implements Serializable{
 
     private List<Integer> answers;
     private String flavor;
@@ -19,67 +19,67 @@ public class Answers implements Serializable {
 
     public Answers(List<Integer> newAnswers){
         answers = newAnswers;
-        if(newAnswers.size() > 0) {
-            for (int i = 0; i < newAnswers.size(); i++) {
+        if(newAnswers.size() > 0){
+            for (int i = 0; i < newAnswers.size(); i++){
                 int answer = newAnswers.get(i);
-                if (i == 0) {
-                    if (answer == 0) {
+                if (i == 0){
+                    if (answer == 0){
                         flavor = "Sweet";
-                    } else if (answer == 1) {
+                    } else if (answer == 1){
                         flavor = "Savory";
-                    } else if (answer == 2) {
+                    } else if (answer == 2){
                         flavor = "Spicy";
-                    } else if (answer == 3) {
+                    } else if (answer == 3){
                         flavor = "Other";
-                    } else {
+                    } else{
                         flavor = "Unknown";
                     }
-                } else if (i == 1) {
-                    if (answer == 0) {
+                } else if (i == 1){
+                    if (answer == 0){
                         portionSize = "1";
-                    } else if (answer == 1) {
+                    } else if (answer == 1){
                         portionSize = "3";
-                    } else if (answer == 2) {
+                    } else if (answer == 2){
                         portionSize = "5";
-                    } else if (answer == 3) {
+                    } else if (answer == 3){
                         portionSize = "7";
-                    } else {
+                    } else{
                         portionSize = "Unknown";
                     }
-                } else if (i == 2) {
-                    if (answer == 0) {
+                } else if (i == 2){
+                    if (answer == 0){
                         preptime = "10";
-                    } else if (answer == 1) {
+                    } else if (answer == 1){
                         preptime = "20";
-                    } else if (answer == 2) {
+                    } else if (answer == 2){
                         preptime = "30";
-                    } else if (answer == 3) {
+                    } else if (answer == 3){
                         preptime = "40";
-                    } else {
+                    } else{
                         preptime = "Unknown";
                     }
-                } else if (i == 3) {
-                    if (answer == 0) {
+                } else if (i == 3){
+                    if (answer == 0){
                         difficulty = "Easy";
-                    } else if (answer == 1) {
+                    } else if (answer == 1){
                         difficulty = "Medium";
-                    } else if (answer == 2) {
+                    } else if (answer == 2){
                         difficulty = "Hard";
-                    } else if (answer == 3) {
+                    } else if (answer == 3){
                         difficulty = "Expert";
-                    } else {
+                    } else{
                         difficulty = "Unknown";
                     }
-                } else if (i == 4) {
-                    if (answer == 0) {
+                } else if (i == 4){
+                    if (answer == 0){
                         ethnicity = "Australian";
-                    } else if (answer == 1) {
+                    } else if (answer == 1){
                         ethnicity = "American";
-                    } else if (answer == 2) {
+                    } else if (answer == 2){
                         ethnicity = "Japanese";
-                    } else if (answer == 3) {
+                    } else if (answer == 3){
                         ethnicity = "Vietnamese";
-                    } else {
+                    } else{
                         ethnicity = "Unknown";
                     }
                 }
@@ -138,7 +138,7 @@ public class Answers implements Serializable {
     }
 
 
-    public Food getFoodBasedOnAnswers() {
+    public Food getFoodBasedOnAnswers(){
         accessFoods = new AccessFoods();
         List<Food> foods = new ArrayList<Food>();
         String result = accessFoods.getFoods(foods);
@@ -146,12 +146,12 @@ public class Answers implements Serializable {
         Food curr_food = null;
         while(foodIterator.hasNext()){
             curr_food = foodIterator.next();
-            if(checkValid(curr_food)) {
+            if(checkValid(curr_food)){
                 if ((curr_food.getPrepTime() == Integer.parseInt(preptime.trim())) &&
                         curr_food.getFlavour().equals(flavor) &&
                         curr_food.getEthnicity().equals(ethnicity) &&
                         curr_food.getDifficulty().equals(difficulty) &&
-                        curr_food.getPortionSize() == Integer.parseInt(portionSize.trim())) {
+                        curr_food.getPortionSize() == Integer.parseInt(portionSize.trim())){
                     return curr_food;
                 }
             }
