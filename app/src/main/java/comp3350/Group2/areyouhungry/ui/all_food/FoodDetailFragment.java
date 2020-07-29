@@ -2,6 +2,7 @@ package comp3350.Group2.areyouhungry.ui.all_food;
 
 import android.app.Activity;
 import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -10,8 +11,12 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextUtils;
+import android.text.style.AbsoluteSizeSpan;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,12 +80,16 @@ public class FoodDetailFragment extends Fragment{
             // imageID works by grabbing a "name", "defType", and package. Make sure the 1st parameter or "name" is an image that exists in the res/drawable folder
             // example: spaghetti.jpg image in drawable folder, "name" will be spaghetti, placeholder.png "name" would be ramen. We can somehow link imageID to FOOD or whatever class later.
             int imageID = getResources().getIdentifier("spaghetti", "drawable", getContext().getPackageName());
-            Drawable foodImage = ContextCompat.getDrawable(getContext(), imageID);
 
-            // Method below may need changing depending on dimensions of the users device. I made it so that the width is streched to the width of the device.
-            // An issue is that aspect ratio may/will not be the same after resizing
-            foodImage.setBounds(0, 0, Resources.getSystem().getDisplayMetrics().widthPixels, 500);
-            rootView.setCompoundDrawables(null, foodImage, null, null);
+            if(imageID != 0) { // imageID returns 0 if no resource was found.
+                Drawable foodImage = ContextCompat.getDrawable(getContext(), imageID);
+
+                // Method below may need changing depending on dimensions of the users device. I made it so that the width is streched to the width of the device.
+                // An issue is that aspect ratio may/will not be the same after resizing
+                foodImage.setBounds(0, 0, Resources.getSystem().getDisplayMetrics().widthPixels, 500);
+                rootView.setCompoundDrawables(null, foodImage, null, null);
+
+            }
             Food theFood = accessFoods.getFoodByID(mFood.getFoodID());
 
             AccessIngredients ai = new AccessIngredients();
@@ -91,20 +100,32 @@ public class FoodDetailFragment extends Fragment{
 
             ad.getDirection(theFood, directions);
             ai.getIngredient(theFood, ingredients);
-            String test = "Ingredients: \n";
+            String theIngredients = "";
+
+            // SpannableString creates a String that can have its attributes modified (i.e. BOLD, font size, etc.)
+            SpannableString ingredientsTitle = new SpannableString("Ingredients: \n");
+            ingredientsTitle.setSpan(new StyleSpan(Typeface.BOLD), 0, ingredientsTitle.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+            ingredientsTitle.setSpan(new AbsoluteSizeSpan(64), 0, ingredientsTitle.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+
+
             for(int i = 0; i<ingredients.size(); i++){
                 Ingredient currIngredient = ingredients.get(i);
-                test = test + currIngredient.getMeasurement() + " " + currIngredient.getIngredientName() + "\n";
+                theIngredients = theIngredients + currIngredient.getMeasurement() + " " + currIngredient.getIngredientName() + "\n";
             }
 
-            test = test + "\n\nDirections: \n";
+            String theDirections = "";
+            SpannableString directionsTitle = new SpannableString("\nDirections: \n");
+            directionsTitle.setSpan(new StyleSpan(Typeface.BOLD), 0, directionsTitle.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+            directionsTitle.setSpan(new AbsoluteSizeSpan(64), 0, directionsTitle.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
 
             for(int i = 0; i<directions.size(); i++){
                 Direction currDirection = directions.get(i);
-                test = test + currDirection.getStepNumber() + ". "+currDirection.getDirectionDescription()+ "\n";
+                theDirections = theDirections + currDirection.getStepNumber() + ". "+currDirection.getDirectionDescription()+ "\n\n";
             }
 
-            ((TextView) rootView.findViewById(R.id.food_detail)).setText(test);
+            CharSequence finalText = TextUtils.concat(ingredientsTitle, theIngredients, directionsTitle, theDirections);
+
+            ((TextView) rootView.findViewById(R.id.food_detail)).setText(finalText);
         }else{
             System.out.println("FoodDetailFragment oncreate view mFood is null");
         }
