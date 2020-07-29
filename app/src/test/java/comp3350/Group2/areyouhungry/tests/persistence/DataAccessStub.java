@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Random;
 
 import comp3350.Group2.areyouhungry.MainActivity;
-import comp3350.Group2.areyouhungry.objects.Categorys;
+import comp3350.Group2.areyouhungry.objects.Categories;
 import comp3350.Group2.areyouhungry.objects.Direction;
 import comp3350.Group2.areyouhungry.objects.FoodCategory;
 import comp3350.Group2.areyouhungry.objects.Food;
@@ -27,7 +27,7 @@ public class DataAccessStub implements DataAccess{
 
     private ArrayList<Food> foods;
     private ArrayList<FoodCategory> foodCategories;
-    private ArrayList<Categorys> categorysList;
+    private ArrayList<Categories> categoriesList;
     private ArrayList<User> users;
     private ArrayList<Question> questions;
     private ArrayList<Ingredient> ingredients;
@@ -49,7 +49,7 @@ public class DataAccessStub implements DataAccess{
 
     public void open(String dbPath){
         Food food;
-        Categorys categorys;
+        Categories categories;
         FoodCategory foodCategory;
         User user;
         Question question;
@@ -79,13 +79,13 @@ public class DataAccessStub implements DataAccess{
         foods.add(food);
         Food_map.put(String.valueOf(food.getFoodID()),food);
 
-        categorysList = new ArrayList<Categorys>();
-        categorys = new Categorys(1,"Meat");
-        categorysList.add(categorys);
-        categorys = new Categorys(2,"Grain");
-        categorysList.add(categorys);
-        categorys = new Categorys(3,"Vegetable");
-        categorysList.add(categorys);
+        categoriesList = new ArrayList<Categories>();
+        categories = new Categories(1,"Meat");
+        categoriesList.add(categories);
+        categories = new Categories(2,"Grain");
+        categoriesList.add(categories);
+        categories = new Categories(3,"Vegetable");
+        categoriesList.add(categories);
 
         foodCategories = new ArrayList<FoodCategory>();
         foodCategory = new FoodCategory(1,1);
@@ -298,7 +298,7 @@ public class DataAccessStub implements DataAccess{
     @Override
     public FoodCategory addFoodCategory(int foodID, int categoryID){
         if(foodID > 0 && categoryID > 0){
-            if(foodID <= foods.size() && categoryID <= categorysList.size()){
+            if(foodID <= foods.size() && categoryID <= categoriesList.size()){
                 FoodCategory newFoodCategory = new FoodCategory(foodID,categoryID);
                 foodCategories.add(newFoodCategory);
                 return newFoodCategory;
@@ -310,7 +310,7 @@ public class DataAccessStub implements DataAccess{
 
     @Override
     public int getCategoryIDbyName(String categoryName){
-        for (Categorys category:categorysList){
+        for (Categories category:categoriesList){
             if (category.getCategoryName().equals(categoryName))return category.getCategoryID();
         }
         return -1;

@@ -302,7 +302,7 @@ public class DataAccessObject implements DataAccess{
         System.out.println("getFoodRandom()");
         System.out.println("-----------");
         result = null;
-        cmdString = "SELECT * from FOODS as f INNER JOIN FOODSCATEGORY as fc ON ( f.FOODID = fc.FOODID ) INNER JOIN CATEGORYS as c ON (fc.CATEGORYID = c.CATEGORYID) WHERE c.CATEGORYNAME = '"+preferredCategory+"'";
+        cmdString = "SELECT * from FOODS as f INNER JOIN FOODSCATEGORY as fc ON ( f.FOODID = fc.FOODID ) INNER JOIN CATEGORIES as c ON (fc.CATEGORYID = c.CATEGORYID) WHERE c.CATEGORYNAME = '"+preferredCategory+"'";
         fillFoodObject(cmdString,foodResult);
         return result;
     }
@@ -532,7 +532,7 @@ public class DataAccessObject implements DataAccess{
         result = null;
         int myID = -1;
         try{
-            cmdString = "Select * from Categorys where Categorys.categoryname = '"+categoryName+"'";
+            cmdString = "Select * from Categories where Categories.categoryname = '"+categoryName+"'";
             rs5 = st3.executeQuery(cmdString);
             while (rs5.next()){
                 myID = rs5.getInt("CATEGORYID");
