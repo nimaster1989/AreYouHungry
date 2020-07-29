@@ -6,14 +6,21 @@ public class Direction{
     private int stepNumber;
 
     public Direction(int directionID, String directionDescription, int stepNumber){
-        this.directionID = directionID;
-        this.directionDescription = directionDescription;
-        this.stepNumber = stepNumber;
+        if(directionID>=0 && !directionDescription.isEmpty() && stepNumber>=0){
+            this.directionID = directionID;
+            this.directionDescription = directionDescription;
+            this.stepNumber = stepNumber;
+        }else{
+            throw new NullPointerException();
+        }
+
     }
 
     public int getDirectionID(){
         return directionID;
     }
+
+    public void setDirectionID(int directionID){this.directionID = directionID;}
 
     public String getDirectionDescription(){
         return directionDescription;
@@ -27,7 +34,7 @@ public class Direction{
         this.directionDescription = directionDescription;
     }
 
-    public void setStepNumber(int measurement){
+    public void setStepNumber(int stepNumber){
         this.stepNumber = stepNumber;
     }
 
@@ -35,7 +42,7 @@ public class Direction{
         boolean equal = false;
         if(otherObject instanceof Direction){
             Direction otherDirection = (Direction) otherObject;
-            if(this.directionID == otherDirection.directionID){
+            if(this.directionID == otherDirection.directionID ){
                 equal = true;
             }
         }

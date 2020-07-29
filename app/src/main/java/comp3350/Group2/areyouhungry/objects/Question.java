@@ -10,11 +10,16 @@ public class Question{
     public Question(){}
 
     public Question(String question, String option1, String option2, String option3, String option4){
-        this.question = question;
-        this.option1 = option1;
-        this.option2 = option2;
-        this.option3 = option3;
-        this.option4 = option4;
+        if(!question.isEmpty() && !option1.isEmpty() && !option2.isEmpty() && !option3.isEmpty() && !option4.isEmpty()){
+            this.question = question;
+            this.option1 = option1;
+            this.option2 = option2;
+            this.option3 = option3;
+            this.option4 = option4;
+        }else{
+            throw new NullPointerException();
+        }
+
     }
 
     public String getQuestion(){
@@ -57,4 +62,17 @@ public class Question{
         this.option4 = option4;
     }
 
+    public boolean equals(Object otherObject){
+        boolean equal = false;
+        if(otherObject instanceof Question){
+            Question otherUser = (Question)otherObject;
+            if(this.getQuestion().equals(otherUser.getQuestion())){
+                equal = true;
+            }
+        }
+        return equal;
+    }
+    public String toString(){
+        return "Question: " + question +"\n  Option1: " + option1 +"\n  Option2: " + option2 +"\n  Option3: " + option3 +"\n  Option4: " + option4 +"\n";
+    }
 }

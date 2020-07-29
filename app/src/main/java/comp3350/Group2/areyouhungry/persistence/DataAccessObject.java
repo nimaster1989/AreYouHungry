@@ -562,7 +562,12 @@ public class DataAccessObject implements DataAccess{
         catch (Exception e){
             result = processSQLError(e);
         }
-        return addedFoodCategory;
+        if(result == null){
+            return addedFoodCategory;
+        }else{
+            return null;
+        }
+
     }
 
     @Override

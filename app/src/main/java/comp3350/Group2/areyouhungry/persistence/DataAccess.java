@@ -54,4 +54,5 @@ public interface DataAccess{
     String getIngredientByFood(Food food,List<Ingredient> ingredients);
 
     String getDirectionByFood(Food food, List<Direction> directions);
+
 }

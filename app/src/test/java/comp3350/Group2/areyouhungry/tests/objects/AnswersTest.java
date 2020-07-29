@@ -5,29 +5,39 @@ import junit.framework.TestCase;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+import comp3350.Group2.areyouhungry.Services;
 import comp3350.Group2.areyouhungry.objects.Answers;
 import comp3350.Group2.areyouhungry.objects.Food;
 
+
+
+
 public class AnswersTest extends TestCase{
 
-    public AnswersTest(String arg0)
-   {
+    public AnswersTest(String arg0){
         super(arg0);
     }
+
 
     public void testAnswerCreation(){
         Answers answer;
         List<Integer> answers;
-
-        System.out.println("\n Starting testAnswerCreation");
         answers = new ArrayList<>();
         answers.add(0);
         answers.add(0);
         answers.add(0);
         answers.add(0);
         answers.add(0);
-        answer = new Answers(answers);
-        assertNotNull(answer);
+        int testNum = 0;
+        try{
+            answer = new Answers(answers);
+            testNum = 1;
+        }catch (Exception e){
+            testNum = 0;
+        }
+        assertEquals(1,testNum);
     }
 
     public void testGetters(){
@@ -41,11 +51,11 @@ public class AnswersTest extends TestCase{
         answers.add(0);
         answer = new Answers(answers);
 
-        assertNotNull(answer.getFlavor());
-        assertNotNull(answer.getPortionSize());
-        assertNotNull(answer.getPreptime());
-        assertNotNull(answer.getDifficulty());
-        assertNotNull(answer.getEthnicity());
+        assertTrue("Sweet".equals(answer.getFlavor()));
+        assertTrue("1".equals(answer.getPortionSize()));
+        assertTrue("10".equals(answer.getPreptime()));
+        assertTrue("Easy".equals(answer.getDifficulty()));
+        assertTrue("Australian".equals(answer.getEthnicity()));
     }
 
     public void testSetters(){
@@ -100,25 +110,23 @@ public class AnswersTest extends TestCase{
     public void testNotEnoughAnswers(){
         Answers answer;
         List<Integer> answers;
-
-        System.out.println("\n Starting testNotEnoughAnswers");
         answers = new ArrayList<>();
         answers.add(0);
         answers.add(0);
         answers.add(0);
         answers.add(0);
+        int testNum = 0;
         try{
             answer = new Answers(answers);
         }catch(Exception e){
-            assertNotNull(e);
+            testNum = 1;
         }
+        assertEquals(1,testNum);
     }
 
     public void testTooManyAnswers(){
         Answers answer;
         List<Integer> answers;
-
-        System.out.println("\n Starting testNotEnoughAnswers");
         answers = new ArrayList<>();
         answers.add(0);
         answers.add(0);
@@ -126,129 +134,59 @@ public class AnswersTest extends TestCase{
         answers.add(0);
         answers.add(0);
         answers.add(0);
+        int testNum = 0;
         try{
             answer = new Answers(answers);
         }catch(Exception e){
-            assertNotNull(e);
+            testNum = 1;
         }
+        assertEquals(1,testNum);
     }
 
     public void testNoAnswers(){
         Answers answer;
         List<Integer> answers;
         answers = new ArrayList<>();
-        answer = new Answers(answers);
-        assertTrue(answer.getFlavor().equals("Unknown"));
-        assertTrue(answer.getPortionSize().equals("Unknown"));
-        assertTrue(answer.getPreptime().equals("Unknown"));
-        assertTrue(answer.getDifficulty().equals("Unknown"));
-        assertTrue(answer.getEthnicity().equals("Unknown"));
-    }
-
-    public void testGetFoodBasedOnAnswers(){
-    //TODO Set up this test function
-    }
-
-    public void testAllOptions(){
-        Answers answer;
-        List<Integer> answers;
-        System.out.println("\n Starting testAllOptions");
-        for(int i =0; i<5; i++){
-            for(int j =0; j<4; j++){
-                if(i == 0){
-                    answers = new ArrayList<>();
-                    answers.add(j);
-                    answers.add(0);
-                    answers.add(0);
-                    answers.add(0);
-                    answers.add(0);
-                    answer = new Answers(answers);
-                    if(j == 0){
-                        assertTrue(answer.getFlavor().equals("Sweet"));
-                    }else if(j == 1){
-                        assertTrue(answer.getFlavor().equals("Savory"));
-                    }else if(j == 2){
-                        assertTrue(answer.getFlavor().equals("Spicy"));
-                    }else if(j == 3){
-                        assertTrue(answer.getFlavor().equals("Other"));
-                    }
-                }else if(i == 1){
-                    answers = new ArrayList<>();
-                    answers.add(0);
-                    answers.add(j);
-                    answers.add(0);
-                    answers.add(0);
-                    answers.add(0);
-                    answer = new Answers(answers);
-                    if(j == 0){
-                        assertTrue(answer.getPortionSize().equals("1"));
-                    }else if(j == 1){
-                        assertTrue(answer.getPortionSize().equals("3"));
-                    }else if(j == 2){
-                        assertTrue(answer.getPortionSize().equals("5"));
-                    }else if(j == 3){
-                        assertTrue(answer.getPortionSize().equals("7"));
-                    }
-                }else if(i == 2){
-                    answers = new ArrayList<>();
-                    answers.add(0);
-                    answers.add(0);
-                    answers.add(j);
-                    answers.add(0);
-                    answers.add(0);
-                    answer = new Answers(answers);
-                    if(j == 0){
-                        assertTrue(answer.getPreptime().equals("10"));
-                    }else if(j == 1){
-                        assertTrue(answer.getPreptime().equals("20"));
-                    }else if(j == 2){
-                        assertTrue(answer.getPreptime().equals("30"));
-                    }else if(j == 3){
-                        assertTrue(answer.getPreptime().equals("40"));
-                    }
-                }else if(i == 3){
-                    answers = new ArrayList<>();
-                    answers.add(0);
-                    answers.add(0);
-                    answers.add(0);
-                    answers.add(j);
-                    answers.add(0);
-                    answer = new Answers(answers);
-                    if(j == 0){
-                        assertTrue(answer.getDifficulty().equals("Easy"));
-                    }else if(j == 1){
-                        assertTrue(answer.getDifficulty().equals("Medium"));
-                    }else if(j == 2){
-                        assertTrue(answer.getDifficulty().equals("Hard"));
-                    }else if(j == 3){
-                        assertTrue(answer.getDifficulty().equals("Expert"));
-                    }
-                }else if(i == 4){
-                    answers = new ArrayList<>();
-                    answers.add(0);
-                    answers.add(0);
-                    answers.add(0);
-                    answers.add(0);
-                    answers.add(j);
-                    answer = new Answers(answers);
-                    if(j == 0){
-                        assertTrue(answer.getEthnicity().equals("Australian"));
-                    }else if(j == 1){
-                        assertTrue(answer.getEthnicity().equals("American"));
-                    }else if(j == 2){
-                        assertTrue(answer.getEthnicity().equals("Japanese"));
-                    }else if(j == 3){
-                        assertTrue(answer.getEthnicity().equals("Vietnamese"));
-                    }
-                }
-            }
+        int testNum = 0;
+        try{
+            answer = new Answers(answers);
+        }catch(Exception e){
+            testNum = 1;
         }
+        assertEquals(1,testNum);
+    }
 
+    public void testEquals(){
 
+        List<Integer> answers = new ArrayList<>();;
+        answers.add(0);
+        answers.add(0);
+        answers.add(0);
+        answers.add(0);
+        answers.add(0);
+        Answers answer1 = new Answers(answers);
+        Answers answer2 = new Answers(answers);
+        answers = new ArrayList<>();;
+        answers.add(1);
+        answers.add(0);
+        answers.add(0);
+        answers.add(0);
+        answers.add(0);
+        Answers answer3 = new Answers(answers);
+        assertTrue(answer1.equals(answer2));
+        assertFalse(answer1.equals(answer3));
+    }
 
-
-
-
+    public void testToString(){
+        List<Integer> answers = new ArrayList<>();;
+        answers.add(0);
+        answers.add(0);
+        answers.add(0);
+        answers.add(0);
+        answers.add(0);
+        Answers answer = new Answers(answers);
+        String test = "Flavor: Sweet\n  PortionSize: 1\n  PrepTime: 10\n  Difficulty: Easy\n  Ethnicity: Australian\n";
+        assertTrue(answer.toString().equals(test));
     }
 
 }

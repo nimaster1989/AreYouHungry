@@ -6,9 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.Group2.areyouhungry.objects.Question;
+import comp3350.Group2.areyouhungry.objects.User;
 
 
 public class QuestionTest extends TestCase{
+
+    public QuestionTest(String arg0){
+        super(arg0);
+    }
+
     public void testQuestionCreation(){
         Question question;
         String theQuestion = "What time is it";
@@ -16,11 +22,102 @@ public class QuestionTest extends TestCase{
         String option2 = "5:05am";
         String option3 = "10:00am";
         String option4 = "Hammer Time";
-        question = new Question(theQuestion, option1, option2, option3, option4);
-        assertNotNull(question);
+        int testnum = 0;
+        try{
+            question = new Question(theQuestion, option1, option2, option3, option4);
+            testnum = 1;
+        }catch(Exception e){
+            testnum = 0;
+        }
+        assertEquals(1, testnum);
     }
 
-    public void testQuestionGetters(){
+    public void testBadQuestionQuestionCreation(){
+        Question question;
+        String theQuestion = null;
+        String option1 = "4:14am";
+        String option2 = "5:05am";
+        String option3 = "10:00am";
+        String option4 = "Hammer Time";
+        int testnum = 0;
+        try{
+            question = new Question(theQuestion, option1, option2, option3, option4);
+            testnum = 1;
+        }catch(Exception e){
+            testnum = 0;
+        }
+        assertEquals(0, testnum);
+    }
+
+    public void testBadOption1QuestionCreation(){
+        Question question;
+        String theQuestion = "What time is it";
+        String option1 = null;
+        String option2 = "5:05am";
+        String option3 = "10:00am";
+        String option4 = "Hammer Time";
+        int testnum = 0;
+        try{
+            question = new Question(theQuestion, option1, option2, option3, option4);
+            testnum = 1;
+        }catch(Exception e){
+            testnum = 0;
+        }
+        assertEquals(0, testnum);
+    }
+
+    public void testBadOption2QuestionCreation(){
+        Question question;
+        String theQuestion = "What time is it";
+        String option1 = "4:04am";
+        String option2 = null;
+        String option3 = "10:00am";
+        String option4 = "Hammer Time";
+        int testnum = 0;
+        try{
+            question = new Question(theQuestion, option1, option2, option3, option4);
+            testnum = 1;
+        }catch(Exception e){
+            testnum = 0;
+        }
+        assertEquals(0, testnum);
+    }
+
+    public void testBadOption3QuestionCreation(){
+        Question question;
+        String theQuestion = "What time is it";
+        String option1 = "4:04am";
+        String option2 = "5:05am";
+        String option3 = null;
+        String option4 = "Hammer Time";
+        int testnum = 0;
+        try{
+            question = new Question(theQuestion, option1, option2, option3, option4);
+            testnum = 1;
+        }catch(Exception e){
+            testnum = 0;
+        }
+        assertEquals(0, testnum);
+    }
+
+    public void testBadOption4QuestionCreation(){
+        Question question;
+        String theQuestion = "What time is it";
+        String option1 = "4:04am";
+        String option2 = "5:05am";
+        String option3 = "10:00am";
+        String option4 = null;
+        int testnum = 0;
+        try{
+            question = new Question(theQuestion, option1, option2, option3, option4);
+            testnum = 1;
+        }catch(Exception e){
+            testnum = 0;
+        }
+        assertEquals(0, testnum);
+    }
+
+    public void testGetters(){
         Question question;
         String theQuestion = "What time is it";
         String option1 = "4:14am";
@@ -35,7 +132,7 @@ public class QuestionTest extends TestCase{
         assertTrue(question.getOption4().equals("Hammer Time"));
     }
 
-    public void testQuestionSetters(){
+    public void testSetters(){
         Question question;
         String theQuestion = "What time is it";
         String option1 = "4:14am";
@@ -65,45 +162,29 @@ public class QuestionTest extends TestCase{
         assertTrue(question.getOption4().equals("Fun time"));
     }
 
-    public void testCreatingNull(){
-        Question question;
-        question = new Question(null, null, null, null, null);
-
-        assertNull(question.getQuestion());
-
-        assertNull(question.getOption1());
-
-        assertNull(question.getOption2());
-
-        assertNull(question.getOption3());
-
-        assertNull(question.getOption4());
-
-    }
-
-    public void testSettingNull(){
-        Question question;
+    public void testEquals(){
         String theQuestion = "What time is it";
         String option1 = "4:14am";
         String option2 = "5:05am";
         String option3 = "10:00am";
         String option4 = "Hammer Time";
-        question = new Question(theQuestion, option1, option2, option3, option4);
+        Question question1 = new Question(theQuestion, option1, option2, option3, option4);
+        Question question2 = new Question(theQuestion, option1, option2, option3, option4);
+        theQuestion = "How do you do";
+        Question question3 = new Question(theQuestion, option1, option2, option3, option4);
 
-        question.setQuestion(null);
-        assertNull(question.getQuestion());
+        assertTrue(question1.equals(question2));
+        assertFalse(question1.equals(question3));
+    }
 
-        question.setOption1(null);
-        assertNull(question.getOption1());
-
-        question.setOption2(null);
-        assertNull(question.getOption2());
-
-        question.setOption3(null);
-        assertNull(question.getOption3());
-
-        question.setOption4(null);
-        assertNull(question.getOption4());
-
+    public void testToString(){
+        String theQuestion = "What time is it";
+        String option1 = "4:14am";
+        String option2 = "5:05am";
+        String option3 = "10:00am";
+        String option4 = "Hammer Time";
+        Question question = new Question(theQuestion, option1, option2, option3, option4);
+        String test = "Question: What time is it\n  Option1: 4:14am\n  Option2: 5:05am\n  Option3: 10:00am\n  Option4: Hammer Time\n";
+        assertTrue(test.equals(question.toString()));
     }
 }

@@ -3,8 +3,11 @@ package comp3350.Group2.areyouhungry.tests.persistence;
 import junit.framework.TestCase;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import comp3350.Group2.areyouhungry.MainActivity;
+import comp3350.Group2.areyouhungry.Services;
+import comp3350.Group2.areyouhungry.objects.Answers;
 import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.User;
 import comp3350.Group2.areyouhungry.objects.FoodCategory;
@@ -81,11 +84,10 @@ public class DataAccessTest extends TestCase{
     }
 
     public void testSetNewUser(){
-        int id = 77;
+        int id = 99;
         String username = "Test User";
         User user1 = new User(id,username);
         User userSet = dataAccess.setNewUser(id,username);
-        System.out.println(userSet.toString());
         assertEquals(user1, userSet);
     }
 
@@ -115,8 +117,6 @@ public class DataAccessTest extends TestCase{
         int category=3;
         FoodCategory test = new FoodCategory(id,category);
         FoodCategory result = dataAccess.addFoodCategory(id,category);
-        System.out.println(result);
-        System.out.println(test);
         assertEquals(test, result);
     }
 
@@ -139,6 +139,131 @@ public class DataAccessTest extends TestCase{
         int category=-4;
         FoodCategory result = dataAccess.addFoodCategory(id,category);
         assertNull(result);
+    }
+    /* We understood that tests are suppsoe to avoid if/else and loops but this saves so much
+   time for testing all possible options. */
+    public void testAllAnswerOptions(){
+        Answers answer;
+        List<Integer> answers;
+        for(int i =0; i<5; i++){
+            for(int j =0; j<4; j++){
+                if(i == 0){
+                    answers = new ArrayList<>();
+                    answers.add(j);
+                    answers.add(0);
+                    answers.add(0);
+                    answers.add(0);
+                    answers.add(0);
+                    answer = new Answers(answers);
+                    if(j == 0){
+                        assertTrue(answer.getFlavor().equals("Sweet"));
+                    }else if(j == 1){
+                        assertTrue(answer.getFlavor().equals("Savory"));
+                    }else if(j == 2){
+                        assertTrue(answer.getFlavor().equals("Spicy"));
+                    }else if(j == 3){
+                        assertTrue(answer.getFlavor().equals("Other"));
+                    }
+                }else if(i == 1){
+                    answers = new ArrayList<>();
+                    answers.add(0);
+                    answers.add(j);
+                    answers.add(0);
+                    answers.add(0);
+                    answers.add(0);
+                    answer = new Answers(answers);
+                    if(j == 0){
+                        assertTrue(answer.getPortionSize().equals("1"));
+                    }else if(j == 1){
+                        assertTrue(answer.getPortionSize().equals("3"));
+                    }else if(j == 2){
+                        assertTrue(answer.getPortionSize().equals("5"));
+                    }else if(j == 3){
+                        assertTrue(answer.getPortionSize().equals("7"));
+                    }
+                }else if(i == 2){
+                    answers = new ArrayList<>();
+                    answers.add(0);
+                    answers.add(0);
+                    answers.add(j);
+                    answers.add(0);
+                    answers.add(0);
+                    answer = new Answers(answers);
+                    if(j == 0){
+                        assertTrue(answer.getPreptime().equals("10"));
+                    }else if(j == 1){
+                        assertTrue(answer.getPreptime().equals("20"));
+                    }else if(j == 2){
+                        assertTrue(answer.getPreptime().equals("30"));
+                    }else if(j == 3){
+                        assertTrue(answer.getPreptime().equals("40"));
+                    }
+                }else if(i == 3){
+                    answers = new ArrayList<>();
+                    answers.add(0);
+                    answers.add(0);
+                    answers.add(0);
+                    answers.add(j);
+                    answers.add(0);
+                    answer = new Answers(answers);
+                    if(j == 0){
+                        assertTrue(answer.getDifficulty().equals("Easy"));
+                    }else if(j == 1){
+                        assertTrue(answer.getDifficulty().equals("Medium"));
+                    }else if(j == 2){
+                        assertTrue(answer.getDifficulty().equals("Hard"));
+                    }else if(j == 3){
+                        assertTrue(answer.getDifficulty().equals("Expert"));
+                    }
+                }else if(i == 4){
+                    answers = new ArrayList<>();
+                    answers.add(0);
+                    answers.add(0);
+                    answers.add(0);
+                    answers.add(0);
+                    answers.add(j);
+                    answer = new Answers(answers);
+                    if(j == 0){
+                        assertTrue(answer.getEthnicity().equals("Australian"));
+                    }else if(j == 1){
+                        assertTrue(answer.getEthnicity().equals("American"));
+                    }else if(j == 2){
+                        assertTrue(answer.getEthnicity().equals("Japanese"));
+                    }else if(j == 3){
+                        assertTrue(answer.getEthnicity().equals("Vietnamese"));
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
+    }
+
+    public void testGetFoodBasedOnAnswers(){
+        Services.closeDataAccess();
+        Services.createDataAccess(dataAccess);
+        Answers answer;
+        List<Integer> answers;
+        answers = new ArrayList<>();
+        answers.add(0);
+        answers.add(0);
+        answers.add(0);
+        answers.add(0);
+        answers.add(0);
+        answer = new Answers(answers);
+        answer.setFlavor("Savory");
+        answer.setPortionSize("1");
+        answer.setPreptime("10");
+        answer.setDifficulty("Easy");
+        answer.setEthnicity("American");
+        Food food1 = answer.getFoodBasedOnAnswers();
+        Food food2 = new Food(1, "Fish and Chip",1,10, "Savory", "Easy", "American");
+        assertTrue(food1.equals(food2));
+        Services.closeDataAccess();
     }
 
 }

@@ -6,9 +6,14 @@ public class Ingredient{
     private String measurement;
 
     public Ingredient(int ingredientID, String ingredientName, String measurement){
-        this.ingredientID = ingredientID;
-        this.ingredientName = ingredientName;
-        this.measurement = measurement;
+        if(ingredientID >= 0 && !ingredientName.isEmpty() && !measurement.isEmpty()){
+            this.ingredientID = ingredientID;
+            this.ingredientName = ingredientName;
+            this.measurement = measurement;
+        }
+        else{
+            throw new NullPointerException();
+        }
     }
 
     public int getIngredientID(){

@@ -117,7 +117,7 @@ public class AccessFoodsTest extends TestCase{
         Services.createDataAccess(new DataAccessStub(dbName));
         AccessFoods accessFood = new AccessFoods();
         ArrayList<Food> foodList = new ArrayList<>();
-        Food food = new Food(7, "test food",7,100, "test", "test", "test");
+        Food food = new Food(7, "test food",7,10, "Sweet", "Easy", "American");
         accessFood.addFood(food);
         accessFood.getFoods(foodList);
         assertTrue(foodList.contains(food));
@@ -129,10 +129,15 @@ public class AccessFoodsTest extends TestCase{
         Services.createDataAccess(new DataAccessStub(dbName));
         AccessFoods accessFood = new AccessFoods();
         ArrayList<Food> foodList = new ArrayList<>();
-        Food newItem = new Food(-1, "test",7,100, "test", "test", "test");
-        accessFood.addFood(newItem);
-        accessFood.getFoods(foodList);
-        assertFalse(foodList.contains(newItem));
+        Food newItem;
+        int testnum = 0;
+        try{
+            newItem = new Food(-1, "test",7,100, "test", "test", "test");
+            testnum = 1;
+        }catch (Exception e){
+            testnum = 0;
+        }
+        assertEquals(0,testnum);
         Services.closeDataAccess();
     }
 
@@ -141,10 +146,15 @@ public class AccessFoodsTest extends TestCase{
         Services.createDataAccess(new DataAccessStub(dbName));
         AccessFoods accessFood = new AccessFoods();
         ArrayList<Food> foodList = new ArrayList<>();
-        Food food = new Food(7, "",7,100, "test", "test", "test");
-        accessFood.addFood(food);
-        accessFood.getFoods(foodList);
-        assertFalse(foodList.contains(food));
+        Food food;
+        int testnum = 0;
+        try{
+            food = new Food(7, "", 7, 100, "test", "test", "test");
+             testnum = 1;
+        }catch(Exception e){
+            testnum = 0;
+        }
+        assertEquals(0,testnum);
         Services.closeDataAccess();
     }
 

@@ -14,14 +14,25 @@ public class Food{
     private String ethnicity;
 
     public Food(int foodID, String foodName, int portionSize, int prepTime,String flavour,String difficulty,String ethnicity){
-        this.foodID = foodID;
-        this.foodName = foodName;
-        this.portionSize = portionSize;
-        this.prepTime = prepTime;
-        this.flavour = flavour;
-        this.difficulty = difficulty;
-        this.ethnicity = ethnicity;
-        this.favourite = false;
+        if(foodID>=0 &&
+            !foodName.isEmpty() &&
+            (portionSize == 1 || portionSize == 3 || portionSize == 5 || portionSize == 7) &&
+            (prepTime == 10 || prepTime == 20 || prepTime == 30 || prepTime == 40) &&
+            (flavour.equals("Spicy") || flavour.equals("Sweet") || flavour.equals("Savory") || flavour.equals("Other")) &&
+            (difficulty.equals("Easy") || difficulty.equals("Medium") || difficulty.equals("Hard") || difficulty.equals("Expert"))&&
+            (ethnicity.equals("Australian") || ethnicity.equals("American") || ethnicity.equals("Japanese") || ethnicity.equals("Vietnamese"))){
+            this.foodID = foodID;
+            this.foodName = foodName;
+            this.portionSize = portionSize;
+            this.prepTime = prepTime;
+            this.flavour = flavour;
+            this.difficulty = difficulty;
+            this.ethnicity = ethnicity;
+            this.favourite = false;
+        }else{
+            throw new NullPointerException();
+        }
+
     }
 
     public String getFoodID(){
@@ -32,9 +43,7 @@ public class Food{
         return foodName;
     }
 
-    public boolean isFavourite(){
-        return favourite;
-    }
+
 
     public int getPortionSize(){
         return portionSize;
@@ -88,20 +97,25 @@ public class Food{
         this.ethnicity = ethnicity;
     }
 
-    @Override
+    public boolean isFavourite(){
+        return favourite;
+    }
+
+    public boolean equals(Object otherObject){
+        boolean equal = false;
+        if(otherObject instanceof Food){
+            Food otherFood = (Food)otherObject;
+            if(foodID == Integer.parseInt(otherFood.getFoodID())){
+                equal = true;
+            }
+        }
+        return equal;
+    }
+
     public String toString(){
-        return "ID: " + foodID + "\n  FoodName: " + foodName + "\n  Favourited: " + favourite + "\n  PortionSize: " + portionSize + "\n  PrepTime: "
-                + prepTime + "\n  Flavour: " + flavour + "\n  Difficulty: " + difficulty + "\n Ethnicity: " + ethnicity;
+        return "ID: " + foodID + "\n  FoodName: " + foodName + "\n  Favourited: " + favourite + "\n  PortionSize: " + portionSize + "\n  PrepTime: "+ prepTime + "\n  Flavour: " + flavour + "\n  Difficulty: " + difficulty + "\n  Ethnicity: " + ethnicity+"\n";
     }
 
-    @Override
-    public boolean equals(Object o){
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        Food food = (Food) o;
-
-        return getFoodID().equals(food.getFoodID());
-    }
 
 }
