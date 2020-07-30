@@ -54,7 +54,7 @@ public class AccessFoods{
         return dataAccess.getFoodTableRow();
     }
 
-    private int getCategoryID(String categoryName){
+    public int getCategoryID(String categoryName){
         return dataAccess.getCategoryIDbyName(categoryName);
     }
 

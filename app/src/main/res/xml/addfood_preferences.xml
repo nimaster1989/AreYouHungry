@@ -4,37 +4,43 @@
     <PreferenceCategory app:title="1.Food">
 
         <EditTextPreference
+            android:defaultValue=""
             app:key="food name"
             app:title="food's name"
             app:useSimpleSummaryProvider="true" />
 
-        <ListPreference
-            app:defaultValue="1"
-            app:entries="@array/portion_size_entries"
-            app:entryValues="@array/portion_size_values"
+        <EditTextPreference
+            app:defaultValue="0"
             app:key="portion"
             app:title="portion size"
-            app:summary="serve with N people" />
+            app:useSimpleSummaryProvider="true" />
         <ListPreference
-            app:defaultValue="10"
+            app:defaultValue="0"
             app:entries="@array/prep_time_entries"
             app:entryValues="@array/prep_time_values"
             app:key="preptime"
             app:title="prepare time"
-            app:summary="time use to cool " />
+            app:useSimpleSummaryProvider="true" />
         <ListPreference
-            app:defaultValue="Spicy"
+            app:defaultValue=""
             app:entries="@array/flavour_entires"
             app:entryValues="@array/flavour_values"
             app:key="flavour"
             app:title="flavour"
             app:useSimpleSummaryProvider="true" />
         <ListPreference
-            app:defaultValue="Easy"
+            app:defaultValue=""
             app:entries="@array/difficulty_entires"
             app:entryValues="@array/difficulty_values"
             app:key="difficulty"
             app:title="difficulty"
+            app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            app:defaultValue=""
+            app:entries="@array/ethnicity_entires"
+            app:entryValues="@array/ethnicity_values"
+            app:key="ethnicity"
+            app:title="ethnicity"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
@@ -91,8 +97,7 @@
         <EditTextPreference
             app:key="instruction"
             app:title="instruction"
-            app:useSimpleSummaryProvider="true"
-            app:isPreferenceVisible="true"/>
+            app:useSimpleSummaryProvider="true" />
         <EditTextPreference
             app:key="instruction2"
             app:title="instruction2"

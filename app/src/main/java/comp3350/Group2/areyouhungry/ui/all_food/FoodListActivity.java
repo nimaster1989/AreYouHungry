@@ -22,7 +22,7 @@ import android.widget.TextView;
 import comp3350.Group2.areyouhungry.R;
 import comp3350.Group2.areyouhungry.business.AccessFoods;
 import comp3350.Group2.areyouhungry.objects.Food;
-import comp3350.Group2.areyouhungry.ui.add_food.AddActivity;
+import comp3350.Group2.areyouhungry.ui.add_food.AddFoodActivity;
 import comp3350.Group2.areyouhungry.ui.favorites.FavouriteFoodListActivity;
 import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
 import comp3350.Group2.areyouhungry.ui.more.MoreActivity;
@@ -82,7 +82,7 @@ public class FoodListActivity extends AppCompatActivity{
         fab.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent add_intent = new Intent(FoodListActivity.this, AddActivity.class);
+                Intent add_intent = new Intent(FoodListActivity.this, AddFoodActivity.class);
                 FoodListActivity.this.startActivity(add_intent);
             }
         });

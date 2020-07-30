@@ -252,7 +252,7 @@ public class DataAccessStub implements DataAccess{
         foodIngredients.add(foodIngredient);
         tempIngredient.clear();
 
-        for(int i = 35; i < 41; i++) {
+        for(int i = 35; i < 41; i++){
             tempIngredient.add(ingredients.get(i));
         }
         foodIngredient = new FoodIngredient(foods.get(5),tempIngredient);
@@ -461,6 +461,58 @@ public class DataAccessStub implements DataAccess{
                 break;
             }
         }
+    }
+
+    @Override
+    public int getIngredientRow(){
+        return ingredients.size();
+    }
+
+    @Override
+    public String addFoodIngredient(int foodid, int ingredientid){
+        Iterator<FoodIngredient> foodIngredientIterator = foodIngredients.iterator();
+        FoodIngredient foodIngredient;
+        while(foodIngredientIterator.hasNext()){
+            foodIngredient = foodIngredientIterator.next();
+            if(foodIngredient.getFood().getFoodID().equals(String.valueOf(foodid))){
+                foodIngredient.getIngredients().add(ingredients.get(ingredientid-1));
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String addNewIngredient(Ingredient newIngredient){
+        if(newIngredient != null){
+            ingredients.add(newIngredient);
+        }
+        return null;
+    }
+
+    @Override
+    public int getDirectionRow(){
+        return directions.size();
+    }
+
+    @Override
+    public String addNewDirection(Direction newDirection){
+        if(newDirection != null){
+            directions.add(newDirection);
+        }
+        return null;
+    }
+
+    @Override
+    public String addFoodDirection(int foodid, int directionid){
+        Iterator<FoodDirection> foodDirectionIterator = foodDirections.iterator();
+        FoodDirection foodDirection;
+        while(foodDirectionIterator.hasNext()){
+            foodDirection = foodDirectionIterator.next();
+            if(foodDirection.getFood().getFoodID().equals(String.valueOf(foodid))){
+                foodDirection.getDirections().add(directions.get(directionid-1));
+            }
+        }
+        return null;
     }
 
 

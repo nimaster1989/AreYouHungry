@@ -481,6 +481,116 @@ public class DataAccessObject implements DataAccess{
         }
     }
 
+    @Override
+    public int getIngredientRow(){
+        int count = 0;
+        result = null;
+
+        try{
+            cmdString = "SELECT * FROM INGREDIENT";
+            rs5 = st3.executeQuery(cmdString);
+            while(rs5.next()){
+                count++;
+            }
+            rs5.close();
+        }catch (Exception e){
+            result = processSQLError(e);
+        }
+
+        return count;
+    }
+
+    @Override
+    public String addFoodIngredient(int foodid, int ingredientid){
+        String values;
+        result = null;
+
+        try{
+            if(foodid >= 1 && ingredientid >=1){
+                cmdString = "INSERT INTO FOODINGREDIENT VALUES(" + foodid + "," + ingredientid + ")";
+                updateCount = st1.executeUpdate(cmdString);
+                result = checkWarning(st1, updateCount);
+            }
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+        return result;
+    }
+
+    @Override
+    public String addNewIngredient(Ingredient newIngredient){
+        String values;
+        result = null;
+
+        try{
+            if(newIngredient.getIngredientID() >=1){
+                cmdString = "INSERT INTO INGREDIENT VALUES('"+newIngredient.getIngredientID()+"','"+newIngredient.getIngredientName()+"','"+newIngredient.getMeasurement()+"')";
+                updateCount = st1.executeUpdate(cmdString);
+                result = checkWarning(st1, updateCount);
+            }
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+        return result;
+    }
+
+    @Override
+    public int getDirectionRow(){
+        int count = 0;
+        result = null;
+
+        try{
+            cmdString = "SELECT * FROM DIRECTION";
+            rs5 = st3.executeQuery(cmdString);
+            while(rs5.next()){
+                count++;
+            }
+            rs5.close();
+        }catch (Exception e){
+            result = processSQLError(e);
+        }
+
+        return count;
+    }
+
+    @Override
+    public String addNewDirection(Direction newDirection){
+        String values;
+        result = null;
+
+        try{
+            if(newDirection.getDirectionID() >=1){
+                cmdString = "INSERT INTO DIRECTION VALUES('"+newDirection.getDirectionID()+"','"+newDirection.getDirectionDescription()+"','"+newDirection.getStepNumber()+"')";
+                updateCount = st1.executeUpdate(cmdString);
+                result = checkWarning(st1, updateCount);
+            }
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+        return result;
+    }
+
+    @Override
+    public String addFoodDirection(int foodid, int directionid){
+        String values;
+        result = null;
+
+        try{
+            if(foodid >= 1 && directionid >=1){
+                cmdString = "INSERT INTO FOODDIRECTION VALUES(" + foodid + "," + directionid + ")";
+                updateCount = st1.executeUpdate(cmdString);
+                result = checkWarning(st1, updateCount);
+            }
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+        return result;
+    }
+
     public int getTotalUser(){
         int count = 0;
         result = null;
@@ -571,7 +681,7 @@ public class DataAccessObject implements DataAccess{
         result = null;
 
         try{
-            cmdString = "INSERT INTO FOODS VALUES("+Integer.parseInt(addFood.getFoodID()) +", '"+addFood.getFoodName()+"','"+addFood.getFavourite()+")";
+            cmdString = "INSERT INTO FOODS VALUES('"+addFood.getFoodID()+"','"+addFood.getFoodName()+"','"+addFood.getPortionSize()+"','"+addFood.getPrepTime()+"','"+addFood.getFlavour()+"','"+addFood.getDifficulty()+"','"+addFood.getEthnicity()+"')";
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
         }

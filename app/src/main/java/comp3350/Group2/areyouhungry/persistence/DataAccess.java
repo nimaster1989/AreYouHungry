@@ -58,4 +58,16 @@ public interface DataAccess{
     void deleteFoodCategory(int foodID, int categoryID);
 
     void deleteUser(int userID);
+
+    int getIngredientRow();
+
+    String addFoodIngredient(int foodid, int ingredientid);
+
+    String addNewIngredient(Ingredient newIngredient);
+
+    int getDirectionRow();
+
+    String addNewDirection(Direction newDirection);
+
+    String addFoodDirection(int foodid, int directionid);
 }
