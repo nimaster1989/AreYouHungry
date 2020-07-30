@@ -74,17 +74,17 @@
     </string-array>
 
     <string-array name="ethnicity_entires">
-        <item>Australian</item>
+        <item>Greek</item>
         <item>American</item>
         <item>Japanese</item>
-        <item>Vietnamese</item>
+        <item>Chinese</item>
     </string-array>
 
     <string-array name="ethnicity_values">
-        <item>Australian</item>
+        <item>Greek</item>
         <item>American</item>
         <item>Japanese</item>
-        <item>Vietnamese</item>
+        <item>Chinese</item>
     </string-array>
 
 
