@@ -60,46 +60,54 @@ public class DataAccessStub implements DataAccess{
 
         foods = new ArrayList<Food>();
         Food_map = new HashMap<>();
-        food = new Food(1, "Fish and Chip",1,10, "Savory", "Easy", "American");
+        food = new Food(1, "Baked Salmon",3,20, "Savoury", "Easy", "American");
         foods.add(food);
         Food_map.put(String.valueOf(food.getFoodID()),food);
-        food = new Food(2, "California Burger",1,20, "Sweet", "Medium", "Australian");
+        food = new Food(2, "Greek Salad",1,10, "Fresh", "Easy", "Greek");
         foods.add(food);
         Food_map.put(String.valueOf(food.getFoodID()),food);
-        food = new Food(3, "Pad Thai",3,30, "Spicy", "Hard", "American");
+        food = new Food(3, "Spicy Spaghetti",5,10, "Spicy", "Easy", "Italian");
         foods.add(food);
         Food_map.put(String.valueOf(food.getFoodID()),food);
-        food = new Food(4, "Japan Ramen",3,10, "Sweet", "Expert", "Japanese");
+        food = new Food(4, "Classic Cheesecake",7,40, "Sweet", "Hard", "American");
         foods.add(food);
         Food_map.put(String.valueOf(food.getFoodID()),food);
-        food = new Food(5, "Jimgatang",5,20, "Savory", "Medium", "American");
+        food = new Food(5, "Egg Fried Rice",3,30, "Savoury", "Medium", "Chinese");
         foods.add(food);
         Food_map.put(String.valueOf(food.getFoodID()),food);
-        food = new Food(6, "Ceaser Salad",7,30, "Other", "Hard", "Vietnamese");
+        food = new Food(6, "Banana Split", 1, 10, "Sweet", "Easy", "American");
         foods.add(food);
         Food_map.put(String.valueOf(food.getFoodID()),food);
 
         categoriesList = new ArrayList<Categories>();
         categories = new Categories(1,"Meat");
         categoriesList.add(categories);
-        categories = new Categories(2,"Grain");
+        categories = new Categories(2,"Vegetable");
         categoriesList.add(categories);
-        categories = new Categories(3,"Vegetable");
+        categories = new Categories(3,"Grain");
         categoriesList.add(categories);
+        categories = new Categories(4,"Dairy");
+        categoriesList.add(categories);
+        categories = new Categories(5,"Fruit");
+        categoriesList.add(categories);
+
 
         foodCategories = new ArrayList<FoodCategory>();
         foodCategory = new FoodCategory(1,1);
         foodCategories.add(foodCategory);
-        foodCategory = new FoodCategory(1,2);
-        foodCategories.add(foodCategory);
-        foodCategory = new FoodCategory(2,1);
-        foodCategories.add(foodCategory);
-        foodCategory = new FoodCategory(2,3);
-        foodCategories.add(foodCategory);
-        foodCategory = new FoodCategory(3,1);
+        foodCategory = new FoodCategory(2,2);
         foodCategories.add(foodCategory);
         foodCategory = new FoodCategory(3,3);
         foodCategories.add(foodCategory);
+        foodCategory = new FoodCategory(4,4);
+        foodCategories.add(foodCategory);
+        foodCategory = new FoodCategory(5,3);
+        foodCategories.add(foodCategory);
+        foodCategory = new FoodCategory(6,4);
+        foodCategories.add(foodCategory);
+        foodCategory = new FoodCategory(6,5);
+        foodCategories.add(foodCategory);
+
 
         users = new ArrayList<User>();
         user = new User(1,"default user");
@@ -122,101 +130,232 @@ public class DataAccessStub implements DataAccess{
         questions.add(question);
 
         ingredients = new ArrayList<Ingredient>();
-        ingredient = new Ingredient(1, "Halibut", "256lb");
+        ingredient = new Ingredient(1, "Salmon Fillets", "4");
         ingredients.add(ingredient);
-        ingredient = new Ingredient(2, "Salt", "60g");
+        ingredient = new Ingredient(2, "Olive Oil", "2 tbsp.");
         ingredients.add(ingredient);
-        ingredient = new Ingredient(3, "Wagyu Beef", "57g");
+        ingredient = new Ingredient(3, "Salt", "1/2 tsp.");
         ingredients.add(ingredient);
-        ingredient = new Ingredient(4, "Iceberg Lettuce", "3 pieces");
+        ingredient = new Ingredient(4, "Black pepper", "1/4 tsp.");
         ingredients.add(ingredient);
-        ingredient = new Ingredient(5, "American Cheese", "1 slice");
+        ingredient = new Ingredient(5, "Minced Garlic", "2tsp.");
         ingredients.add(ingredient);
-        ingredient = new Ingredient(6, "Lettuce", "1 head of lettuce");
+        ingredient = new Ingredient(6, "Italian herb seasoning blend", "1tsps.");
         ingredients.add(ingredient);
-        ingredient = new Ingredient(7, "Noodles", "500grams");
+        ingredient = new Ingredient(7, "Lemon", "1/2");
         ingredients.add(ingredient);
-        ingredient = new Ingredient(8, "Ramen Noodles", "2 pounds");
+        ingredient = new Ingredient(8, "Large vine tomatoes", "4");
         ingredients.add(ingredient);
-        ingredient = new Ingredient(9, "Bread", "2 slices");
+        ingredient = new Ingredient(9, "Cucumber", "1");
         ingredients.add(ingredient);
+        ingredient = new Ingredient(10, "Red onion", "1/2");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(11, "Kalamata olives", "16");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(12, "Oregano", "1 tsp.");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(13, "Feta cheese", "85g");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(14, "Extra virgin olive oil", "4 tbsp.");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(15, "Spaghetti", "1 lb");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(16, "Cloves of garlic", "2-3");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(17, "Dried red chile pepper flakes", "1/2 tsp");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(18, "Graham cracker crumbs", "1 1/2 cups");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(19, "Ground cinnamon", "1/4 tsp.");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(20, "Unsalted butter", "1/3 cup");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(21, "Cream cheese", "8 oz.");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(22, "Sugar", "1 1/4 cup");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(23, "Sour Cream", "1 cup");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(24, "Vanilla Extract", "2 tsp.");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(25, "Large Eggs", "5");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(26, "Butter", "3 tbsp.");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(27, "Eggs", "2");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(28, "Medium carrots", "2");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(29, "Small white onion", "1");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(30,"Frozen peas", "1/2 cup");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(31, "Cloves of garlic", "3");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(32, "Cooked rice", "4 cups");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(33, "Green onions", "3");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(34, "Soy sauce", "3-4 tbsp.");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(35, "Sesame oil", "1");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(36, "Banana", "1");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(37, "Vanilla ice cream", "1 scoop");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(38, "Chocolate ice cream", "1 scoop");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(39, "Strawberry ice cream", "1 scoop");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(40, "Chocolate syrup", "Garnish: ");
+        ingredients.add(ingredient);
+        ingredient = new Ingredient(41, "Whipped cream", "Garnish: ");
+        ingredients.add(ingredient);
+
 
         foodIngredients = new ArrayList<>();
         ArrayList<Ingredient> tempIngredient = new ArrayList<>();
-        tempIngredient.add(ingredients.get(0));
-        tempIngredient.add(ingredients.get(1));
+
+        for(int i = 0; i < 7; i++){
+            tempIngredient.add(ingredients.get(i));
+        }
         foodIngredient = new FoodIngredient(foods.get(0),tempIngredient);
         foodIngredients.add(foodIngredient);
         tempIngredient.clear();
-        tempIngredient.add(ingredients.get(2));
-        tempIngredient.add(ingredients.get(3));
-        tempIngredient.add(ingredients.get(4));
+
+        for(int i = 7; i < 14; i++){
+            tempIngredient.add(ingredients.get(i));
+        }
         foodIngredient = new FoodIngredient(foods.get(1),tempIngredient);
         foodIngredients.add(foodIngredient);
         tempIngredient.clear();
-        tempIngredient.add(ingredients.get(6));
+
+        for(int i = 14; i < 17; i++){
+            tempIngredient.add(ingredients.get(i));
+        }
         foodIngredient = new FoodIngredient(foods.get(2),tempIngredient);
         foodIngredients.add(foodIngredient);
         tempIngredient.clear();
-        tempIngredient.add(ingredients.get(7));
+
+        for(int i = 17; i < 25; i++){
+            tempIngredient.add(ingredients.get(i));
+        }
         foodIngredient = new FoodIngredient(foods.get(3),tempIngredient);
         foodIngredients.add(foodIngredient);
         tempIngredient.clear();
-        tempIngredient.add(ingredients.get(8));
+
+        for(int i = 25; i < 35; i++){
+            tempIngredient.add(ingredients.get(i));
+        }
         foodIngredient = new FoodIngredient(foods.get(4),tempIngredient);
         foodIngredients.add(foodIngredient);
         tempIngredient.clear();
-        tempIngredient.add(ingredients.get(5));
+
+        for(int i = 35; i < 41; i++) {
+            tempIngredient.add(ingredients.get(i));
+        }
         foodIngredient = new FoodIngredient(foods.get(5),tempIngredient);
         foodIngredients.add(foodIngredient);
         tempIngredient.clear();
 
         directions = new ArrayList<>();
-        direction = new Direction(1, "Cook the Halibut in a fire for 7 hours.", 1);
+        direction = new Direction(1,"Preheat oven to 400 degree F and grease a large baking pan. Arrange salmon fillets on the baking sheet and season generously with salt and pepper.", 1);
         directions.add(direction);
-        direction = new Direction(2, "Add in all of the salt", 2);
+        direction = new Direction(2, "Stir together olive oil, garlic, herbs, and juice of 1/2 lemon, and spoon mix over fillets.", 2);
         directions.add(direction);
-        direction = new Direction(3, "Cook the Wagyu Beef for 10 minutes or until well done", 1);
+        direction = new Direction(3, "Bake for 15-18 minutes until salmon is opaque and flaky", 3);
         directions.add(direction);
-        direction = new Direction(4, "Blend the lettuce, and spread it on the beef", 2);
+        direction = new Direction(4, "Garnish with fresh thyme or parsley if desired, and serve.", 4);
         directions.add(direction);
-        direction = new Direction(5, "Add a piece of processed cheese, and serve!", 3);
+        direction = new Direction(5, "Cut the tomatoes into wedges.", 1);
         directions.add(direction);
-        direction = new Direction(6, "Put lettuce in a bowl", 1);
+        direction = new Direction(6, "Peel, de-seed, and chop the cucumbers", 2);
         directions.add(direction);
-        direction = new Direction(7, "Fry the noodles", 1);
+        direction = new Direction(7, "Thinly slice the red onion.", 3);
         directions.add(direction);
-        direction = new Direction(8, "Cook the noodles", 1);
+        direction = new Direction(8, "Throw all the ingredients in the bowl", 4);
         directions.add(direction);
-        direction = new Direction(9, "Wrap the bread", 1);
+        direction = new Direction(9, "Lightly season, and serve.", 5);
         directions.add(direction);
+        direction = new Direction(10, "Set a large covered pot of water over high heat to boil. When it reaches a rolling boil, salt the water and add the spaghetti.", 1);
+        directions.add(direction);
+        direction = new Direction(11, "Mince garlic, and add onto skillet with olive oil over medium heat for about 1 minute until garlic is fragrant and lightly coloured.", 2);
+        directions.add(direction);
+        direction = new Direction(12, "Add the red pepper and chopped parsley and cook for 30 seconds until fragrant.", 3);
+        directions.add(direction);
+        direction = new Direction(13, "When your pasta is al dente, drain it, reserving a few tablespoons of the cooking water.", 4);
+        directions.add(direction);
+        direction = new Direction(14, "Toss the spaghetti with the oil and garlic until evenly coated. Add a little bit of the pasta cooking water, as needed.", 5);
+        directions.add(direction);
+        direction = new Direction(15, "Preheat oven to 475 degrees F. Place a large pan filled with 1/2 inch water in oven.", 1);
+        directions.add(direction);
+        direction = new Direction(16, "Building the crust: Mix graham cracker crumbs and cinnamon; add butter or margarine. Press crust onto bottom and 2/3 of the way up a 9-inch springform pan lined with parchment. Freeze until needed", 2);
+        directions.add(direction);
+        direction = new Direction(17, "Mix cream cheese, sugar, sour cream and vanilla until smooth and creamy. Whisk eggs in a bowl; add to cream cheese mixture. Blend just until eggs are incorporated.", 3);
+        directions.add(direction);
+        direction = new Direction(18, "Remove crust from freezer and pour in filling. Carefully place cheesecake into preheated water bath. Bake for 12 minutes; turn oven to 350 degrees F and bake until top of cheesecake turns golden, 50 to 60 minutes. Remove cake to cool.", 4);
+        directions.add(direction);
+        direction = new Direction(19, "Combine sour cream and some sugar to make topping to spread over cake. Cover and refrigerate at least 4 hours.", 5);
+        directions.add(direction);
+        direction = new Direction(20, "Heat 1/2 tablespoon of butter in a large saute pan over medium-high heat until melted. Whisk and add eggs, and cook until scrambled, stirring occasionally. Remove egg, and transfer to a separate plate.,", 1);
+        directions.add(direction);
+        direction = new Direction(21, "Add 1 of tablespoon butter to the pan and heat until melted. Add carrots, onion, peas and garlic, and season with a generous pinch of salt and pepper. Saut\\u00e9 for about 5 minutes or until the onion and carrots are soft.", 2);
+        directions.add(direction);
+        direction = new Direction(22, "Increase heat to high, add in the remaining 1 1/2 tablespoons of butter, and stir until melted.Immediately add the rice, green onions, soy sauce, and stir until combined. Continue stirring for 3 minutes to fry the rice.", 3);
+        directions.add(direction);
+        direction = new Direction(23, "When rice is fried, add in the eggs and stir to combine. Remove from heat, and stir in the sesame oil until combined. Taste and season with extra soy sauce, if needed.", 4);
+        directions.add(direction);
+        direction = new Direction(24, "Split the banana lengthwise, and place them side by side.", 1);
+        directions.add(direction);
+        direction = new Direction(25, "Place each of the ice cream scoops between the banana slices.", 2);
+        directions.add(direction);
+        direction = new Direction(26, "Squirt some chocolate syrup on the vanilla and strawberry ice cream.", 3);
+        directions.add(direction);
+        direction = new Direction(27, "Top off ice cream with whipped cream or any toppings of your choice.", 4);
+
 
         foodDirections = new ArrayList<>();
         ArrayList<Direction> tempDirection = new ArrayList<>();
-        tempDirection.add(directions.get(0));
-        tempDirection.add(directions.get(1));
+
+        for (int i = 0; i < 4; i++){
+            tempDirection.add(directions.get(i));
+        }
         foodDirection = new FoodDirection(foods.get(0),tempDirection);
         foodDirections.add(foodDirection);
         tempDirection.clear();
-        tempDirection.add(directions.get(2));
-        tempDirection.add(directions.get(3));
-        tempDirection.add(directions.get(4));
+
+        for (int i = 4; i < 9; i++){
+            tempDirection.add(directions.get(i));
+        }
         foodDirection = new FoodDirection(foods.get(1),tempDirection);
         foodDirections.add(foodDirection);
         tempDirection.clear();
-        tempDirection.add(directions.get(6));
+
+        for (int i = 9; i < 14; i++){
+            tempDirection.add(directions.get(i));
+        }
         foodDirection = new FoodDirection(foods.get(2),tempDirection);
         foodDirections.add(foodDirection);
         tempDirection.clear();
-        tempDirection.add(directions.get(7));
+
+        for (int i = 14; i < 19; i++){
+            tempDirection.add(directions.get(i));
+        }
         foodDirection = new FoodDirection(foods.get(3),tempDirection);
         foodDirections.add(foodDirection);
         tempDirection.clear();
-        tempDirection.add(directions.get(8));
+
+        for (int i = 19; i < 23; i++){
+            tempDirection.add(directions.get(i));
+        }
         foodDirection = new FoodDirection(foods.get(4),tempDirection);
         foodDirections.add(foodDirection);
         tempDirection.clear();
-        tempDirection.add(directions.get(5));
+
+        for (int i = 23; i < 27; i++){
+            tempDirection.add(directions.get(i));
+        }
         foodDirection = new FoodDirection(foods.get(5),tempDirection);
         foodDirections.add(foodDirection);
         tempDirection.clear();
