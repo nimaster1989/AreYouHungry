@@ -52,8 +52,8 @@ Major source code files:
 Developer Log:
     Our developer log is multipart, first we used Trello to keep track of who was assigned what.
     From there once we finish the task what we did was put it all inside
-    of Google Doc in chronological order. For our group meetings we put those straight into the
-    Google Doc as opposed to a Trello card first.
+    of Google Doc in chronological order. For our group meetings we also put inside of the Google doc
+    as well.
     The Log: https://docs.google.com/document/d/1a8yhKzSlzY0D8_UWBL0q6TMm_ceQJbOEeWVaKGaYHDc/
     Trello board: https://trello.com/b/ETfh9VNT/are-you-hungry
 
