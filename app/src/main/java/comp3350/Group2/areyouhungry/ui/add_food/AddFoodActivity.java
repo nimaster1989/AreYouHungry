@@ -35,8 +35,6 @@ import comp3350.Group2.areyouhungry.objects.Ingredient;
 import comp3350.Group2.areyouhungry.objects.User;
 
 public class AddFoodActivity extends AppCompatActivity{
-
-
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addfood_activity);
