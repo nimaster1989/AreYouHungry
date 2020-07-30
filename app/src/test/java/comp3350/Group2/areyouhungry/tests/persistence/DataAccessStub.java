@@ -313,6 +313,7 @@ public class DataAccessStub implements DataAccess{
         direction = new Direction(26, "Squirt some chocolate syrup on the vanilla and strawberry ice cream.", 3);
         directions.add(direction);
         direction = new Direction(27, "Top off ice cream with whipped cream or any toppings of your choice.", 4);
+        directions.add(direction);
 
 
         foodDirections = new ArrayList<>();
