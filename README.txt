@@ -22,7 +22,7 @@ Packages:
       this package is in charge of the business logic layer, it does what logic is required to
       grab what food is requested and passes that to that persistence layer for it to grab it
       from the database.
-    - comp3350.Group2.areyouhungry.presistence //I think this is spelt wrong
+    - comp3350.Group2.areyouhungry.persistence
       This package is in charge of the persistence layer that takes what was passed to it from the
       business layer and gets from the"database" what is required. Right now there is no actual
       database so it just fetches it from an array list.
