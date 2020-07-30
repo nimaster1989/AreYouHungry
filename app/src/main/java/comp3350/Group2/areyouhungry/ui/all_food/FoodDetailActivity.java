@@ -24,7 +24,6 @@ import comp3350.Group2.areyouhungry.business.AccessFoods;
 import comp3350.Group2.areyouhungry.business.AccessIngredients;
 import comp3350.Group2.areyouhungry.objects.Direction;
 import comp3350.Group2.areyouhungry.objects.Food;
-import comp3350.Group2.areyouhungry.objects.FoodDirection;
 import comp3350.Group2.areyouhungry.objects.Ingredient;
 import comp3350.Group2.areyouhungry.objects.User;
 

@@ -14,7 +14,6 @@ import java.io.InputStreamReader;
 
 import comp3350.Group2.areyouhungry.business.AccessUsers;
 import comp3350.Group2.areyouhungry.objects.User;
-import comp3350.Group2.areyouhungry.persistence.DataAccess;
 import comp3350.Group2.areyouhungry.persistence.Messages;
 import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
 
