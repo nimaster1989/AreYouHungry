@@ -24,7 +24,7 @@ Packages:
       from the database.
     - comp3350.Group2.areyouhungry.persistence
       This package is in charge of the persistence layer that takes what was passed to it from the
-      business layer and gets from the"database" what is required. Right now there is no actual
+      business layer and gets from the "database" what is required. Right now there is no actual
       database so it just fetches it from an array list.
     - comp3350.Group2.areyouhungry.objects
       This is the domain specific object package and is what holds our food object which is what the
