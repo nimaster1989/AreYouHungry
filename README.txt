@@ -50,9 +50,8 @@ Major source code files:
 
 
 Developer Log:
-    Our developer log is multipart, first we used Trello to keep track of who was assigned what,
-    we also agreed to keep track of our progress and issues we had in the comments section of the
-    Trello cards themselves. From there once we finish the task what we did was put it all inside
+    Our developer log is multipart, first we used Trello to keep track of who was assigned what.
+    From there once we finish the task what we did was put it all inside
     of Google Doc in chronological order. For our group meetings we put those straight into the
     Google Doc as opposed to a Trello card first.
     The Log: https://docs.google.com/document/d/1a8yhKzSlzY0D8_UWBL0q6TMm_ceQJbOEeWVaKGaYHDc/
