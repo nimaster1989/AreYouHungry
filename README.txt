@@ -24,8 +24,9 @@ Packages:
       from the database.
     - comp3350.Group2.areyouhungry.persistence
       This package is in charge of the persistence layer that takes what was passed to it from the
-      business layer and gets from the "database" what is required. Right now there is no actual
-      database so it just fetches it from an array list.
+      business layer and gets from the "database" what is required. Right now there is a stub database
+      and a HSQL database that tests can swap between but only the HSQL one is used for storage
+      for the application.
     - comp3350.Group2.areyouhungry.objects
       This is the domain specific object package and is what holds our food object which is what the
       project uses as its answer to the users requests.
@@ -37,10 +38,10 @@ Major source code files:
     food from the "database".
 
     comp3350.Group2.areyouhungry.objects: This class is our food object which is what is stored
-    in the "database" and is presented to the user. Will eventually contain things like recipes
+    in the database and is presented to the user.
 
     comp3350.Group2.areyouhungry.persistence: This class is our database right now. It stores all
-    of our food objects and has methods for accessing them
+    of our food objects and has methods for accessing them.
 
     comp3350.Group2.areyouhungry.ui.*: These classes are our front end, they're responsible for
     providing a way for users to interact with our application to start the process to retrieve
