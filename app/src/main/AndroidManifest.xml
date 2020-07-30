@@ -13,7 +13,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.add_food.AddFoodActivity"
-            android:label="@string/title_activity_add_food"></activity>
+            android:label="@string/title_activity_add_food">
+        </activity>
         <activity
             android:name=".ui.user.UserActivity"
             android:label="Switch User" />
