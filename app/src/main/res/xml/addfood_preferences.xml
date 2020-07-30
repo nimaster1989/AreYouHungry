@@ -1,59 +1,53 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory app:title="1.Food">
+    <PreferenceCategory app:title="1. Food">
 
         <EditTextPreference
             android:defaultValue=""
             app:key="food name"
-            app:title="food's name"
+            app:title="Food Name"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
             app:defaultValue="0"
             app:key="portion"
-            app:title="portion size"
+            app:title="Portion Size"
             app:useSimpleSummaryProvider="true" />
-        <ListPreference
+        <EditTextPreference
             app:defaultValue="0"
-            app:entries="@array/prep_time_entries"
-            app:entryValues="@array/prep_time_values"
             app:key="preptime"
-            app:title="prepare time"
+            app:title="Preparation Time"
             app:useSimpleSummaryProvider="true" />
-        <ListPreference
+        <EditTextPreference
             app:defaultValue=""
-            app:entries="@array/flavour_entires"
-            app:entryValues="@array/flavour_values"
             app:key="flavour"
-            app:title="flavour"
+            app:title="Flavour"
             app:useSimpleSummaryProvider="true" />
         <ListPreference
             app:defaultValue=""
             app:entries="@array/difficulty_entires"
             app:entryValues="@array/difficulty_values"
             app:key="difficulty"
-            app:title="difficulty"
+            app:title="Difficulty"
             app:useSimpleSummaryProvider="true" />
-        <ListPreference
+        <EditTextPreference
             app:defaultValue=""
-            app:entries="@array/ethnicity_entires"
-            app:entryValues="@array/ethnicity_values"
             app:key="ethnicity"
-            app:title="ethnicity"
+            app:title="Ethnicity"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="2.Favourite">
+    <PreferenceCategory app:title="2. Favourite">
 
         <SwitchPreferenceCompat
             app:key="favourite"
-            app:title="set as favourite" />
+            app:title="Set as favourite" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="3.Category">
+    <PreferenceCategory app:title="3. Category">
 
         <MultiSelectListPreference
             app:entries="@array/category_entires"
@@ -64,59 +58,59 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="4.Ingredients">
+    <PreferenceCategory app:title="4. Ingredients">
 
         <EditTextPreference
             app:key="ingredient"
-            app:title="ingredient"
+            app:title="Ingredient"
             app:useSimpleSummaryProvider="true" />
         <EditTextPreference
             app:key="ingredient2"
-            app:title="ingredient2"
-            app:summary="add a new ingredient"
+            app:title="Ingredient 2"
+            app:summary=""
             app:isPreferenceVisible="false"/>
         <EditTextPreference
             app:key="ingredient3"
-            app:title="ingredient3"
-            app:summary="add a new ingredient"
+            app:title="Ingredient 3"
+            app:summary=""
             app:isPreferenceVisible="false"/>
         <EditTextPreference
             app:key="ingredient4"
-            app:title="ingredient4"
-            app:summary="add a new ingredient"
+            app:title="Ingredient 4"
+            app:summary=""
             app:isPreferenceVisible="false"/>
         <EditTextPreference
             app:key="ingredient5"
-            app:title="ingredient5"
-            app:summary="add a new ingredient"
+            app:title="Ingredient 5"
+            app:summary=""
             app:isPreferenceVisible="false"/>
 
     </PreferenceCategory>
-    <PreferenceCategory app:title="5.Instructions">
+    <PreferenceCategory app:title="5. Instructions">
 
         <EditTextPreference
             app:key="instruction"
-            app:title="instruction"
+            app:title="Instruction"
             app:useSimpleSummaryProvider="true" />
         <EditTextPreference
             app:key="instruction2"
-            app:title="instruction2"
-            app:summary="add a new instrction"
+            app:title="Instruction 2"
+            app:summary=""
             app:isPreferenceVisible="false"/>
         <EditTextPreference
             app:key="instruction3"
-            app:title="instruction3"
-            app:summary="add a new instrction"
+            app:title="Instruction 3"
+            app:summary=""
             app:isPreferenceVisible="false"/>
         <EditTextPreference
             app:key="instruction4"
-            app:title="instruction4"
-            app:summary="add a new instrction"
+            app:title="Instruction 4"
+            app:summary=""
             app:isPreferenceVisible="false"/>
         <EditTextPreference
             app:key="instruction5"
-            app:title="instruction5"
-            app:summary="add a new instrction"
+            app:title="Instruction 5"
+            app:summary=""
             app:isPreferenceVisible="false"/>
 
     </PreferenceCategory>

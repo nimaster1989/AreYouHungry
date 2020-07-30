@@ -34,7 +34,7 @@
     <string name="warning">Warning</string>
     <string name="add_a_new_food">Add a new food</string>
     <string name="switch_user">switch user</string>
-    <string name="title_activity_add_food">AddFoodActivity</string>
+    <string name="title_activity_add_food">Add Food</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>

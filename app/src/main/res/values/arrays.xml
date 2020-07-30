@@ -2,48 +2,6 @@
     <!-- Reply Preference -->
 
 
-    <string-array name="portion_size_entries">
-        <item>1 people</item>
-        <item>3 people</item>
-        <item>5 people</item>
-        <item>7 people</item>
-    </string-array>
-
-    <string-array name="portion_size_values">
-        <item>1</item>
-        <item>3</item>
-        <item>5</item>
-        <item>7</item>
-    </string-array>
-
-    <string-array name="prep_time_entries">
-        <item>10 mins</item>
-        <item>20 mins</item>
-        <item>30 mins</item>
-        <item>40 mins</item>
-    </string-array>
-
-    <string-array name="prep_time_values">
-        <item>10</item>
-        <item>20</item>
-        <item>30</item>
-        <item>40</item>
-    </string-array>
-
-    <string-array name="flavour_entires">
-        <item>Spicy</item>
-        <item>Sweeeeeet</item>
-        <item>Savory</item>
-        <item>Other</item>
-    </string-array>
-
-    <string-array name="flavour_values">
-        <item>Spicy</item>
-        <item>Sweet</item>
-        <item>Savory</item>
-        <item>Other</item>
-    </string-array>
-
     <string-array name="difficulty_entires">
         <item>Easy</item>
         <item>Medium</item>
@@ -71,20 +29,6 @@
         <item>Grain</item>
         <item>Dairy</item>
         <item>Fruit</item>
-    </string-array>
-
-    <string-array name="ethnicity_entires">
-        <item>Greek</item>
-        <item>American</item>
-        <item>Japanese</item>
-        <item>Chinese</item>
-    </string-array>
-
-    <string-array name="ethnicity_values">
-        <item>Greek</item>
-        <item>American</item>
-        <item>Japanese</item>
-        <item>Chinese</item>
     </string-array>
 
 
