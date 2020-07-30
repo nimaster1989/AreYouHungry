@@ -21,7 +21,7 @@ public class AccessDirections{
         return dataAccess.getDirectionByFood(food,directions);
     }
 
-    public int getNewDirectionId() {
+    public int getNewDirectionId(){
         return dataAccess.getDirectionRow()+1;
     }
     public String addDirection(Direction newDirection){

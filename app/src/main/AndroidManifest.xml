@@ -26,9 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.add_food.AddActivity"
-            android:parentActivityName=".ui.more.MoreActivity" /> <!-- android:windowSoftInputMode="stateHidden|adjustResize" -->
+        <!-- android:windowSoftInputMode="stateHidden|adjustResize" -->
         <activity
             android:name=".ui.preferred.PreferredSearchActivity"
             android:label="search result"

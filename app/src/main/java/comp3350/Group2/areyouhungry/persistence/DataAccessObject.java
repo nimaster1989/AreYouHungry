@@ -482,7 +482,7 @@ public class DataAccessObject implements DataAccess{
     }
 
     @Override
-    public int getIngredientRow() {
+    public int getIngredientRow(){
         int count = 0;
         result = null;
 
@@ -501,7 +501,7 @@ public class DataAccessObject implements DataAccess{
     }
 
     @Override
-    public String addFoodIngredient(int foodid, int ingredientid) {
+    public String addFoodIngredient(int foodid, int ingredientid){
         String values;
         result = null;
 
@@ -519,7 +519,7 @@ public class DataAccessObject implements DataAccess{
     }
 
     @Override
-    public String addNewIngredient(Ingredient newIngredient) {
+    public String addNewIngredient(Ingredient newIngredient){
         String values;
         result = null;
 
@@ -537,7 +537,7 @@ public class DataAccessObject implements DataAccess{
     }
 
     @Override
-    public int getDirectionRow() {
+    public int getDirectionRow(){
         int count = 0;
         result = null;
 
@@ -556,7 +556,7 @@ public class DataAccessObject implements DataAccess{
     }
 
     @Override
-    public String addNewDirection(Direction newDirection) {
+    public String addNewDirection(Direction newDirection){
         String values;
         result = null;
 
@@ -574,7 +574,7 @@ public class DataAccessObject implements DataAccess{
     }
 
     @Override
-    public String addFoodDirection(int foodid, int directionid) {
+    public String addFoodDirection(int foodid, int directionid){
         String values;
         result = null;
 
