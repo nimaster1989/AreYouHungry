@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity{
         copyDatabaseToDevice();
         startUp();
         setCurrentUser();
-        System.out.println("current user:" +currentUser.getUserID()+" "+currentUser.getUserName());
 
         finish();
 
@@ -44,10 +43,6 @@ public class MainActivity extends AppCompatActivity{
         currentUser = au.getDefaultUser();
     }
 
-    protected void onDestory(){
-        super.onDestroy();
-        shutDown();
-    }
     private void copyDatabaseToDevice(){
         final String DB_PATH = "db";
 
@@ -99,7 +94,6 @@ public class MainActivity extends AppCompatActivity{
         Services.createDataAccess(dbName);
     }
 
-    private void shutDown(){Services.closeDataAccess();}
     public static String getDBPathName(){
         if (dbPathName == null)
             return dbName;
@@ -108,7 +102,6 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public static void setDBPathName(String pathName){
-        System.out.println("Setting DB path to: " + pathName);
         dbPathName = pathName;
     }
 }

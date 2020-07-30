@@ -16,7 +16,6 @@ import androidx.appcompat.app.ActionBar;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.R;
@@ -29,13 +28,10 @@ import comp3350.Group2.areyouhungry.objects.FoodDirection;
 import comp3350.Group2.areyouhungry.objects.Ingredient;
 import comp3350.Group2.areyouhungry.objects.User;
 
-/* This is the page that appears when you double click a food item for
-   more details. */
 public class FoodDetailActivity extends AppCompatActivity{
 
     private String curr_id = null;
     private AccessFoods accessFoods;
-    private ArrayList<Food> foodList;
     FloatingActionButton fab;
     Food curr_food = null;
     User currUser;
@@ -53,27 +49,12 @@ public class FoodDetailActivity extends AppCompatActivity{
         curr_id = getIntent().getStringExtra(FoodDetailFragment.ARG_ITEM_ID);
         if (curr_id != null){
             curr_food = accessFoods.getFoodByID(curr_id);
-
-            //test of ingredients
-
             AccessIngredients ai = new AccessIngredients();
             ArrayList<Ingredient> ins = new ArrayList<Ingredient>();
             ai.getIngredient(curr_food,ins);
-            System.out.println("for currentfood:"+curr_food.getFoodName());
-            System.out.println("have "+ins.size()+" ingredient");
-            for(Ingredient in:ins){
-                System.out.println(in.toString());
-            }
-
-            //test for Directions
             AccessDirections ad = new AccessDirections();
             ArrayList<Direction> ds = new ArrayList<Direction>();
             ad.getDirection(curr_food,ds);
-            System.out.println("for currentfood:"+curr_food.getFoodName());
-            System.out.println("have "+ds.size()+" directions");
-            for(Direction d:ds){
-                System.out.println(d.toString());
-            }
         }
 
         currUser = MainActivity.currentUser;
@@ -115,12 +96,6 @@ public class FoodDetailActivity extends AppCompatActivity{
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        /* The variable savedInstanceState is non-null when there is fragment state
-           saved from previous configurations of this activity
-           (e.g. when rotating the screen from portrait to landscape).
-           In this case, the fragment will automatically be re-added
-           to its container so we don"t need to manually add it. */
-
         if (savedInstanceState == null){
             /* Create the detail fragment and add it to the activity
                using a fragment transaction. */
@@ -138,15 +113,12 @@ public class FoodDetailActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
+
         if (id == android.R.id.home){
-
-            /* This ID represents the Home or Up button. In the case of this
-               activity, the Up button is shown. */
-
             navigateUpTo(new Intent(this, FoodListActivity.class));
-
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 

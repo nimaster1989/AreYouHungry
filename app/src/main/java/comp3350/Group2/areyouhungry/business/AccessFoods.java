@@ -40,10 +40,44 @@ public class AccessFoods{
         return dataAccess.getFoodFromID(foodID);
     }
 
+    public String getFavouriteFoodsByUser(User user, ArrayList<Food> favouriteFoodList){
+        favouriteFoodList.clear();
+        return dataAccess.getFavouriteFoodByUserSequential(user, favouriteFoodList);
+    }
 
+    public String getRandom(List<Food> foods){
+        foods.clear();
+        return dataAccess.getFoodRandom(foods);
+    }
+
+    public int getFoodRow(){
+        return dataAccess.getFoodTableRow();
+    }
+
+    private int getCategoryID(String categoryName){
+        return dataAccess.getCategoryIDbyName(categoryName);
+    }
+
+    public boolean getFoodFavouriteByUser(User user,Food food){
+        return dataAccess.getFoodFavByUser(user,food);
+    }
+
+    public String setFoodFavouriteByUser(User user,String curr_id, boolean b){
+        return dataAccess.setFoodToFavouriteByUser(user,curr_id,b);
+    }
+
+    public String addFood(Food addedFood){
+        return dataAccess.addFood(addedFood);
+    }
+
+    public FoodCategory addFoodCategory(Food newFood, String categoryName){
+        int foodID = Integer.parseInt(newFood.getFoodID());
+        int categoryID = getCategoryID(categoryName);
+        return dataAccess.addFoodCategory(foodID, categoryID);
+    }
     /* Definition of duplicate: we assume foods might have same name,
-       but not same recipe, we call two foods to be equal if they have same
-       name, and same recipe. */
+   but not same recipe, we call two foods to be equal if they have same
+   name, and same recipe. */
     public boolean checkDuplicate(Food food){
         boolean duplicate = false;
         List<Food> foodsInDatabase = new ArrayList<Food>();
@@ -60,51 +94,5 @@ public class AccessFoods{
             }
         }
         return duplicate;
-    }
-
-    public String getFavouriteFoodsByUser(User user, ArrayList<Food> favouriteFoodList){
-        favouriteFoodList.clear();
-        return dataAccess.getFavouriteFoodByUserSequential(user, favouriteFoodList);
-    }
-
-//    public String getFavouriteFoods(ArrayList<Food> favouriteFoodList){
-//        favouriteFoodList.clear();
-//        return dataAccess.getFavouriteFoodSequential(favouriteFoodList);
-//    }
-
-    public String getRandom(List<Food> foods){
-        foods.clear();
-        return dataAccess.getFoodRandom(foods);
-    }
-
-    public int getFoodRow(){
-        return dataAccess.getFoodTableRow();
-    }
-
-    public String addFood(Food addedFood){
-        return dataAccess.addFood(addedFood);
-    }
-
-//    public String setFoodFavourite(String curr_id,boolean favourite){
-//        return dataAccess.setFoodToFavourite(curr_id,favourite);
-//    }
-
-    public FoodCategory addFoodCategory(Food newFood, String categoryName){
-        int foodID = Integer.parseInt(newFood.getFoodID());
-        int categoryID = getCategoryID(categoryName);
-        return dataAccess.addFoodCategory(foodID, categoryID);
-    }
-
-    private int getCategoryID(String categoryName){
-        return dataAccess.getCategoryIDbyName(categoryName);
-    }
-
-
-    public String setFoodFavouriteByUser(User user,String curr_id, boolean b){
-        return dataAccess.setFoodToFavouriteByUser(user,curr_id,b);
-    }
-
-    public boolean getFoodFavouriteByUser(User user,Food food){
-        return dataAccess.getFoodFavByUser(user,food);
     }
 }

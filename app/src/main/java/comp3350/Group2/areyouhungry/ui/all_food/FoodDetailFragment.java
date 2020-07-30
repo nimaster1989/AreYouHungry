@@ -37,21 +37,14 @@ import comp3350.Group2.areyouhungry.objects.FoodDirection;
 import comp3350.Group2.areyouhungry.objects.FoodIngredient;
 import comp3350.Group2.areyouhungry.objects.Ingredient;
 
-/* A fragment representing a single Food detail screen.
-   This fragment is either contained in a FoodListActivity
-   in two-pane mode (on tablets) or a FoodDetailActivity
-   on handsets. */
+
 public class FoodDetailFragment extends Fragment{
-    /* The fragment argument representing the item ID that this fragment
-       represents. */
+
 
     public static final String ARG_ITEM_ID = "item_id";
 
     private Food mFood;
     private AccessFoods accessFoods;
-
-    /* Mandatory empty constructor for the fragment manager to instantiate the
-       fragment (e.g. upon screen orientation changes). */
 
     public FoodDetailFragment(){}
 
@@ -72,21 +65,13 @@ public class FoodDetailFragment extends Fragment{
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         TextView rootView = (TextView) inflater.inflate(R.layout.food_detail, container, false);
         if (mFood != null){
             Food theFood = accessFoods.getFoodByID(mFood.getFoodID());
-
-            // imageID works by grabbing a "name", "defType", and package. Make sure the 1st parameter or "name" is an image that exists in the res/drawable folder
-            // example: spaghetti.jpg image in drawable folder, "name" will be spaghetti, placeholder.png "name" would be ramen. We can somehow link imageID to FOOD or whatever class later.
             int imageID = getResources().getIdentifier("food" + theFood.getFoodID(), "drawable", getContext().getPackageName());
-
-            if(imageID != 0) { // imageID returns 0 if no resource was found.
+            if(imageID != 0){
                 Drawable foodImage = ContextCompat.getDrawable(getContext(), imageID);
-
-                // Method below may need changing depending on dimensions of the users device. I made it so that the width is streched to the width of the device.
-                // An issue is that aspect ratio may/will not be the same after resizing
                 foodImage.setBounds(0, 0, Resources.getSystem().getDisplayMetrics().widthPixels, Resources.getSystem().getDisplayMetrics().heightPixels/2);
                 rootView.setCompoundDrawables(null, foodImage, null, null);
             }
@@ -101,11 +86,9 @@ public class FoodDetailFragment extends Fragment{
             ai.getIngredient(theFood, ingredients);
             String theIngredients = "";
 
-            // SpannableString creates a String that can have its attributes modified (i.e. BOLD, font size, etc.)
             SpannableString ingredientsTitle = new SpannableString("Ingredients: \n");
             ingredientsTitle.setSpan(new StyleSpan(Typeface.BOLD), 0, ingredientsTitle.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
             ingredientsTitle.setSpan(new AbsoluteSizeSpan(64), 0, ingredientsTitle.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
-
 
             for(int i = 0; i<ingredients.size(); i++){
                 Ingredient currIngredient = ingredients.get(i);
@@ -123,10 +106,7 @@ public class FoodDetailFragment extends Fragment{
             }
 
             CharSequence finalText = TextUtils.concat(ingredientsTitle, theIngredients, directionsTitle, theDirections);
-
             ((TextView) rootView.findViewById(R.id.food_detail)).setText(finalText);
-        }else{
-            System.out.println("FoodDetailFragment oncreate view mFood is null");
         }
 
         return rootView;

@@ -3,10 +3,8 @@ package comp3350.Group2.areyouhungry.ui.user;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,12 +29,9 @@ import comp3350.Group2.areyouhungry.R;
 
 import comp3350.Group2.areyouhungry.business.AccessUsers;
 
-import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.User;
 
 import comp3350.Group2.areyouhungry.ui.favorites.FavouriteFoodListActivity;
-import comp3350.Group2.areyouhungry.ui.user.UserActivity;
-import comp3350.Group2.areyouhungry.ui.user.UserActivity;
 import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
 import comp3350.Group2.areyouhungry.ui.more.MoreActivity;
 
@@ -50,7 +45,6 @@ public class UserActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
-        /* For button navigation bar. */
         BottomNavigationView navView = findViewById(R.id.nav_view);
         Menu menu = navView.getMenu();
         MenuItem menuItem = menu.getItem(2);
@@ -127,7 +121,6 @@ public class UserActivity extends AppCompatActivity{
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id){
                         dialog.dismiss();
-                        System.out.println(newUser.getUserName());
                         changeUser(newUser.getUserID());
                     }
                 });
@@ -160,7 +153,6 @@ public class UserActivity extends AppCompatActivity{
         private final View.OnClickListener mOnClickListener = new View.OnClickListener(){
             public void onClick(View view){
                 final User user = (User) view.getTag();
-                System.out.println("click on user");
                 AlertDialog.Builder builder = new AlertDialog.Builder(UserActivity.this);
                 builder.setTitle("Switch User Confirm");
                 builder.setMessage("Do you want to switch to "+user.getUserName()+" ?");
@@ -168,7 +160,6 @@ public class UserActivity extends AppCompatActivity{
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id){
                         dialog.dismiss();
-                        System.out.println(user.getUserName());
                         changeUser(user.getUserID());
                     }
                 });
