@@ -2,11 +2,7 @@ package comp3350.Group2.areyouhungry.tests.objects;
 
 import junit.framework.TestCase;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import comp3350.Group2.areyouhungry.objects.Question;
-import comp3350.Group2.areyouhungry.objects.User;
 
 
 public class QuestionTest extends TestCase{

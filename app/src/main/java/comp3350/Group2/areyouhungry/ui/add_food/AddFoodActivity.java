@@ -112,14 +112,12 @@ public class AddFoodActivity extends AppCompatActivity{
 
                 Set<String> entries = sharedPreferences.getStringSet("category", null);
                 if(entries == null){
-                    System.out.println("No entries for category");
                     alertMessage += "Please select at least one category \n";
                     buildFood = false;
                 }else{
                     String[] selecteds = entries.toArray(new String[]{});
                     str_categorys.clear();
                     Collections.addAll(str_categorys, selecteds);
-                    System.out.println(str_categorys.toString());
                 }
 
                 str_ingredients.clear();
@@ -138,7 +136,6 @@ public class AddFoodActivity extends AppCompatActivity{
                 if (ingredient4!= null && !ingredient4.equals("")) str_ingredients.add(ingredient4);
                 String ingredient5 = sharedPreferences.getString("ingredient5","");
                 if (ingredient5!= null && !ingredient5.equals("")) str_ingredients.add(ingredient5);
-                System.out.println(str_ingredients.toString());
 
                 str_directions.clear();
                 String direction = sharedPreferences.getString("instruction","");
@@ -156,7 +153,6 @@ public class AddFoodActivity extends AppCompatActivity{
                 if (direction4!= null && !direction4.equals("")) str_directions.add(direction4);
                 String direction5 = sharedPreferences.getString("instruction5","");
                 if (direction5!= null && !direction5.equals("")) str_directions.add(direction5);
-                System.out.println(str_directions.toString());
 
                 if(buildFood){
                     for (String str_ingredient:str_ingredients){
@@ -169,6 +165,10 @@ public class AddFoodActivity extends AppCompatActivity{
                     if(af.addFood(newFood) == null){
                         Snackbar.make(view, "Food was successfully added!", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.clear();
+                        editor.apply();
+                        finish();
                         if(favourite){
                             User curr_user = MainActivity.currentUser;
                             af.setFoodFavouriteByUser(curr_user,newFood.getFoodID(),true);
@@ -179,7 +179,6 @@ public class AddFoodActivity extends AppCompatActivity{
                     }else{
                         return;
                     }
-                    System.out.println("Start ingredient");
                     for (String str_ingredient:str_ingredients){
                         AccessIngredients ai = new AccessIngredients();
                         int newIngredientId = ai.getNewIngredientId();
@@ -249,7 +248,7 @@ public class AddFoodActivity extends AppCompatActivity{
         return true;
     }
 
-    // David Le: This allows you to use the back button on the top left to go to home page
+    //This allows you to use the back button on the top left to go to home page
     public boolean onOptionsItemSelected(MenuItem item){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
@@ -291,7 +290,6 @@ public class AddFoodActivity extends AppCompatActivity{
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s){
-            System.out.println("something change");
             String getStr;
                 switch (s){
                     case "ingredient":

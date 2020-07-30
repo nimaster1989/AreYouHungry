@@ -6,12 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
-import comp3350.Group2.areyouhungry.Services;
 import comp3350.Group2.areyouhungry.objects.Answers;
-import comp3350.Group2.areyouhungry.objects.Food;
-
-
 
 
 public class AnswersTest extends TestCase{
@@ -60,7 +55,7 @@ public class AnswersTest extends TestCase{
 
     public void testSetters(){
         Answers answer;
-        List<Integer> answers = new ArrayList<>();;
+        List<Integer> answers = new ArrayList<>();
         answers.add(0);
         answers.add(0);
         answers.add(0);
@@ -158,7 +153,7 @@ public class AnswersTest extends TestCase{
 
     public void testEquals(){
 
-        List<Integer> answers = new ArrayList<>();;
+        List<Integer> answers = new ArrayList<>();
         answers.add(0);
         answers.add(0);
         answers.add(0);
@@ -166,7 +161,7 @@ public class AnswersTest extends TestCase{
         answers.add(0);
         Answers answer1 = new Answers(answers);
         Answers answer2 = new Answers(answers);
-        answers = new ArrayList<>();;
+        answers = new ArrayList<>();
         answers.add(1);
         answers.add(0);
         answers.add(0);
@@ -178,7 +173,7 @@ public class AnswersTest extends TestCase{
     }
 
     public void testToString(){
-        List<Integer> answers = new ArrayList<>();;
+        List<Integer> answers = new ArrayList<>();
         answers.add(0);
         answers.add(0);
         answers.add(0);
