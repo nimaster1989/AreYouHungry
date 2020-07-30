@@ -5,6 +5,7 @@
     <PreferenceCategory app:title="Category">
 
         <SwitchPreferenceCompat
+            android:defaultValue="false"
             app:key="search_on_category"
             app:title="search on category" />
         <CheckBoxPreference
@@ -37,6 +38,7 @@
     <PreferenceCategory app:title="Prepare Time">
 
         <SwitchPreferenceCompat
+            android:defaultValue="false"
             app:key="search_on_time"
             app:title="search on prepare time" />
         <CheckBoxPreference
@@ -63,6 +65,7 @@
     </PreferenceCategory>
     <PreferenceCategory app:title="Ethnicity">
         <SwitchPreferenceCompat
+            android:defaultValue="false"
             app:key="search_on_ethnicity"
             app:title="search on ethnicity" />
         <CheckBoxPreference
@@ -90,6 +93,7 @@
     <PreferenceCategory app:title="Difficulty">
 
         <SwitchPreferenceCompat
+            android:defaultValue="false"
             app:key="search_on_difficulty"
             app:title="search on difficulty" />
         <CheckBoxPreference
@@ -118,6 +122,7 @@
     <PreferenceCategory app:title="Flavour">
 
         <SwitchPreferenceCompat
+            android:defaultValue="false"
             app:key="search_on_flavour"
             app:title="search on flavour" />
         <CheckBoxPreference

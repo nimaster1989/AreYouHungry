@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Set;
 
 import comp3350.Group2.areyouhungry.R;
+import comp3350.Group2.areyouhungry.business.AccessFoods;
 import comp3350.Group2.areyouhungry.business.AccessIngredients;
 import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.Ingredient;
@@ -27,6 +28,7 @@ import comp3350.Group2.areyouhungry.objects.Ingredient;
 public class OnhandActivity extends AppCompatActivity {
 
     public static ArrayList<Food> resultList;
+    public static ArrayList<Food> foods;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +42,10 @@ public class OnhandActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-
+        foods = new ArrayList<>();
         resultList = new ArrayList();
+        AccessFoods accessFoods = new AccessFoods();
+        accessFoods.getFoods(foods);
         ExtendedFloatingActionButton fab = (ExtendedFloatingActionButton) findViewById(R.id.search_fba);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,8 +56,19 @@ public class OnhandActivity extends AppCompatActivity {
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener{
+
+        ArrayList<String> categoryCriterias;
+        //food ojbect criterias
+        ArrayList<String> portionSizeCriterias;
+        ArrayList<String> prepTimeCriterias;
+        ArrayList<String> flavourCriterias;
+        ArrayList<String> difficutlyCriterias;
+        ArrayList<String> ethnicityCriterias;
+
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+            categoryCriterias = new ArrayList<>();
+            portionSizeCriterias = new ArrayList<>();
             setPreferencesFromResource(R.xml.search_preferences, rootKey);
             MultiSelectListPreference mlp = (MultiSelectListPreference)findPreference("search_on_ingredient");
             if (mlp == null) System.out.println("NullPointerException"+"Blocked is null");
@@ -91,9 +106,14 @@ public class OnhandActivity extends AppCompatActivity {
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+            Boolean searchOnCategory = false;
+            Boolean searchOnTime = false;
+            Boolean searchOnEthnicity = false;
+            Boolean searchOnDifficulty = false;
+            Boolean searchOnFlavour = false;
             switch (s) {
                 case "search_on_category":
-                    Boolean searchOnCategory = sharedPreferences.getBoolean(s, false);
+                    searchOnCategory = sharedPreferences.getBoolean(s, false);
                     CheckBoxPreference cb1 = findPreference("Meat");
                     CheckBoxPreference cb2 = findPreference("Vegetable");
                     CheckBoxPreference cb3 = findPreference("Grain");
@@ -105,8 +125,19 @@ public class OnhandActivity extends AppCompatActivity {
                     cb4.setVisible(searchOnCategory);
                     cb5.setVisible(searchOnCategory);
                     break;
+                case "Meat":
+                case "Vegetable":
+                case "Grain":
+                case "Dairy":
+                case "Fruit":
+                    searchOnCategory = sharedPreferences.getBoolean("search_on_category", false);
+                    CheckBoxPreference categoryCheckBox = findPreference(s);
+                    if(searchOnCategory && categoryCheckBox.isChecked()) categoryCriterias.add(s);
+                    else categoryCriterias.remove(s);
+                    search_logic_category(categoryCriterias);
+                    break;
                 case "search_on_time":
-                    Boolean searchOnTime = sharedPreferences.getBoolean(s, false);
+                    searchOnTime = sharedPreferences.getBoolean(s, false);
                     CheckBoxPreference cb6 = findPreference("10");
                     CheckBoxPreference cb7 = findPreference("20");
                     CheckBoxPreference cb8 = findPreference("30");
@@ -116,8 +147,17 @@ public class OnhandActivity extends AppCompatActivity {
                     cb8.setVisible(searchOnTime);
                     cb9.setVisible(searchOnTime);
                     break;
+                case "10":
+                case "20":
+                case "30":
+                case "40":
+                    searchOnTime = sharedPreferences.getBoolean("search_on_time",false);
+                    CheckBoxPreference prepTimeCheckBox = findPreference(s);
+                    if(searchOnTime && prepTimeCheckBox.isChecked()) prepTimeCriterias.add(s);
+                    else prepTimeCriterias.remove(s);
+                    break;
                 case "search_on_ethnicity":
-                    Boolean searchOnEthnicity = sharedPreferences.getBoolean(s,false);
+                    searchOnEthnicity = sharedPreferences.getBoolean(s,false);
                     CheckBoxPreference cb10 = findPreference("Greek");
                     CheckBoxPreference cb11 = findPreference("American");
                     CheckBoxPreference cb12 = findPreference("Japanese");
@@ -127,8 +167,17 @@ public class OnhandActivity extends AppCompatActivity {
                     cb12.setVisible(searchOnEthnicity);
                     cb13.setVisible(searchOnEthnicity);
                     break;
+                case "Greek":
+                case "American":
+                case "Japanese":
+                case "Chinese":
+                    searchOnEthnicity = sharedPreferences.getBoolean("search_on_ethnicity",false);
+                    CheckBoxPreference ethnicityCheckBox = findPreference(s);
+                    if(searchOnEthnicity && ethnicityCheckBox.isChecked()) ethnicityCriterias.add(s);
+                    else ethnicityCriterias.remove(s);
+                    break;
                 case "search_on_difficulty":
-                    Boolean searchOnDifficulty = sharedPreferences.getBoolean(s,false);
+                    searchOnDifficulty = sharedPreferences.getBoolean(s,false);
                     CheckBoxPreference cb14 = findPreference("Easy");
                     CheckBoxPreference cb15 = findPreference("Medium");
                     CheckBoxPreference cb16 = findPreference("Hard");
@@ -138,8 +187,16 @@ public class OnhandActivity extends AppCompatActivity {
                     cb16.setVisible(searchOnDifficulty);
                     cb17.setVisible(searchOnDifficulty);
                     break;
+                case"Easy":
+                case "Medium":
+                case "Hard":
+                case "Expert":
+                    searchOnDifficulty = sharedPreferences.getBoolean("search_on_difficulty",false);
+                    CheckBoxPreference difficultyCheckBox = findPreference(s);
+                    if(searchOnDifficulty && difficultyCheckBox.isChecked()) difficutlyCriterias.add(s);
+                    else difficutlyCriterias.remove(s);
                 case "search_on_flavour":
-                    Boolean searchOnFlavour = sharedPreferences.getBoolean(s,false);
+                    searchOnFlavour = sharedPreferences.getBoolean(s,false);
                     CheckBoxPreference cb18 = findPreference("Spicy");
                     CheckBoxPreference cb19 = findPreference("Sweet");
                     CheckBoxPreference cb20 = findPreference("Savory");
@@ -157,18 +214,24 @@ public class OnhandActivity extends AppCompatActivity {
                     Collections.addAll(ingredients, selecteds);
                     System.out.println("select:"+ingredients.size());
                     System.out.println(ingredients.toString());
-                    ingredient_search(ingredients);
+                    search_logic_ingredient(ingredients);
                     break;
-
                 default:
                     break;
 
             }
         }
 
-        private void ingredient_search(ArrayList<String> ingredients) {
-            System.out.println("ingredient search");
-            ArrayList prepList = OnhandActivity.resultList;
+        private void search_logic_foodCriteria(ArrayList<String> portionSizeCriterias){
+
+        }
+
+        private void search_logic_category(ArrayList<String> categorys) {
+            System.out.println("category search :"+categorys.toString());
+        }
+
+        private void search_logic_ingredient(ArrayList<String> ingredients) {
+            System.out.println("ingredient search"+ingredients.toString());
 
         }
         public <T> List<T> union(List<T> list1, List<T> list2) {

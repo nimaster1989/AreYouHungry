@@ -46,6 +46,7 @@ public class AddFoodActivity extends AppCompatActivity{
         if (actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        clearValue();
         ExtendedFloatingActionButton fab = (ExtendedFloatingActionButton) findViewById(R.id.addfood_fba);
         fab.setOnClickListener(new View.OnClickListener(){
             private  String food_name;
@@ -342,11 +343,10 @@ public class AddFoodActivity extends AppCompatActivity{
                 }
             }
         }
-        public void onBackPressed() {
+        public void clearValue(){
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
             SharedPreferences.Editor editor = preferences.edit();
             editor.clear();
             editor.apply();
-            finish();
         }
     }
