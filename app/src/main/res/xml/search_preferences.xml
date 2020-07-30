@@ -1,0 +1,151 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <PreferenceCategory app:title="Category">
+
+        <SwitchPreferenceCompat
+            app:key="search_on_category"
+            app:title="search on category" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="Meat"
+            android:title="Meat"
+            app:isPreferenceVisible="false"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="Vegetable"
+            android:title="Vegetable"
+            app:isPreferenceVisible="false"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="Grain"
+            android:title="Grain"
+            app:isPreferenceVisible="false"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="Dairy"
+            android:title="Dairy"
+            app:isPreferenceVisible="false"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="Fruit"
+            android:title="Fruit"
+            app:isPreferenceVisible="false"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Prepare Time">
+
+        <SwitchPreferenceCompat
+            app:key="search_on_time"
+            app:title="search on prepare time" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="10"
+            android:title="0-10 mins"
+            app:isPreferenceVisible="false"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="20"
+            android:title="10-20 mins"
+            app:isPreferenceVisible="false"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="30"
+            android:title="20-30 mins"
+            app:isPreferenceVisible="false"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="40"
+            android:title="30-40 mins"
+            app:isPreferenceVisible="false"/>
+
+    </PreferenceCategory>
+    <PreferenceCategory app:title="Ethnicity">
+        <SwitchPreferenceCompat
+            app:key="search_on_ethnicity"
+            app:title="search on ethnicity" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="Greek"
+            android:title="Greek"
+            app:isPreferenceVisible="false"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="American"
+            android:title="American"
+            app:isPreferenceVisible="false"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="Japanese"
+            android:title="Japanese"
+            app:isPreferenceVisible="false"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="Chinese"
+            android:title="Chinese"
+            app:isPreferenceVisible="false"/>
+
+    </PreferenceCategory>
+    <PreferenceCategory app:title="Difficulty">
+
+        <SwitchPreferenceCompat
+            app:key="search_on_difficulty"
+            app:title="search on difficulty" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="Easy"
+            android:title="Easy"
+            app:isPreferenceVisible="false"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="Medium"
+            android:title="Medium"
+            app:isPreferenceVisible="false"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="Hard"
+            android:title="Hard"
+            app:isPreferenceVisible="false"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="Expert"
+            android:title="Expert"
+            app:isPreferenceVisible="false"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Flavour">
+
+        <SwitchPreferenceCompat
+            app:key="search_on_flavour"
+            app:title="search on flavour" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="Spicy"
+            android:title="Spicy"
+            app:isPreferenceVisible="false"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="Sweet"
+            android:title="Sweet"
+            app:isPreferenceVisible="false"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="Savory"
+            android:title="Savory"
+            app:isPreferenceVisible="false"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="Other"
+            android:title="Other"
+            app:isPreferenceVisible="false"/>
+
+    </PreferenceCategory>
+    <PreferenceCategory app:title="Ingredient">
+        <MultiSelectListPreference
+            app:key="search_on_ingredient"
+            app:title="search on ingredient" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

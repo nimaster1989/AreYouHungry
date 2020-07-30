@@ -9,6 +9,24 @@
 
 
     <Button
+        android:id="@+id/specifiedFoodButton2"
+        android:layout_width="352dp"
+        android:layout_height="81dp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="200dp"
+        android:background="#E64D00EA"
+        android:onClick="onHandSearchOnClick"
+        android:text="Search on Criteria"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/specifiedFoodButton"
+        app:layout_constraintVertical_bias="0.543" />
+
+    <Button
         android:id="@+id/specifiedFoodButton"
         android:layout_width="352dp"
         android:layout_height="81dp"

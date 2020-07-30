@@ -30,7 +30,7 @@
         <item>40</item>
     </string-array>
 
-    <string-array name="flavour_entires">
+    <string-array name="flavour_entries">
         <item>Spicy</item>
         <item>Sweeeeeet</item>
         <item>Savory</item>
@@ -44,7 +44,7 @@
         <item>Other</item>
     </string-array>
 
-    <string-array name="difficulty_entires">
+    <string-array name="difficulty_entries">
         <item>Easy</item>
         <item>Medium</item>
         <item>Hard</item>
@@ -57,7 +57,7 @@
         <item>Expert</item>
     </string-array>
 
-    <string-array name="category_entires">
+    <string-array name="category_entries">
         <item>Meat</item>
         <item>Vegetable</item>
         <item>Grain</item>
@@ -73,7 +73,7 @@
         <item>Fruit</item>
     </string-array>
 
-    <string-array name="ethnicity_entires">
+    <string-array name="ethnicity_entries">
         <item>Greek</item>
         <item>American</item>
         <item>Japanese</item>
@@ -86,6 +86,9 @@
         <item>Japanese</item>
         <item>Chinese</item>
     </string-array>
+\
+
+
 
 
 </resources>

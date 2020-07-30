@@ -23,21 +23,21 @@
             app:useSimpleSummaryProvider="true" />
         <ListPreference
             app:defaultValue=""
-            app:entries="@array/flavour_entires"
+            app:entries="@array/flavour_entries"
             app:entryValues="@array/flavour_values"
             app:key="flavour"
             app:title="flavour"
             app:useSimpleSummaryProvider="true" />
         <ListPreference
             app:defaultValue=""
-            app:entries="@array/difficulty_entires"
+            app:entries="@array/difficulty_entries"
             app:entryValues="@array/difficulty_values"
             app:key="difficulty"
             app:title="difficulty"
             app:useSimpleSummaryProvider="true" />
         <ListPreference
             app:defaultValue=""
-            app:entries="@array/ethnicity_entires"
+            app:entries="@array/ethnicity_entries"
             app:entryValues="@array/ethnicity_values"
             app:key="ethnicity"
             app:title="ethnicity"
@@ -56,7 +56,7 @@
     <PreferenceCategory app:title="3.Category">
 
         <MultiSelectListPreference
-            app:entries="@array/category_entires"
+            app:entries="@array/category_entries"
             app:entryValues="@array/category_values"
             app:key="category"
             app:title="Category"

@@ -591,6 +591,31 @@ public class DataAccessObject implements DataAccess{
         return result;
     }
 
+    @Override
+    public String getIngredientSequential(List<Ingredient> ingredients) {
+        Ingredient ingredient;
+        int myID;
+        String myName= EOF, myMeasure = EOF;
+        result = null;
+
+        try{
+            cmdString = "SELECT * FROM INGREDIENT";
+            rs3 = st2.executeQuery(cmdString);
+            while (rs3.next()){
+                myID = rs3.getInt("INGREDIENTID");
+                myName = rs3.getString("INGREDIENTNAME");
+                myMeasure = rs3.getString("INGREDIENTMEASUREMENT");
+                ingredient = new Ingredient(myID,myName,myMeasure);
+                ingredients.add(ingredient);
+            }
+            rs3.close();
+        }catch (Exception e){
+            processSQLError(e);
+        }
+
+        return result;
+    }
+
     public int getTotalUser(){
         int count = 0;
         result = null;

@@ -70,4 +70,6 @@ public interface DataAccess{
     String addNewDirection(Direction newDirection);
 
     String addFoodDirection(int foodid, int directionid);
+
+    String getIngredientSequential(List<Ingredient> ingredients);
 }

@@ -40,7 +40,7 @@ public class AddFoodActivity extends AppCompatActivity{
         setContentView(R.layout.addfood_activity);
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.settings, new SettingsFragment())
+                .replace(R.id.adds, new SettingsFragment())
                 .commit();
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null){
@@ -341,5 +341,12 @@ public class AddFoodActivity extends AppCompatActivity{
                         break;
                 }
             }
+        }
+        public void onBackPressed() {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.clear();
+            editor.apply();
+            finish();
         }
     }

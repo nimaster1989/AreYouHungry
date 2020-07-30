@@ -20,6 +20,10 @@ public class AccessIngredients{
     public String addIngredient(Ingredient newIngredient){
         return  dataAccess.addNewIngredient(newIngredient);
     }
+
+    public String getAllIngredient(List<Ingredient> ingredients){
+        return dataAccess.getIngredientSequential(ingredients);
+    }
     public String getIngredient(Food food, List<Ingredient> ingredients){
         return dataAccess.getIngredientByFood(food,ingredients);
     }
