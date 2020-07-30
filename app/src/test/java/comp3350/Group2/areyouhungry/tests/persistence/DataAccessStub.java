@@ -110,7 +110,7 @@ public class DataAccessStub implements DataAccess{
         users.add(user);
 
         questions = new ArrayList<Question>();
-        question = new Question("You are on fear factor and the following items are presented for you to feast on. A blue substance you cant tell is bleach or gatorade, An Ant Hill, Hot Rocks, or a Mystery Box the host insists is much worse.What do you choose?", "Its worth the risk for sweet sweet Gatorade", "Ants are like little chips... right?", "Mmmmm hot rocks go brrrr", "The box cant possibly be worse!");
+        question = new Question("You are on fear factor and the following items are presented for you to feast on. A blue substance you cant tell is bleach or gatorade, An Ant Hill, Hot Rocks, or a Mystery Box the host insists is much worse.What do you choose?", "Its worth the risk for sweet sweet Gatorade", "Ants are like little chips... right?", "Mmmmm hot rocks go brrrr", "Ahhh A nice fresh box!");
         questions.add(question);
         question = new Question("Im so hungry i could eat a...", "Horse", "Slightly larger Horse", "Wow thats a big horse", "A horse bred so large for the purpose to stop this dumb statement");
         questions.add(question);
@@ -118,7 +118,7 @@ public class DataAccessStub implements DataAccess{
         questions.add(question);
         question = new Question("You invite someone over saying you will cook for them knowing very well that you infact cant cook. What do you make?", "Everyone likes Lucky Charms!", "A nice bowl of Kraft Dinner", "Something that requires to be cooked to a certain temperature", "The thing the Rat in Ratatouille made");
         questions.add(question);
-        question = new Question("Ah yes the classic why did the chicken cross the road dilema, except the chicken is in the airport and is booking a flight to your favourite vacation spot which is...", "The place where the toilet water spins the other way", "Cant have a high amount of covid cases if we dont test land", "Japan c:", "The only country that beat USA in a war");
+        question = new Question("Ah yes the classic why did the chicken cross the road dilema, except the chicken is in the airport and is booking a flight to your favourite vacation spot which is...", "The place where the toilet water spins the other way", "Cant have a high amount of covid cases if we dont test land", "Mamma Mia!", "Breathing the Air here is like smoking a pack of cigs a day");
         questions.add(question);
 
         ingredients = new ArrayList<Ingredient>();
