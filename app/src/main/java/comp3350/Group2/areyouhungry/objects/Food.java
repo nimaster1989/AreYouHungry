@@ -12,8 +12,7 @@ public class Food{
     private String ethnicity;
 
     public Food(int foodID, String foodName, int portionSize, int prepTime,String flavour,String difficulty,String ethnicity){
-        if(foodID>=0 && !foodName.isEmpty()
-        ){
+        if(foodID>=0 && !foodName.isEmpty()){
             this.foodID = foodID;
             this.foodName = foodName;
             this.portionSize = portionSize;
