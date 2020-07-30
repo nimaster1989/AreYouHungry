@@ -26,7 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- android:windowSoftInputMode="stateHidden|adjustResize" -->
         <activity
             android:name=".ui.preferred.PreferredSearchActivity"
             android:label="search result"
