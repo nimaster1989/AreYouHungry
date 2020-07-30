@@ -252,7 +252,7 @@ public class DataAccessStub implements DataAccess{
         foodIngredients.add(foodIngredient);
         tempIngredient.clear();
 
-        for(int i = 35; i < 41; i++) {
+        for(int i = 35; i < 41; i++){
             tempIngredient.add(ingredients.get(i));
         }
         foodIngredient = new FoodIngredient(foods.get(5),tempIngredient);
@@ -495,7 +495,7 @@ public class DataAccessStub implements DataAccess{
     }
 
     @Override
-    public String addNewDirection(Direction newDirection) {
+    public String addNewDirection(Direction newDirection){
         if(newDirection != null){
             directions.add(newDirection);
         }
