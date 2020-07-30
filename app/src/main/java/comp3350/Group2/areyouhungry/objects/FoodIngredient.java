@@ -10,7 +10,6 @@ public class FoodIngredient{
     private Food food;
     private List<Ingredient> ingredients;
 
-
     public FoodIngredient(Food food, ArrayList ingredients){
         if(food != null && ingredients.size() > 0){
           this.food = food;

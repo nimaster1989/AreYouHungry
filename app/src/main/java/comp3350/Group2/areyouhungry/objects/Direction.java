@@ -20,8 +20,6 @@ public class Direction{
         return directionID;
     }
 
-    public void setDirectionID(int directionID){this.directionID = directionID;}
-
     public String getDirectionDescription(){
         return directionDescription;
     }
@@ -29,6 +27,8 @@ public class Direction{
     public int getStepNumber(){
         return stepNumber;
     }
+
+    public void setDirectionID(int directionID){this.directionID = directionID;}
 
     public void setDirectionDescription(String directionDescription){
         this.directionDescription = directionDescription;

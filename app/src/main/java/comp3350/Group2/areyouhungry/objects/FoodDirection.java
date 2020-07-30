@@ -8,7 +8,6 @@ public class FoodDirection{
     private Food food;
     private ArrayList<Direction> directions;
 
-
     public FoodDirection(Food food,ArrayList directions){
         if(food != null && directions.size() > 0){
           this.food = food;

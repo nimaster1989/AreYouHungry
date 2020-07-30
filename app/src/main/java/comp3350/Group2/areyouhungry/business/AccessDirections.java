@@ -6,7 +6,6 @@ import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.Services;
 import comp3350.Group2.areyouhungry.objects.Direction;
 import comp3350.Group2.areyouhungry.objects.Food;
-import comp3350.Group2.areyouhungry.objects.Ingredient;
 import comp3350.Group2.areyouhungry.persistence.DataAccess;
 
 public class AccessDirections{

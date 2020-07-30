@@ -3,6 +3,7 @@ package comp3350.Group2.areyouhungry.objects;
 public class Categories{
     private int categoryID;
     private String categoryName;
+
     public Categories(int categoryID,String categoryName){
         if(categoryID >= 0 && !categoryName.isEmpty()){
             this.categoryID = categoryID;

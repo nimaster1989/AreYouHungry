@@ -21,8 +21,6 @@ import comp3350.Group2.areyouhungry.objects.Answers;
 import comp3350.Group2.areyouhungry.objects.Question;
 
 
-
-/* This is the page that loads when the user selects. */
 public class PreferredActivity extends AppCompatActivity{
     private AccessQuestions accessQuestions;
 
@@ -84,7 +82,6 @@ public class PreferredActivity extends AppCompatActivity{
         if(questionCount < questionTotal){
             currentQuestion = questionList.get(questionCount);
             textViewQuestion.setText(currentQuestion.getQuestion());
-            System.out.println(questionCount);
             rb1.setText(currentQuestion.getOption1());
             rb2.setText(currentQuestion.getOption2());
             rb3.setText(currentQuestion.getOption3());

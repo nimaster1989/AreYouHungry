@@ -92,45 +92,24 @@ public class Answers implements Serializable{
 
     }
 
-
     public String getFlavor(){
         return flavor;
-    }
-
-    public void setFlavor(String flavor){
-        this.flavor = flavor;
     }
 
     public String getPortionSize(){
         return portionSize;
     }
 
-    public void setPortionSize(String portionSize){
-        this.portionSize = portionSize;
-    }
-
     public String getPreptime(){
         return preptime;
-    }
-
-    public void setPreptime(String preptime){
-        this.preptime = preptime;
     }
 
     public String getDifficulty(){
         return difficulty;
     }
 
-    public void setDifficulty(String difficulty){
-        this.difficulty = difficulty;
-    }
-
     public String getEthnicity(){
         return ethnicity;
-    }
-
-    public void setEthnicity(String ethnicity){
-        this.ethnicity = ethnicity;
     }
 
     public Food getFoodBasedOnAnswers(){
@@ -153,6 +132,26 @@ public class Answers implements Serializable{
         }
         accessFoods.getRandom(foods);
         return foods.get(0);
+    }
+
+    public void setFlavor(String flavor){
+        this.flavor = flavor;
+    }
+
+    public void setPortionSize(String portionSize){
+        this.portionSize = portionSize;
+    }
+
+    public void setPreptime(String preptime){
+        this.preptime = preptime;
+    }
+
+    public void setDifficulty(String difficulty){
+        this.difficulty = difficulty;
+    }
+
+    public void setEthnicity(String ethnicity){
+        this.ethnicity = ethnicity;
     }
 
     private boolean checkValid(Food food){

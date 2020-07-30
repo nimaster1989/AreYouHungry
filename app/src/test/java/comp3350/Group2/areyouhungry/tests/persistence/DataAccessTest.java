@@ -23,8 +23,7 @@ public class DataAccessTest extends TestCase{
     }
 
     public void setUp(){
-        System.out.println("\nStarting Persistence test DataAccess (using stub)");
-
+        System.out.println("Starting Persistence");
         /* Use the following statements to run with the stub database. */
 //         dataAccess = new DataAccessStub();
 //         dataAccess.open("Stub");
@@ -32,16 +31,18 @@ public class DataAccessTest extends TestCase{
         dataAccess = new DataAccessObject(MainActivity.dbName);
         dataAccess.open(MainActivity.getDBPathName());
     }
+
     public void tearDown(){
-        System.out.println("Finished Persistence test DataAccess (using stub)");
+        System.out.println("Finished Persistence");
     }
+
     public void testDataAccess(){
         ArrayList<Food> foods;
         Food food;
         String result;
-
         foods = new ArrayList<Food>();
         result = dataAccess.getFoodSequential(foods);
+
         assertNull(result);
         assertEquals(6, foods.size());
     }
@@ -106,6 +107,7 @@ public class DataAccessTest extends TestCase{
         User user1 = dataAccess.setNewUser(id,username);
         assertNull(user1);
     }
+
     public void testNullUsernameSetNewUser(){
         int id = 5;
         String username = null;
@@ -142,6 +144,7 @@ public class DataAccessTest extends TestCase{
         FoodCategory result = dataAccess.addFoodCategory(id,category);
         assertNull(result);
     }
+
     /* We understood that tests are suppsoe to avoid if/else and loops but this saves so much
    time for testing all possible options. */
     public void testAllAnswerOptions(){
@@ -258,8 +261,6 @@ public class DataAccessTest extends TestCase{
         answer.setEthnicity("American");
         Food food1 = answer.getFoodBasedOnAnswers();
         Food food2 = new Food(1, "Baked Salmon",3,20, "Savoury", "Easy", "American");
-        System.out.println(food1);
-        System.out.println(food2);
         assertTrue(food1.equals(food2));
         Services.closeDataAccess();
     }

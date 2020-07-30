@@ -213,7 +213,6 @@ public class FoodTest extends TestCase{
     }
 
     public void testEquals(){
-        System.out.println("Running test to test Food class equality.");
         Food food1 = new Food(6, "Ceaser Salad",7,30, "Other", "Hard", "Vietnamese");
         Food food2 = new Food(6, "Ceaser Salad",7,30, "Other", "Hard", "Vietnamese");
         Food food3 = new Food(5, "Jimgatang",5,20, "Savory", "Medium", "American");
@@ -226,8 +225,6 @@ public class FoodTest extends TestCase{
     public void testToString(){
         Food food = new Food(6, "Ceaser Salad",7,30, "Other", "Hard", "Vietnamese");
         String test = "ID: 6\n  FoodName: Ceaser Salad\n  Favourited: false\n  PortionSize: 7\n  PrepTime: 30\n  Flavour: Other\n  Difficulty: Hard\n  Ethnicity: Vietnamese\n";
-        System.out.println(test);
-        System.out.println(food.toString());
         assertTrue(test.equals(food.toString()));
     }
 }

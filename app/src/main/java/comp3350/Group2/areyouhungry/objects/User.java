@@ -12,18 +12,23 @@ public class User{
             throw new NullPointerException();
         }
     }
+
     public int getUserID(){
         return UserID;
     }
+
     public String getUserName(){
         return UserName;
     }
+
     public void setUserID(int UserID){
         this.UserID = UserID;
     }
+
     public void setUserName(String UserName){
         this.UserName = UserName;
     }
+
     public boolean equals(Object otherObject){
         boolean equal = false;
         if(otherObject instanceof User){
@@ -34,7 +39,6 @@ public class User{
         }
         return equal;
     }
-
 
     public String toString(){
         return "UserID: " + UserID + "\n  UserName: " + UserName + "\n";

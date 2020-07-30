@@ -222,8 +222,6 @@ public class DataAccessStub implements DataAccess{
         tempDirection.clear();
 
         User_favourite_map_list = new ArrayList<Map<Integer,Integer>>();
-
-        System.out.println("Opened " +dbType +" database " +dbName);
     }
 
 
@@ -250,19 +248,6 @@ public class DataAccessStub implements DataAccess{
     public String getFoodRandom(List<Food> foodResult){
         Random random = new Random();
         foodResult.add(foods.get(random.nextInt(foods.size())));
-        return null;
-    }
-
-    public String getFoodPreferred(List<Food> foodResult, String food){
-        if(food != null){
-            if (food.equals("Meat")){
-                foodResult.add(foods.get(1));
-                foodResult.add(foods.get(0));
-            } else if (food.equals("Dessert")){
-                foodResult.add(foods.get(2));
-                foodResult.add(foods.get(3));
-            }
-        }
         return null;
     }
 
@@ -313,7 +298,7 @@ public class DataAccessStub implements DataAccess{
     }
 
     @Override
-    public void deleteFoodCategory(int foodID, int categoryID) {
+    public void deleteFoodCategory(int foodID, int categoryID){
         Iterator<FoodCategory> foodCategoryIterator = foodCategories.iterator(); /* This iterates through the foods list. */
         FoodCategory foodCategory;
         while(foodCategoryIterator.hasNext()){
@@ -326,7 +311,7 @@ public class DataAccessStub implements DataAccess{
     }
 
     @Override
-    public void deleteUser(int userID) {
+    public void deleteUser(int userID){
         Iterator<User> userIterator = users.iterator(); /* This iterates through the foods list. */
         User user;
         while(userIterator.hasNext()){
@@ -381,13 +366,6 @@ public class DataAccessStub implements DataAccess{
             }
         }
         return null;
-    }
-
-    // TODO: 29/07/20 delete this before release iteration2
-    private void printUserFav(){
-        for (Map uf:User_favourite_map_list){
-            System.out.println(uf.toString());
-        }
     }
 
     public String setFoodToFavouriteByUser(User user, String curr_id, boolean b){
@@ -472,7 +450,7 @@ public class DataAccessStub implements DataAccess{
     }
 
     @Override
-    public int getTotalUser() {
+    public int getTotalUser(){
         return users.size();
     }
 

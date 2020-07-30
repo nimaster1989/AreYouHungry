@@ -30,12 +30,6 @@ import comp3350.Group2.areyouhungry.ui.more.MoreActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-/* An activity representing a list of Foods. This activity
-   has different presentations for handset and tablet-size devices. On
-   handsets, the activity presents a list of items, which when touched,
-   lead to a FoodDetailActivity representing
-   item details. On tablets, the activity presents the list of items and
-   item details side-by-side using two vertical panes. */
 
 public class FoodListActivity extends AppCompatActivity{
 
@@ -94,10 +88,6 @@ public class FoodListActivity extends AppCompatActivity{
         });
 
         if (findViewById(R.id.food_detail_container) != null){
-            /* The detail container view will be present only in the
-               large-screen layouts (res/values-w900dp).
-               If this view is present, then the
-               activity should be in two-pane mode. */
             mTwoPane = true;
         }
 
@@ -114,40 +104,31 @@ public class FoodListActivity extends AppCompatActivity{
         recyclerView.setAdapter(theAdapter);
     }
 
-    public static class SimpleItemRecyclerViewAdapter
-            extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>{
-
+    public static class SimpleItemRecyclerViewAdapter extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>{
         private final FoodListActivity mParentActivity;
         private final List<Food> mValues;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                  Food food = (Food) view.getTag();
+                Food food = (Food) view.getTag();
                 if (mTwoPane){
-                    System.out.println("Two Page tablet mode");
                     Bundle arguments = new Bundle();
                     arguments.putString(FoodDetailFragment.ARG_ITEM_ID, food.getFoodID());
                     FoodDetailFragment fragment = new FoodDetailFragment();
                     fragment.setArguments(arguments);
-                    mParentActivity.getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.food_detail_container, fragment)
-                            .commit();
+                    mParentActivity.getSupportFragmentManager().beginTransaction().replace(R.id.food_detail_container, fragment).commit();
                 } else{
-                    System.out.println("Two Page tablet mode");
                     Context context = view.getContext();
                     Intent intent = new Intent(context, FoodDetailActivity.class);
                     intent.putExtra(FoodDetailFragment.ARG_ITEM_ID, food.getFoodID());
-
                     context.startActivity(intent);
                 }
             }
         };
 
 
-            SimpleItemRecyclerViewAdapter(FoodListActivity parent,
-                                    List<Food> items,
-                                        boolean twoPane){
+        SimpleItemRecyclerViewAdapter(FoodListActivity parent, List<Food> items,boolean twoPane){
             mValues = items;
             mParentActivity = parent;
             mTwoPane = twoPane;

@@ -24,7 +24,6 @@ public class HomeActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         Menu menu = navView.getMenu();
@@ -67,7 +66,6 @@ public class HomeActivity extends AppCompatActivity{
     }
 
     public void addFoodOnClick(){
-//        Intent intent = new Intent(this, AddActivity.class);
         Intent intent = new Intent(this, AddFoodActivity.class);
         this.startActivity(intent);
     }
