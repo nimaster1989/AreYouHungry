@@ -25,6 +25,8 @@ import comp3350.Group2.areyouhungry.R;
 import comp3350.Group2.areyouhungry.business.AccessFoods;
 import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.User;
+import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailActivity;
+import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailFragment;
 import comp3350.Group2.areyouhungry.ui.all_food.FoodListActivity;
 import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
 import comp3350.Group2.areyouhungry.ui.more.MoreActivity;
@@ -110,16 +112,14 @@ public class FavouriteFoodListActivity extends AppCompatActivity{
                 Food food = (Food) view.getTag();
                 if (mTwoPane){
                     Bundle arguments = new Bundle();
-                    arguments.putString(FavouriteFoodDetailFragment.ARG_ITEM_ID, food.getFoodID());
-                    FavouriteFoodDetailFragment fragment = new FavouriteFoodDetailFragment();
+                    arguments.putString(FoodDetailFragment.ARG_ITEM_ID, food.getFoodID());
+                    FoodDetailFragment fragment = new FoodDetailFragment();
                     fragment.setArguments(arguments);
-                    mParentActivity.getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.favouritefood_detail_container, fragment)
-                            .commit();
+                    mParentActivity.getSupportFragmentManager().beginTransaction().replace(R.id.food_detail_container, fragment).commit();
                 } else{
                     Context context = view.getContext();
-                    Intent intent = new Intent(context, FavouriteFoodDetailActivity.class);
-                    intent.putExtra(FavouriteFoodDetailFragment.ARG_ITEM_ID, food.getFoodID());
+                    Intent intent = new Intent(context, FoodDetailActivity.class);
+                    intent.putExtra(FoodDetailFragment.ARG_ITEM_ID, food.getFoodID());
 
                     context.startActivity(intent);
                 }
