@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import comp3350.Group2.areyouhungry.R;
-import comp3350.Group2.areyouhungry.business.AccessQuestions;
 import comp3350.Group2.areyouhungry.objects.Answers;
 import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailActivity;
@@ -19,7 +18,6 @@ import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
 
 
 public class PreferredSearchActivity extends AppCompatActivity{
-    private AccessQuestions accessQuestions;
 
     private TextView textViewName;
     private TextView textViewDifficulty;
@@ -32,7 +30,7 @@ public class PreferredSearchActivity extends AppCompatActivity{
     private Button homeButton;
     private Button recipeButton;
 
-    private String foodId = "1"; //Placeholder variable. change it when we have our SQL query. if SQL query returns an integer, turn into string
+    private String foodId = "1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -67,8 +65,6 @@ public class PreferredSearchActivity extends AppCompatActivity{
                 Context context = view.getContext();
 
                 Intent intent = new Intent(context, FoodDetailActivity.class);
-
-                // Takes the argument (FoodDetailFragment.ARG_ITEM_ID, and FOODID value (string))
                 intent.putExtra(FoodDetailFragment.ARG_ITEM_ID, foodId);
                 context.startActivity(intent);
             }
@@ -85,6 +81,21 @@ public class PreferredSearchActivity extends AppCompatActivity{
             textViewFlavor.setText("Flavor: "+food.getFlavour());
             textViewServes.setText("Serves: "+answer.getPortionSize()+"-"+(Integer.parseInt(answer.getPortionSize())+1) +" people");
             textViewEthnicity.setText("Ethnicity: "+food.getEthnicity());
+            if(foodId.equals("1")){
+                dishImage.setImageResource(R.drawable.food1);
+            }else if(foodId.equals("2")){
+                dishImage.setImageResource(R.drawable.food2);
+            }else if(foodId.equals("3")){
+                dishImage.setImageResource(R.drawable.food3);
+            }
+            else if(foodId.equals("4")){
+                dishImage.setImageResource(R.drawable.food4);
+            }
+            else if(foodId.equals("5")){
+                dishImage.setImageResource(R.drawable.food5);
+            }
+            else if(foodId.equals("6")){
+                dishImage.setImageResource(R.drawable.food6);
+            }
         }
-
 }

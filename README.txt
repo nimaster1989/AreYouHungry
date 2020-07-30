@@ -22,10 +22,11 @@ Packages:
       this package is in charge of the business logic layer, it does what logic is required to
       grab what food is requested and passes that to that persistence layer for it to grab it
       from the database.
-    - comp3350.Group2.areyouhungry.presistence //I think this is spelt wrong
+    - comp3350.Group2.areyouhungry.persistence
       This package is in charge of the persistence layer that takes what was passed to it from the
-      business layer and gets from the"database" what is required. Right now there is no actual
-      database so it just fetches it from an array list.
+      business layer and gets from the "database" what is required. Right now there is a stub database
+      and a HSQL database that tests can swap between but only the HSQL one is used for storage
+      for the application.
     - comp3350.Group2.areyouhungry.objects
       This is the domain specific object package and is what holds our food object which is what the
       project uses as its answer to the users requests.
@@ -37,10 +38,10 @@ Major source code files:
     food from the "database".
 
     comp3350.Group2.areyouhungry.objects: This class is our food object which is what is stored
-    in the "database" and is presented to the user. Will eventually contain things like recipes
+    in the database and is presented to the user.
 
-    comp3350.Group2.areyouhungry.presistence: This class is our database right now. It stores all
-    of our food objects and has methods for accessing them
+    comp3350.Group2.areyouhungry.persistence: This class is our database right now. It stores all
+    of our food objects and has methods for accessing them.
 
     comp3350.Group2.areyouhungry.ui.*: These classes are our front end, they're responsible for
     providing a way for users to interact with our application to start the process to retrieve
@@ -49,37 +50,39 @@ Major source code files:
 
 
 Developer Log:
-    Our developer log is multipart, first we used Trello to keep track of who was assigned what,
-    we also agreed to keep track of our progress and issues we had in the comments section of the
-    Trello cards themselves. From there once we finish the task what we did was put it all inside
-    of Google Doc in chronological order. For our group meetings we put those straight into the
-    Google Doc as opposed to a Trello card first.
+    Our developer log is multipart, first we used Trello to keep track of who was assigned what.
+    From there once we finish the task what we did was put it all inside
+    of Google Doc in chronological order. For our group meetings we also put inside of the Google doc
+    as well.
     The Log: https://docs.google.com/document/d/1a8yhKzSlzY0D8_UWBL0q6TMm_ceQJbOEeWVaKGaYHDc/
     Trello board: https://trello.com/b/ETfh9VNT/are-you-hungry
 
-Major implemented features and where to find them:
-    1. The first major feature that we implemented was the options to generate a food from the
-       database. This can be seen on the initial start up page where you are greeted with two
-       ways to do this. You can either preference search or have the app pick for you.
-       Preference search:
-        If you select preference search it takes you to another page where you can make a preference
-        for what kind of you food you like and generate based off that. This will become way more
-        complex in later iterations, we just wanted to get our groundwork set first for this
-        iteration.
-       Pick for me:
-        If you select pick for me the app will randomly grab a food for you. However we plan on
-        removing this in a later iteration as it goes against our vision statement, that is creating
-        something that can help you pick a food better than just randomly google searching. The
-        randomness contradicts what we have.
-    2.  The second major feature is the favourite option. This can be seen in the middle portion
-        of the navigation bar. It allows the user to store the food that are their favourite and
-        they enjoyed making. The user can add favourites in two ways, either by going to the
-        favourite section and selecting add favourite, or by viewing all the food and selecting a
-        favourite that way. The second way will be explained in greater detail next.
-    3. The third is the viewing all the foods and recipes button. This can be found in the more
-       section of the navigation bar. When you click this All foods and recipes option it displays
-       all foods and recipes stored inside the app. From there the user can add more food/recipes
-       to the database. Additionally they can double click a food/recipe for more detail on it.
-       Right now the more details portion of the food/recipe blank. However from within the more
-       details portion you can favourite the food by clicking the blue heart button.
+Major changes in this iteration and where to find them:
+    1. First off in this iteration we added the ability to have persistent storage with a Database.
+       We kept the stub one around too and have the ability to swap between them for testing.
+       However only the persistent one is used in the app.
+    2. The next big change was we added a multiple choice style questionnaire to the app with "fun"
+       questions to get how the user is currently feeling. Based off their answers we then coorelate
+       them to a food in our database and retrieve it and display it to them. We went with this
+       approach as apposed to the previous one with just the user entering different things they had
+       and what type of food they're feeling because it seem more fun and would possibly cause the
+       user to use it more. As the app progressed more questions could be added to further get
+       what the user is feeling.
+    3. We removed the random food suggestion. As pointed out from our last iteration the random
+       option might actually be worse then looking up recipes online so we decided to remove it.
+    4. We tried to separate our project a lot more by having more objects and trying to make each
+       class do a specific thing. With the addition of the these new classes we were able to get
+       more tests as well as compared to the last iteration.
+    5. A big thing we tried to focus on was consistency. So we tried to keep all of the comments
+       similar as well as bracket styling and how we developed overall.
+    6. We added the ability to swap between users. Although not mentioned in our initial plan. We
+       having the functionality to swap between different users and have them contain their own
+       favourited food was a nice adjustment.
+    7. We added more to the food detail page. Now as promised the food description page has a picture
+       of the food itself. Additionally the page contains the ingredients to make it and how much
+       of each and the directions itself to make it.
 
+Changes in this iteration that we were unable to implement:
+    1. We have not added any feature to sort any of the foods. Whether it be favourites or from the
+       search results.
+    2. We also didn't have add the feature to search for similar foods as the one suggested.

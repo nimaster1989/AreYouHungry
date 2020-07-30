@@ -26,11 +26,11 @@ public class Answers implements Serializable{
                     if (answer == 0){
                         flavor = "Sweet";
                     } else if (answer == 1){
-                        flavor = "Savory";
+                        flavor = "Savoury";
                     } else if (answer == 2){
                         flavor = "Spicy";
                     } else if (answer == 3){
-                        flavor = "Other";
+                        flavor = "Fresh";
                     } else{
                         flavor = "Unknown";
                     }
@@ -72,13 +72,13 @@ public class Answers implements Serializable{
                     }
                 } else if (i == 4){
                     if (answer == 0){
-                        ethnicity = "Australian";
+                        ethnicity = "Greek";
                     } else if (answer == 1){
                         ethnicity = "American";
                     } else if (answer == 2){
-                        ethnicity = "Japanese";
+                        ethnicity = "Italian";
                     } else if (answer == 3){
-                        ethnicity = "Vietnamese";
+                        ethnicity = "Chinese";
                     } else{
                         ethnicity = "Unknown";
                     }
@@ -92,45 +92,24 @@ public class Answers implements Serializable{
 
     }
 
-
     public String getFlavor(){
         return flavor;
-    }
-
-    public void setFlavor(String flavor){
-        this.flavor = flavor;
     }
 
     public String getPortionSize(){
         return portionSize;
     }
 
-    public void setPortionSize(String portionSize){
-        this.portionSize = portionSize;
-    }
-
     public String getPreptime(){
         return preptime;
-    }
-
-    public void setPreptime(String preptime){
-        this.preptime = preptime;
     }
 
     public String getDifficulty(){
         return difficulty;
     }
 
-    public void setDifficulty(String difficulty){
-        this.difficulty = difficulty;
-    }
-
     public String getEthnicity(){
         return ethnicity;
-    }
-
-    public void setEthnicity(String ethnicity){
-        this.ethnicity = ethnicity;
     }
 
     public Food getFoodBasedOnAnswers(){
@@ -151,8 +130,28 @@ public class Answers implements Serializable{
                 }
             }
         }
+        accessFoods.getRandom(foods);
+        return foods.get(0);
+    }
 
-        return curr_food;
+    public void setFlavor(String flavor){
+        this.flavor = flavor;
+    }
+
+    public void setPortionSize(String portionSize){
+        this.portionSize = portionSize;
+    }
+
+    public void setPreptime(String preptime){
+        this.preptime = preptime;
+    }
+
+    public void setDifficulty(String difficulty){
+        this.difficulty = difficulty;
+    }
+
+    public void setEthnicity(String ethnicity){
+        this.ethnicity = ethnicity;
     }
 
     private boolean checkValid(Food food){

@@ -13,7 +13,6 @@ import android.widget.EditText;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import comp3350.Group2.areyouhungry.R;
 import comp3350.Group2.areyouhungry.business.AccessFoods;
@@ -88,22 +87,11 @@ public class AddActivity extends AppCompatActivity{
                     .setAction("Action", null).show();
             return null;
         }else{
-            /* Creates a food object. */
-            int newID =  accessFoods.getFoodRow() + 1;
-            //TODO change to new constructor here
-            if(Recipe.length() == 0){
-               // foodToAdd = new Food(newID,name,favourite);
-            }else{
-                //foodToAdd = new Food(newID,name,favourite);
-            }
-
-            /* Check if the new food is duplicate. */
             if(accessFoods.checkDuplicate(foodToAdd)){
                 Snackbar.make(findViewById(R.id.add_constrain), "food is already in the app ", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 return null;
             }
-
             /* Now its safe to add food. */
             accessFoods.addFood(foodToAdd);
         }
@@ -113,14 +101,16 @@ public class AddActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
+
         if (id == android.R.id.home){
             navigateUpTo(new Intent(this, FoodListActivity.class));
-
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
-        public void onBackPressed(){
+
+    public void onBackPressed(){
             navigateUpTo(new Intent(this, FoodListActivity.class));
     }
 

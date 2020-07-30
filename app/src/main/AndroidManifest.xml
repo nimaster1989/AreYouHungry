@@ -45,15 +45,6 @@
             android:label="@string/title_favouritefood_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.favorites.FavouriteFoodDetailActivity"
-            android:label="@string/title_favouritefood_detail"
-            android:parentActivityName=".ui.favorites.FavouriteFoodListActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="comp3350.Group2.areyouhungry.ui.favorites.FavouriteFoodListActivity" />
-        </activity>
-        <activity
             android:name=".ui.all_food.FoodListActivity"
             android:label="@string/title_food_list"
             android:theme="@style/AppTheme.NoActionBar" />

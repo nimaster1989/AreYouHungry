@@ -26,7 +26,7 @@ public class AccessFoodsTest extends TestCase{
     public void testGetEmptyFavourites(){
         Services.closeDataAccess();
         Services.createDataAccess(new DataAccessStub(dbName));
-        //System.out.println("Running test to test favouriting foods in the database");
+
         AccessFoods accessFood = new AccessFoods();
         ArrayList<Food> foodList = new ArrayList<>();
         //This portion checks if we can get favourited foods, and list should be empty since we have nothing favourited yet.

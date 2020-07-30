@@ -1,9 +1,9 @@
 package comp3350.Group2.areyouhungry.objects;
 
-//FoodCategory stands for food-Categories
 public class FoodCategory{
     private int foodID;
     private int categoryID;
+
     public FoodCategory(int foodID,int categoryID){
         if(foodID >= 0 && categoryID >=0){
             this.foodID = foodID;
@@ -19,12 +19,12 @@ public class FoodCategory{
         return foodID;
     }
 
-    public void setFoodID(int foodID){
-        this.foodID = foodID;
-    }
-
     public int getCategoryID(){
         return categoryID;
+    }
+
+    public void setFoodID(int foodID){
+        this.foodID = foodID;
     }
 
     public void setCategoryID(int categoryID){

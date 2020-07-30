@@ -1,7 +1,5 @@
 package comp3350.Group2.areyouhungry.objects;
 
-import java.util.ArrayList;
-
 public class Food{
     private int foodID;
     private String foodName;
@@ -14,13 +12,7 @@ public class Food{
     private String ethnicity;
 
     public Food(int foodID, String foodName, int portionSize, int prepTime,String flavour,String difficulty,String ethnicity){
-        if(foodID>=0 &&
-            !foodName.isEmpty() &&
-            (portionSize == 1 || portionSize == 3 || portionSize == 5 || portionSize == 7) &&
-            (prepTime == 10 || prepTime == 20 || prepTime == 30 || prepTime == 40) &&
-            (flavour.equals("Spicy") || flavour.equals("Sweet") || flavour.equals("Savory") || flavour.equals("Other")) &&
-            (difficulty.equals("Easy") || difficulty.equals("Medium") || difficulty.equals("Hard") || difficulty.equals("Expert"))&&
-            (ethnicity.equals("Australian") || ethnicity.equals("American") || ethnicity.equals("Japanese") || ethnicity.equals("Vietnamese"))){
+        if(foodID>=0 && !foodName.isEmpty()){
             this.foodID = foodID;
             this.foodName = foodName;
             this.portionSize = portionSize;
@@ -32,7 +24,6 @@ public class Food{
         }else{
             throw new NullPointerException();
         }
-
     }
 
     public String getFoodID(){
@@ -42,8 +33,6 @@ public class Food{
     public String getFoodName(){
         return foodName;
     }
-
-
 
     public int getPortionSize(){
         return portionSize;

@@ -23,8 +23,7 @@ public class DataAccessTest extends TestCase{
     }
 
     public void setUp(){
-        System.out.println("\nStarting Persistence test DataAccess (using stub)");
-
+        System.out.println("Starting Persistence");
         /* Use the following statements to run with the stub database. */
 //         dataAccess = new DataAccessStub();
 //         dataAccess.open("Stub");
@@ -32,16 +31,18 @@ public class DataAccessTest extends TestCase{
         dataAccess = new DataAccessObject(MainActivity.dbName);
         dataAccess.open(MainActivity.getDBPathName());
     }
+
     public void tearDown(){
-        System.out.println("Finished Persistence test DataAccess (using stub)");
+        System.out.println("Finished Persistence");
     }
+
     public void testDataAccess(){
         ArrayList<Food> foods;
         Food food;
         String result;
-
         foods = new ArrayList<Food>();
         result = dataAccess.getFoodSequential(foods);
+
         assertNull(result);
         assertEquals(6, foods.size());
     }
@@ -106,6 +107,7 @@ public class DataAccessTest extends TestCase{
         User user1 = dataAccess.setNewUser(id,username);
         assertNull(user1);
     }
+
     public void testNullUsernameSetNewUser(){
         int id = 5;
         String username = null;
@@ -124,7 +126,7 @@ public class DataAccessTest extends TestCase{
 
     public void testAddDuplicateFoodCategory(){
         int id = 1;
-        int category=2;
+        int category = 1;
         FoodCategory result = dataAccess.addFoodCategory(id, category);
         assertNull(result);
     }
@@ -142,6 +144,7 @@ public class DataAccessTest extends TestCase{
         FoodCategory result = dataAccess.addFoodCategory(id,category);
         assertNull(result);
     }
+
     /* We understood that tests are suppsoe to avoid if/else and loops but this saves so much
    time for testing all possible options. */
     public void testAllAnswerOptions(){
@@ -160,11 +163,11 @@ public class DataAccessTest extends TestCase{
                     if(j == 0){
                         assertTrue(answer.getFlavor().equals("Sweet"));
                     }else if(j == 1){
-                        assertTrue(answer.getFlavor().equals("Savory"));
+                        assertTrue(answer.getFlavor().equals("Savoury"));
                     }else if(j == 2){
                         assertTrue(answer.getFlavor().equals("Spicy"));
                     }else if(j == 3){
-                        assertTrue(answer.getFlavor().equals("Other"));
+                        assertTrue(answer.getFlavor().equals("Fresh"));
                     }
                 }else if(i == 1){
                     answers = new ArrayList<>();
@@ -226,23 +229,17 @@ public class DataAccessTest extends TestCase{
                     answers.add(j);
                     answer = new Answers(answers);
                     if(j == 0){
-                        assertTrue(answer.getEthnicity().equals("Australian"));
+                        assertTrue(answer.getEthnicity().equals("Greek"));
                     }else if(j == 1){
                         assertTrue(answer.getEthnicity().equals("American"));
                     }else if(j == 2){
-                        assertTrue(answer.getEthnicity().equals("Japanese"));
+                        assertTrue(answer.getEthnicity().equals("Italian"));
                     }else if(j == 3){
-                        assertTrue(answer.getEthnicity().equals("Vietnamese"));
+                        assertTrue(answer.getEthnicity().equals("Chinese"));
                     }
                 }
             }
         }
-
-
-
-
-
-
     }
 
     public void testGetFoodBasedOnAnswers(){
@@ -257,13 +254,13 @@ public class DataAccessTest extends TestCase{
         answers.add(0);
         answers.add(0);
         answer = new Answers(answers);
-        answer.setFlavor("Savory");
-        answer.setPortionSize("1");
-        answer.setPreptime("10");
+        answer.setFlavor("Savoury");
+        answer.setPortionSize("3");
+        answer.setPreptime("20");
         answer.setDifficulty("Easy");
         answer.setEthnicity("American");
         Food food1 = answer.getFoodBasedOnAnswers();
-        Food food2 = new Food(1, "Fish and Chip",1,10, "Savory", "Easy", "American");
+        Food food2 = new Food(1, "Baked Salmon",3,20, "Savoury", "Easy", "American");
         assertTrue(food1.equals(food2));
         Services.closeDataAccess();
     }

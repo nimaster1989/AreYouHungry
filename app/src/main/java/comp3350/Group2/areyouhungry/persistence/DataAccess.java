@@ -15,49 +15,47 @@ public interface DataAccess{
 
     void close();
 
-    public Map getFoodMap(Map ret_food_map);
-
-    public String getFoodSequential(List<Food> foodResult);
-
-    public String getFoodRandom(List<Food> foodResult);
-
-    public String getFoodPreferred(List<Food> foodResult, String food);
-
-    public Food getFoodFromID(String foodID);
-
-    public String addFood(Food addFood);
-
-    public int getFoodTableRow();
-
-    public FoodCategory addFoodCategory(int foodID, int categoryID);
-
-    public void deleteFoodCategory(int foodID, int categoryID);
-
-    public void deleteUser(int userID);
-
-    public int getCategoryIDbyName(String categoryName);
-
-    public List<Question> getAllQuestions();
-
-    public int getTotalQuestions();
-
     User getDefault();
 
-    String getFavouriteFoodByUserSequential(User user, List<Food> favouriteFoodList);
+    Map getFoodMap(Map ret_food_map);
 
-    String setFoodToFavouriteByUser(User user,String curr_id, boolean b);
+    String getFoodSequential(List<Food> foodResult);
 
-    boolean getFoodFavByUser(User user, Food food);
+    String getFoodRandom(List<Food> foodResult);
 
-    String getUserSequential(List<User> userResult);
-
-    User getUser(int userID);
-
-    User setNewUser(int userID, String username);
+    Food getFoodFromID(String foodID);
 
     String getIngredientByFood(Food food,List<Ingredient> ingredients);
 
     String getDirectionByFood(Food food, List<Direction> directions);
 
-    int getTotalUser();
+    int getFoodTableRow();
+
+    List<Question> getAllQuestions();
+
+    int getTotalQuestions();
+
+    boolean getFoodFavByUser(User user, Food food);
+
+    String getUserSequential(List<User> userResult);
+
+    int getCategoryIDbyName(String categoryName);
+
+    int getTotalUser(); /* Not used but will be used for later functionality. */
+
+    String getFavouriteFoodByUserSequential(User user, List<Food> favouriteFoodList);
+
+    User getUser(int userID);
+
+    String setFoodToFavouriteByUser(User user,String curr_id, boolean b);
+
+    User setNewUser(int userID, String username);
+
+    FoodCategory addFoodCategory(int foodID, int categoryID);
+
+    String addFood(Food addFood);
+
+    void deleteFoodCategory(int foodID, int categoryID);
+
+    void deleteUser(int userID);
 }
