@@ -22,14 +22,17 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.R;
 import comp3350.Group2.areyouhungry.business.AccessDirections;
 import comp3350.Group2.areyouhungry.business.AccessFoods;
 import comp3350.Group2.areyouhungry.business.AccessIngredients;
+import comp3350.Group2.areyouhungry.business.AccessUsers;
 import comp3350.Group2.areyouhungry.objects.Direction;
 import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.FoodCategory;
 import comp3350.Group2.areyouhungry.objects.Ingredient;
+import comp3350.Group2.areyouhungry.objects.User;
 
 public class AddFoodActivity extends AppCompatActivity{
 
@@ -165,6 +168,10 @@ public class AddFoodActivity extends AppCompatActivity{
                     if(af.addFood(newFood) == null){
                         Snackbar.make(view, "successfully add this food!", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
+                        if(favourite){
+                            User curr_user = MainActivity.currentUser;
+                            af.setFoodFavouriteByUser(curr_user,newFood.getFoodID(),true);
+                        }
                         for(String str_category:str_categorys){
                             FoodCategory newFc = af.addFoodCategory(newFood,str_category);
                         }
