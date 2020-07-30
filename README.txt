@@ -39,7 +39,7 @@ Major source code files:
     comp3350.Group2.areyouhungry.objects: This class is our food object which is what is stored
     in the "database" and is presented to the user. Will eventually contain things like recipes
 
-    comp3350.Group2.areyouhungry.presistence: This class is our database right now. It stores all
+    comp3350.Group2.areyouhungry.persistence: This class is our database right now. It stores all
     of our food objects and has methods for accessing them
 
     comp3350.Group2.areyouhungry.ui.*: These classes are our front end, they're responsible for
