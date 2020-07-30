@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -71,18 +72,22 @@ public class AddFoodActivity extends AppCompatActivity{
                     alertMessage += "Please enter a food name\n";
                     buildFood = false;
                 }
-
                 favourite  = sharedPreferences.getBoolean("favourite", false);
+
                 String portionSize_Str = sharedPreferences.getString("portion","");
-                if(!portionSize_Str.equals("")) portionSize = Integer.parseInt(portionSize_Str);
-                if(portionSize == 0){
+                if(TextUtils.isDigitsOnly(portionSize_Str)){
+                    portionSize = Integer.parseInt(portionSize_Str);
+                }
+                if(portionSize <= 0){
                     alertMessage += "Please enter a portion size\n";
                     buildFood = false;
                 }
 
                 String prepTime_Str = sharedPreferences.getString("preptime","");
-                if(!prepTime_Str.equals("")) prepTime = Integer.parseInt(prepTime_Str);
-                if(prepTime == 0){
+                if(TextUtils.isDigitsOnly(prepTime_Str)){
+                    prepTime = Integer.parseInt(prepTime_Str);
+                }
+                if(prepTime <= 0){
                     alertMessage += "Please enter a preparation time\n";
                     buildFood = false;
                 }
