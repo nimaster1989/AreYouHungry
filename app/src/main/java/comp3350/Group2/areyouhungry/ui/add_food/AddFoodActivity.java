@@ -16,7 +16,6 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -64,12 +63,12 @@ public class AddFoodActivity extends AppCompatActivity{
                 str_categorys = new ArrayList<>();
                 str_directions = new ArrayList<>();
                 str_ingredients = new ArrayList<>();
+                AlertDialog alertDialog = new AlertDialog.Builder(AddFoodActivity.this).create();
                 String alertMessage = "";
-                SharedPreferences sharedPreferences =
-                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext() /* Activity context */);
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 food_name = sharedPreferences.getString("food name", "");
                 if(food_name.equals("")){
-                    alertMessage += "Please enter a food name\n";
+                    alertMessage += "Please enter a food name.\n";
                     buildFood = false;
                 }
                 favourite  = sharedPreferences.getBoolean("favourite", false);
@@ -79,7 +78,7 @@ public class AddFoodActivity extends AppCompatActivity{
                     portionSize = Integer.parseInt(portionSize_Str);
                 }
                 if(portionSize <= 0){
-                    alertMessage += "Please enter a portion size\n";
+                    alertMessage += "Please enter a portion size.\n";
                     buildFood = false;
                 }
 
@@ -88,31 +87,31 @@ public class AddFoodActivity extends AppCompatActivity{
                     prepTime = Integer.parseInt(prepTime_Str);
                 }
                 if(prepTime <= 0){
-                    alertMessage += "Please enter a preparation time\n";
+                    alertMessage += "Please enter a preparation time.\n";
                     buildFood = false;
                 }
 
                 flavour = sharedPreferences.getString("flavour","");
                 if(flavour.equals("")){
-                    alertMessage += "Please enter a flavour type\n";
+                    alertMessage += "Please enter a flavour type.\n";
                     buildFood = false;
                 }
 
                 difficulty = sharedPreferences.getString("difficulty","");
                 if(difficulty.equals("")){
-                    alertMessage += "Please select a difficulty\n";
+                    alertMessage += "Please select a difficulty.\n";
                     buildFood = false;
                 }
 
                 ethnicity = sharedPreferences.getString("ethnicity","");
                 if(ethnicity.equals("")){
-                    alertMessage += "Please enter a food ethnicity\n";
+                    alertMessage += "Please enter a food ethnicity.\n";
                     buildFood = false;
                 }
 
                 Set<String> entries = sharedPreferences.getStringSet("category", null);
                 if(entries == null){
-                    alertMessage += "Please select at least one category \n";
+                    alertMessage += "Please select at least one category.\n";
                     buildFood = false;
                 }else{
                     String[] selecteds = entries.toArray(new String[]{});
@@ -125,7 +124,7 @@ public class AddFoodActivity extends AppCompatActivity{
                 if (ingredient!= null && !ingredient.equals("")){
                     str_ingredients.add(ingredient);
                 }else{
-                    alertMessage += "Please set at least one ingredient\n";
+                    alertMessage += "Please set at least one ingredient.\n";
                     buildFood = false;
                 }
                 String ingredient2 = sharedPreferences.getString("ingredient2","");
@@ -142,7 +141,7 @@ public class AddFoodActivity extends AppCompatActivity{
                 if (direction!= null && !direction.equals("")){
                     str_directions.add(direction);
                 }else{
-                    alertMessage += "Please set at least one direction\n";
+                    alertMessage += "Please set at least one direction.\n";
                     buildFood = false;
                 }
                 String direction2 = sharedPreferences.getString("instruction2","");
@@ -163,12 +162,20 @@ public class AddFoodActivity extends AppCompatActivity{
                     int newId = af.getFoodRow() + 1;
                     Food newFood = new Food(newId,food_name,portionSize,prepTime,flavour,difficulty,ethnicity);
                     if(af.addFood(newFood) == null){
-                        Snackbar.make(view, "Food was successfully added!", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.clear();
                         editor.apply();
-                        finish();
+                        alertDialog.setTitle("Success!");
+                        alertDialog.setMessage(food_name + " has been added!");
+                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                new DialogInterface.OnClickListener(){
+                                    public void onClick(DialogInterface dialog, int which){
+                                        dialog.dismiss();
+                                        finish();
+                                    }
+                                });
+                        alertDialog.show();
+
                         if(favourite){
                             User curr_user = MainActivity.currentUser;
                             af.setFoodFavouriteByUser(curr_user,newFood.getFoodID(),true);
@@ -210,7 +217,6 @@ public class AddFoodActivity extends AppCompatActivity{
                         }
                     }
                 }else{
-                    AlertDialog alertDialog = new AlertDialog.Builder(AddFoodActivity.this).create();
                     alertDialog.setTitle("Error:");
                     alertDialog.setMessage(alertMessage);
                     alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
