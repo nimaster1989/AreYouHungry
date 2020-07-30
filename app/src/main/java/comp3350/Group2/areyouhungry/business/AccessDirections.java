@@ -20,4 +20,14 @@ public class AccessDirections{
     public String getDirection(Food food, List<Direction> directions){
         return dataAccess.getDirectionByFood(food,directions);
     }
+
+    public int getNewDirectionId() {
+        return dataAccess.getDirectionRow()+1;
+    }
+    public String addDirection(Direction newDirection){
+        return dataAccess.addNewDirection(newDirection);
+    }
+    public String addFoodDirection(int foodid,int directionid){
+        return dataAccess.addFoodDirection(foodid,directionid);
+    }
 }

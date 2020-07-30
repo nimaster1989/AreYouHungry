@@ -24,8 +24,13 @@ import java.util.List;
 import java.util.Set;
 
 import comp3350.Group2.areyouhungry.R;
+import comp3350.Group2.areyouhungry.business.AccessDirections;
 import comp3350.Group2.areyouhungry.business.AccessFoods;
+import comp3350.Group2.areyouhungry.business.AccessIngredients;
+import comp3350.Group2.areyouhungry.objects.Direction;
 import comp3350.Group2.areyouhungry.objects.Food;
+import comp3350.Group2.areyouhungry.objects.FoodCategory;
+import comp3350.Group2.areyouhungry.objects.Ingredient;
 
 public class AddFoodActivity extends AppCompatActivity {
 
@@ -159,16 +164,65 @@ public class AddFoodActivity extends AppCompatActivity {
                 if (direction5!= null && !direction5.equals("")) str_directions.add(direction5);
                 System.out.println(str_directions.toString());
 
-
-
                 if(buildFood){
-                    System.out.println("start build");
+                    for (String str_ingredient:str_ingredients){
+                        Boolean syntax_check = ingredient_syntax_check(str_ingredient);
+                        if (!syntax_check) return;
+                    }
+                    System.out.println("start food");
                     AccessFoods af = new AccessFoods();
-                    int newId = af.getFoodRow();
+                    int newId = af.getFoodRow() + 1;
+                    System.out.println("newid:"+newId);
                     System.out.println("preptime:"+prepTime);
                     Food newFood = new Food(newId,food_name,portionSize,prepTime,flavour,difficulty,ethnicity);
                     if(af.addFood(newFood) == null){
-                        System.out.println("add success");
+                        System.out.println("add food success");
+                        Snackbar.make(view, "successfully add this food!", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                        System.out.println("now add category");
+                        for(String str_category:str_categorys){
+                            FoodCategory newFc = af.addFoodCategory(newFood,str_category);
+                            if(newFc != null){
+                                System.out.println("successfully add a food category:"+newFc.getFoodID()+":"+newFc.getCategoryID());
+                            }
+                        }
+                    }else{
+                        return;
+                    }
+                    System.out.println("Start ingredient");
+                    for (String str_ingredient:str_ingredients){
+                        AccessIngredients ai = new AccessIngredients();
+                        int newIngredientId = ai.getNewIngredientId();
+                        int lastSpace = str_ingredient.lastIndexOf(" ");
+                        String measurement;
+                        String name;
+                        if (lastSpace == -1){
+                            measurement = "";
+                            name = str_ingredient;
+                        } else {
+                            measurement = str_ingredient.substring(lastSpace);
+                            name = str_ingredient.substring(0, lastSpace);
+                        }
+                        Ingredient newIngredient = new Ingredient(newIngredientId, name, measurement);
+                        String result = ai.addIngredient(newIngredient);
+                        System.out.println("add ingredient success");
+                        if(result == null){
+                            ai.setFoodIngredient(Integer.parseInt(newFood.getFoodID()),newIngredient.getIngredientID());
+                            System.out.println("add food-ingredient success");
+                        }
+                    }
+                    System.out.println("start direction");
+                    int step = 1;
+                    for(String str_direction:str_directions){
+                        AccessDirections ad = new AccessDirections();
+                        int newDirectionId = ad.getNewDirectionId();
+                        Direction newDirection = new Direction(newDirectionId,str_direction,step);
+                        step++;
+                        String result = ad.addDirection(newDirection);
+                        System.out.println("add ingredient success");
+                        if(result == null){
+                            ad.addFoodDirection(Integer.parseInt(newFood.getFoodID()),newDirection.getDirectionID());
+                        }
                     }
                 }else {
                     AlertDialog alertDialog = new AlertDialog.Builder(AddFoodActivity.this).create();
@@ -186,6 +240,26 @@ public class AddFoodActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    private boolean ingredient_syntax_check(String ingredient) {
+        if(ingredient.split(" ").length == 1){
+            System.out.println("wrong syntax");
+            String alertMessage = "please input ingredient syntax: name + space + measurement\n";
+            AlertDialog alertDialog = new AlertDialog.Builder(AddFoodActivity.this).create();
+            alertDialog.setTitle("Ingredient wrong syntax");
+            alertDialog.setMessage(alertMessage);
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+            return false;
+        }
+        return true;
     }
 
 
