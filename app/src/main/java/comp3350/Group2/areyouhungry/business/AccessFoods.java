@@ -95,4 +95,12 @@ public class AccessFoods{
         }
         return duplicate;
     }
+
+    public String foodCriteriaSearch(ArrayList<String> prepTimeCriterias, ArrayList<String> flavourCriterias, ArrayList<String> difficutlyCriterias, ArrayList<String> ethnicityCriterias, ArrayList<Food> foodResult){
+        return dataAccess.searchFoodByCriteriaLists(prepTimeCriterias,flavourCriterias,difficutlyCriterias,ethnicityCriterias,foodResult);
+    }
+
+    public String getFoodsByCategory(String category, ArrayList<Food> foodCategoryResult) {
+        return dataAccess.getFoodSequentialByCategory(category,foodCategoryResult);
+    }
 }

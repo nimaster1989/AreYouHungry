@@ -1,5 +1,6 @@
 package comp3350.Group2.areyouhungry.business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.Group2.areyouhungry.MainActivity;
@@ -32,5 +33,9 @@ public class AccessIngredients{
     }
     public String setFoodIngredient(int foodid,int ingredientid){
         return dataAccess.addFoodIngredient(foodid,ingredientid);
+    }
+
+    public String getFoodsByIngredient(String ingredient, ArrayList<Food> foodIngredientResult) {
+        return dataAccess.getFoodsSequentialByIngredient(ingredient,foodIngredientResult);
     }
 }

@@ -616,6 +616,112 @@ public class DataAccessObject implements DataAccess{
         return result;
     }
 
+    @Override
+    public String searchFoodByCriteriaLists(ArrayList<String> prepTimeCriterias, ArrayList<String> flavourCriterias, ArrayList<String> difficutlyCriterias, ArrayList<String> ethnicityCriterias, ArrayList<Food> foodResult) {
+        String result = null;
+        String cmd="SELECT * FROM FOODS WHERE ";
+        int size1 = prepTimeCriterias.size();
+        int size2 = flavourCriterias.size();
+        int size3 = difficutlyCriterias.size();
+        int size4 = ethnicityCriterias.size();
+
+        for(String prepTime:prepTimeCriterias){
+            cmd += "FOODS.PREPTIME = "+prepTime + " OR ";
+        }
+        if(size1 > 0){
+            cmd = cmd.substring(0, cmd.length() - 3);
+            if(size2 > 0 || size3 >0 || size4 >0 ) cmd += " AND ";
+        }
+
+        for(String flavour:flavourCriterias){
+            cmd+= "FOODS.FLAVOUR = '"+flavour+ "' OR ";
+        }
+        if(size2 > 0){
+            cmd = cmd.substring(0, cmd.length() - 3);
+            if(size3 > 0 || size4 > 0) cmd+= " AND ";
+        }
+
+
+        for(String difficuly:difficutlyCriterias){
+            cmd+="FOODS.DIFFICULTY = '"+difficuly+"' OR ";
+        }
+        if(size3 > 0){
+            cmd = cmd.substring(0, cmd.length() - 3);
+            if(size4 > 0) cmd+=" AND ";
+        }
+
+        for(String ethnicity:ethnicityCriterias){
+            cmd+="FOODS.ETHNICITY = '"+ethnicity+"' OR ";
+        }
+        if(size4 >0 )cmd = cmd.substring(0, cmd.length() - 3);
+
+        if(cmd != "SELECT * FROM FOODS WHERE ") {
+            Food food;
+            int myFoodID, myPrepTime, myPortionSize;
+            String myFoodName = EOF, myFlavour = EOF, myDifficulty = EOF, myEthnicity = EOF;
+
+            try {
+                rs3 = st2.executeQuery(cmd);
+                while (rs3.next()) {
+                    myFoodID = rs3.getInt("FOODID");
+                    myFoodName = rs3.getString("FOODNAME");
+                    myPortionSize = rs3.getInt("PORTIONSIZE");
+                    myPrepTime = rs3.getInt("PREPTIME");
+                    myFlavour = rs3.getString("FLAVOUR");
+                    myDifficulty = rs3.getString("DIFFICULTY");
+                    myEthnicity = rs3.getString("ETHNICITY");
+                    food = new Food(myFoodID, myFoodName, myPortionSize, myPrepTime, myFlavour, myDifficulty, myEthnicity);
+                    foodResult.add(food);
+                }
+                rs3.close();
+            } catch (Exception e) {
+                processSQLError(e);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String getFoodSequentialByCategory(String category, ArrayList<Food> foodCategoryResult) {
+        result = null;
+        Food food;
+        try{
+            cmdString = "select FOODSCATEGORY.FOODID from FOODSCATEGORY,CATEGORYS  where FOODSCATEGORY.CATEGORYID = CATEGORYS.CATEGORYID and CATEGORYS.CATEGORYNAME = '"+category+"'";
+            rs3 = st2.executeQuery(cmdString);
+            while(rs3.next()){
+                int foodID = rs3.getInt("FOODID");
+                food = getFoodFromID(String.valueOf(foodID));
+                foodCategoryResult.add(food);
+            }
+        }catch (Exception e){
+            result = processSQLError(e);
+        }
+
+        return null;
+
+    }
+
+    @Override
+    public String getFoodsSequentialByIngredient(String ingredient, ArrayList<Food> foodIngredientResult) {
+        result = null;
+        Food food;
+        try{
+            cmdString = "SELECT FOODID from FOODINGREDIENT where FOODINGREDIENT.INGREDIENTID = '"+ingredient+"'";
+            rs3 = st2.executeQuery(cmdString);
+            while(rs3.next()){
+                int foodID = rs3.getInt("FOODID");
+                System.out.println("get foodid:"+ foodID);
+                food = getFoodFromID(String.valueOf(foodID));
+                foodIngredientResult.add(food);
+            }
+        }catch (Exception e){
+            result = processSQLError(e);
+        }
+
+        return null;
+
+    }
+
     public int getTotalUser(){
         int count = 0;
         result = null;
