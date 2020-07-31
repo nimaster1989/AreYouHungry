@@ -28,14 +28,14 @@ import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailFragment;
 import comp3350.Group2.areyouhungry.ui.all_food.FoodListActivity;
 import comp3350.Group2.areyouhungry.ui.favorites.FavouriteFoodListActivity;
 
-public class SearchResultActivity extends AppCompatActivity {
+public class SearchResultActivity extends AppCompatActivity{
 
     private AccessFoods accessFoods;
     private ArrayList<Food> searchResultList;
     private boolean mTwoPane;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
         setTitle("Search Result");

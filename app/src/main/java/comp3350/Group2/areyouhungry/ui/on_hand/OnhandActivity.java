@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.ActionBar;
@@ -58,9 +59,9 @@ public class OnhandActivity extends AppCompatActivity {
         AccessFoods accessFoods = new AccessFoods();
 
         ExtendedFloatingActionButton fab = (ExtendedFloatingActionButton) findViewById(R.id.search_fba);
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
+            public void onClick(View view){
                 if(resultList.size() == 0){
                     AlertDialog alertDialog = new AlertDialog.Builder(OnhandActivity.this).create();
                     alertDialog.setMessage("no food match");
@@ -116,7 +117,7 @@ public class OnhandActivity extends AppCompatActivity {
             CharSequence[] entryvalue = new CharSequence[size];
             int i = 0;
             String str_input;
-            for (Ingredient ingredient : ingredients) {
+            for (Ingredient ingredient : ingredients){
                 entries[i] = (CharSequence) ingredient.getIngredientName();
                 entryvalue[i] = (CharSequence)String.valueOf(ingredient.getIngredientID());
                 i++;
@@ -139,13 +140,13 @@ public class OnhandActivity extends AppCompatActivity {
 
 
         @Override
-        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s){
             boolean searchOnCategory = false;
             boolean searchOnTime = false;
             boolean searchOnEthnicity = false;
             boolean searchOnDifficulty = false;
             boolean searchOnFlavour = false;
-            switch (s) {
+            switch (s){
                 case "search_on_category":
                     searchOnCategory = sharedPreferences.getBoolean(s, false);
                     CheckBoxPreference cb1 = findPreference("Meat");
@@ -304,7 +305,7 @@ public class OnhandActivity extends AppCompatActivity {
             foodsCriteriaResults.addAll(foodCriteria);
         }
 
-        private void search_logic_category(ArrayList<String> categorys) {
+        private void search_logic_category(ArrayList<String> categorys){
             foodsCategoryResults.clear();
             System.out.println("category search :"+categorys.toString());
             Set<Food> foodCategorySet = new HashSet<>();
@@ -318,7 +319,7 @@ public class OnhandActivity extends AppCompatActivity {
             foodsCategoryResults.addAll(FoodCategorysResult);
         }
 
-        private void search_logic_ingredient(ArrayList<String> ingredients) {
+        private void search_logic_ingredient(ArrayList<String> ingredients){
             foodsIngredientResults.clear();
             System.out.println("ingredient search"+ingredients.toString());
             Set<Food> foodIngredientSet = new HashSet<>();
@@ -350,33 +351,30 @@ public class OnhandActivity extends AppCompatActivity {
             }
             Snackbar.make(this.getView(), foodsFinalResult.size()+" food match", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
-            System.out.println("search result");
             OnhandActivity.resultList.clear();
             OnhandActivity.resultList.addAll(foodsFinalResult);
         }
-        public <T> List<T> union(List<T> list1, List<T> list2) {
-            Set<T> set = new HashSet<T>();
-
-            set.addAll(list1);
-            set.addAll(list2);
-
-            return new ArrayList<T>(set);
-        }
-
-        public <T> List<T> intersection(List<T> list1, List<T> list2) {
+        public <T> List<T> intersection(List<T> list1, List<T> list2){
             List<T> list = new ArrayList<T>();
-
-            for (T t : list1) {
-                if(list2.contains(t)) {
+            for (T t : list1){
+                if(list2.contains(t)){
                     list.add(t);
                 }
             }
-
             return list;
         }
     }
 
-    public void onBackPressed() {
+    public boolean onOptionsItemSelected(MenuItem item){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.apply();
+        finish();
+        return true;
+    }
+    @Override
+    public void onBackPressed(){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
         editor.clear();

@@ -592,7 +592,7 @@ public class DataAccessObject implements DataAccess{
     }
 
     @Override
-    public String getIngredientSequential(List<Ingredient> ingredients) {
+    public String getIngredientSequential(List<Ingredient> ingredients){
         Ingredient ingredient;
         int myID;
         String myName= EOF, myMeasure = EOF;
@@ -617,7 +617,7 @@ public class DataAccessObject implements DataAccess{
     }
 
     @Override
-    public String searchFoodByCriteriaLists(ArrayList<String> prepTimeCriterias, ArrayList<String> flavourCriterias, ArrayList<String> difficutlyCriterias, ArrayList<String> ethnicityCriterias, ArrayList<Food> foodResult) {
+    public String searchFoodByCriteriaLists(ArrayList<String> prepTimeCriterias, ArrayList<String> flavourCriterias, ArrayList<String> difficutlyCriterias, ArrayList<String> ethnicityCriterias, ArrayList<Food> foodResult){
         String result = null;
         String cmd="SELECT * FROM FOODS WHERE ";
         int size1 = prepTimeCriterias.size();
@@ -655,14 +655,14 @@ public class DataAccessObject implements DataAccess{
         }
         if(size4 >0 )cmd = cmd.substring(0, cmd.length() - 3);
 
-        if(cmd != "SELECT * FROM FOODS WHERE ") {
+        if(cmd != "SELECT * FROM FOODS WHERE "){
             Food food;
             int myFoodID, myPrepTime, myPortionSize;
             String myFoodName = EOF, myFlavour = EOF, myDifficulty = EOF, myEthnicity = EOF;
 
-            try {
+            try{
                 rs3 = st2.executeQuery(cmd);
-                while (rs3.next()) {
+                while (rs3.next()){
                     myFoodID = rs3.getInt("FOODID");
                     myFoodName = rs3.getString("FOODNAME");
                     myPortionSize = rs3.getInt("PORTIONSIZE");
@@ -674,7 +674,7 @@ public class DataAccessObject implements DataAccess{
                     foodResult.add(food);
                 }
                 rs3.close();
-            } catch (Exception e) {
+            } catch (Exception e){
                 processSQLError(e);
             }
         }
@@ -682,7 +682,7 @@ public class DataAccessObject implements DataAccess{
     }
 
     @Override
-    public String getFoodSequentialByCategory(String category, ArrayList<Food> foodCategoryResult) {
+    public String getFoodSequentialByCategory(String category, ArrayList<Food> foodCategoryResult){
         result = null;
         Food food;
         try{
@@ -702,7 +702,7 @@ public class DataAccessObject implements DataAccess{
     }
 
     @Override
-    public String getFoodsSequentialByIngredient(String ingredient, ArrayList<Food> foodIngredientResult) {
+    public String getFoodsSequentialByIngredient(String ingredient, ArrayList<Food> foodIngredientResult){
         result = null;
         Food food;
         try{
