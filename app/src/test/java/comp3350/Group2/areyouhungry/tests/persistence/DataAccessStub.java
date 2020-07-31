@@ -515,6 +515,26 @@ public class DataAccessStub implements DataAccess{
         return null;
     }
 
+    @Override
+    public String getIngredientSequential(List<Ingredient> ingredients) {
+        return null;
+    }
+
+    @Override
+    public String searchFoodByCriteriaLists(ArrayList<String> prepTimeCriterias, ArrayList<String> flavourCriterias, ArrayList<String> difficutlyCriterias, ArrayList<String> ethnicityCriterias, ArrayList<Food> foodResult) {
+        return null;
+    }
+
+    @Override
+    public String getFoodSequentialByCategory(String category, ArrayList<Food> foodCategoryResult) {
+        return null;
+    }
+
+    @Override
+    public String getFoodsSequentialByIngredient(String ingredient, ArrayList<Food> foodIngredientResult) {
+        return null;
+    }
+
 
     @Override
     public int getCategoryIDbyName(String categoryName){
