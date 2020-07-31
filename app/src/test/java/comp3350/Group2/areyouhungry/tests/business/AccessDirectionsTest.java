@@ -46,5 +46,4 @@ public class AccessDirectionsTest extends TestCase{
         }
         Services.closeDataAccess();
     }
-    // TODO: 2020-07-30 write tes for  getNewDirectionId(); add direction();addFoodDirection();
 }

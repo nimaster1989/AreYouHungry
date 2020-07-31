@@ -48,5 +48,4 @@ public class AccessIngredientsTest extends TestCase{
         }
         Services.closeDataAccess();
     }
-    // TODO: 2020-07-30 test for addIngredient getNewIngredient and setFoodIngredient
 }

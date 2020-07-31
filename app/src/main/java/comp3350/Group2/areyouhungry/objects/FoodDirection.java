@@ -1,8 +1,6 @@
 package comp3350.Group2.areyouhungry.objects;
 
 import java.util.ArrayList;
-import java.util.List;
-import comp3350.Group2.areyouhungry.business.AccessDirections;
 
 public class FoodDirection{
     private Food food;

@@ -406,7 +406,7 @@ public class DataAccessStub implements DataAccess{
 
     public String addFood(Food newFood){
         if(newFood != null){
-            if(newFood.getFoodID() != "" && Integer.parseInt(newFood.getFoodID()) > 0 && Integer.parseInt(newFood.getFoodID()) == foods.size()+1 && newFood.getFoodName() != ""){
+            if(!newFood.getFoodID().equals("") && Integer.parseInt(newFood.getFoodID()) > 0 && Integer.parseInt(newFood.getFoodID()) == foods.size()+1 && !newFood.getFoodName().equals("")){
                 foods.add(newFood);
                 Food_map.put(newFood.getFoodID(), newFood);
             }

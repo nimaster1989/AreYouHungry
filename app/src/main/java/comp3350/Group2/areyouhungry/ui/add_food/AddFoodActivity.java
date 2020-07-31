@@ -4,13 +4,14 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.ActionBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.EditTextPreference;
-import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
@@ -19,7 +20,6 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Set;
 
 import comp3350.Group2.areyouhungry.MainActivity;
@@ -27,7 +27,6 @@ import comp3350.Group2.areyouhungry.R;
 import comp3350.Group2.areyouhungry.business.AccessDirections;
 import comp3350.Group2.areyouhungry.business.AccessFoods;
 import comp3350.Group2.areyouhungry.business.AccessIngredients;
-import comp3350.Group2.areyouhungry.business.AccessUsers;
 import comp3350.Group2.areyouhungry.objects.Direction;
 import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.FoodCategory;
@@ -71,53 +70,55 @@ public class AddFoodActivity extends AppCompatActivity{
                         PreferenceManager.getDefaultSharedPreferences(getApplicationContext() /* Activity context */);
                 food_name = sharedPreferences.getString("food name", "");
                 if(food_name.equals("")){
-                    alertMessage += "please enter food name\n";
+                    alertMessage += "Please enter a food name\n";
                     buildFood = false;
                 }
-
                 favourite  = sharedPreferences.getBoolean("favourite", false);
+
                 String portionSize_Str = sharedPreferences.getString("portion","");
-                if(!portionSize_Str.equals("")) portionSize = Integer.parseInt(portionSize_Str);
-                if(portionSize == 0){
-                    alertMessage += "please enter portion size\n";
+                if(TextUtils.isDigitsOnly(portionSize_Str)){
+                    portionSize = Integer.parseInt(portionSize_Str);
+                }
+                if(portionSize <= 0){
+                    alertMessage += "Please enter a portion size\n";
                     buildFood = false;
                 }
 
                 String prepTime_Str = sharedPreferences.getString("preptime","");
-                if(!prepTime_Str.equals("")) prepTime = Integer.parseInt(prepTime_Str);
-                if(prepTime == 0){
-                    alertMessage += "please enter prepare time\n";
+                if(TextUtils.isDigitsOnly(prepTime_Str)){
+                    prepTime = Integer.parseInt(prepTime_Str);
+                }
+                if(prepTime <= 0){
+                    alertMessage += "Please enter a preparation time\n";
                     buildFood = false;
                 }
 
                 flavour = sharedPreferences.getString("flavour","");
                 if(flavour.equals("")){
-                    alertMessage += "please select flavour\n";
+                    alertMessage += "Please enter a flavour type\n";
                     buildFood = false;
                 }
 
                 difficulty = sharedPreferences.getString("difficulty","");
                 if(difficulty.equals("")){
-                    alertMessage += "please select difficulty\n";
+                    alertMessage += "Please select a difficulty\n";
                     buildFood = false;
                 }
 
                 ethnicity = sharedPreferences.getString("ethnicity","");
                 if(ethnicity.equals("")){
-                    alertMessage += "please select ethnicity\n";
+                    alertMessage += "Please enter a food ethnicity\n";
                     buildFood = false;
                 }
 
                 Set<String> entries = sharedPreferences.getStringSet("category", null);
                 if(entries == null){
-                    System.out.println("No entries for category");
-                    alertMessage += "please select at least one category \n";
+                    alertMessage += "Please select at least one category \n";
                     buildFood = false;
                 }else{
                     String[] selecteds = entries.toArray(new String[]{});
                     str_categorys.clear();
                     Collections.addAll(str_categorys, selecteds);
-                    System.out.println(str_categorys.toString());
                 }
 
                 str_ingredients.clear();
@@ -125,7 +126,7 @@ public class AddFoodActivity extends AppCompatActivity{
                 if (ingredient!= null && !ingredient.equals("")){
                     str_ingredients.add(ingredient);
                 }else{
-                    alertMessage += "please set at least one ingredients\n";
+                    alertMessage += "Please set at least one ingredient\n";
                     buildFood = false;
                 }
                 String ingredient2 = sharedPreferences.getString("ingredient2","");
@@ -136,14 +137,13 @@ public class AddFoodActivity extends AppCompatActivity{
                 if (ingredient4!= null && !ingredient4.equals("")) str_ingredients.add(ingredient4);
                 String ingredient5 = sharedPreferences.getString("ingredient5","");
                 if (ingredient5!= null && !ingredient5.equals("")) str_ingredients.add(ingredient5);
-                System.out.println(str_ingredients.toString());
 
                 str_directions.clear();
                 String direction = sharedPreferences.getString("instruction","");
                 if (direction!= null && !direction.equals("")){
                     str_directions.add(direction);
                 }else{
-                    alertMessage += "please set at least one directions\n";
+                    alertMessage += "Please set at least one direction\n";
                     buildFood = false;
                 }
                 String direction2 = sharedPreferences.getString("instruction2","");
@@ -154,7 +154,6 @@ public class AddFoodActivity extends AppCompatActivity{
                 if (direction4!= null && !direction4.equals("")) str_directions.add(direction4);
                 String direction5 = sharedPreferences.getString("instruction5","");
                 if (direction5!= null && !direction5.equals("")) str_directions.add(direction5);
-                System.out.println(str_directions.toString());
 
                 if(buildFood){
                     for (String str_ingredient:str_ingredients){
@@ -165,8 +164,12 @@ public class AddFoodActivity extends AppCompatActivity{
                     int newId = af.getFoodRow() + 1;
                     Food newFood = new Food(newId,food_name,portionSize,prepTime,flavour,difficulty,ethnicity);
                     if(af.addFood(newFood) == null){
-                        Snackbar.make(view, "successfully add this food!", Snackbar.LENGTH_LONG)
+                        Snackbar.make(view, "Food was successfully added!", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.clear();
+                        editor.apply();
+                        finish();
                         if(favourite){
                             User curr_user = MainActivity.currentUser;
                             af.setFoodFavouriteByUser(curr_user,newFood.getFoodID(),true);
@@ -177,7 +180,6 @@ public class AddFoodActivity extends AppCompatActivity{
                     }else{
                         return;
                     }
-                    System.out.println("Start ingredient");
                     for (String str_ingredient:str_ingredients){
                         AccessIngredients ai = new AccessIngredients();
                         int newIngredientId = ai.getNewIngredientId();
@@ -210,7 +212,7 @@ public class AddFoodActivity extends AppCompatActivity{
                     }
                 }else{
                     AlertDialog alertDialog = new AlertDialog.Builder(AddFoodActivity.this).create();
-                    alertDialog.setTitle("Alert");
+                    alertDialog.setTitle("Error:");
                     alertDialog.setMessage(alertMessage);
                     alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                             new DialogInterface.OnClickListener(){
@@ -221,7 +223,10 @@ public class AddFoodActivity extends AppCompatActivity{
                     alertDialog.show();
                 }
             }
+
         });
+
+
 
     }
 
@@ -242,6 +247,25 @@ public class AddFoodActivity extends AppCompatActivity{
             return false;
         }
         return true;
+    }
+
+    //This allows you to use the back button on the top left to go to home page
+    public boolean onOptionsItemSelected(MenuItem item){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.apply();
+        finish();
+        return true;
+    }
+
+    @Override
+    public void onBackPressed(){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.apply();
+        finish();
     }
 
 
@@ -267,7 +291,6 @@ public class AddFoodActivity extends AppCompatActivity{
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s){
-            System.out.println("something change");
             String getStr;
                 switch (s){
                     case "ingredient":
