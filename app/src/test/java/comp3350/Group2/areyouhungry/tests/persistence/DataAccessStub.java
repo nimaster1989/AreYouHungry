@@ -528,7 +528,7 @@ public class DataAccessStub implements DataAccess{
         Food food;
         while(foodIterator.hasNext()){
             food = foodIterator.next();
-            if(prepTimeCriterias.contains(food.getPrepTime()) && flavourCriterias.contains(food.getFlavour()) && difficutlyCriterias.contains(food.getDifficulty())&& ethnicityCriterias.contains(food.getEthnicity())){
+            if(prepTimeCriterias.contains(String.valueOf(food.getPrepTime())) && flavourCriterias.contains(food.getFlavour()) && difficutlyCriterias.contains(food.getDifficulty())&& ethnicityCriterias.contains(food.getEthnicity())){
                 foodResult.add(food);
             }
         }
