@@ -81,6 +81,9 @@ Major changes in this iteration and where to find them:
     7. We added more to the food detail page. Now as promised the food description page has a picture
        of the food itself. Additionally the page contains the ingredients to make it and how much
        of each and the directions itself to make it.
+    8. We also updated the ability to add food. Before it was simple where you provide a food name,
+       with a recipe link for how to make it. Now it requires a lot more fields to make it the same
+       as a food object in the database.
 
 Changes in this iteration that we were unable to implement:
     1. We have not added any feature to sort any of the foods. Whether it be favourites or from the
