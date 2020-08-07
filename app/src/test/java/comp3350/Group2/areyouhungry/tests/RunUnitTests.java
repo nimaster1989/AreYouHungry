@@ -22,7 +22,7 @@ import comp3350.Group2.areyouhungry.tests.objects.UserTest;
 import comp3350.Group2.areyouhungry.tests.persistence.DataAccessTest;
 
 /* This class when run tests all the other testing suites. */
-public class AllTests{
+public class RunUnitTests {
 
     public static TestSuite suite;
 
