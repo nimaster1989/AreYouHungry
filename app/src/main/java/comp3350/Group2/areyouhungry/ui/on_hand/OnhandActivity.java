@@ -31,13 +31,13 @@ import comp3350.Group2.areyouhungry.business.AccessIngredients;
 import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.Ingredient;
 
-public class OnhandActivity extends AppCompatActivity {
+public class OnhandActivity extends AppCompatActivity{
 
     public static ArrayList<Food> resultList;
     public static ArrayList<Food> foods;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_activity);
         getSupportFragmentManager()
@@ -45,7 +45,7 @@ public class OnhandActivity extends AppCompatActivity {
                 .replace(R.id.searches, new SettingsFragment())
                 .commit();
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
+        if (actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
@@ -348,23 +348,21 @@ public class OnhandActivity extends AppCompatActivity {
             ArrayList<Food> FoodIngredientsResult = new ArrayList<>(foodIngredientSet);
             foodsIngredientResults.addAll(FoodIngredientsResult);
         }
-        private int fuzzy_ingredient_search(String str) {
-            for (int index=0;index<allIngredient.size();index++) {
+        private int fuzzy_ingredient_search(String str){
+            for (int index=0;index<allIngredient.size();index++){
                 String ingredientName = allIngredient.get(index).getIngredientName();
-                if (ingredientName.equals((str))) {
+                if (ingredientName.equals((str))){
                     return index;
-                } else if (ingredientName.toLowerCase().contains(str.toLowerCase())) {
+                } else if (ingredientName.toLowerCase().contains(str.toLowerCase())){
                     return index;
-                } else {
+                } else{
                     //time complexity for calculate long string levenshtein distance is large,
                     //its not necessary, we break ingredient by space and search each word
                     String[] ingredientNames = ingredientName.split(" ");
-                    for (String s : ingredientNames) {
-                        {
-                            int distance = levenshtein(s, str);
-                            if ((double)distance <= (double)str.length() / 3) {
-                                return index;
-                            }
+                    for (String s : ingredientNames){
+                        int distance = levenshtein(s, str);
+                        if ((double)distance <= (double)str.length() / 3){
+                            return index;
                         }
                     }
                 }
@@ -426,7 +424,7 @@ public class OnhandActivity extends AppCompatActivity {
                 }
                 deleteS = s.substring(1);
                 deleteT = t.substring(1);
-                distance = minimum(new int[] { levenshtein(deleteS, t) + 1,
+                distance = minimum(new int[]{ levenshtein(deleteS, t) + 1,
                         levenshtein(s, deleteT) + 1,
                         levenshtein(deleteS, deleteT) + cost });
             }
@@ -436,8 +434,8 @@ public class OnhandActivity extends AppCompatActivity {
             int min = 0;
             if ( minimum.length > 0 ){
                 min = minimum[0];
-                for ( int i = 1; i < minimum.length; i++ ) {
-                    if ( minimum[i] < min ) {
+                for ( int i = 1; i < minimum.length; i++ ){
+                    if ( minimum[i] < min ){
                         min = minimum[i];
                     }
                 }
