@@ -625,8 +625,10 @@ public class DataAccessObject implements DataAccess{
         int size3 = difficutlyCriterias.size();
         int size4 = ethnicityCriterias.size();
 
-        for(String prepTime:prepTimeCriterias){
-            cmd += "FOODS.PREPTIME = "+prepTime + " OR ";
+        for(String maxPrepTime:prepTimeCriterias){
+            String minPrepTime = String.valueOf(Integer.parseInt(maxPrepTime)-10);
+            cmd += "FOODS.PREPTIME <= "+maxPrepTime + "AND FOODS.PREPTIME >="+minPrepTime+" OR ";
+            System.out.println("time:"+minPrepTime+" ~ "+maxPrepTime);
         }
         if(size1 > 0){
             cmd = cmd.substring(0, cmd.length() - 3);
