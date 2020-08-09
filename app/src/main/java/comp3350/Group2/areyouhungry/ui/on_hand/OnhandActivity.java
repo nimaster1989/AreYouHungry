@@ -11,6 +11,7 @@ import android.view.View;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.CheckBoxPreference;
+import androidx.preference.EditTextPreference;
 import androidx.preference.MultiSelectListPreference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
@@ -29,9 +30,6 @@ import comp3350.Group2.areyouhungry.business.AccessFoods;
 import comp3350.Group2.areyouhungry.business.AccessIngredients;
 import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.Ingredient;
-import comp3350.Group2.areyouhungry.ui.add_food.AddFoodActivity;
-import comp3350.Group2.areyouhungry.ui.preferred.PreferredActivity;
-import comp3350.Group2.areyouhungry.ui.preferred.PreferredSearchActivity;
 
 public class OnhandActivity extends AppCompatActivity {
 
@@ -90,11 +88,14 @@ public class OnhandActivity extends AppCompatActivity {
         ArrayList<String> flavourCriterias;
         ArrayList<String> difficutlyCriterias;
         ArrayList<String> ethnicityCriterias;
+        ArrayList<String> ingredientsCriterias;
 
         ArrayList<Food> foodsCriteriaResults;
         ArrayList<Food> foodsCategoryResults;
         ArrayList<Food> foodsIngredientResults;
         ArrayList<Food> foodsFinalResult;
+
+        ArrayList<Ingredient> allIngredient;
 
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey){
@@ -103,18 +104,21 @@ public class OnhandActivity extends AppCompatActivity {
             flavourCriterias = new ArrayList<>();
             difficutlyCriterias = new ArrayList<>();
             ethnicityCriterias = new ArrayList<>();
+            ingredientsCriterias = new ArrayList<>();
             foodsCriteriaResults = new ArrayList<>();
             foodsCategoryResults = new ArrayList<>();
             foodsIngredientResults = new ArrayList<>();
             foodsFinalResult = new ArrayList<>();
+            allIngredient = new ArrayList<>();
             setPreferencesFromResource(R.xml.search_preferences, rootKey);
             MultiSelectListPreference mlp = (MultiSelectListPreference)findPreference("search_on_ingredient");
-            if (mlp == null) System.out.println("NullPointerException"+"Blocked is null");
             AccessIngredients accessIngredients = new AccessIngredients();
             ArrayList<Ingredient> ingredients = new ArrayList<>();
             accessIngredients.getAllIngredient(ingredients);
+            //assign to class variable
+            allIngredient = ingredients;
+            //set up ingredient options view for search
             int size = ingredients.size();
-            System.out.println(size);
             CharSequence[] entries = new CharSequence[size];
             CharSequence[] entryvalue = new CharSequence[size];
             int i = 0;
@@ -283,18 +287,30 @@ public class OnhandActivity extends AppCompatActivity {
                     else flavourCriterias.remove(s);
                     break;
                 case "search_on_ingredient":
+                    ingredientsCriterias.clear();
                     Set<String> entries = sharedPreferences.getStringSet("search_on_ingredient", null);
                     String[] selecteds = entries.toArray(new String[]{});
                     ArrayList<String> ingredients = new ArrayList<>();
                     ingredients.clear();
                     Collections.addAll(ingredients, selecteds);
-                    System.out.println(ingredients.toString());
-                    search_logic_ingredient(ingredients);
+                    ingredientsCriterias.addAll(ingredients);
+                    EditTextPreference editTextP = findPreference("search_on_ingredient_text");
+                    editTextP.setText("Not set");
+                    break;
+                case "search_on_ingredient_text":
+                    String searchOnIngredientText = sharedPreferences.getString("search_on_ingredient_text",null);
+                    if(searchOnIngredientText != null){
+                        int indexOfSearchResult = fuzzy_ingredient_search(searchOnIngredientText) + 1;
+                        if(indexOfSearchResult != 0 && indexOfSearchResult < allIngredient.size()+1){
+                            ingredientsCriterias.add(String.valueOf(indexOfSearchResult));
+                        }
+                    }
                     break;
                 default:
                     break;
 
             }
+            if(!ingredientsCriterias.isEmpty()) search_logic_ingredient(ingredientsCriterias);
             search_logic_foodCriteria(prepTimeCriterias,flavourCriterias,difficutlyCriterias,ethnicityCriterias);
             search_logic_answer();
         }
@@ -309,7 +325,6 @@ public class OnhandActivity extends AppCompatActivity {
 
         private void search_logic_category(ArrayList<String> categorys){
             foodsCategoryResults.clear();
-            System.out.println("category search :"+categorys.toString());
             Set<Food> foodCategorySet = new HashSet<>();
             for(String category:categorys){
                 ArrayList<Food> foodCategoryResult = new ArrayList<>();
@@ -323,7 +338,6 @@ public class OnhandActivity extends AppCompatActivity {
 
         private void search_logic_ingredient(ArrayList<String> ingredients){
             foodsIngredientResults.clear();
-            System.out.println("ingredient search"+ingredients.toString());
             Set<Food> foodIngredientSet = new HashSet<>();
             for(String ingredient:ingredients){
                 ArrayList<Food> foodIngredientResult = new ArrayList<>();
@@ -334,20 +348,44 @@ public class OnhandActivity extends AppCompatActivity {
             ArrayList<Food> FoodIngredientsResult = new ArrayList<>(foodIngredientSet);
             foodsIngredientResults.addAll(FoodIngredientsResult);
         }
+        private int fuzzy_ingredient_search(String str) {
+            for (int index=0;index<allIngredient.size();index++) {
+                String ingredientName = allIngredient.get(index).getIngredientName();
+                if (ingredientName.equals((str))) {
+                    return index;
+                } else if (ingredientName.toLowerCase().contains(str.toLowerCase())) {
+                    return index;
+                } else {
+                    //time complexity for calculate long string levenshtein distance is large,
+                    //its not necessary, we break ingredient by space and search each word
+                    String[] ingredientNames = ingredientName.split(" ");
+                    for (String s : ingredientNames) {
+                        {
+                            int distance = levenshtein(s, str);
+                            if ((double)distance <= (double)str.length() / 3) {
+                                return index;
+                            }
+                        }
+                    }
+                }
+            }
+            return -1;
+        }
 
         public void search_logic_answer(){
             foodsFinalResult.clear();
             ArrayList<Food> twoListResult = new ArrayList<>();
             if(!foodsCategoryResults.isEmpty() && !foodsCriteriaResults.isEmpty()){
-                System.out.println("intersection");
                 twoListResult.addAll(intersection(foodsCategoryResults,foodsCriteriaResults));
             }else if(foodsCategoryResults.isEmpty()){
                 twoListResult.addAll(foodsCriteriaResults);
             }else{
                 twoListResult.addAll(foodsCategoryResults);
             }
-            if(!foodsIngredientResults.isEmpty()){
+            if(!foodsIngredientResults.isEmpty() && !twoListResult.isEmpty()){
                 foodsFinalResult.addAll(intersection(twoListResult,foodsIngredientResults));
+            }else if(!foodsIngredientResults.isEmpty() && twoListResult.isEmpty()){
+                foodsFinalResult.addAll(foodsIngredientResults);
             }else{
                 foodsFinalResult.addAll(twoListResult);
             }
@@ -364,6 +402,47 @@ public class OnhandActivity extends AppCompatActivity {
                 }
             }
             return list;
+        }
+
+        //two helper methods for fuzzy search, calculate the levenshtein distance
+        //we assume if two word have levenshtein distance <= 1/3 word length, we consider it a result
+        private static int levenshtein( String s, String t ){
+            int cost;
+            int distance;
+            String deleteS;
+            String deleteT;
+            if (s.length() == 0){
+                distance = t.length();
+            }
+            else if (t.length() == 0){
+                distance = s.length();
+            }
+            else{
+                if (s.charAt(0) == t.charAt(0)){
+                    cost = 0;
+                }
+                else{
+                    cost = 1;
+                }
+                deleteS = s.substring(1);
+                deleteT = t.substring(1);
+                distance = minimum(new int[] { levenshtein(deleteS, t) + 1,
+                        levenshtein(s, deleteT) + 1,
+                        levenshtein(deleteS, deleteT) + cost });
+            }
+            return distance;
+        }
+        private static int minimum(int[] minimum){
+            int min = 0;
+            if ( minimum.length > 0 ){
+                min = minimum[0];
+                for ( int i = 1; i < minimum.length; i++ ) {
+                    if ( minimum[i] < min ) {
+                        min = minimum[i];
+                    }
+                }
+            }
+            return min;
         }
     }
 

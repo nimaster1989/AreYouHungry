@@ -2,6 +2,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
+    <PreferenceCategory app:title="Ingredient">
+        <MultiSelectListPreference
+            app:key="search_on_ingredient"
+            app:title="select from ingredient list" />
+        <EditTextPreference
+            android:key="search_on_ingredient_text"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="type in ingredient you have"
+            app:useSimpleSummaryProvider="true"/>
+
+    </PreferenceCategory>
+
     <PreferenceCategory app:title="Category">
 
         <SwitchPreferenceCompat
@@ -147,10 +160,6 @@
             app:isPreferenceVisible="false"/>
 
     </PreferenceCategory>
-    <PreferenceCategory app:title="Ingredient">
-        <MultiSelectListPreference
-            app:key="search_on_ingredient"
-            app:title="search on ingredient" />
-    </PreferenceCategory>
+
 
 </PreferenceScreen>
