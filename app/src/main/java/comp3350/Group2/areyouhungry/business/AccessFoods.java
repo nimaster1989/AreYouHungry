@@ -100,7 +100,7 @@ public class AccessFoods{
         return dataAccess.searchFoodByCriteriaLists(prepTimeCriterias,flavourCriterias,difficutlyCriterias,ethnicityCriterias,foodResult);
     }
 
-    public String getFoodsByCategory(String category, ArrayList<Food> foodCategoryResult) {
+    public String getFoodsByCategory(String category, ArrayList<Food> foodCategoryResult){
         return dataAccess.getFoodSequentialByCategory(category,foodCategoryResult);
     }
 }

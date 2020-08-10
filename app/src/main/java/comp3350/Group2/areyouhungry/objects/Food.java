@@ -97,7 +97,7 @@ public class Food{
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o){
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Food food = (Food) o;
@@ -106,7 +106,7 @@ public class Food{
 
     //use for hashset
     @Override
-    public int hashCode() {
+    public int hashCode(){
         return Objects.hash(foodID, foodName, favourite, portionSize, prepTime, flavour, difficulty, ethnicity);
     }
 }

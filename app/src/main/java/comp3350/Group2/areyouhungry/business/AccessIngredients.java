@@ -35,7 +35,7 @@ public class AccessIngredients{
         return dataAccess.addFoodIngredient(foodid,ingredientid);
     }
 
-    public String getFoodsByIngredient(String ingredient, ArrayList<Food> foodIngredientResult) {
+    public String getFoodsByIngredient(String ingredient, ArrayList<Food> foodIngredientResult){
         return dataAccess.getFoodsSequentialByIngredient(ingredient,foodIngredientResult);
     }
 }
