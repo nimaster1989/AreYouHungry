@@ -77,30 +77,15 @@ public class PreferredSearchActivity extends AppCompatActivity {
 
     }
 
-        private void setFood(Answers answers){
-            Food food = answers.getFoodBasedOnAnswers();
-            foodId = food.getFoodID();
-            textViewName.setText(food.getFoodName());
-            textViewDifficulty.setText("Difficulty: " +food.getDifficulty());
-            textViewPrepTime.setText("Preptime: "+food.getPrepTime()+" minutes");
-            textViewFlavor.setText("Flavor: "+food.getFlavour());
-            textViewServes.setText("Serves: "+answer.getPortionSize()+"-"+(Integer.parseInt(answer.getPortionSize())+1) +" people");
-            textViewEthnicity.setText("Ethnicity: "+food.getEthnicity());
-            if(foodId.equals("1")){
-                dishImage.setImageResource(R.drawable.food1);
-            }else if(foodId.equals("2")){
-                dishImage.setImageResource(R.drawable.food2);
-            }else if(foodId.equals("3")){
-                dishImage.setImageResource(R.drawable.food3);
-            }
-            else if(foodId.equals("4")){
-                dishImage.setImageResource(R.drawable.food4);
-            }
-            else if(foodId.equals("5")){
-                dishImage.setImageResource(R.drawable.food5);
-            }
-            else if(foodId.equals("6")){
-                dishImage.setImageResource(R.drawable.food6);
-            }
-        }
+    private void setFood(Answers answers) {
+        Food food = answers.getFoodBasedOnAnswers();
+        foodId = food.getFoodID();
+        textViewName.setText(food.getFoodName());
+        textViewDifficulty.setText("Difficulty: " + food.getDifficulty());
+        textViewPrepTime.setText("Preptime: " + food.getPrepTime() + " minutes");
+        textViewFlavor.setText("Flavor: " + food.getFlavour());
+        textViewServes.setText("Serves: " + answer.getPortionSize() + "-" + (Integer.parseInt(answer.getPortionSize()) + 1) + " people");
+        textViewEthnicity.setText("Ethnicity: " + food.getEthnicity());
+        Glide.with(this).load(accessFood.getImagebyFood(foodId)).into(dishImage);
+    }
 }
