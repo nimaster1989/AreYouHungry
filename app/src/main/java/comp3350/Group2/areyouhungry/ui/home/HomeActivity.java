@@ -71,7 +71,7 @@ public class HomeActivity extends AppCompatActivity{
         this.startActivity(intent);
     }
 
-    public void onHandSearchOnClick(View view) {
+    public void onHandSearchOnClick(View view){
         Intent intent = new Intent(this, OnhandActivity.class);
         this.startActivity(intent);
     }

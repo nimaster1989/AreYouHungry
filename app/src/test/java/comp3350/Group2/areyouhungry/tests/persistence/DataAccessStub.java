@@ -516,14 +516,14 @@ public class DataAccessStub implements DataAccess{
     }
 
     @Override
-    public String getIngredientSequential(List<Ingredient> ingredientsList) {
+    public String getIngredientSequential(List<Ingredient> ingredientsList){
         ingredientsList.clear();
         ingredientsList.addAll(this.ingredients);
         return null;
     }
 
     @Override
-    public String searchFoodByCriteriaLists(ArrayList<String> prepTimeCriterias, ArrayList<String> flavourCriterias, ArrayList<String> difficutlyCriterias, ArrayList<String> ethnicityCriterias, ArrayList<Food> foodResult) {
+    public String searchFoodByCriteriaLists(ArrayList<String> prepTimeCriterias, ArrayList<String> flavourCriterias, ArrayList<String> difficutlyCriterias, ArrayList<String> ethnicityCriterias, ArrayList<Food> foodResult){
         Iterator<Food> foodIterator = foods.iterator();
         Food food;
         while(foodIterator.hasNext()){
@@ -536,7 +536,7 @@ public class DataAccessStub implements DataAccess{
     }
 
     @Override
-    public String getFoodSequentialByCategory(String category, ArrayList<Food> foodCategoryResult) {
+    public String getFoodSequentialByCategory(String category, ArrayList<Food> foodCategoryResult){
         int categoryID = getCategoryIDbyName(category);
         for(FoodCategory foodCategory:foodCategories){
             if(foodCategory.getCategoryID() == categoryID){
@@ -547,7 +547,7 @@ public class DataAccessStub implements DataAccess{
     }
 
     @Override
-    public String getFoodsSequentialByIngredient(String ingredient, ArrayList<Food> foodIngredientResult) {
+    public String getFoodsSequentialByIngredient(String ingredient, ArrayList<Food> foodIngredientResult){
         for(FoodIngredient foodIngredient:foodIngredients){
             for(Ingredient ingredient1:foodIngredient.getIngredients()){
                 if(ingredient1.getIngredientName().equals(ingredient)){
