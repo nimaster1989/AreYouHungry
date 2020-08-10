@@ -83,7 +83,6 @@ public class OnhandActivity extends AppCompatActivity{
     public static class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener{
 
         ArrayList<String> categoryCriterias;
-        //food ojbect criterias
         ArrayList<String> prepTimeCriterias;
         ArrayList<String> flavourCriterias;
         ArrayList<String> difficutlyCriterias;
@@ -115,9 +114,7 @@ public class OnhandActivity extends AppCompatActivity{
             AccessIngredients accessIngredients = new AccessIngredients();
             ArrayList<Ingredient> ingredients = new ArrayList<>();
             accessIngredients.getAllIngredient(ingredients);
-            //assign to class variable
             allIngredient = ingredients;
-            //set up ingredient options view for search
             int size = ingredients.size();
             CharSequence[] entries = new CharSequence[size];
             CharSequence[] entryvalue = new CharSequence[size];
@@ -133,14 +130,12 @@ public class OnhandActivity extends AppCompatActivity{
         }
         public void onResume(){
             super.onResume();
-            // Set up a listener whenever a key changes
             getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         }
 
         @Override
         public void onPause(){
             super.onPause();
-            // Set up a listener whenever a key changes
             getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
         }
 
@@ -356,8 +351,6 @@ public class OnhandActivity extends AppCompatActivity{
                 } else if (ingredientName.toLowerCase().contains(str.toLowerCase())){
                     return index;
                 } else{
-                    //time complexity for calculate long string levenshtein distance is large,
-                    //its not necessary, we break ingredient by space and search each word
                     String[] ingredientNames = ingredientName.split(" ");
                     for (String s : ingredientNames){
                         int distance = levenshtein(s, str);
@@ -402,8 +395,6 @@ public class OnhandActivity extends AppCompatActivity{
             return list;
         }
 
-        //two helper methods for fuzzy search, calculate the levenshtein distance
-        //we assume if two word have levenshtein distance <= 1/3 word length, we consider it a result
         private static int levenshtein( String s, String t ){
             int cost;
             int distance;
