@@ -53,6 +53,7 @@ public class AddFoodActivity extends AppCompatActivity{
             private  String flavour;
             private  String difficulty;
             private  String ethnicity;
+            private  String imageURL;
             private  ArrayList<String> str_categorys;
             private  ArrayList<String> str_ingredients;
             private  ArrayList<String> str_directions;
@@ -153,6 +154,7 @@ public class AddFoodActivity extends AppCompatActivity{
                 String direction5 = sharedPreferences.getString("instruction5","");
                 if (direction5!= null && !direction5.equals("")) str_directions.add(direction5);
 
+                imageURL = sharedPreferences.getString("imageurl", "");
                 if(buildFood){
                     for (String str_ingredient:str_ingredients){
                         Boolean syntax_check = ingredient_syntax_check(str_ingredient);
@@ -161,7 +163,11 @@ public class AddFoodActivity extends AppCompatActivity{
                     AccessFoods af = new AccessFoods();
                     int newId = af.getFoodRow() + 1;
                     Food newFood = new Food(newId,food_name,portionSize,prepTime,flavour,difficulty,ethnicity);
+
                     if(af.addFood(newFood) == null){
+                        if(!imageURL.equals("")) {
+                            af.addFoodImage(newFood.getFoodID(), imageURL);
+                        }
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.clear();
                         editor.apply();

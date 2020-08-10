@@ -3,6 +3,7 @@
     package="comp3350.Group2.areyouhungry">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
