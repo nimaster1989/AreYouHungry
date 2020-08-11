@@ -115,5 +115,12 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory app:title="6. Image (Optional)">
+        <EditTextPreference
+            app:key="imageurl"
+            app:title="Image URL"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
 
 </PreferenceScreen>
