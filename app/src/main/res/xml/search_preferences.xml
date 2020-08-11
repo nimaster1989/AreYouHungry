@@ -5,12 +5,13 @@
     <PreferenceCategory app:title="Ingredient">
         <MultiSelectListPreference
             app:key="search_on_ingredient"
-            app:title="select from ingredient list" />
+            app:title="From ingredient list" />
         <EditTextPreference
             android:key="search_on_ingredient_text"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:title="type in ingredients you have\nseperate by comma"
+            android:title="Type in ingredients"
+            android:dialogTitle="Separate ingredients by commas. e.g. [garlic, salmon]"
             app:useSimpleSummaryProvider="true"/>
 
     </PreferenceCategory>
@@ -20,7 +21,7 @@
         <SwitchPreferenceCompat
             android:defaultValue="false"
             app:key="search_on_category"
-            app:title="search on category" />
+            app:title="search by category" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="Meat"
@@ -53,7 +54,7 @@
         <SwitchPreferenceCompat
             android:defaultValue="false"
             app:key="search_on_time"
-            app:title="search on prepare time" />
+            app:title="Search by preparation time" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="10"
@@ -80,7 +81,7 @@
         <SwitchPreferenceCompat
             android:defaultValue="false"
             app:key="search_on_ethnicity"
-            app:title="search on ethnicity" />
+            app:title="Search by ethnicity" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="Greek"
@@ -108,7 +109,7 @@
         <SwitchPreferenceCompat
             android:defaultValue="false"
             app:key="search_on_difficulty"
-            app:title="search on difficulty" />
+            app:title="Search by difficulty" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="Easy"
@@ -137,7 +138,7 @@
         <SwitchPreferenceCompat
             android:defaultValue="false"
             app:key="search_on_flavour"
-            app:title="search on flavour" />
+            app:title="Search by flavour" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="Spicy"
