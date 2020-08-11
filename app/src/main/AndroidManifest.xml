@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.on_hand.SearchResultActivity"></activity>
+        <activity
+            android:name=".ui.on_hand.SearchResultActivity"
+            android:label="Search" />
         <activity
             android:name=".ui.on_hand.OnhandActivity"
             android:label="@string/title_activity_onhand" />
@@ -32,11 +34,11 @@
         </activity>
         <activity
             android:name=".ui.preferred.PreferredSearchActivity"
-            android:label="search result"
+            android:label="Search result"
             android:parentActivityName=".ui.preferred.PreferredActivity" />
         <activity
             android:name=".ui.preferred.PreferredActivity"
-            android:label="search" />
+            android:label="Search" />
         <activity android:name=".ui.home.HomeActivity" />
         <activity
             android:name=".ui.more.MoreActivity"
