@@ -636,13 +636,16 @@ public class DataAccessObject implements DataAccess{
         }
 
         for(String flavour:flavourCriterias){
-            cmd+= "FOODS.FLAVOUR = '"+flavour+ "' OR ";
+            if(flavour.equals("Other")){
+                cmd += "FOODS.FLAVOUR != 'Spicy' AND FOODS.FLAVOUR != 'Sweet' AND FOODS.FLAVOUR != 'Fresh' OR ";
+            }else{
+                cmd += "FOODS.FLAVOUR = '" + flavour + "' OR ";
+            }
         }
         if(size2 > 0){
             cmd = cmd.substring(0, cmd.length() - 3);
             if(size3 > 0 || size4 > 0) cmd+= " AND ";
         }
-
 
         for(String difficuly:difficutlyCriterias){
             cmd+="FOODS.DIFFICULTY = '"+difficuly+"' OR ";

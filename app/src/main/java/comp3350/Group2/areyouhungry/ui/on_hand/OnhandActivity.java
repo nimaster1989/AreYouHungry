@@ -124,8 +124,8 @@ public class OnhandActivity extends AppCompatActivity{
             int i = 0;
             String str_input;
             for (Ingredient ingredient : ingredients){
-                entries[i] = (CharSequence) ingredient.getIngredientName();
-                entryvalue[i] = (CharSequence)String.valueOf(ingredient.getIngredientID());
+                entries[i] = ingredient.getIngredientName();
+                entryvalue[i] = String.valueOf(ingredient.getIngredientID());
                 i++;
             }
             mlp.setEntries(entries);
@@ -165,7 +165,14 @@ public class OnhandActivity extends AppCompatActivity{
                     cb3.setVisible(searchOnCategory);
                     cb4.setVisible(searchOnCategory);
                     cb5.setVisible(searchOnCategory);
-                    if(!searchOnCategory)categoryCriterias.clear();
+                    if(!searchOnCategory){
+                        categoryCriterias.clear();
+                        cb1.setChecked(false);
+                        cb2.setChecked(false);
+                        cb3.setChecked(false);
+                        cb4.setChecked(false);
+                        cb5.setChecked(false);
+                    }
                     break;
                 case "Meat":
                 case "Vegetable":
@@ -294,15 +301,16 @@ public class OnhandActivity extends AppCompatActivity{
                     ingredients.clear();
                     Collections.addAll(ingredients, selecteds);
                     ingredientsCriterias.addAll(ingredients);
-                    EditTextPreference editTextP = findPreference("search_on_ingredient_text");
-                    editTextP.setText("Not set");
                     break;
                 case "search_on_ingredient_text":
                     String searchOnIngredientText = sharedPreferences.getString("search_on_ingredient_text",null);
-                    if(searchOnIngredientText != null){
-                        int indexOfSearchResult = fuzzy_ingredient_search(searchOnIngredientText) + 1;
-                        if(indexOfSearchResult != 0 && indexOfSearchResult < allIngredient.size()+1){
-                            ingredientsCriterias.add(String.valueOf(indexOfSearchResult));
+                    if(searchOnIngredientText != null && !searchOnIngredientText.equals("")){
+                        String[] texts = searchOnIngredientText.split(",");
+                        for(String text:texts){
+                            int indexOfSearchResult = fuzzy_ingredient_search(text.trim()) + 1;
+                            if (indexOfSearchResult != 0 && indexOfSearchResult < allIngredient.size() + 1){
+                                ingredientsCriterias.add(String.valueOf(indexOfSearchResult));
+                            }
                         }
                     }
                     break;
@@ -349,11 +357,14 @@ public class OnhandActivity extends AppCompatActivity{
             foodsIngredientResults.addAll(FoodIngredientsResult);
         }
         private int fuzzy_ingredient_search(String str){
+            System.out.println("fuzzy_ingredient_search for"+ str);
             for (int index=0;index<allIngredient.size();index++){
                 String ingredientName = allIngredient.get(index).getIngredientName();
                 if (ingredientName.equals((str))){
+                    System.out.println("direct match: "+ingredientName+" : "+ str);
                     return index;
                 } else if (ingredientName.toLowerCase().contains(str.toLowerCase())){
+                    System.out.println("contain match: "+ingredientName+" : "+ str);
                     return index;
                 } else{
                     //time complexity for calculate long string levenshtein distance is large,
@@ -361,7 +372,9 @@ public class OnhandActivity extends AppCompatActivity{
                     String[] ingredientNames = ingredientName.split(" ");
                     for (String s : ingredientNames){
                         int distance = levenshtein(s, str);
+                        System.out.println("distance between: "+s+" : "+ str+" is: "+distance);
                         if ((double)distance <= (double)str.length() / 3){
+                            System.out.println("match: "+s+" : "+ str);
                             return index;
                         }
                     }
@@ -404,43 +417,25 @@ public class OnhandActivity extends AppCompatActivity{
 
         //two helper methods for fuzzy search, calculate the levenshtein distance
         //we assume if two word have levenshtein distance <= 1/3 word length, we consider it a result
-        private static int levenshtein( String s, String t ){
-            int cost;
-            int distance;
-            String deleteS;
-            String deleteT;
-            if (s.length() == 0){
-                distance = t.length();
-            }
-            else if (t.length() == 0){
-                distance = s.length();
-            }
-            else{
-                if (s.charAt(0) == t.charAt(0)){
-                    cost = 0;
+        public int levenshtein (CharSequence lhs, CharSequence rhs){
+            int len0 = lhs.length() + 1;
+            int len1 = rhs.length() + 1;
+            int[] cost = new int[len0];
+            int[] newcost = new int[len0];
+            for (int i = 0; i < len0; i++) cost[i] = i;
+            for (int j = 1; j < len1; j++){
+                newcost[0] = j;
+                for(int i = 1; i < len0; i++){
+                    int match = (lhs.charAt(i - 1) == rhs.charAt(j - 1)) ? 0 : 1;
+                    int cost_replace = cost[i - 1] + match;
+                    int cost_insert  = cost[i] + 1;
+                    int cost_delete  = newcost[i - 1] + 1;
+                    newcost[i] = Math.min(Math.min(cost_insert, cost_delete), cost_replace);
                 }
-                else{
-                    cost = 1;
-                }
-                deleteS = s.substring(1);
-                deleteT = t.substring(1);
-                distance = minimum(new int[]{ levenshtein(deleteS, t) + 1,
-                        levenshtein(s, deleteT) + 1,
-                        levenshtein(deleteS, deleteT) + cost });
+                int[] swap = cost; cost = newcost; newcost = swap;
             }
-            return distance;
-        }
-        private static int minimum(int[] minimum){
-            int min = 0;
-            if ( minimum.length > 0 ){
-                min = minimum[0];
-                for ( int i = 1; i < minimum.length; i++ ){
-                    if ( minimum[i] < min ){
-                        min = minimum[i];
-                    }
-                }
-            }
-            return min;
+
+            return cost[len0 - 1];
         }
     }
 

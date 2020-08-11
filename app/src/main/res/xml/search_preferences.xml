@@ -10,7 +10,7 @@
             android:key="search_on_ingredient_text"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:title="type in ingredient you have"
+            android:title="type in ingredients you have\nseperate by comma"
             app:useSimpleSummaryProvider="true"/>
 
     </PreferenceCategory>
