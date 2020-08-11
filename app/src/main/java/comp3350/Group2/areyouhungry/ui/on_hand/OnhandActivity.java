@@ -89,7 +89,7 @@ public class OnhandActivity extends AppCompatActivity{
         ArrayList<String> difficutlyCriterias;
         ArrayList<String> ethnicityCriterias;
         ArrayList<String> ingredientsCriterias;
-
+        ArrayList<String> ingredientsTextCriterias;
         ArrayList<Food> foodsCriteriaResults;
         ArrayList<Food> foodsCategoryResults;
         ArrayList<Food> foodsIngredientResults;
@@ -105,6 +105,7 @@ public class OnhandActivity extends AppCompatActivity{
             difficutlyCriterias = new ArrayList<>();
             ethnicityCriterias = new ArrayList<>();
             ingredientsCriterias = new ArrayList<>();
+            ingredientsTextCriterias = new ArrayList<>();
             foodsCriteriaResults = new ArrayList<>();
             foodsCategoryResults = new ArrayList<>();
             foodsIngredientResults = new ArrayList<>();
@@ -303,13 +304,15 @@ public class OnhandActivity extends AppCompatActivity{
                     ingredientsCriterias.addAll(ingredients);
                     break;
                 case "search_on_ingredient_text":
+                    ingredientsCriterias.removeAll(ingredientsTextCriterias);
+                    ingredientsTextCriterias.clear();
                     String searchOnIngredientText = sharedPreferences.getString("search_on_ingredient_text",null);
                     if(searchOnIngredientText != null && !searchOnIngredientText.equals("")){
                         String[] texts = searchOnIngredientText.split(",");
                         for(String text:texts){
                             int indexOfSearchResult = fuzzy_ingredient_search(text.trim()) + 1;
                             if (indexOfSearchResult != 0 && indexOfSearchResult < allIngredient.size() + 1){
-                                ingredientsCriterias.add(String.valueOf(indexOfSearchResult));
+                                ingredientsTextCriterias.add(String.valueOf(indexOfSearchResult));
                             }
                         }
                     }
@@ -318,6 +321,7 @@ public class OnhandActivity extends AppCompatActivity{
                     break;
 
             }
+            ingredientsCriterias.addAll(ingredientsTextCriterias);
             if(!ingredientsCriterias.isEmpty()) search_logic_ingredient(ingredientsCriterias);
             search_logic_foodCriteria(prepTimeCriterias,flavourCriterias,difficutlyCriterias,ethnicityCriterias);
             search_logic_answer();
@@ -357,14 +361,11 @@ public class OnhandActivity extends AppCompatActivity{
             foodsIngredientResults.addAll(FoodIngredientsResult);
         }
         private int fuzzy_ingredient_search(String str){
-            System.out.println("fuzzy_ingredient_search for"+ str);
             for (int index=0;index<allIngredient.size();index++){
                 String ingredientName = allIngredient.get(index).getIngredientName();
                 if (ingredientName.equals((str))){
-                    System.out.println("direct match: "+ingredientName+" : "+ str);
                     return index;
                 } else if (ingredientName.toLowerCase().contains(str.toLowerCase())){
-                    System.out.println("contain match: "+ingredientName+" : "+ str);
                     return index;
                 } else{
                     //time complexity for calculate long string levenshtein distance is large,
@@ -372,9 +373,7 @@ public class OnhandActivity extends AppCompatActivity{
                     String[] ingredientNames = ingredientName.split(" ");
                     for (String s : ingredientNames){
                         int distance = levenshtein(s, str);
-                        System.out.println("distance between: "+s+" : "+ str+" is: "+distance);
                         if ((double)distance <= (double)str.length() / 3){
-                            System.out.println("match: "+s+" : "+ str);
                             return index;
                         }
                     }
