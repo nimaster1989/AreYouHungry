@@ -36,6 +36,7 @@ public class DataAccessStub implements DataAccess{
     private ArrayList<FoodIngredient> foodIngredients;
     private ArrayList<FoodDirection> foodDirections;
     //stub map referencing user_favourite table in the HSQLDB database
+    private Map<Integer, String> imageURL;
     private ArrayList<Map<Integer,Integer>>  User_favourite_map_list;
 
     public DataAccessStub(String dbName){
@@ -59,24 +60,31 @@ public class DataAccessStub implements DataAccess{
         FoodDirection foodDirection;
 
         foods = new ArrayList<Food>();
+        imageURL = new HashMap<>();
         Food_map = new HashMap<>();
         food = new Food(1, "Baked Salmon",3,20, "Savoury", "Easy", "American");
         foods.add(food);
+        imageURL.put(1, "food1");
         Food_map.put(String.valueOf(food.getFoodID()),food);
         food = new Food(2, "Greek Salad",1,10, "Fresh", "Easy", "Greek");
         foods.add(food);
+        imageURL.put(2, "food2");
         Food_map.put(String.valueOf(food.getFoodID()),food);
         food = new Food(3, "Spicy Spaghetti",5,10, "Spicy", "Easy", "Italian");
         foods.add(food);
+        imageURL.put(3, "food3");
         Food_map.put(String.valueOf(food.getFoodID()),food);
         food = new Food(4, "Classic Cheesecake",7,40, "Sweet", "Hard", "American");
         foods.add(food);
+        imageURL.put(4, "food4");
         Food_map.put(String.valueOf(food.getFoodID()),food);
         food = new Food(5, "Egg Fried Rice",3,30, "Savoury", "Medium", "Chinese");
         foods.add(food);
+        imageURL.put(5, "food5");
         Food_map.put(String.valueOf(food.getFoodID()),food);
         food = new Food(6, "Banana Split", 1, 10, "Sweet", "Easy", "American");
         foods.add(food);
+        imageURL.put(6, "food6");
         Food_map.put(String.valueOf(food.getFoodID()),food);
 
         categoriesList = new ArrayList<Categories>();
@@ -640,6 +648,18 @@ public class DataAccessStub implements DataAccess{
         }
         return null;
     }
+
+public String addFoodImage(int foodid, String imageurl){
+        String result = null;
+        if(foodid == foods.size()){
+            imageURL.put(foodid, imageurl);
+        }
+        return null;
+}
+
+public String getImageByFood(int foodid){
+        return imageURL.get(foodid);
+}
 
     @Override
     public int getTotalUser(){
