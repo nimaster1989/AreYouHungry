@@ -54,6 +54,8 @@ public class DataAccessObject implements DataAccess{
 
     public void close(){
         try{
+            cmdString = "TRUNCATE SCHEMA public AND COMMIT";
+            rs2 = st1.executeQuery(cmdString);
             cmdString = "shutdown compact";
             rs2 = st1.executeQuery(cmdString);
             c1.close();
