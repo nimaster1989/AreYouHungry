@@ -10,13 +10,11 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
