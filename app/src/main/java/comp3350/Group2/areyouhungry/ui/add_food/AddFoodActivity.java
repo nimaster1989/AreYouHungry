@@ -165,7 +165,7 @@ public class AddFoodActivity extends AppCompatActivity{
                     Food newFood = new Food(newId,food_name,portionSize,prepTime,flavour,difficulty,ethnicity);
 
                     if(af.addFood(newFood) == null){
-                        if(!imageURL.equals("")) {
+                        if(!imageURL.equals("")){
                             af.addFoodImage(newFood.getFoodID(), imageURL);
                         }
                         SharedPreferences.Editor editor = sharedPreferences.edit();

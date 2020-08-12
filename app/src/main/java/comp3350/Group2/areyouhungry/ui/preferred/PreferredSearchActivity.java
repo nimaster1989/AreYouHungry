@@ -67,18 +67,18 @@ public class PreferredSearchActivity extends AppCompatActivity{
 
 
         homeButton = findViewById(R.id.returnHomeButton);
-        homeButton.setOnClickListener(new View.OnClickListener() {
+        homeButton.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
+            public void onClick(View view){
                 Intent intent = new Intent(PreferredSearchActivity.this, HomeActivity.class);
                 PreferredSearchActivity.this.startActivity(intent);
             }
         });
 
         recipeButton = findViewById(R.id.viewRecipeButton);
-        recipeButton.setOnClickListener(new View.OnClickListener() {
+        recipeButton.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
+            public void onClick(View view){
                 Context context = view.getContext();
 
                 Intent intent = new Intent(context, FoodDetailActivity.class);
@@ -92,13 +92,13 @@ public class PreferredSearchActivity extends AppCompatActivity{
             @Override
             public void onClick(View view){
                 liked = accessFoods.getFoodLikedByUser(currUser,food);
-                if(!liked) {
+                if(!liked){
                     accessFoods.setFoodLikedByUser(currUser, food.getFoodID(), true);
                     accessFoods.setFoodDislikedByUser(currUser, food.getFoodID(), false);
-                    Snackbar.make(view, "You Liked This Food!", Snackbar.LENGTH_LONG)
+                    Snackbar.make(view, "You liked it! Thank You For The Feedback!", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }else{
-                    Snackbar.make(view, "You've Already Liked This Food!", Snackbar.LENGTH_LONG)
+                    Snackbar.make(view, "You've Already Provided Feedback For This Food!", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }
             }
@@ -109,13 +109,13 @@ public class PreferredSearchActivity extends AppCompatActivity{
             @Override
             public void onClick(View view){
                 disliked = accessFoods.getFoodDislikedByUser(currUser,food);
-                if(!disliked) {
+                if(!disliked){
                     accessFoods.setFoodDislikedByUser(currUser, food.getFoodID(), true);
                     accessFoods.setFoodLikedByUser(currUser, food.getFoodID(), false);
-                    Snackbar.make(view, "You Disliked This Food!", Snackbar.LENGTH_LONG)
+                    Snackbar.make(view, "You Disliked it :( Thank You For The Feedback!", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }else{
-                    Snackbar.make(view, "You've Already Disliked This Food!", Snackbar.LENGTH_LONG)
+                    Snackbar.make(view, "You've Already Provided Feedback For This Food!", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }
             }
