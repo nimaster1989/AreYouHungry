@@ -21,7 +21,7 @@ import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailFragment;
 import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
 
 
-public class PreferredSearchActivity extends AppCompatActivity {
+public class PreferredSearchActivity extends AppCompatActivity{
 
     private TextView textViewName;
     private TextView textViewDifficulty;
@@ -38,7 +38,7 @@ public class PreferredSearchActivity extends AppCompatActivity {
     private String foodId = "1";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         answer = (Answers) getIntent().getSerializableExtra("Answers");
         accessFood = new AccessFoods();
         super.onCreate(savedInstanceState);
@@ -55,18 +55,18 @@ public class PreferredSearchActivity extends AppCompatActivity {
 
 
         homeButton = findViewById(R.id.returnHomeButton);
-        homeButton.setOnClickListener(new View.OnClickListener() {
+        homeButton.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
+            public void onClick(View view){
                 Intent intent = new Intent(PreferredSearchActivity.this, HomeActivity.class);
                 PreferredSearchActivity.this.startActivity(intent);
             }
         });
 
         recipeButton = findViewById(R.id.viewRecipeButton);
-        recipeButton.setOnClickListener(new View.OnClickListener() {
+        recipeButton.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
+            public void onClick(View view){
                 Context context = view.getContext();
 
                 Intent intent = new Intent(context, FoodDetailActivity.class);
@@ -77,7 +77,7 @@ public class PreferredSearchActivity extends AppCompatActivity {
 
     }
 
-    private void setFood(Answers answers) {
+    private void setFood(Answers answers){
         Food food = answers.getFoodBasedOnAnswers();
         foodId = food.getFoodID();
         textViewName.setText(food.getFoodName());
