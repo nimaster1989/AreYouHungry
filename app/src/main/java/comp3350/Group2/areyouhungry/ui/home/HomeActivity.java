@@ -60,7 +60,7 @@ public class HomeActivity extends AppCompatActivity{
             }
         });
 
-        specifiedFoodButton = findViewById(R.id.specified_Food_Button);
+        specifiedFoodButton = findViewById(R.id.specifiedFoodButton);
         specifiedFoodButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
