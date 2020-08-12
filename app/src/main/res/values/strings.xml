@@ -55,5 +55,5 @@
     <string name="add_ingredients_and_instructions_for_your_food">Add ingredients and Instructions for your food</string>
     <string name="ingredient_name">ingredient name</string>
     <string name="ingredient_quantity">ingredient quantity</string>
-    <string name="now_add_ingredients_and_instructions_for_your_food">now add ingredients and instructions for your food</string>
+    <string name="now_add_ingredients_and_instructions_for_your_food">Add ingredients\nand Directions</string>
 </resources>
