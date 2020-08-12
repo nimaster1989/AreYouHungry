@@ -131,6 +131,7 @@ public class PreferredSearchActivity extends AppCompatActivity{
             textViewFlavor.setText("Flavor: "+food.getFlavour());
             textViewServes.setText("Serves: "+answer.getPortionSize()+"-"+(Integer.parseInt(answer.getPortionSize())+1) +" people");
             textViewEthnicity.setText("Ethnicity: "+food.getEthnicity());
+            Glide.with(this).load(accessFood.getImagebyFood(foodId)).into(dishImage);
             if(foodId.equals("1")){
                 dishImage.setImageResource(R.drawable.food1);
             }else if(foodId.equals("2")){
