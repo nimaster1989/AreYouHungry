@@ -24,19 +24,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
-
-import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.R;
-import comp3350.Group2.areyouhungry.business.AccessDirections;
 import comp3350.Group2.areyouhungry.business.AccessFoods;
-import comp3350.Group2.areyouhungry.business.AccessIngredients;
-import comp3350.Group2.areyouhungry.objects.Direction;
 import comp3350.Group2.areyouhungry.objects.Food;
-import comp3350.Group2.areyouhungry.objects.FoodCategory;
-import comp3350.Group2.areyouhungry.objects.Ingredient;
-import comp3350.Group2.areyouhungry.objects.User;
-import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailActivity;
-import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailFragment;
+
 
 public class AddFoodActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState){
@@ -63,14 +54,7 @@ public class AddFoodActivity extends AppCompatActivity{
             private  String imageURL;
             private  ArrayList<String> str_categorys;
             @Override
-
             public void onClick(View view){
-                Intent next = new Intent(AddFoodActivity.this, AddNextActivity.class);
-                startActivity(next);
-            }
-            /*
-            public void onClick(View view){
-
                 boolean buildFood = true;
                 str_categorys = new ArrayList<>();
                 AlertDialog alertDialog = new AlertDialog.Builder(AddFoodActivity.this).create();
@@ -129,9 +113,6 @@ public class AddFoodActivity extends AppCompatActivity{
                     Collections.addAll(str_categorys, selecteds);
 
                 }
-                //add ingredients and instructions arraylist here
-
-
                 imageURL = sharedPreferences.getString("imageurl", "");
                 if(buildFood){
                     AccessFoods af = new AccessFoods();
@@ -162,7 +143,6 @@ public class AddFoodActivity extends AppCompatActivity{
                     alertDialog.show();
                 }
             }
-            */
         });
 
 
@@ -213,80 +193,6 @@ public class AddFoodActivity extends AppCompatActivity{
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-//            String getStr;
-//                switch (s){
-//                    case "ingredient":
-//                        getStr = sharedPreferences.getString(s, "");
-//                        EditTextPreference ep2 = findPreference("ingredient2");
-//                        if (ep2 != null && !getStr.equals("")){
-//                            ep2.setVisible(true);
-//                        }
-//                        break;
-//                    case "ingredient2":
-//                        getStr = sharedPreferences.getString(s, "");
-//                        ep2 = findPreference("ingredient2");
-//                        ep2.setSummary(getStr);
-//                        EditTextPreference ep3 = findPreference("ingredient3");
-//                        if (ep3 != null && !getStr.equals("")){
-//                            ep3.setVisible(true);
-//                        }
-//                        break;
-//                    case "ingredient3":
-//                        getStr = sharedPreferences.getString(s, "");
-//                        ep3 = findPreference("ingredient3");
-//                        ep3.setSummary(getStr);
-//                        EditTextPreference ep4 = findPreference("ingredient4");
-//                        if (ep4 != null && !getStr.equals("")){
-//                            ep4.setVisible(true);
-//                        }
-//                        break;
-//                    case "ingredient4":
-//                        getStr = sharedPreferences.getString(s, "");
-//                        ep4 = findPreference("ingredient4");
-//                        ep4.setSummary(getStr);
-//                        EditTextPreference ep5 = findPreference("ingredient5");
-//                        if (ep5 != null && !getStr.equals("")){
-//                            ep5.setVisible(true);
-//                        }
-//                        break;
-//                    case "instruction":
-//                        getStr = sharedPreferences.getString(s, "");
-//                        EditTextPreference inp2 = findPreference("instruction2");
-//                        if (inp2 != null && !getStr.equals("")){
-//                            inp2.setVisible(true);
-//                        }
-//                        break;
-//                    case "instruction2":
-//                        getStr = sharedPreferences.getString(s, "");
-//                        inp2 = findPreference("instruction2");
-//                        inp2.setSummary(getStr);
-//                        EditTextPreference inp3 = findPreference("instruction3");
-//                        if (inp3 != null && !getStr.equals("")){
-//                            inp3.setVisible(true);
-//                        }
-//                        break;
-//                    case "instruction3":
-//                        getStr = sharedPreferences.getString(s, "");
-//                        inp3 = findPreference("instruction3");
-//                        inp3.setSummary(getStr);
-//                        EditTextPreference inp4 = findPreference("instruction4");
-//                        if (inp4 != null && !getStr.equals("")){
-//                            inp4.setVisible(true);
-//                        }
-//                        break;
-//                    case "instruction4":
-//                        getStr = sharedPreferences.getString(s, "");
-//                        inp4 = findPreference("instruction4");
-//                        inp4.setSummary(getStr);
-//                        EditTextPreference inp5 = findPreference("instruction5");
-//                        if (inp5 != null && !getStr.equals("")){
-//                            inp5.setVisible(true);
-//                        }
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            }
         }
     }
         public void clearValue(){
