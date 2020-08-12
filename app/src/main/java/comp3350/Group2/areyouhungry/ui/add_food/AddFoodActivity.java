@@ -2,6 +2,7 @@ package comp3350.Group2.areyouhungry.ui.add_food;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,11 +13,14 @@ import androidx.appcompat.app.ActionBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.EditTextPreference;
+import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
+import androidx.preference.PreferenceScreen;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
@@ -31,6 +35,8 @@ import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.FoodCategory;
 import comp3350.Group2.areyouhungry.objects.Ingredient;
 import comp3350.Group2.areyouhungry.objects.User;
+import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailActivity;
+import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailFragment;
 
 public class AddFoodActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState){
@@ -56,15 +62,17 @@ public class AddFoodActivity extends AppCompatActivity{
             private  String ethnicity;
             private  String imageURL;
             private  ArrayList<String> str_categorys;
-            private  ArrayList<String> str_ingredients;
-            private  ArrayList<String> str_directions;
-
             @Override
+
             public void onClick(View view){
+                Intent next = new Intent(AddFoodActivity.this, AddNextActivity.class);
+                startActivity(next);
+            }
+            /*
+            public void onClick(View view){
+
                 boolean buildFood = true;
                 str_categorys = new ArrayList<>();
-                str_directions = new ArrayList<>();
-                str_ingredients = new ArrayList<>();
                 AlertDialog alertDialog = new AlertDialog.Builder(AddFoodActivity.this).create();
                 String alertMessage = "";
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -119,110 +127,29 @@ public class AddFoodActivity extends AppCompatActivity{
                     String[] selecteds = entries.toArray(new String[]{});
                     str_categorys.clear();
                     Collections.addAll(str_categorys, selecteds);
-                }
 
-                str_ingredients.clear();
-                String ingredient = sharedPreferences.getString("ingredient","");
-                if (ingredient!= null && !ingredient.equals("")){
-                    str_ingredients.add(ingredient);
-                }else{
-                    alertMessage += "Please set at least one ingredient.\n";
-                    buildFood = false;
                 }
-                String ingredient2 = sharedPreferences.getString("ingredient2","");
-                if (ingredient2!= null && !ingredient2.equals("")) str_ingredients.add(ingredient2);
-                String ingredient3 = sharedPreferences.getString("ingredient3","");
-                if (ingredient3!= null && !ingredient3.equals("")) str_ingredients.add(ingredient3);
-                String ingredient4 = sharedPreferences.getString("ingredient4","");
-                if (ingredient4!= null && !ingredient4.equals("")) str_ingredients.add(ingredient4);
-                String ingredient5 = sharedPreferences.getString("ingredient5","");
-                if (ingredient5!= null && !ingredient5.equals("")) str_ingredients.add(ingredient5);
+                //add ingredients and instructions arraylist here
 
-                str_directions.clear();
-                String direction = sharedPreferences.getString("instruction","");
-                if (direction!= null && !direction.equals("")){
-                    str_directions.add(direction);
-                }else{
-                    alertMessage += "Please set at least one direction.\n";
-                    buildFood = false;
-                }
-                String direction2 = sharedPreferences.getString("instruction2","");
-                if (direction2!= null && !direction2.equals("")) str_directions.add(direction2);
-                String direction3 = sharedPreferences.getString("instruction3","");
-                if (direction3!= null && !direction3.equals("")) str_directions.add(direction3);
-                String direction4 = sharedPreferences.getString("instruction4","");
-                if (direction4!= null && !direction4.equals("")) str_directions.add(direction4);
-                String direction5 = sharedPreferences.getString("instruction5","");
-                if (direction5!= null && !direction5.equals("")) str_directions.add(direction5);
 
                 imageURL = sharedPreferences.getString("imageurl", "");
                 if(buildFood){
-                    for (String str_ingredient:str_ingredients){
-                        Boolean syntax_check = ingredient_syntax_check(str_ingredient);
-                        if (!syntax_check) return;
-                    }
                     AccessFoods af = new AccessFoods();
                     int newId = af.getFoodRow() + 1;
                     Food newFood = new Food(newId,food_name,portionSize,prepTime,flavour,difficulty,ethnicity);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.clear();
+                    editor.apply();
 
-                    if(af.addFood(newFood) == null){
-                        if(!imageURL.equals("")){
-                            af.addFoodImage(newFood.getFoodID(), imageURL);
-                        }
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.clear();
-                        editor.apply();
-                        alertDialog.setTitle("Success!");
-                        alertDialog.setMessage(food_name + " has been added!");
-                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                                new DialogInterface.OnClickListener(){
-                                    public void onClick(DialogInterface dialog, int which){
-                                        dialog.dismiss();
-                                        finish();
-                                    }
-                                });
-                        alertDialog.show();
-
-                        if(favourite){
-                            User curr_user = MainActivity.currentUser;
-                            af.setFoodFavouriteByUser(curr_user,newFood.getFoodID(),true);
-                        }
-                        for(String str_category:str_categorys){
-                            FoodCategory newFc = af.addFoodCategory(newFood,str_category);
-                        }
-                    }else{
-                        return;
-                    }
-                    for (String str_ingredient:str_ingredients){
-                        AccessIngredients ai = new AccessIngredients();
-                        int newIngredientId = ai.getNewIngredientId();
-                        int lastSpace = str_ingredient.lastIndexOf(" ");
-                        String measurement;
-                        String name;
-                        if (lastSpace == -1){
-                            measurement = "";
-                            name = str_ingredient;
-                        } else{
-                            measurement = str_ingredient.substring(lastSpace);
-                            name = str_ingredient.substring(0, lastSpace);
-                        }
-                        Ingredient newIngredient = new Ingredient(newIngredientId, name, measurement);
-                        String result = ai.addIngredient(newIngredient);
-                        if(result == null){
-                            ai.setFoodIngredient(Integer.parseInt(newFood.getFoodID()),newIngredient.getIngredientID());
-                        }
-                    }
-                    int step = 1;
-                    for(String str_direction:str_directions){
-                        AccessDirections ad = new AccessDirections();
-                        int newDirectionId = ad.getNewDirectionId();
-                        Direction newDirection = new Direction(newDirectionId,str_direction,step);
-                        step++;
-                        String result = ad.addDirection(newDirection);
-                        if(result == null){
-                            ad.addFoodDirection(Integer.parseInt(newFood.getFoodID()),newDirection.getDirectionID());
-                        }
-                    }
+                    Bundle bundle = new Bundle();
+                    Intent next = new Intent(AddFoodActivity.this, AddNextActivity.class);
+                    bundle.putSerializable("foodObj", newFood);
+                    bundle.putBoolean("foodFav",favourite);
+                    bundle.putStringArrayList("foodCats",str_categorys);
+                    bundle.putString("foodImg",imageURL);
+                    next.putExtras(bundle);
+                    startActivity(next);
+                    finish();
                 }else{
                     alertDialog.setTitle("Error:");
                     alertDialog.setMessage(alertMessage);
@@ -235,31 +162,13 @@ public class AddFoodActivity extends AppCompatActivity{
                     alertDialog.show();
                 }
             }
-
+            */
         });
 
 
 
     }
 
-
-    private boolean ingredient_syntax_check(String ingredient){
-        if(ingredient.split(" ").length == 1){
-            String alertMessage = "please input ingredient syntax: name + space + measurement\n";
-            AlertDialog alertDialog = new AlertDialog.Builder(AddFoodActivity.this).create();
-            alertDialog.setTitle("Ingredient wrong syntax");
-            alertDialog.setMessage(alertMessage);
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                    new DialogInterface.OnClickListener(){
-                        public void onClick(DialogInterface dialog, int which){
-                            dialog.dismiss();
-                        }
-                    });
-            alertDialog.show();
-            return false;
-        }
-        return true;
-    }
 
     //This allows you to use the back button on the top left to go to home page
     public boolean onOptionsItemSelected(MenuItem item){
@@ -281,103 +190,105 @@ public class AddFoodActivity extends AppCompatActivity{
     }
 
 
-    public static class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener{
+    public static class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
         @Override
-        public void onCreatePreferences(Bundle savedInstanceState, String rootKey){
+        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.addfood_preferences, rootKey);
 
         }
+
         @Override
-        public void onResume(){
+        public void onResume() {
             super.onResume();
             // Set up a listener whenever a key changes
             getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         }
 
         @Override
-        public void onPause(){
+        public void onPause() {
             super.onPause();
             // Set up a listener whenever a key changes
             getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
         }
 
         @Override
-        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s){
-            String getStr;
-                switch (s){
-                    case "ingredient":
-                        getStr = sharedPreferences.getString(s, "");
-                        EditTextPreference ep2 = findPreference("ingredient2");
-                        if (ep2 != null && !getStr.equals("")){
-                            ep2.setVisible(true);
-                        }
-                        break;
-                    case "ingredient2":
-                        getStr = sharedPreferences.getString(s, "");
-                        ep2 = findPreference("ingredient2");
-                        ep2.setSummary(getStr);
-                        EditTextPreference ep3 = findPreference("ingredient3");
-                        if (ep3 != null && !getStr.equals("")){
-                            ep3.setVisible(true);
-                        }
-                        break;
-                    case "ingredient3":
-                        getStr = sharedPreferences.getString(s, "");
-                        ep3 = findPreference("ingredient3");
-                        ep3.setSummary(getStr);
-                        EditTextPreference ep4 = findPreference("ingredient4");
-                        if (ep4 != null && !getStr.equals("")){
-                            ep4.setVisible(true);
-                        }
-                        break;
-                    case "ingredient4":
-                        getStr = sharedPreferences.getString(s, "");
-                        ep4 = findPreference("ingredient4");
-                        ep4.setSummary(getStr);
-                        EditTextPreference ep5 = findPreference("ingredient5");
-                        if (ep5 != null && !getStr.equals("")){
-                            ep5.setVisible(true);
-                        }
-                        break;
-                    case "instruction":
-                        getStr = sharedPreferences.getString(s, "");
-                        EditTextPreference inp2 = findPreference("instruction2");
-                        if (inp2 != null && !getStr.equals("")){
-                            inp2.setVisible(true);
-                        }
-                        break;
-                    case "instruction2":
-                        getStr = sharedPreferences.getString(s, "");
-                        inp2 = findPreference("instruction2");
-                        inp2.setSummary(getStr);
-                        EditTextPreference inp3 = findPreference("instruction3");
-                        if (inp3 != null && !getStr.equals("")){
-                            inp3.setVisible(true);
-                        }
-                        break;
-                    case "instruction3":
-                        getStr = sharedPreferences.getString(s, "");
-                        inp3 = findPreference("instruction3");
-                        inp3.setSummary(getStr);
-                        EditTextPreference inp4 = findPreference("instruction4");
-                        if (inp4 != null && !getStr.equals("")){
-                            inp4.setVisible(true);
-                        }
-                        break;
-                    case "instruction4":
-                        getStr = sharedPreferences.getString(s, "");
-                        inp4 = findPreference("instruction4");
-                        inp4.setSummary(getStr);
-                        EditTextPreference inp5 = findPreference("instruction5");
-                        if (inp5 != null && !getStr.equals("")){
-                            inp5.setVisible(true);
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+//            String getStr;
+//                switch (s){
+//                    case "ingredient":
+//                        getStr = sharedPreferences.getString(s, "");
+//                        EditTextPreference ep2 = findPreference("ingredient2");
+//                        if (ep2 != null && !getStr.equals("")){
+//                            ep2.setVisible(true);
+//                        }
+//                        break;
+//                    case "ingredient2":
+//                        getStr = sharedPreferences.getString(s, "");
+//                        ep2 = findPreference("ingredient2");
+//                        ep2.setSummary(getStr);
+//                        EditTextPreference ep3 = findPreference("ingredient3");
+//                        if (ep3 != null && !getStr.equals("")){
+//                            ep3.setVisible(true);
+//                        }
+//                        break;
+//                    case "ingredient3":
+//                        getStr = sharedPreferences.getString(s, "");
+//                        ep3 = findPreference("ingredient3");
+//                        ep3.setSummary(getStr);
+//                        EditTextPreference ep4 = findPreference("ingredient4");
+//                        if (ep4 != null && !getStr.equals("")){
+//                            ep4.setVisible(true);
+//                        }
+//                        break;
+//                    case "ingredient4":
+//                        getStr = sharedPreferences.getString(s, "");
+//                        ep4 = findPreference("ingredient4");
+//                        ep4.setSummary(getStr);
+//                        EditTextPreference ep5 = findPreference("ingredient5");
+//                        if (ep5 != null && !getStr.equals("")){
+//                            ep5.setVisible(true);
+//                        }
+//                        break;
+//                    case "instruction":
+//                        getStr = sharedPreferences.getString(s, "");
+//                        EditTextPreference inp2 = findPreference("instruction2");
+//                        if (inp2 != null && !getStr.equals("")){
+//                            inp2.setVisible(true);
+//                        }
+//                        break;
+//                    case "instruction2":
+//                        getStr = sharedPreferences.getString(s, "");
+//                        inp2 = findPreference("instruction2");
+//                        inp2.setSummary(getStr);
+//                        EditTextPreference inp3 = findPreference("instruction3");
+//                        if (inp3 != null && !getStr.equals("")){
+//                            inp3.setVisible(true);
+//                        }
+//                        break;
+//                    case "instruction3":
+//                        getStr = sharedPreferences.getString(s, "");
+//                        inp3 = findPreference("instruction3");
+//                        inp3.setSummary(getStr);
+//                        EditTextPreference inp4 = findPreference("instruction4");
+//                        if (inp4 != null && !getStr.equals("")){
+//                            inp4.setVisible(true);
+//                        }
+//                        break;
+//                    case "instruction4":
+//                        getStr = sharedPreferences.getString(s, "");
+//                        inp4 = findPreference("instruction4");
+//                        inp4.setSummary(getStr);
+//                        EditTextPreference inp5 = findPreference("instruction5");
+//                        if (inp5 != null && !getStr.equals("")){
+//                            inp5.setVisible(true);
+//                        }
+//                        break;
+//                    default:
+//                        break;
+//                }
+//            }
         }
+    }
         public void clearValue(){
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
             SharedPreferences.Editor editor = preferences.edit();

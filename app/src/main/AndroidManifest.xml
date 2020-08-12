@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.add_food.AddNextActivity"></activity>
         <activity
             android:name=".ui.on_hand.SearchResultActivity"
             android:label="Search" />
