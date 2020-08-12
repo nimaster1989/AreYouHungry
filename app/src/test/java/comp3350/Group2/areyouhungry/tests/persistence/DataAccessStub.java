@@ -390,7 +390,6 @@ public class DataAccessStub implements DataAccess{
         return null;
     }
 
-
     /* This function is used to generate a random food from the stub database
        and add it into the foodresult list. */
     public String getFoodRandom(List<Food> foodResult){

@@ -26,6 +26,7 @@ public class AccessIngredients{
     public int getNewIngredientId(){
         return dataAccess.getIngredientRow() + 1;
     }
+
     public String setFoodIngredient(int foodid,int ingredientid){
         return dataAccess.addFoodIngredient(foodid,ingredientid);
     }
