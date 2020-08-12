@@ -513,7 +513,6 @@ public class DataAccessObject implements DataAccess{
         }
         catch (Exception e){
             result = processSQLError(e);
-            System.out.println(result);
         }
 
         if(result == null){
@@ -706,7 +705,6 @@ public class DataAccessObject implements DataAccess{
             else{
                 cmd += "(FOODS.PREPTIME <= " + maxPrepTime + "AND FOODS.PREPTIME >=" + minPrepTime + ") OR ";
             }
-            System.out.println("time:"+minPrepTime+" ~ "+maxPrepTime);
         }
         if(size1 > 0){
             cmd = cmd.substring(0, cmd.length() - 3);
@@ -799,7 +797,6 @@ public class DataAccessObject implements DataAccess{
             rs3 = st2.executeQuery(cmdString);
             while(rs3.next()){
                 int foodID = rs3.getInt("FOODID");
-                System.out.println("get foodid:"+ foodID);
                 food = getFoodFromID(String.valueOf(foodID));
                 foodIngredientResult.add(food);
             }
