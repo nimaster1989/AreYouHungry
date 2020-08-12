@@ -48,17 +48,12 @@ public class AddNextActivity extends AppCompatActivity{
         Bundle bundle = this.getIntent().getExtras();
         if(bundle != null){
             newFood = (Food)bundle.getSerializable("foodObj");
-            System.out.println("get Food:"+newFood.getFoodName());
             favourite = bundle.getBoolean("foodFav");
-            System.out.println("get fav:"+favourite);
             str_categorys = bundle.getStringArrayList("foodCats");
-            System.out.println("get category:"+str_categorys.toString());
             foodImgUrl = bundle.getString("foodImg");
-            System.out.println("get image url:"+foodImgUrl);
         }
 
         ingredientContainer = (LinearLayout)findViewById(R.id.ingredientContainer);
-        System.out.println("add next on create");
         Button addButton = (Button) findViewById(R.id.addIngredientButton);
         addButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -122,7 +117,6 @@ public class AddNextActivity extends AppCompatActivity{
                     alertMessage += "Please enter at least one instruction \n";
                 }
                 if(!str_ingredients.isEmpty() && !str_instructions.isEmpty()){
-                    System.out.println("add now !");
                     AccessFoods af = new AccessFoods();
                     if(newFood != null && af.addFood(newFood) == null){
                         if(!foodImgUrl.equals("")){
