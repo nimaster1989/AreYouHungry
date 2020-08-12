@@ -1,5 +1,6 @@
 package comp3350.Group2.areyouhungry.persistence;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -78,6 +79,14 @@ public interface DataAccess{
     String addNewDirection(Direction newDirection);
 
     String addFoodDirection(int foodid, int directionid);
+
+    String getIngredientSequential(List<Ingredient> ingredients);
+
+    String searchFoodByCriteriaLists(ArrayList<String> prepTimeCriterias, ArrayList<String> flavourCriterias, ArrayList<String> difficutlyCriterias, ArrayList<String> ethnicityCriterias, ArrayList<Food> foodResult);
+
+    String getFoodSequentialByCategory(String category, ArrayList<Food> foodCategoryResult);
+
+    String getFoodsSequentialByIngredient(String ingredient, ArrayList<Food> foodIngredientResult);
 
     String addFoodImage(int foodid, String foodURL);
 

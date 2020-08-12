@@ -48,4 +48,15 @@ public class AccessIngredientsTest extends TestCase{
         }
         Services.closeDataAccess();
     }
+
+    public void testGetFoodByIngredients(){
+        Services.closeDataAccess();
+        Services.createDataAccess(new DataAccessStub(dbName));
+        AccessIngredients accessIngredients = new AccessIngredients();
+        ArrayList<Food> foodResult = new ArrayList<>();
+        accessIngredients.getFoodsByIngredient("Salmon Fillets",foodResult);
+        assertEquals(foodResult.size(),1);
+        assertEquals(foodResult.get(0).getFoodName(),"Baked Salmon");
+        Services.closeDataAccess();
+    }
 }

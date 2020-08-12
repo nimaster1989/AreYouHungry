@@ -38,12 +38,13 @@ public class AddFoodActivity extends AppCompatActivity{
         setContentView(R.layout.addfood_activity);
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.settings, new SettingsFragment())
+                .replace(R.id.adds, new SettingsFragment())
                 .commit();
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        clearValue();
         ExtendedFloatingActionButton fab = (ExtendedFloatingActionButton) findViewById(R.id.addfood_fba);
         fab.setOnClickListener(new View.OnClickListener(){
             private  String food_name;
@@ -376,5 +377,11 @@ public class AddFoodActivity extends AppCompatActivity{
                         break;
                 }
             }
+        }
+        public void clearValue(){
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.clear();
+            editor.apply();
         }
     }
