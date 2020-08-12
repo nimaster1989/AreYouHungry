@@ -2,12 +2,10 @@ package comp3350.Group2.areyouhungry.tests;
 
 import junit.framework.TestSuite;
 
-import comp3350.Group2.areyouhungry.tests.acceptance.AddRecipeTest;
 import comp3350.Group2.areyouhungry.tests.acceptance.FavouriteRecipesTest;
 import comp3350.Group2.areyouhungry.tests.acceptance.LikeDislikeRecipeTest;
 import comp3350.Group2.areyouhungry.tests.acceptance.ReceiveFoodSuggestionTest;
 import comp3350.Group2.areyouhungry.tests.acceptance.SuggestionCriteriaTest;
-import comp3350.Group2.areyouhungry.tests.integration.BusinessPersistenceSeamTest;
 
 public class RunAcceptanceTests {
     public static TestSuite suite;

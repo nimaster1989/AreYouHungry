@@ -20,6 +20,7 @@ import comp3350.Group2.areyouhungry.ui.preferred.PreferredActivity;
 
 public class HomeActivity extends AppCompatActivity{
     private Button addFoodButton;
+    private Button specifiedFoodButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -57,12 +58,20 @@ public class HomeActivity extends AppCompatActivity{
                 addFoodOnClick();
             }
         });
+
+        specifiedFoodButton = findViewById(R.id.specified_Food_Button);
+        specifiedFoodButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                preferredPickOnClick();
+            }
+        });
     }
 
 
-    public void preferredPickOnClick(View view){
-        Intent preferred_intent = new Intent(HomeActivity.this, PreferredActivity.class);
-        HomeActivity.this.startActivity(preferred_intent);
+    public void preferredPickOnClick(){
+        Intent preferred_intent = new Intent(this, PreferredActivity.class);
+        this.startActivity(preferred_intent);
     }
 
     public void addFoodOnClick(){
