@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -36,7 +39,7 @@ public class AddNextActivity extends AppCompatActivity{
     Boolean favourite;
     Food newFood;
     LinearLayout ingredientContainer;
-    LinearLayout instrctionContainer;
+    LinearLayout instructionContainer;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         newFood = null;
@@ -52,56 +55,90 @@ public class AddNextActivity extends AppCompatActivity{
             str_categorys = bundle.getStringArrayList("foodCats");
             foodImgUrl = bundle.getString("foodImg");
         }
-
         ingredientContainer = (LinearLayout)findViewById(R.id.ingredientContainer);
         Button addButton = (Button) findViewById(R.id.addIngredientButton);
         addButton.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view){
-                TextInputEditText textName = (TextInputEditText)findViewById(R.id.ingredientName);
-                TextInputEditText textQuat = (TextInputEditText)findViewById(R.id.ingredientQuantity);
-                LayoutInflater layoutInflater =
-                        (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                final View addView = layoutInflater.inflate(R.layout.add_next_row, null);
-                final TextView textOut = (TextView)addView.findViewById(R.id.textout);
-                final String textShow = textName.getText().toString()+" - "+textQuat.getText().toString();
-                str_ingredients.add(textShow);
-                textOut.setText(textShow);
-                Button buttonRemove = (Button)addView.findViewById(R.id.remove);
-                buttonRemove.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View view){
-                        ((LinearLayout)addView.getParent()).removeView(addView);
-                        str_ingredients.remove(textShow);
+            public void onClick(View view) {
+                TextInputEditText textName = (TextInputEditText) findViewById(R.id.ingredientName);
+                TextInputEditText textQuat = (TextInputEditText) findViewById(R.id.ingredientQuantity);
 
-                    }
-                });
-                ingredientContainer.addView(addView);
+                if(TextUtils.isEmpty(textName.getText()) || TextUtils.isEmpty(textQuat.getText())){
+                    String alert;
+                    if(TextUtils.isEmpty(textName.getText())) alert = "Please input an ingredient.";
+                    else alert = "Please input ingredient quantity.";
+                    AlertDialog alertDialog = new AlertDialog.Builder(AddNextActivity.this).create();
+                    alertDialog.setTitle("Error");
+                    alertDialog.setMessage(alert);
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener(){
+                                public void onClick(DialogInterface dialog, int which){
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                }
+                else{
+                    LayoutInflater layoutInflater =
+                            (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    final View addView = layoutInflater.inflate(R.layout.add_next_row, null);
+                    final TextView textOut = (TextView) addView.findViewById(R.id.textout);
+                    final String textShow = textName.getText().toString() + " - " + textQuat.getText().toString();
+                    str_ingredients.add(textShow);
+                    textOut.setText(textShow);
+                    textName.getText().clear();
+                    textQuat.getText().clear();
+                    Button buttonRemove = (Button) addView.findViewById(R.id.remove);
+                    buttonRemove.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            ((LinearLayout) addView.getParent()).removeView(addView);
+                            str_ingredients.remove(textShow);
+
+                        }
+                    });
+                    ingredientContainer.addView(addView);
+                }
             }
         });
 
-        instrctionContainer = (LinearLayout)findViewById(R.id.instructionContainer);
+        instructionContainer = (LinearLayout)findViewById(R.id.instructionContainer);
         Button addButton2 = (Button) findViewById(R.id.addInstructionButton);
         addButton2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 TextInputEditText textName = (TextInputEditText)findViewById(R.id.instructionName);
-                LayoutInflater layoutInflater =
-                        (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                final View addView = layoutInflater.inflate(R.layout.add_next_row, null);
-                final TextView textOut = (TextView)addView.findViewById(R.id.textout);
-                final String textShow = textName.getText().toString();
-                str_instructions.add(textShow);
-                textOut.setText(textShow);
-                Button buttonRemove = (Button)addView.findViewById(R.id.remove);
-                buttonRemove.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View view){
-                        ((LinearLayout)addView.getParent()).removeView(addView);
-                        str_instructions.remove(textShow);
-                    }
-                });
-                instrctionContainer.addView(addView);
+                if(TextUtils.isEmpty(textName.getText())){
+                    AlertDialog alertDialog = new AlertDialog.Builder(AddNextActivity.this).create();
+                    alertDialog.setTitle("Error");
+                    alertDialog.setMessage("Please write a direction.");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener(){
+                                public void onClick(DialogInterface dialog, int which){
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                }
+                else {
+                    LayoutInflater layoutInflater =
+                            (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    final View addView = layoutInflater.inflate(R.layout.add_next_row, null);
+                    final TextView textOut = (TextView) addView.findViewById(R.id.textout);
+                    final String textShow = textName.getText().toString();
+                    str_instructions.add(textShow);
+                    textOut.setText(textShow);
+                    textName.getText().clear();
+                    Button buttonRemove = (Button) addView.findViewById(R.id.remove);
+                    buttonRemove.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            ((LinearLayout) addView.getParent()).removeView(addView);
+                            str_instructions.remove(textShow);
+                        }
+                    });
+                    instructionContainer.addView(addView);
+                }
             }
         });
 

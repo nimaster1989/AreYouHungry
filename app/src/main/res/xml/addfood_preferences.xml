@@ -10,14 +10,14 @@
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
-            app:defaultValue="0"
+            app:defaultValue=""
             app:key="portion"
             app:title="Portion Size"
             app:useSimpleSummaryProvider="true" />
         <EditTextPreference
-            app:defaultValue="0"
+            app:defaultValue=""
             app:key="preptime"
-            app:title="Preparation Time"
+            app:title="Preparation Time (minutes)"
             app:useSimpleSummaryProvider="true" />
         <EditTextPreference
             app:defaultValue=""
