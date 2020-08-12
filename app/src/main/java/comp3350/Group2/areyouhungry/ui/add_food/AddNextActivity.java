@@ -17,8 +17,16 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 
+import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.R;
+import comp3350.Group2.areyouhungry.business.AccessDirections;
+import comp3350.Group2.areyouhungry.business.AccessFoods;
+import comp3350.Group2.areyouhungry.business.AccessIngredients;
+import comp3350.Group2.areyouhungry.objects.Direction;
 import comp3350.Group2.areyouhungry.objects.Food;
+import comp3350.Group2.areyouhungry.objects.FoodCategory;
+import comp3350.Group2.areyouhungry.objects.Ingredient;
+import comp3350.Group2.areyouhungry.objects.User;
 
 public class AddNextActivity extends AppCompatActivity {
     ArrayList<String> str_categorys;
@@ -115,7 +123,50 @@ public class AddNextActivity extends AppCompatActivity {
                 }
                 if(!str_ingredients.isEmpty() && !str_instructions.isEmpty()){
                     System.out.println("add now !");
+                    AccessFoods af = new AccessFoods();
+                    if(af.addFood(newFood) == null){
+                        if(!foodImgUrl.equals("")){
+                            af.addFoodImage(newFood.getFoodID(), foodImgUrl);
+                        }
+                        if(favourite){
+                            User curr_user = MainActivity.currentUser;
+                            af.setFoodFavouriteByUser(curr_user,newFood.getFoodID(),true);
+                        }
+                        for(String str_category:str_categorys){
+                            FoodCategory newFc = af.addFoodCategory(newFood,str_category);
+                        }
+                        for (String str_ingredient:str_ingredients){
+                            AccessIngredients ai = new AccessIngredients();
+                            int newIngredientId = ai.getNewIngredientId();
+                            int lastSpace = str_ingredient.lastIndexOf("-");
+                            String measurement;
+                            String name;
+                            if (lastSpace == -1){
+                                measurement = "";
+                                name = str_ingredient;
+                            } else{
+                                measurement = str_ingredient.substring(lastSpace);
+                                name = str_ingredient.substring(0, lastSpace);
+                            }
+                            Ingredient newIngredient = new Ingredient(newIngredientId, name, measurement);
+                            String result = ai.addIngredient(newIngredient);
+                            if(result == null){
+                                ai.setFoodIngredient(Integer.parseInt(newFood.getFoodID()),newIngredient.getIngredientID());
+                            }
+                        }
+                        int step = 1;
+                        for(String str_direction:str_instructions){
+                            AccessDirections ad = new AccessDirections();
+                            int newDirectionId = ad.getNewDirectionId();
+                            Direction newDirection = new Direction(newDirectionId,str_direction,step);
+                            step++;
+                            String result = ad.addDirection(newDirection);
+                            if(result == null){
+                                ad.addFoodDirection(Integer.parseInt(newFood.getFoodID()),newDirection.getDirectionID());
+                            }
+                        }
 
+                    }
                 }else {
                     AlertDialog alertDialog = new AlertDialog.Builder(AddNextActivity.this).create();
                     alertDialog.setTitle("Error:");
