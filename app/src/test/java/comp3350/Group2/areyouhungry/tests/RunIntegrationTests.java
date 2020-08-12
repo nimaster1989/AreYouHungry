@@ -5,7 +5,7 @@ import junit.framework.TestSuite;
 import comp3350.Group2.areyouhungry.tests.integration.BusinessPersistenceSeamTest;
 import comp3350.Group2.areyouhungry.tests.integration.BusinessUISeamTest;
 
-public class RunIntegrationTests {
+public class RunIntegrationTests{
     public static TestSuite suite;
 
     /* This method runs ALL the test suites. */

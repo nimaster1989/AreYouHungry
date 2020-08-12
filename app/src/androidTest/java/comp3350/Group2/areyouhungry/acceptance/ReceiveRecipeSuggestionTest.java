@@ -32,7 +32,7 @@ import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class ReceiveRecipeSuggestionTest {
+public class ReceiveRecipeSuggestionTest{
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
@@ -50,10 +50,8 @@ public class ReceiveRecipeSuggestionTest {
                         isDisplayed()));
         appCompatButton.perform(click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
+
+        try{
             Thread.sleep(700);
         } catch (InterruptedException e){
             e.printStackTrace();
@@ -164,10 +162,8 @@ public class ReceiveRecipeSuggestionTest {
                         isDisplayed()));
         appCompatButton6.perform(click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
+
+        try{
             Thread.sleep(700);
         } catch (InterruptedException e){
             e.printStackTrace();

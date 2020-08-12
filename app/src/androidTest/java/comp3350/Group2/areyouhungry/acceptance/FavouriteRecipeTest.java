@@ -32,7 +32,7 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class FavouriteRecipeTest {
+public class FavouriteRecipeTest{
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
@@ -49,10 +49,7 @@ public class FavouriteRecipeTest {
                         isDisplayed()));
         bottomNavigationItemView.perform(click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
+        try{
             Thread.sleep(700);
         } catch (InterruptedException e){
             e.printStackTrace();
@@ -69,10 +66,7 @@ public class FavouriteRecipeTest {
                         isDisplayed()));
         appCompatButton.perform(click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
+        try{
             Thread.sleep(700);
         } catch (InterruptedException e){
             e.printStackTrace();
@@ -85,10 +79,7 @@ public class FavouriteRecipeTest {
                                 0)));
         recyclerView.perform(actionOnItemAtPosition(5, click()));
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
+        try{
             Thread.sleep(700);
         } catch (InterruptedException e){
             e.printStackTrace();
@@ -115,10 +106,8 @@ public class FavouriteRecipeTest {
                         isDisplayed()));
         appCompatImageButton.perform(click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
+
+        try{
             Thread.sleep(700);
         } catch (InterruptedException e){
             e.printStackTrace();
@@ -134,10 +123,8 @@ public class FavouriteRecipeTest {
                         isDisplayed()));
         bottomNavigationItemView2.perform(click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
+
+        try{
             Thread.sleep(700);
         } catch (InterruptedException e){
             e.printStackTrace();
@@ -150,10 +137,8 @@ public class FavouriteRecipeTest {
                                 0)));
         recyclerView2.perform(actionOnItemAtPosition(3, click()));
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
+
+        try{
             Thread.sleep(700);
         } catch (InterruptedException e){
             e.printStackTrace();
@@ -180,10 +165,8 @@ public class FavouriteRecipeTest {
                         isDisplayed()));
         appCompatImageButton2.perform(click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
+
+        try{
             Thread.sleep(700);
         } catch (InterruptedException e){
             e.printStackTrace();
