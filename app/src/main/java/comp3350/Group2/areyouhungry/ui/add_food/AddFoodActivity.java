@@ -40,15 +40,15 @@ public class AddFoodActivity extends AppCompatActivity{
         clearValue();
         ExtendedFloatingActionButton fab = (ExtendedFloatingActionButton) findViewById(R.id.addfood_fba);
         fab.setOnClickListener(new View.OnClickListener(){
-            private  String food_name;
-            private  boolean favourite;
-            private  int portionSize = -1;
-            private  int prepTime = -1;
-            private  String flavour;
-            private  String difficulty;
-            private  String ethnicity;
-            private  String imageURL;
-            private  ArrayList<String> str_categorys;
+            private String food_name;
+            private boolean favourite;
+            private int portionSize = 0;
+            private int prepTime = 0;
+            private String flavour;
+            private String difficulty;
+            private String ethnicity;
+            private String imageURL;
+            private ArrayList<String> str_categorys;
 
 
 
@@ -67,19 +67,19 @@ public class AddFoodActivity extends AppCompatActivity{
                 favourite  = sharedPreferences.getBoolean("favourite", false);
 
                 String portionSize_Str = sharedPreferences.getString("portion","");
-                if(TextUtils.isDigitsOnly(portionSize_Str) && !TextUtils.isEmpty(portionSize_Str)){
+                if(TextUtils.isDigitsOnly(portionSize_Str) && !TextUtils.isEmpty(portionSize_Str) && portionSize_Str.compareTo("2147483647") <= 0){
                     portionSize = Integer.parseInt(portionSize_Str);
                 }
-                if(portionSize < 0){
+                if(portionSize <= 0){
                     alertMessage += "Please enter a portion size.\n";
                     buildFood = false;
                 }
 
                 String prepTime_Str = sharedPreferences.getString("preptime","");
-                if(TextUtils.isDigitsOnly(prepTime_Str) && !TextUtils.isEmpty(prepTime_Str)){
+                if(TextUtils.isDigitsOnly(prepTime_Str) && !TextUtils.isEmpty(prepTime_Str) && prepTime_Str.compareTo("2147483647") <= 0){
                     prepTime = Integer.parseInt(prepTime_Str);
                 }
-                if(prepTime < 0){
+                if(prepTime <= 0){
                     alertMessage += "Please enter a preparation time.\n";
                     buildFood = false;
                 }
@@ -141,6 +141,8 @@ public class AddFoodActivity extends AppCompatActivity{
                             });
                     alertDialog.show();
                 }
+                portionSize = 0;
+                prepTime = 0;
             }
         });
     }
