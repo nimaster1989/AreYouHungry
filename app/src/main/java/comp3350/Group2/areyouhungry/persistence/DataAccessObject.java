@@ -704,7 +704,7 @@ public class DataAccessObject implements DataAccess{
             if(Integer.parseInt(maxPrepTime) == 100){
                 cmd += "FOODS.PREPTIME > 60 OR";
             }
-            else {
+            else{
                 cmd += "(FOODS.PREPTIME <= " + maxPrepTime + "AND FOODS.PREPTIME >=" + minPrepTime + ") OR ";
             }
             System.out.println("time:"+minPrepTime+" ~ "+maxPrepTime);
@@ -738,7 +738,7 @@ public class DataAccessObject implements DataAccess{
             if(ethnicity.equals("OtherEthnicity")){
                 cmd += "FOODS.ETHNICITY != 'American' AND FOODS.ETHNICITY != 'Greek' AND FOODS.ETHNICITY != 'Italian' AND FOODS.ETHNICITY != 'Chinese' OR ";
             }
-            else {
+            else{
                 cmd += "FOODS.ETHNICITY = '" + ethnicity + "' OR ";
             }
         }
