@@ -112,7 +112,7 @@ public class BusinessPersistenceSeamTest extends TestCase{
         ArrayList<Direction> directionList = new ArrayList<>();
 
         //add food
-        Food testFood = new Food(7,"testFood",1,10,"Spicy","Hard","Canadian");
+        Food testFood = new Food(9,"testFood",1,10,"Spicy","Hard","Canadian");
         accessFoods.addFood(testFood);
 
         //get food
@@ -127,7 +127,7 @@ public class BusinessPersistenceSeamTest extends TestCase{
 
         String result = accessDirections.addFoodDirection(Integer.parseInt(dbFood.getFoodID()), direction.getDirectionID());
 
-        //get food/ingredient and check
+        //get food/direction and check
         dbFood = accessFoods.getFoodByID(testFood.getFoodID());
         directionList = new ArrayList<>();
 
