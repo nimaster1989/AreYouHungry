@@ -57,7 +57,7 @@ public class AddNextActivity extends AppCompatActivity{
         Button addButton = (Button) findViewById(R.id.addIngredientButton);
         addButton.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
+            public void onClick(View view){
                 TextInputEditText textName = (TextInputEditText) findViewById(R.id.ingredientName);
                 TextInputEditText textQuat = (TextInputEditText) findViewById(R.id.ingredientQuantity);
 
@@ -87,9 +87,9 @@ public class AddNextActivity extends AppCompatActivity{
                     textName.getText().clear();
                     textQuat.getText().clear();
                     Button buttonRemove = (Button) addView.findViewById(R.id.remove);
-                    buttonRemove.setOnClickListener(new View.OnClickListener() {
+                    buttonRemove.setOnClickListener(new View.OnClickListener(){
                         @Override
-                        public void onClick(View view) {
+                        public void onClick(View view){
                             ((LinearLayout) addView.getParent()).removeView(addView);
                             str_ingredients.remove(textShow);
 
@@ -118,7 +118,7 @@ public class AddNextActivity extends AppCompatActivity{
                             });
                     alertDialog.show();
                 }
-                else {
+                else{
                     LayoutInflater layoutInflater =
                             (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     final View addView = layoutInflater.inflate(R.layout.add_next_row, null);
@@ -128,9 +128,9 @@ public class AddNextActivity extends AppCompatActivity{
                     textOut.setText(textShow);
                     textName.getText().clear();
                     Button buttonRemove = (Button) addView.findViewById(R.id.remove);
-                    buttonRemove.setOnClickListener(new View.OnClickListener() {
+                    buttonRemove.setOnClickListener(new View.OnClickListener(){
                         @Override
-                        public void onClick(View view) {
+                        public void onClick(View view){
                             ((LinearLayout) addView.getParent()).removeView(addView);
                             str_instructions.remove(textShow);
                         }
