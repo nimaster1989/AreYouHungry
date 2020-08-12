@@ -169,16 +169,9 @@ public class AddNextActivity extends AppCompatActivity{
                         for (String str_ingredient:str_ingredients){
                             AccessIngredients ai = new AccessIngredients();
                             int newIngredientId = ai.getNewIngredientId();
-                            int lastSpace = str_ingredient.lastIndexOf("-");
-                            String measurement;
-                            String name;
-                            if (lastSpace == -1){
-                                measurement = "";
-                                name = str_ingredient;
-                            } else{
-                                measurement = str_ingredient.substring(lastSpace);
-                                name = str_ingredient.substring(0, lastSpace);
-                            }
+                            String[] ingredient_split = str_ingredient.split("-");
+                            String measurement = ingredient_split[1];
+                            String name = ingredient_split[0];
                             Ingredient newIngredient = new Ingredient(newIngredientId, name, measurement);
                             String result = ai.addIngredient(newIngredient);
                             if(result == null){
