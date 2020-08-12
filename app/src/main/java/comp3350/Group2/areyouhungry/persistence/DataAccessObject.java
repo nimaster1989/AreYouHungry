@@ -626,8 +626,13 @@ public class DataAccessObject implements DataAccess{
         int size4 = ethnicityCriterias.size();
 
         for(String maxPrepTime:prepTimeCriterias){
-            String minPrepTime = String.valueOf(Integer.parseInt(maxPrepTime)-10);
-            cmd += "FOODS.PREPTIME <= "+maxPrepTime + "AND FOODS.PREPTIME >="+minPrepTime+" OR ";
+            String minPrepTime = String.valueOf(Integer.parseInt(maxPrepTime)-15);
+            if(Integer.parseInt(maxPrepTime) == 100){
+                cmd += "FOODS.PREPTIME > 60 OR";
+            }
+            else {
+                cmd += "(FOODS.PREPTIME <= " + maxPrepTime + "AND FOODS.PREPTIME >=" + minPrepTime + ") OR ";
+            }
             System.out.println("time:"+minPrepTime+" ~ "+maxPrepTime);
         }
         if(size1 > 0){
@@ -636,8 +641,8 @@ public class DataAccessObject implements DataAccess{
         }
 
         for(String flavour:flavourCriterias){
-            if(flavour.equals("Other")){
-                cmd += "FOODS.FLAVOUR != 'Spicy' AND FOODS.FLAVOUR != 'Sweet' AND FOODS.FLAVOUR != 'Fresh' OR ";
+            if(flavour.equals("OtherFlavour")){
+                cmd += "FOODS.FLAVOUR != 'Spicy' AND FOODS.FLAVOUR != 'Sweet' AND FOODS.FLAVOUR != 'Fresh' AND FOODS.FLAVOUR != 'Savoury' OR ";
             }else{
                 cmd += "FOODS.FLAVOUR = '" + flavour + "' OR ";
             }
@@ -656,7 +661,12 @@ public class DataAccessObject implements DataAccess{
         }
 
         for(String ethnicity:ethnicityCriterias){
-            cmd+="FOODS.ETHNICITY = '"+ethnicity+"' OR ";
+            if(ethnicity.equals("OtherEthnicity")){
+                cmd += "FOODS.ETHNICITY != 'American' AND FOODS.ETHNICITY != 'Greek' AND FOODS.ETHNICITY != 'Italian' AND FOODS.ETHNICITY != 'Chinese' OR ";
+            }
+            else {
+                cmd += "FOODS.ETHNICITY = '" + ethnicity + "' OR ";
+            }
         }
         if(size4 >0 )cmd = cmd.substring(0, cmd.length() - 3);
 

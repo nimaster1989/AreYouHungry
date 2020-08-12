@@ -21,7 +21,7 @@
         <SwitchPreferenceCompat
             android:defaultValue="false"
             app:key="search_on_category"
-            app:title="search by category" />
+            app:title="Search by category" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="Meat"
@@ -57,23 +57,28 @@
             app:title="Search by preparation time" />
         <CheckBoxPreference
             android:defaultValue="false"
-            android:key="10"
-            android:title="0-10 mins"
-            app:isPreferenceVisible="false"/>
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="20"
-            android:title="10-20 mins"
+            android:key="15"
+            android:title="0-15 mins"
             app:isPreferenceVisible="false"/>
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="30"
-            android:title="20-30 mins"
+            android:title="15-30 mins"
             app:isPreferenceVisible="false"/>
         <CheckBoxPreference
             android:defaultValue="false"
-            android:key="40"
-            android:title="30-40 mins"
+            android:key="45"
+            android:title="30-45 mins"
+            app:isPreferenceVisible="false"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="60"
+            android:title="45-60 mins"
+            app:isPreferenceVisible="false"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="100"
+            android:title="60+ mins"
             app:isPreferenceVisible="false"/>
 
     </PreferenceCategory>
@@ -84,23 +89,28 @@
             app:title="Search by ethnicity" />
         <CheckBoxPreference
             android:defaultValue="false"
-            android:key="Greek"
-            android:title="Greek"
-            app:isPreferenceVisible="false"/>
-        <CheckBoxPreference
-            android:defaultValue="false"
             android:key="American"
             android:title="American"
             app:isPreferenceVisible="false"/>
         <CheckBoxPreference
             android:defaultValue="false"
-            android:key="Japanese"
-            android:title="Japanese"
+            android:key="Greek"
+            android:title="Greek"
+            app:isPreferenceVisible="false"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="Italian"
+            android:title="Italian"
             app:isPreferenceVisible="false"/>
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="Chinese"
             android:title="Chinese"
+            app:isPreferenceVisible="false"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="OtherEthnicity"
+            android:title="Other"
             app:isPreferenceVisible="false"/>
 
     </PreferenceCategory>
@@ -151,12 +161,17 @@
             app:isPreferenceVisible="false"/>
         <CheckBoxPreference
             android:defaultValue="false"
-            android:key="Savory"
-            android:title="Savory"
+            android:key="Savoury"
+            android:title="Savoury"
             app:isPreferenceVisible="false"/>
         <CheckBoxPreference
             android:defaultValue="false"
-            android:key="Other"
+            android:key="Fresh"
+            android:title="Fresh"
+            app:isPreferenceVisible="false"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="OtherFlavour"
             android:title="Other"
             app:isPreferenceVisible="false"/>
 

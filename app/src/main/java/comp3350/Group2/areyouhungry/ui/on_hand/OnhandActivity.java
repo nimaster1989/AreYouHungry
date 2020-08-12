@@ -188,26 +188,30 @@ public class OnhandActivity extends AppCompatActivity{
                     break;
                 case "search_on_time":
                     searchOnTime = sharedPreferences.getBoolean(s, false);
-                    CheckBoxPreference cb6 = findPreference("10");
-                    CheckBoxPreference cb7 = findPreference("20");
-                    CheckBoxPreference cb8 = findPreference("30");
-                    CheckBoxPreference cb9 = findPreference("40");
+                    CheckBoxPreference cb6 = findPreference("15");
+                    CheckBoxPreference cb7 = findPreference("30");
+                    CheckBoxPreference cb8 = findPreference("45");
+                    CheckBoxPreference cb9 = findPreference("60");
+                    CheckBoxPreference cb10 = findPreference("100");
                     cb6.setVisible(searchOnTime);
                     cb7.setVisible(searchOnTime);
                     cb8.setVisible(searchOnTime);
                     cb9.setVisible(searchOnTime);
+                    cb10.setVisible(searchOnTime);
                     if(!searchOnTime){
                         prepTimeCriterias.clear();
                         cb6.setChecked(false);
                         cb7.setChecked(false);
                         cb8.setChecked(false);
                         cb9.setChecked(false);
+                        cb10.setChecked(false);
                     }
                     break;
-                case "10":
-                case "20":
+                case "15":
                 case "30":
-                case "40":
+                case "45":
+                case "60":
+                case "100":
                     searchOnTime = sharedPreferences.getBoolean("search_on_time",false);
                     CheckBoxPreference prepTimeCheckBox = findPreference(s);
                     if(searchOnTime && prepTimeCheckBox.isChecked()) prepTimeCriterias.add(s);
@@ -215,26 +219,30 @@ public class OnhandActivity extends AppCompatActivity{
                     break;
                 case "search_on_ethnicity":
                     searchOnEthnicity = sharedPreferences.getBoolean(s,false);
-                    CheckBoxPreference cb10 = findPreference("Greek");
                     CheckBoxPreference cb11 = findPreference("American");
-                    CheckBoxPreference cb12 = findPreference("Japanese");
-                    CheckBoxPreference cb13 = findPreference("Chinese");
-                    cb10.setVisible(searchOnEthnicity);
+                    CheckBoxPreference cb12 = findPreference("Greek");
+                    CheckBoxPreference cb13 = findPreference("Italian");
+                    CheckBoxPreference cb14 = findPreference("Chinese");
+                    CheckBoxPreference cb15 = findPreference("OtherEthnicity");
                     cb11.setVisible(searchOnEthnicity);
                     cb12.setVisible(searchOnEthnicity);
                     cb13.setVisible(searchOnEthnicity);
+                    cb14.setVisible(searchOnEthnicity);
+                    cb15.setVisible(searchOnEthnicity);
                     if(!searchOnEthnicity){
                         ethnicityCriterias.clear();
-                        cb10.setChecked(false);
                         cb11.setChecked(false);
                         cb12.setChecked(false);
                         cb13.setChecked(false);
+                        cb14.setChecked(false);
+                        cb15.setChecked(false);
                     }
                     break;
-                case "Greek":
                 case "American":
-                case "Japanese":
+                case "Greek":
+                case "Italian":
                 case "Chinese":
+                case "OtherEthnicity":
                     searchOnEthnicity = sharedPreferences.getBoolean("search_on_ethnicity",false);
                     CheckBoxPreference ethnicityCheckBox = findPreference(s);
                     if(searchOnEthnicity && ethnicityCheckBox.isChecked()) ethnicityCriterias.add(s);
@@ -242,20 +250,20 @@ public class OnhandActivity extends AppCompatActivity{
                     break;
                 case "search_on_difficulty":
                     searchOnDifficulty = sharedPreferences.getBoolean(s,false);
-                    CheckBoxPreference cb14 = findPreference("Easy");
-                    CheckBoxPreference cb15 = findPreference("Medium");
-                    CheckBoxPreference cb16 = findPreference("Hard");
-                    CheckBoxPreference cb17 = findPreference("Expert");
-                    cb14.setVisible(searchOnDifficulty);
-                    cb15.setVisible(searchOnDifficulty);
+                    CheckBoxPreference cb16 = findPreference("Easy");
+                    CheckBoxPreference cb17 = findPreference("Medium");
+                    CheckBoxPreference cb18 = findPreference("Hard");
+                    CheckBoxPreference cb19 = findPreference("Expert");
                     cb16.setVisible(searchOnDifficulty);
                     cb17.setVisible(searchOnDifficulty);
+                    cb18.setVisible(searchOnDifficulty);
+                    cb19.setVisible(searchOnDifficulty);
                     if(!searchOnDifficulty){
                         difficutlyCriterias.clear();
-                        cb14.setChecked(false);
-                        cb15.setChecked(false);
                         cb16.setChecked(false);
                         cb17.setChecked(false);
+                        cb18.setChecked(false);
+                        cb19.setChecked(false);
                     }
                     break;
                 case"Easy":
@@ -269,26 +277,30 @@ public class OnhandActivity extends AppCompatActivity{
                     break;
                 case "search_on_flavour":
                     searchOnFlavour = sharedPreferences.getBoolean(s,false);
-                    CheckBoxPreference cb18 = findPreference("Spicy");
-                    CheckBoxPreference cb19 = findPreference("Sweet");
-                    CheckBoxPreference cb20 = findPreference("Savory");
-                    CheckBoxPreference cb21 = findPreference("Other");
-                    cb18.setVisible(searchOnFlavour);
-                    cb19.setVisible(searchOnFlavour);
+                    CheckBoxPreference cb20 = findPreference("Spicy");
+                    CheckBoxPreference cb21 = findPreference("Sweet");
+                    CheckBoxPreference cb22 = findPreference("Savoury");
+                    CheckBoxPreference cb23 = findPreference("Fresh");
+                    CheckBoxPreference cb24 = findPreference("OtherFlavour");
                     cb20.setVisible(searchOnFlavour);
                     cb21.setVisible(searchOnFlavour);
+                    cb22.setVisible(searchOnFlavour);
+                    cb23.setVisible(searchOnFlavour);
+                    cb24.setVisible(searchOnFlavour);
                     if(!searchOnFlavour){
                         flavourCriterias.clear();
-                        cb18.setChecked(false);
-                        cb19.setChecked(false);
                         cb20.setChecked(false);
                         cb21.setChecked(false);
+                        cb22.setChecked(false);
+                        cb23.setChecked(false);
+                        cb24.setChecked(false);
                     }
                     break;
                 case "Spicy":
                 case "Sweet":
-                case "Savory":
-                case "Other":
+                case "Savoury":
+                case "Fresh":
+                case "OtherFlavour":
                     searchOnFlavour = sharedPreferences.getBoolean("search_on_flavour",false);
                     CheckBoxPreference flavourCheckBox = findPreference(s);
                     if(searchOnFlavour && flavourCheckBox.isChecked()) flavourCriterias.add(s);
