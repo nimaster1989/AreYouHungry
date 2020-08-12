@@ -6,9 +6,14 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
-import androidx.core.content.ContextCompat;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import androidx.fragment.app.Fragment;
 
 import android.text.Spannable;
@@ -64,14 +69,27 @@ public class FoodDetailFragment extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        TextView rootView = (TextView) inflater.inflate(R.layout.food_detail, container, false);
+        final TextView rootView = (TextView) inflater.inflate(R.layout.food_detail, container, false);
         if (mFood != null){
             Food theFood = accessFoods.getFoodByID(mFood.getFoodID());
-            int imageID = getResources().getIdentifier("food" + theFood.getFoodID(), "drawable", getContext().getPackageName());
-            if(imageID != 0){
-                Drawable foodImage = ContextCompat.getDrawable(getContext(), imageID);
-                foodImage.setBounds(0, 0, Resources.getSystem().getDisplayMetrics().widthPixels, Resources.getSystem().getDisplayMetrics().heightPixels/2);
-                rootView.setCompoundDrawables(null, foodImage, null, null);
+            String imageURL = accessFoods.getImagebyFood(mFood.getFoodID());
+
+            if(imageURL != null){
+                Glide.with(this)
+                        .load(imageURL).centerCrop()
+                        .into(new CustomTarget<Drawable>(Resources.getSystem().getDisplayMetrics().widthPixels,Resources.getSystem().getDisplayMetrics().heightPixels/2){
+
+                            @Override
+                            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition){
+                                rootView.setCompoundDrawablesWithIntrinsicBounds(null, resource, null, null);
+                            }
+
+                            @Override
+                            public void onLoadCleared(@Nullable Drawable placeholder){
+                                rootView.setCompoundDrawablesWithIntrinsicBounds(null, placeholder, null, null);
+                            }
+                        });
+
             }
 
             AccessIngredients ai = new AccessIngredients();
