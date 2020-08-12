@@ -12,15 +12,11 @@ import android.view.View;
 import androidx.appcompat.app.ActionBar;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.EditTextPreference;
-import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
-import androidx.preference.PreferenceScreen;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
@@ -53,6 +49,9 @@ public class AddFoodActivity extends AppCompatActivity{
             private  String ethnicity;
             private  String imageURL;
             private  ArrayList<String> str_categorys;
+
+
+
             @Override
             public void onClick(View view){
                 boolean buildFood = true;
@@ -144,11 +143,7 @@ public class AddFoodActivity extends AppCompatActivity{
                 }
             }
         });
-
-
-
     }
-
 
     //This allows you to use the back button on the top left to go to home page
     public boolean onOptionsItemSelected(MenuItem item){
@@ -170,29 +165,29 @@ public class AddFoodActivity extends AppCompatActivity{
     }
 
 
-    public static class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
+    public static class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener{
         @Override
-        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        public void onCreatePreferences(Bundle savedInstanceState, String rootKey){
             setPreferencesFromResource(R.xml.addfood_preferences, rootKey);
 
         }
 
         @Override
-        public void onResume() {
+        public void onResume(){
             super.onResume();
             // Set up a listener whenever a key changes
             getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         }
 
         @Override
-        public void onPause() {
+        public void onPause(){
             super.onPause();
             // Set up a listener whenever a key changes
             getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
         }
 
         @Override
-        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s){
         }
     }
         public void clearValue(){
