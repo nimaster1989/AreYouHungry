@@ -220,6 +220,24 @@ public class AccessFoodsTest extends TestCase{
         assertEquals(foodResult.size(),2);
         assertEquals(foodResult.get(0).getFoodName(),"Spicy Spaghetti");
         assertEquals(foodResult.get(1).getFoodName(),"Egg Fried Rice");
+
+    public void testGetImageByFood(){
+        Services.closeDataAccess();
+        Services.createDataAccess(new DataAccessStub(dbName));
+        AccessFoods accessFoods = new AccessFoods();
+        assertEquals("food1",accessFoods.getImagebyFood("1"));
+        assertNull(accessFoods.getImagebyFood("8"));
+        Services.closeDataAccess();
+    }
+
+    public void testAddFoodImage(){
+        Services.closeDataAccess();
+        Services.createDataAccess(new DataAccessStub(dbName));
+        AccessFoods accessFoods = new AccessFoods();
+        Food randomFood = new Food(7, "foodname", 5, 10, "Spicy", "Expert", "Asian");
+        accessFoods.addFood(randomFood);
+        accessFoods.addFoodImage("7", "food7");
+        assertEquals("food7", accessFoods.getImagebyFood("7"));
         Services.closeDataAccess();
     }
 

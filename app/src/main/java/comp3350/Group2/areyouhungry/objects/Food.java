@@ -6,8 +6,10 @@ public class Food{
     private int foodID;
     private String foodName;
     private boolean favourite;
+    private boolean liked;
     private int portionSize;
     private int prepTime;
+
 
     private String flavour;
     private String difficulty;
@@ -23,6 +25,7 @@ public class Food{
             this.difficulty = difficulty;
             this.ethnicity = ethnicity;
             this.favourite = false;
+            this.liked = false;
         }else{
             throw new NullPointerException();
         }

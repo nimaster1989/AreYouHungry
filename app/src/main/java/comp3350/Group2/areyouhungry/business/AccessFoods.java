@@ -66,6 +66,23 @@ public class AccessFoods{
         return dataAccess.setFoodToFavouriteByUser(user,curr_id,b);
     }
 
+    public boolean getFoodLikedByUser(User user,Food food){
+        return dataAccess.getFoodLikedByUser(user,food);
+    }
+
+
+    public String setFoodLikedByUser(User user,String curr_id, boolean b){
+        return dataAccess.setFoodToLikedByUser(user,curr_id,b);
+    }
+
+    public boolean getFoodDislikedByUser(User user,Food food){
+        return dataAccess.getFoodDislikedByUser(user,food);
+    }
+
+    public String setFoodDislikedByUser(User user,String curr_id, boolean b){
+        return dataAccess.setFoodToDislikedByUser(user,curr_id,b);
+    }
+
     public String addFood(Food addedFood){
         return dataAccess.addFood(addedFood);
     }
@@ -75,6 +92,16 @@ public class AccessFoods{
         int categoryID = getCategoryID(categoryName);
         return dataAccess.addFoodCategory(foodID, categoryID);
     }
+
+    public String getImagebyFood(String foodid){
+        return dataAccess.getImageByFood(Integer.parseInt(foodid));
+
+    }
+
+    public String addFoodImage(String foodid, String foodURL){
+        return dataAccess.addFoodImage(Integer.parseInt(foodid), foodURL);
+    }
+
     /* Definition of duplicate: we assume foods might have same name,
    but not same recipe, we call two foods to be equal if they have same
    name, and same recipe. */

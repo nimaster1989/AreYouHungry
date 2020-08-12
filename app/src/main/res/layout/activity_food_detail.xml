@@ -51,5 +51,4 @@
         app:layout_anchorGravity="top|end"
         android:src = "@drawable/ic_baseline_favorite_border_24" />
 
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

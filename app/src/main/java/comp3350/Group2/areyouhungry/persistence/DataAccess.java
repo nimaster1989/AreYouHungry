@@ -38,6 +38,10 @@ public interface DataAccess{
 
     boolean getFoodFavByUser(User user, Food food);
 
+    boolean getFoodLikedByUser(User user, Food food);
+
+    boolean getFoodDislikedByUser(User user, Food food);
+
     String getUserSequential(List<User> userResult);
 
     int getCategoryIDbyName(String categoryName);
@@ -49,6 +53,10 @@ public interface DataAccess{
     User getUser(int userID);
 
     String setFoodToFavouriteByUser(User user,String curr_id, boolean b);
+
+    String setFoodToLikedByUser(User user,String curr_id, boolean b);
+
+    String setFoodToDislikedByUser(User user,String curr_id, boolean b);
 
     User setNewUser(int userID, String username);
 
@@ -79,4 +87,8 @@ public interface DataAccess{
     String getFoodSequentialByCategory(String category, ArrayList<Food> foodCategoryResult);
 
     String getFoodsSequentialByIngredient(String ingredient, ArrayList<Food> foodIngredientResult);
+
+    String addFoodImage(int foodid, String foodURL);
+
+    String getImageByFood(int foodid);
 }
