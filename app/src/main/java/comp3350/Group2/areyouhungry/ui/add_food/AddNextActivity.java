@@ -167,7 +167,7 @@ public class AddNextActivity extends AppCompatActivity{
                         for (String str_ingredient:str_ingredients){
                             AccessIngredients ai = new AccessIngredients();
                             int newIngredientId = ai.getNewIngredientId();
-                            String[] ingredient_split = str_ingredient.split("-");
+                            String[] ingredient_split = str_ingredient.split("- ");
                             String measurement = ingredient_split[1];
                             String name = ingredient_split[0];
                             Ingredient newIngredient = new Ingredient(newIngredientId, name, measurement);

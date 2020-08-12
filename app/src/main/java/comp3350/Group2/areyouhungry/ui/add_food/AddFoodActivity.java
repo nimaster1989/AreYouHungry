@@ -67,8 +67,13 @@ public class AddFoodActivity extends AppCompatActivity{
                 favourite  = sharedPreferences.getBoolean("favourite", false);
 
                 String portionSize_Str = sharedPreferences.getString("portion","");
-                if(TextUtils.isDigitsOnly(portionSize_Str) && !TextUtils.isEmpty(portionSize_Str) && portionSize_Str.compareTo("2147483647") <= 0){
-                    portionSize = Integer.parseInt(portionSize_Str);
+                if(TextUtils.isDigitsOnly(portionSize_Str) && !TextUtils.isEmpty(portionSize_Str) && portionSize_Str.length() <= 10){
+                    if(portionSize_Str.length() == 10 && portionSize_Str.compareTo("2147483647") <= 0 ){
+                        portionSize = Integer.parseInt(portionSize_Str);
+                    }
+                    else if (portionSize_Str.length() < 10){
+                        portionSize = Integer.parseInt(portionSize_Str);
+                    }
                 }
                 if(portionSize <= 0){
                     alertMessage += "Please enter a portion size.\n";
@@ -76,8 +81,13 @@ public class AddFoodActivity extends AppCompatActivity{
                 }
 
                 String prepTime_Str = sharedPreferences.getString("preptime","");
-                if(TextUtils.isDigitsOnly(prepTime_Str) && !TextUtils.isEmpty(prepTime_Str) && prepTime_Str.compareTo("2147483647") <= 0){
-                    prepTime = Integer.parseInt(prepTime_Str);
+                if(TextUtils.isDigitsOnly(prepTime_Str) && !TextUtils.isEmpty(prepTime_Str) && prepTime_Str.length() <= 10){
+                    if(prepTime_Str.length() == 10 && prepTime_Str.compareTo("2147483647") <= 0){
+                        prepTime = Integer.parseInt(prepTime_Str);
+                    }
+                    else if (prepTime_Str.length() < 10) {
+                        prepTime = Integer.parseInt(prepTime_Str);
+                    }
                 }
                 if(prepTime <= 0){
                     alertMessage += "Please enter a preparation time.\n";
