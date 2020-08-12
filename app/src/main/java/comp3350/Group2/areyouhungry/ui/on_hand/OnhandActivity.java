@@ -83,7 +83,7 @@ public class OnhandActivity extends AppCompatActivity{
     public static class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener{
 
         ArrayList<String> categoryCriterias;
-        //food ojbect criterias
+        //food object criterias
         ArrayList<String> prepTimeCriterias;
         ArrayList<String> flavourCriterias;
         ArrayList<String> difficutlyCriterias;
