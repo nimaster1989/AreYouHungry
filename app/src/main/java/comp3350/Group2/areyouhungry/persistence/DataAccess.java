@@ -78,4 +78,8 @@ public interface DataAccess{
     String addNewDirection(Direction newDirection);
 
     String addFoodDirection(int foodid, int directionid);
+
+    String addFoodImage(int foodid, String foodURL);
+
+    String getImageByFood(int foodid);
 }

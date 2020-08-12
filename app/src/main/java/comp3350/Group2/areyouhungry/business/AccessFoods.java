@@ -92,6 +92,16 @@ public class AccessFoods{
         int categoryID = getCategoryID(categoryName);
         return dataAccess.addFoodCategory(foodID, categoryID);
     }
+
+    public String getImagebyFood(String foodid){
+        return dataAccess.getImageByFood(Integer.parseInt(foodid));
+
+    }
+
+    public String addFoodImage(String foodid, String foodURL){
+        return dataAccess.addFoodImage(Integer.parseInt(foodid), foodURL);
+    }
+
     /* Definition of duplicate: we assume foods might have same name,
    but not same recipe, we call two foods to be equal if they have same
    name, and same recipe. */

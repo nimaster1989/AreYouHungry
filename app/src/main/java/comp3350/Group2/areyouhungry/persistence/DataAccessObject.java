@@ -766,6 +766,36 @@ public class DataAccessObject implements DataAccess{
         return result;
     }
 
+    public String addFoodImage(int foodid, String foodURL){
+        result = null;
+
+        try{
+            cmdString = "INSERT INTO FOODIMAGE VALUES("+ foodid +",'" + foodURL +"')";
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+
+        return result;
+    }
+
+    public String getImageByFood(int foodid){
+        String imageURL = null;
+        try{
+            cmdString = "SELECT * FROM FOODIMAGE WHERE FOODIMAGE.FOODID = '"+ foodid + "'";
+            rs3 = st3.executeQuery(cmdString);
+            while (rs3.next()){
+                imageURL = rs3.getString("IMAGEURL");
+            }
+            rs3.close();
+        }catch (Exception e){
+            processSQLError(e);
+        }
+        return imageURL;
+    }
+
     public String processSQLError(Exception e){
         String result = "*** SQL Error: " + e.getMessage();
 

@@ -36,6 +36,7 @@ public class PreferredSearchActivity extends AppCompatActivity{
     private TextView textViewEthnicity;
     private ImageView dishImage;
     private Answers answer;
+    private AccessFoods accessFood;
     private Button homeButton;
     private Button recipeButton;
     private FloatingActionButton likeButton;
@@ -51,6 +52,7 @@ public class PreferredSearchActivity extends AppCompatActivity{
         currUser = MainActivity.currentUser;
 
         answer = (Answers) getIntent().getSerializableExtra("Answers");
+        accessFood = new AccessFoods();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferred_search);
         setTitle(getTitle());
@@ -64,20 +66,19 @@ public class PreferredSearchActivity extends AppCompatActivity{
         food = setFood(answer);
 
 
-
         homeButton = findViewById(R.id.returnHomeButton);
-        homeButton.setOnClickListener(new View.OnClickListener(){
+        homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 Intent intent = new Intent(PreferredSearchActivity.this, HomeActivity.class);
                 PreferredSearchActivity.this.startActivity(intent);
             }
         });
 
         recipeButton = findViewById(R.id.viewRecipeButton);
-        recipeButton.setOnClickListener(new View.OnClickListener(){
+        recipeButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 Context context = view.getContext();
 
                 Intent intent = new Intent(context, FoodDetailActivity.class);
