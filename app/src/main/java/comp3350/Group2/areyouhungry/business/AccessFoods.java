@@ -66,6 +66,23 @@ public class AccessFoods{
         return dataAccess.setFoodToFavouriteByUser(user,curr_id,b);
     }
 
+    public boolean getFoodLikedByUser(User user,Food food){
+        return dataAccess.getFoodLikedByUser(user,food);
+    }
+
+
+    public String setFoodLikedByUser(User user,String curr_id, boolean b){
+        return dataAccess.setFoodToLikedByUser(user,curr_id,b);
+    }
+
+    public boolean getFoodDislikedByUser(User user,Food food){
+        return dataAccess.getFoodDislikedByUser(user,food);
+    }
+
+    public String setFoodDislikedByUser(User user,String curr_id, boolean b){
+        return dataAccess.setFoodToDislikedByUser(user,curr_id,b);
+    }
+
     public String addFood(Food addedFood){
         return dataAccess.addFood(addedFood);
     }
