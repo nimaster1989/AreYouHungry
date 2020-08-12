@@ -66,7 +66,7 @@ public class BusinessPersistenceSeamTest extends TestCase{
         ArrayList<Ingredient> ingredientList = new ArrayList<>();
 
         //add food
-        Food testFood = new Food(7,"testFood",1,10,"Spicy","Hard","Canadian");
+        Food testFood = new Food(8,"testFood",1,10,"Spicy","Hard","Canadian");
         accessFoods.addFood(testFood);
 
         //get food
@@ -165,4 +165,5 @@ public class BusinessPersistenceSeamTest extends TestCase{
         assertEquals(userList.size(),4);
         Services.closeDataAccess();
     }
+
 }
