@@ -388,6 +388,46 @@ public class DataAccessObject implements DataAccess{
         return result;
     }
 
+    public String setFoodToLikedByUser(User user, String curr_id, boolean b){
+        String values;
+        cmdString = "";
+        result = null;
+
+        try{
+            if(b){
+                cmdString = "INSERT INTO USERSLIKED VALUES(" + user.getUserID() + "," + curr_id + ")";
+            }else{
+                cmdString = "DELETE FROM USERSLIKED WHERE USERID = '"+user.getUserID()+"' AND FOODID = '"+curr_id+"'";
+            }
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+
+        return result;
+    }
+    public String setFoodToDislikedByUser(User user, String curr_id, boolean b){
+        String values;
+        cmdString = "";
+        result = null;
+
+        try{
+            if(b){
+                cmdString = "INSERT INTO USERSDISLIKED VALUES(" + user.getUserID() + "," + curr_id + ")";
+            }else{
+                cmdString = "DELETE FROM USERSDISLIKED WHERE USERID = '"+user.getUserID()+"' AND FOODID = '"+curr_id+"'";
+            }
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+
+        return result;
+    }
     public boolean getFoodFavByUser(User user, Food food){
         Boolean ret = false;
 
@@ -406,6 +446,40 @@ public class DataAccessObject implements DataAccess{
         return ret;
     }
 
+    public boolean getFoodLikedByUser(User user, Food food){
+        Boolean ret = false;
+
+        try{
+            cmdString = "SELECT * FROM USERSLIKED WHERE USERID = '"+user.getUserID()+"' AND FOODID = '"+food.getFoodID()+"'";
+            rs5 = st3.executeQuery(cmdString);
+            if (rs5.next()){
+                ret = true;
+            }else
+                ret = false;
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+
+        return ret;
+    }
+    public boolean getFoodDislikedByUser(User user, Food food){
+        Boolean ret = false;
+
+        try{
+            cmdString = "SELECT * FROM USERSDISLIKED WHERE USERID = '"+user.getUserID()+"' AND FOODID = '"+food.getFoodID()+"'";
+            rs5 = st3.executeQuery(cmdString);
+            if (rs5.next()){
+                ret = true;
+            }else
+                ret = false;
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+
+        return ret;
+    }
     public int getCategoryIDbyName(String categoryName){
         int myID = -1;
         result = null;

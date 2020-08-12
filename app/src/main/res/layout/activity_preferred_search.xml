@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -23,8 +24,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/resultTextView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100sp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="235dp"
         android:text="Spaghetti!!"
         android:textColor="#000000"
         android:textSize="30sp" />
@@ -87,15 +89,27 @@
         android:textColor="#000000"
         android:textSize="30sp" />
 
+    <TextView
+        android:id="@+id/satisfied"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/portionSizeTextView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="100dp"
+        android:text="Satisfied with the suggestion?"
+        android:textColor="#000000"
+        android:textSize="30sp" />
+
     <Button
         android:id="@+id/returnHomeButton"
         android:layout_width="275dp"
         android:layout_height="75dp"
         android:layout_below="@id/ethnicityTextView"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="14dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="133dp"
+        android:layout_marginEnd="19dp"
         android:layout_toEndOf="@+id/viewRecipeButton"
         android:background="#4D00EA"
         android:text="Return Home"
@@ -107,12 +121,34 @@
         android:layout_width="275dp"
         android:layout_height="75dp"
         android:layout_below="@id/ethnicityTextView"
-
         android:layout_marginStart="14dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="133dp"
         android:background="#4D00EA"
         android:text="View Recipe"
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/satisfied"
+        android:layout_gravity="center_vertical|start"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="35dp"
+        android:layout_toStartOf="@+id/dislike"
+        android:src="@drawable/thumb_up" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/dislike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/satisfied"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center_vertical|start"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="222dp"
+        android:src="@drawable/thumb_down"
+        app:backgroundTint="#E35A5A" />
 
 </RelativeLayout>

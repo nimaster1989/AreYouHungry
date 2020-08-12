@@ -9,15 +9,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
+import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.R;
+import comp3350.Group2.areyouhungry.business.AccessFoods;
 import comp3350.Group2.areyouhungry.objects.Answers;
 import comp3350.Group2.areyouhungry.objects.Food;
+import comp3350.Group2.areyouhungry.objects.User;
 import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailActivity;
 import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailFragment;
 import comp3350.Group2.areyouhungry.ui.home.HomeActivity;
 
 
 public class PreferredSearchActivity extends AppCompatActivity{
+    private AccessFoods accessFoods;
+    private User currUser;
 
     private TextView textViewName;
     private TextView textViewDifficulty;
@@ -29,11 +38,18 @@ public class PreferredSearchActivity extends AppCompatActivity{
     private Answers answer;
     private Button homeButton;
     private Button recipeButton;
-
+    private FloatingActionButton likeButton;
+    private FloatingActionButton dislikeButton;
     private String foodId = "1";
-
+    private boolean liked;
+    private boolean disliked;
+    private Food food;
     @Override
     protected void onCreate(Bundle savedInstanceState){
+
+        accessFoods = new AccessFoods();
+        currUser = MainActivity.currentUser;
+
         answer = (Answers) getIntent().getSerializableExtra("Answers");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferred_search);
@@ -45,7 +61,7 @@ public class PreferredSearchActivity extends AppCompatActivity{
         textViewServes = findViewById(R.id.portionSizeTextView);
         textViewEthnicity = findViewById(R.id.ethnicityTextView);
         dishImage = findViewById(R.id.image);
-        setFood(answer);
+        food = setFood(answer);
 
 
 
@@ -70,9 +86,42 @@ public class PreferredSearchActivity extends AppCompatActivity{
             }
         });
 
+        likeButton = findViewById(R.id.like);
+        likeButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                liked = accessFoods.getFoodLikedByUser(currUser,food);
+                if(!liked) {
+                    accessFoods.setFoodLikedByUser(currUser, food.getFoodID(), true);
+                    accessFoods.setFoodDislikedByUser(currUser, food.getFoodID(), false);
+                    Snackbar.make(view, "You Liked This Food!", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }else{
+                    Snackbar.make(view, "You've Already Liked This Food!", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+            }
+        });
+
+        dislikeButton = findViewById(R.id.dislike);
+        dislikeButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                disliked = accessFoods.getFoodDislikedByUser(currUser,food);
+                if(!disliked) {
+                    accessFoods.setFoodDislikedByUser(currUser, food.getFoodID(), true);
+                    accessFoods.setFoodLikedByUser(currUser, food.getFoodID(), false);
+                    Snackbar.make(view, "You Disliked This Food!", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }else{
+                    Snackbar.make(view, "You've Already Disliked This Food!", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+            }
+        });
     }
 
-        private void setFood(Answers answers){
+        private Food setFood(Answers answers){
             Food food = answers.getFoodBasedOnAnswers();
             foodId = food.getFoodID();
             textViewName.setText(food.getFoodName());
@@ -97,5 +146,7 @@ public class PreferredSearchActivity extends AppCompatActivity{
             else if(foodId.equals("6")){
                 dishImage.setImageResource(R.drawable.food6);
             }
+
+            return food;
         }
 }
