@@ -47,7 +47,6 @@ public class DataAccessStub implements DataAccess{
         this(MainActivity.dbName);
     }
 
-
     public void open(String dbPath){
         Food food;
         Categories categories;

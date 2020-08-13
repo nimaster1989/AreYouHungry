@@ -1,8 +1,8 @@
 package comp3350.Group2.areyouhungry.objects;
-
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Food{
+public class Food implements Serializable{
     private int foodID;
     private String foodName;
     private boolean favourite;

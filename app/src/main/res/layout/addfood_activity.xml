@@ -14,14 +14,10 @@
         android:id="@+id/adds"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
     </FrameLayout>
+
+
+
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 
@@ -33,11 +29,13 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="100dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:onClick="addFoodOnClick"
-        android:text="Add"
+        android:text="@string/next_step"
         android:fontFamily="sans-serif"
         android:textColor="#FFFFFF"
-        app:backgroundTint="#4D00EA"
-        app:icon="@android:drawable/ic_input_add"
+
+        app:backgroundTint="@color/colorPrimary"
+        app:icon="@drawable/ic_baseline_arrow_forward_24"
         app:iconTint="#FFFFFF"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
