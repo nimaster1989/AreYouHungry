@@ -25,11 +25,11 @@ public class DataAccessTest extends TestCase{
     public void setUp(){
         System.out.println("Starting Persistence");
         /* Use the following statements to run with the stub database. */
-//         dataAccess = new DataAccessStub();
-//         dataAccess.open("Stub");
+         dataAccess = new DataAccessStub();
+         dataAccess.open("Stub");
         /* or switch to the real database: */
-        dataAccess = new DataAccessObject(MainActivity.dbName);
-        dataAccess.open(MainActivity.getDBPathName());
+//        dataAccess = new DataAccessObject(MainActivity.dbName);
+//        dataAccess.open(MainActivity.getDBPathName());
 }
 
     public void tearDown(){
@@ -83,19 +83,19 @@ public class DataAccessTest extends TestCase{
     }
 
     public void testSetAndDeleteNewUser(){
-        int id = 4;
+        int id = 3;
         String username = "Test User";
         User user1 = new User(id,username);
         User userSet = dataAccess.setNewUser(id,username);
         assertEquals(user1, userSet);
-        dataAccess.deleteUser(4);
+        dataAccess.deleteUser(3);
     }
     public void testSetAndDeleteNewFood(){
-        Food newFood = new Food(150, "Fish and Chip",1,10, "Savory", "Easy", "American");
+        Food newFood = new Food(7, "Fish and Chip",1,10, "Savory", "Easy", "American");
         dataAccess.addFood(newFood);
-        assertEquals(newFood, dataAccess.getFoodFromID("150"));
-        dataAccess.deleteFood(150);
-        assertNull(dataAccess.getFoodFromID("150"));
+        assertEquals(newFood, dataAccess.getFoodFromID("7"));
+        dataAccess.deleteFood(7);
+        assertNull(dataAccess.getFoodFromID("7"));
 
     }
     public void testDuplicateSetNewUser(){

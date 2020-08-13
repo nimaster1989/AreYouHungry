@@ -16,6 +16,7 @@ import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.Ingredient;
 import comp3350.Group2.areyouhungry.objects.User;
 import comp3350.Group2.areyouhungry.persistence.DataAccess;
+import comp3350.Group2.areyouhungry.persistence.DataAccessObject;
 import comp3350.Group2.areyouhungry.tests.persistence.DataAccessStub;
 
 public class BusinessPersistenceSeamTest extends TestCase{
@@ -24,10 +25,10 @@ public class BusinessPersistenceSeamTest extends TestCase{
 
     public void setUp(){
         System.out.println("Starting Persistence");
-        //dataAccess = new DataAccessObject(dbName);
-        //dataAccess.open(MainActivity.getDBPathName());
-        dataAccess = new DataAccessStub(dbName);
+        dataAccess = new DataAccessObject(dbName);
         dataAccess.open(MainActivity.getDBPathName());
+//        dataAccess = new DataAccessStub(dbName);
+//        dataAccess.open(MainActivity.getDBPathName());
     }
     public BusinessPersistenceSeamTest(String arg0){
         super(arg0);
