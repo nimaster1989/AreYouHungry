@@ -261,12 +261,11 @@ public class DataAccessObject implements DataAccess{
     public int getFoodTableRow(){
         int myRow = 0;
         result = null;
-
         try{
-            cmdString = "SELECT * FROM FOODS";
+            cmdString = "SELECT MAX(FOODS.foodID)FROM FOODS";
             rs5 = st3.executeQuery(cmdString);
             while (rs5.next()){
-                myRow ++;
+                myRow = rs5.getInt(1);
             }
             rs5.close();
         }
@@ -306,10 +305,10 @@ public class DataAccessObject implements DataAccess{
         result = null;
         int count = 0;
         try{
-            cmdString = "SELECT * FROM QUESTIONS";
+            cmdString = "SELECT MAX(QUESTIONID) FROM QUESTIONS";
             rs5 = st3.executeQuery(cmdString);
             while(rs5.next()){
-                count++;
+                count = rs5.getInt(1);
             }
             rs5.close();
         }catch (Exception e){
@@ -570,17 +569,72 @@ public class DataAccessObject implements DataAccess{
             result = processSQLError(e);
         }
     }
+    public void deleteIngredient(int ingredientID){
+        String values;
+        cmdString = "";
+        result = null;
 
+        try{
+            cmdString = "DELETE FROM INGREDIENT WHERE INGREDIENTID = '"+ingredientID+"'";
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+    }
+    public void deleteFoodIngredient(int foodID, int ingredientID){
+        String values;
+        cmdString = "";
+        result = null;
+
+        try{
+            cmdString = "DELETE FROM FOODINGREDIENT WHERE FOODID = '"+foodID+"' AND INGREDIENTID = '"+ingredientID+"'";
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+    }
+    public void deleteFoodDirection(int foodID, int directionID){
+        String values;
+        cmdString = "";
+        result = null;
+
+        try{
+            cmdString = "DELETE FROM FOODDIRECTION WHERE FOODID = '"+foodID+"' AND DIRECTIONID = '"+directionID+"'";
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+    }
+    public void deleteDirection(int directionID){
+        String values;
+        cmdString = "";
+        result = null;
+
+        try{
+            cmdString = "DELETE FROM DIRECTION WHERE DIRECTIONID = '"+directionID+"'";
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+    }
     @Override
     public int getIngredientRow(){
         int count = 0;
         result = null;
 
         try{
-            cmdString = "SELECT * FROM INGREDIENT";
+            cmdString = "SELECT MAX(INGREDIENTID) FROM INGREDIENT";
             rs5 = st3.executeQuery(cmdString);
             while(rs5.next()){
-                count++;
+                count = rs5.getInt(1);
             }
             rs5.close();
         }catch (Exception e){
@@ -631,10 +685,10 @@ public class DataAccessObject implements DataAccess{
         result = null;
 
         try{
-            cmdString = "SELECT * FROM DIRECTION";
+            cmdString = "SELECT MAX(DIRECTIONID) FROM DIRECTION";
             rs5 = st3.executeQuery(cmdString);
             while(rs5.next()){
-                count++;
+                count = rs5.getInt(1);
             }
             rs5.close();
         }catch (Exception e){
@@ -830,10 +884,10 @@ public class DataAccessObject implements DataAccess{
         result = null;
 
         try{
-            cmdString = "SELECT * FROM USERS";
+            cmdString = "SELECT MAX(USERID) FROM USERS";
             rs5 = st3.executeQuery(cmdString);
             while(rs5.next()){
-                count++;
+                count = rs5.getInt(1);
             }
             rs5.close();
         }catch (Exception e){

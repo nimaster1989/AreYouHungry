@@ -38,7 +38,7 @@ public class ReceiveRecipeSuggestionTest{
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void receiveRecipeSuggestion(){
+    public void addFoodTest(){
         ViewInteraction appCompatButton = onView(
                 allOf(ViewMatchers.withId(R.id.specifiedFoodButton), withText("Find your food!"),
                         childAtPosition(
@@ -46,10 +46,9 @@ public class ReceiveRecipeSuggestionTest{
                                         childAtPosition(
                                                 withId(android.R.id.content),
                                                 0)),
-                                0),
+                                1),
                         isDisplayed()));
         appCompatButton.perform(click());
-
 
         try{
             Thread.sleep(700);
@@ -58,13 +57,13 @@ public class ReceiveRecipeSuggestionTest{
         }
 
         ViewInteraction appCompatRadioButton = onView(
-                allOf(withId(R.id.radio_button2), withText("Ants are like little chips... right?"),
+                allOf(withId(R.id.radio_button4), withText("Ahhh A nice fresh box!"),
                         childAtPosition(
                                 allOf(withId(R.id.radio_group),
                                         childAtPosition(
                                                 withClassName(is("android.widget.RelativeLayout")),
                                                 1)),
-                                1),
+                                3),
                         isDisplayed()));
         appCompatRadioButton.perform(click());
 
@@ -121,13 +120,13 @@ public class ReceiveRecipeSuggestionTest{
         appCompatButton4.perform(click());
 
         ViewInteraction appCompatRadioButton4 = onView(
-                allOf(withId(R.id.radio_button4), withText("The thing the Rat in Ratatouille made"),
+                allOf(withId(R.id.radio_button3), withText("Something that requires to be cooked to a certain temperature"),
                         childAtPosition(
                                 allOf(withId(R.id.radio_group),
                                         childAtPosition(
                                                 withClassName(is("android.widget.RelativeLayout")),
                                                 1)),
-                                3),
+                                2),
                         isDisplayed()));
         appCompatRadioButton4.perform(click());
 
@@ -142,13 +141,13 @@ public class ReceiveRecipeSuggestionTest{
         appCompatButton5.perform(click());
 
         ViewInteraction appCompatRadioButton5 = onView(
-                allOf(withId(R.id.radio_button2), withText("Cant have a high amount of covid cases if we dont test land"),
+                allOf(withId(R.id.radio_button1), withText("All their philosphers become stone!"),
                         childAtPosition(
                                 allOf(withId(R.id.radio_group),
                                         childAtPosition(
                                                 withClassName(is("android.widget.RelativeLayout")),
                                                 1)),
-                                1),
+                                0),
                         isDisplayed()));
         appCompatRadioButton5.perform(click());
 
@@ -162,7 +161,6 @@ public class ReceiveRecipeSuggestionTest{
                         isDisplayed()));
         appCompatButton6.perform(click());
 
-
         try{
             Thread.sleep(700);
         } catch (InterruptedException e){
@@ -175,7 +173,7 @@ public class ReceiveRecipeSuggestionTest{
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                9),
+                                10),
                         isDisplayed()));
         appCompatButton7.perform(click());
     }

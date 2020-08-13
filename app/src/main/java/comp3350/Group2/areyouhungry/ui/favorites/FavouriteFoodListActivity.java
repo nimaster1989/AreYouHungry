@@ -82,6 +82,9 @@ public class FavouriteFoodListActivity extends AppCompatActivity{
                         break;
 
                     case R.id.navigation_favorites:
+                        Intent myself = new Intent(FavouriteFoodListActivity.this, FavouriteFoodListActivity.class);
+                        startActivity(myself);
+                        finish();
                         break;
 
                     case R.id.navigation_more:
@@ -120,7 +123,6 @@ public class FavouriteFoodListActivity extends AppCompatActivity{
                     Context context = view.getContext();
                     Intent intent = new Intent(context, FoodDetailActivity.class);
                     intent.putExtra(FoodDetailFragment.ARG_ITEM_ID, food.getFoodID());
-
                     context.startActivity(intent);
                 }
             }

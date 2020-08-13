@@ -123,8 +123,6 @@ public class DataAccessStub implements DataAccess{
         users.add(user);
         user = new User(2,"sample user");
         users.add(user);
-        user = new User(3,"new user");
-        users.add(user);
 
         questions = new ArrayList<Question>();
         question = new Question("You are on fear factor and the following items are presented for you to feast on. A blue substance you cant tell is bleach or gatorade, An Ant Hill, Hot Rocks, or a Mystery Box the host insists is much worse.What do you choose?", "Its worth the risk for sweet sweet Gatorade", "Ants are like little chips... right?", "Mmmmm hot rocks go brrrr", "Ahhh A nice fresh box!");
@@ -485,20 +483,75 @@ public class DataAccessStub implements DataAccess{
         }
     }
     @Override
+    public void deleteIngredient(int ingredientID){
+        Iterator<Ingredient> ingredientIterator = ingredients.iterator(); /* This iterates through the foods list. */
+        Ingredient ingredient;
+        while(ingredientIterator.hasNext()){
+            ingredient = ingredientIterator.next();
+            if(ingredient.getIngredientID() == ingredientID){
+                ingredientIterator.remove();
+                break;
+            }
+        }
+    }
+    @Override
+    public void deleteDirection(int directionID){
+        Iterator<Direction> directionIterator = directions.iterator(); /* This iterates through the foods list. */
+        Direction direction;
+        while(directionIterator.hasNext()){
+            direction = directionIterator.next();
+            if(direction.getDirectionID() == directionID){
+                directionIterator.remove();
+                break;
+            }
+        }
+    }
+    @Override
+    public void deleteFoodIngredient(int foodID, int ingredientID){
+        Iterator<FoodIngredient> foodIngredientIterator = foodIngredients.iterator(); /* This iterates through the foods list. */
+        FoodIngredient fi;
+        while(foodIngredientIterator.hasNext()){
+            fi = foodIngredientIterator.next();
+            if(Integer.parseInt(fi.getFood().getFoodID()) == foodID){
+                foodIngredientIterator.remove();
+                break;
+            }
+        }
+    }
+    @Override
+    public void deleteFoodDirection(int foodID, int directionID){
+        Iterator<FoodDirection> foodDirectionIterator = foodDirections.iterator(); /* This iterates through the foods list. */
+        FoodDirection fd;
+        while(foodDirectionIterator.hasNext()){
+            fd = foodDirectionIterator.next();
+            if(Integer.parseInt(fd.getFood().getFoodID()) == foodID){
+                foodDirectionIterator.remove();
+                break;
+            }
+        }
+    }
+
+    @Override
     public int getIngredientRow(){
         return ingredients.size();
     }
 
     @Override
     public String addFoodIngredient(int foodid, int ingredientid){
-        Iterator<FoodIngredient> foodIngredientIterator = foodIngredients.iterator();
-        FoodIngredient foodIngredient;
-        while(foodIngredientIterator.hasNext()){
-            foodIngredient = foodIngredientIterator.next();
-            if(foodIngredient.getFood().getFoodID().equals(String.valueOf(foodid))){
-                foodIngredient.getIngredients().add(ingredients.get(ingredientid-1));
+        ArrayList<Ingredient> tempIngredient = new ArrayList<>();
+        Iterator<Ingredient> ingredientsIterator = ingredients.iterator();
+        Ingredient ingredient;
+        int index = 0;
+        while(ingredientsIterator.hasNext()){
+            ingredient = ingredientsIterator.next();
+            if(ingredient.getIngredientID() == ingredientid){
+                tempIngredient.add(ingredients.get(index));
+                FoodIngredient foodIngredient = new FoodIngredient(foods.get(foodid-1),tempIngredient);
+                foodIngredients.add(foodIngredient);
             }
+            index++;
         }
+
         return null;
     }
 
@@ -525,14 +578,20 @@ public class DataAccessStub implements DataAccess{
 
     @Override
     public String addFoodDirection(int foodid, int directionid){
-        Iterator<FoodDirection> foodDirectionIterator = foodDirections.iterator();
-        FoodDirection foodDirection;
-        while(foodDirectionIterator.hasNext()){
-            foodDirection = foodDirectionIterator.next();
-            if(foodDirection.getFood().getFoodID().equals(String.valueOf(foodid))){
-                foodDirection.getDirections().add(directions.get(directionid-1));
+        ArrayList<Direction> tempDirection = new ArrayList<>();
+        Iterator<Direction> directionsIterator = directions.iterator();
+        Direction direction;
+        int index = 0;
+        while(directionsIterator.hasNext()){
+            direction = directionsIterator.next();
+            if(direction.getDirectionID() == directionid){
+                tempDirection.add(directions.get(index));
+                FoodDirection foodDirection = new FoodDirection(foods.get(foodid-1),tempDirection);
+                foodDirections.add(foodDirection);
             }
+            index++;
         }
+
         return null;
     }
 
@@ -790,24 +849,9 @@ public class DataAccessStub implements DataAccess{
         return imageURL.get(foodid);
     }
 
-    @Override
+
     public int getTotalUser(){
     return users.size();
-    }
-    public String setFoodToLikedByUser(User user,String curr_id, boolean b){
-    return null;
-    }
-
-    public String setFoodToDislikedByUser(User user,String curr_id, boolean b){
-    return null;
-    }
-
-    public boolean getFoodLikedByUser(User user, Food food){
-        return false;
-    }
-
-    public boolean getFoodDislikedByUser(User user, Food food){
-        return false;
     }
 
 }

@@ -2,7 +2,6 @@ package comp3350.Group2.areyouhungry.ui.on_hand;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
@@ -13,20 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.R;
 import comp3350.Group2.areyouhungry.business.AccessFoods;
 import comp3350.Group2.areyouhungry.objects.Food;
-import comp3350.Group2.areyouhungry.objects.User;
 import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailActivity;
 import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailFragment;
-import comp3350.Group2.areyouhungry.ui.all_food.FoodListActivity;
-import comp3350.Group2.areyouhungry.ui.favorites.FavouriteFoodListActivity;
 
 public class SearchResultActivity extends AppCompatActivity{
 

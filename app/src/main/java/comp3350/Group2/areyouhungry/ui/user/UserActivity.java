@@ -221,4 +221,11 @@ public class UserActivity extends AppCompatActivity{
             MainActivity.currentUser = newUser;
         }
     }
+    @Override
+    public void onBackPressed(){
+        Intent more = new Intent(UserActivity.this,MoreActivity.class);
+        startActivity(more);
+        finish();
+    }
+
 }
