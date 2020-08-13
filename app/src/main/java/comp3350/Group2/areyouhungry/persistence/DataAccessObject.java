@@ -128,6 +128,8 @@ public class DataAccessObject implements DataAccess{
         return userByID;
     }
 
+
+
     public String getFoodSequential(List<Food> foodResult){
         Food food;
         int myFoodID,myPrepTime,myPortionSize;
@@ -155,6 +157,7 @@ public class DataAccessObject implements DataAccess{
 
         return result;
     }
+
 
     private void fillFoodObject(String cmdString,List<Food> foodResult){
         String myID="",myFoodName="",myFlavour="",myDifficulty="",myEthnicity="",myIngredientName="",myIngredientMeasure="",myIngredientId="",myDirectionID="",myDirectionDesc="",myDirectionStep="";
@@ -850,11 +853,11 @@ public class DataAccessObject implements DataAccess{
         int myIngredientID;
         String myIngredientName,myIngredientMeasurement;
         result = null;
-
         try{
             cmdString = "SELECT INGREDIENT.* FROM INGREDIENT,FOODINGREDIENT WHERE FOODINGREDIENT.INGREDIENTID = INGREDIENT.INGREDIENTID AND FOODINGREDIENT.FOODID = '"+food.getFoodID()+"'";
             rs3 = st2.executeQuery(cmdString);
             while (rs3.next()){
+
                 myIngredientID = rs3.getInt("INGREDIENTID");
                 myIngredientName = rs3.getString("INGREDIENTNAME");
                 myIngredientMeasurement = rs3.getString("INGREDIENTMEASUREMENT");

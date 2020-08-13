@@ -85,7 +85,7 @@ public class AddFoodActivity extends AppCompatActivity{
                     if(prepTime_Str.length() == 10 && prepTime_Str.compareTo("2147483647") <= 0){
                         prepTime = Integer.parseInt(prepTime_Str);
                     }
-                    else if (prepTime_Str.length() < 10) {
+                    else if (prepTime_Str.length() < 10){
                         prepTime = Integer.parseInt(prepTime_Str);
                     }
                 }

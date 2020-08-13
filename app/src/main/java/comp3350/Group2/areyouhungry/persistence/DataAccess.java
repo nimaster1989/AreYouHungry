@@ -58,6 +58,8 @@ public interface DataAccess{
 
     String setFoodToDislikedByUser(User user,String curr_id, boolean b);
 
+
+
     User setNewUser(int userID, String username);
 
     FoodCategory addFoodCategory(int foodID, int categoryID);

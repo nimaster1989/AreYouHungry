@@ -30,7 +30,7 @@ public class DataAccessTest extends TestCase{
         /* or switch to the real database: */
         dataAccess = new DataAccessObject(MainActivity.dbName);
         dataAccess.open(MainActivity.getDBPathName());
-    }
+}
 
     public void tearDown(){
         System.out.println("Finished Persistence");
