@@ -21,6 +21,7 @@ public class PersistenceDatabaseSeam extends TestCase{
     public void testSetFoodToFavouriteByUser(){
         Services.closeDataAccess();
         Services.createDataAccess(new DataAccessObject(MainActivity.dbName));
+
         dataAccess = Services.getDataAccess(MainActivity.dbName);
         Food newFood = new Food(7,"testFood",1,1,"Spicy","Easy","American");
         dataAccess.addFood(newFood);
@@ -34,7 +35,8 @@ public class PersistenceDatabaseSeam extends TestCase{
 
         dataAccess.setFoodToFavouriteByUser(newUser,String.valueOf(newFood.getFoodID()),false);
         assertFalse(dataAccess.getFoodFavByUser(newUser,newFood));
-
+        dataAccess.deleteFood(7);
+        dataAccess.deleteUser(777);
         Services.closeDataAccess();
     }
 

@@ -40,7 +40,7 @@ public class ReceiveRecipeSuggestionTest{
     @Test
     public void receiveRecipeSuggestion(){
         ViewInteraction appCompatButton = onView(
-                allOf(ViewMatchers.withId(R.id.specified_Food_Button), withText("Find your food!"),
+                allOf(ViewMatchers.withId(R.id.specifiedFoodButton), withText("Find your food!"),
                         childAtPosition(
                                 allOf(withId(R.id.container),
                                         childAtPosition(

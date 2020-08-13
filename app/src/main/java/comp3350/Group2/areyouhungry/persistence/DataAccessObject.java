@@ -556,6 +556,20 @@ public class DataAccessObject implements DataAccess{
             result = processSQLError(e);
         }
     }
+    public void deleteFood(int foodID){
+        String values;
+        cmdString = "";
+        result = null;
+
+        try{
+            cmdString = "DELETE FROM FOODS WHERE FOODID = '"+foodID+"'";
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+    }
 
     @Override
     public int getIngredientRow(){

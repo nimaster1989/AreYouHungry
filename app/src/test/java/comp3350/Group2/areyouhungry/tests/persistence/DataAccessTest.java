@@ -91,7 +91,14 @@ public class DataAccessTest extends TestCase{
         assertEquals(user1, userSet);
 
     }
+    public void testSetAndDeleteNewFood(){
+        Food newFood = new Food(150, "Fish and Chip",1,10, "Savory", "Easy", "American");
+        dataAccess.addFood(newFood);
+        assertEquals(newFood, dataAccess.getFoodFromID("150"));
+        dataAccess.deleteFood(150);
+        assertNull(dataAccess.getFoodFromID("150"));
 
+    }
     public void testDuplicateSetNewUser(){
         int id = 4;
         String username = "Test User";
