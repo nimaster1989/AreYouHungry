@@ -6,6 +6,14 @@ Tested on: Nexus 7 API 23 Running Marshmallow Android 6 x86
 
 Github Repo: https://github.com/nimaster1989/AreYouHungry
 
+External Resources:
+    Glide:
+        We used this for adding images to the food when we add a new food.
+        Link: https://github.com/bumptech/glide
+    Espresso:
+        We used this for our automated acceptance tests.
+        Link: https://developer.android.com/training/testing/espresso
+
 How to run:
     Open the project in android studio. Download a Nexus 7 tablet emulator with Marshmallow on it.
     Before you run it make sure it says app to the left where it says what emulator you are using.
@@ -69,10 +77,15 @@ Major changes in this iteration and where to find them:
        how certain fields are entered to be less restrictive. We also added the ability to remove
        ingredients and instructions when they are added just in case an error is made.
     3. We added a search by criteria feature, which allows the user to search food in our application
-       by various criteria for our existing foods in the database.
-
+       by various criteria for our existing foods in the database. The search also uses fuzzy search
+       which has the ability to match your input text with some ingredient, even if you spell it
+       wrong or its not the exact same.
+    4. We added the feature to like our dislike a food suggestion. This allows the user to provide
+       feedback for us whether the app is working correctly or not by either liking or disliking
+       a food suggestion.
+    5. We did some visual changes to the application like giving it a picture for the app itself.
+       And changes the colours as well throughout the application to make it feel more clean.
 
 Changes in this iteration that we were unable to implement:
     1. We have not added any feature to sort any of the foods. Whether it be favourites or from the
        search results.
-    2. We also didn't have add the feature to search for similar foods as the one suggested.
