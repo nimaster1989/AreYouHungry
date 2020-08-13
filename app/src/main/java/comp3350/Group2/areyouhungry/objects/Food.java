@@ -1,5 +1,7 @@
 package comp3350.Group2.areyouhungry.objects;
 
+import java.util.Objects;
+
 public class Food{
     private int foodID;
     private String foodName;
@@ -93,21 +95,21 @@ public class Food{
         return favourite;
     }
 
-    public boolean equals(Object otherObject){
-        boolean equal = false;
-        if(otherObject instanceof Food){
-            Food otherFood = (Food)otherObject;
-            if(foodID == Integer.parseInt(otherFood.getFoodID())){
-                equal = true;
-            }
-        }
-        return equal;
-    }
-
     public String toString(){
         return "ID: " + foodID + "\n  FoodName: " + foodName + "\n  Favourited: " + favourite + "\n  PortionSize: " + portionSize + "\n  PrepTime: "+ prepTime + "\n  Flavour: " + flavour + "\n  Difficulty: " + difficulty + "\n  Ethnicity: " + ethnicity+"\n";
     }
 
+    @Override
+    public boolean equals(Object o){
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Food food = (Food) o;
+        return this.getFoodID().equals(food.getFoodID());
+    }
 
-
+    //use for hashset
+    @Override
+    public int hashCode(){
+        return Objects.hash(foodID, foodName, favourite, portionSize, prepTime, flavour, difficulty, ethnicity);
+    }
 }

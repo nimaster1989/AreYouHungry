@@ -91,12 +91,23 @@ public class FoodDetailFragment extends Fragment{
                         });
 
             }
-
             AccessIngredients ai = new AccessIngredients();
             AccessDirections ad = new AccessDirections();
 
             List<Direction> directions = new ArrayList<>();
             List<Ingredient> ingredients = new ArrayList<>();
+            SpannableString foodTitle = new SpannableString("Info:\n");
+            foodTitle.setSpan(new StyleSpan(Typeface.BOLD), 0, foodTitle.length(), Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+            foodTitle.setSpan(new AbsoluteSizeSpan(64), 0, foodTitle.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+            String foodInfo = "Portion size: ";
+            if(theFood.getPortionSize() > 1){
+                foodInfo += theFood.getPortionSize() + " people";
+            }
+            else{
+                foodInfo += theFood.getPortionSize() + " person";
+            }
+
+            foodInfo += "\nPrep Time: " + theFood.getPrepTime() + " minutes\nFlavour: " + theFood.getFlavour() + "\nDifficulty: " + theFood.getDifficulty() + "\nEthnicity: " + theFood.getEthnicity() + "\n\n";
 
             ad.getDirection(theFood, directions);
             ai.getIngredient(theFood, ingredients);
@@ -121,7 +132,7 @@ public class FoodDetailFragment extends Fragment{
                 theDirections = theDirections + currDirection.getStepNumber() + ". "+currDirection.getDirectionDescription()+ "\n\n";
             }
 
-            CharSequence finalText = TextUtils.concat(ingredientsTitle, theIngredients, directionsTitle, theDirections);
+            CharSequence finalText = TextUtils.concat(foodTitle, foodInfo, ingredientsTitle, theIngredients, directionsTitle, theDirections);
             ((TextView) rootView.findViewById(R.id.food_detail)).setText(finalText);
         }
 

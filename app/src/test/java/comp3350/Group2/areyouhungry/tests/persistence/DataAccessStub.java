@@ -522,6 +522,49 @@ public class DataAccessStub implements DataAccess{
         return null;
     }
 
+    @Override
+    public String getIngredientSequential(List<Ingredient> ingredientsList){
+        ingredientsList.clear();
+        ingredientsList.addAll(this.ingredients);
+        return null;
+    }
+
+    @Override
+    public String searchFoodByCriteriaLists(ArrayList<String> prepTimeCriterias, ArrayList<String> flavourCriterias, ArrayList<String> difficutlyCriterias, ArrayList<String> ethnicityCriterias, ArrayList<Food> foodResult){
+        Iterator<Food> foodIterator = foods.iterator();
+        Food food;
+        while(foodIterator.hasNext()){
+            food = foodIterator.next();
+            if(prepTimeCriterias.contains(String.valueOf(food.getPrepTime())) && flavourCriterias.contains(food.getFlavour()) && difficutlyCriterias.contains(food.getDifficulty())&& ethnicityCriterias.contains(food.getEthnicity())){
+                foodResult.add(food);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String getFoodSequentialByCategory(String category, ArrayList<Food> foodCategoryResult){
+        int categoryID = getCategoryIDbyName(category);
+        for(FoodCategory foodCategory:foodCategories){
+            if(foodCategory.getCategoryID() == categoryID){
+                foodCategoryResult.add(getFoodFromID(String.valueOf(foodCategory.getFoodID())));
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String getFoodsSequentialByIngredient(String ingredient, ArrayList<Food> foodIngredientResult){
+        for(FoodIngredient foodIngredient:foodIngredients){
+            for(Ingredient ingredient1:foodIngredient.getIngredients()){
+                if(ingredient1.getIngredientName().equals(ingredient)){
+                    foodIngredientResult.add(getFoodFromID(String.valueOf(ingredient1.getIngredientID())));
+                }
+            }
+        }
+        return null;
+    }
+
 
     @Override
     public int getCategoryIDbyName(String categoryName){

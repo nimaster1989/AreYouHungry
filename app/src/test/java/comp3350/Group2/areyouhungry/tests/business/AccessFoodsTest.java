@@ -1,8 +1,8 @@
 package comp3350.Group2.areyouhungry.tests.business;
 
 import junit.framework.TestCase;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 
@@ -182,6 +182,44 @@ public class AccessFoodsTest extends TestCase{
         }
         Services.closeDataAccess();
     }
+
+    public void testFoodCriteriaSearchEmpty(){
+        Services.closeDataAccess();
+        Services.createDataAccess(new DataAccessStub(dbName));
+        AccessFoods accessFood = new AccessFoods();
+        ArrayList<Food> foodResult = new ArrayList<>();
+        accessFood.foodCriteriaSearch(new ArrayList<String>(),new ArrayList<String>(),new ArrayList<String>(),new ArrayList<String>(),foodResult);
+        assertEquals(foodResult.size(),0);
+    }
+
+    public void testFoodCriteriaSearch(){
+        Services.closeDataAccess();
+        Services.createDataAccess(new DataAccessStub(dbName));
+        AccessFoods accessFood = new AccessFoods();
+        ArrayList<Food> foodResult = new ArrayList<>();
+        ArrayList<String> prepTimeList = new ArrayList<>();
+        prepTimeList.add("10");
+        ArrayList<String> flavourList = new ArrayList<>();
+        flavourList.add("Sweet");
+        ArrayList<String> difficultList = new ArrayList<>();
+        difficultList.add("Easy");
+        ArrayList<String> ethnicityList = new ArrayList<>();
+        ethnicityList.add("American");
+        accessFood.foodCriteriaSearch(prepTimeList,flavourList,difficultList,ethnicityList,foodResult);
+        assertEquals(foodResult.size(),1);
+        assertEquals(foodResult.get(0).getFoodName(),"Banana Split");
+        Services.closeDataAccess();
+    }
+
+    public void testGetFoodsByCategory(){
+        Services.closeDataAccess();
+        Services.createDataAccess(new DataAccessStub(dbName));
+        AccessFoods accessFoods = new AccessFoods();
+        ArrayList<Food> foodResult = new ArrayList<>();
+        accessFoods.getFoodsByCategory("Grain",foodResult);
+        assertEquals(foodResult.size(),2);
+        assertEquals(foodResult.get(0).getFoodName(),"Spicy Spaghetti");
+        assertEquals(foodResult.get(1).getFoodName(),"Egg Fried Rice");
 
     public void testGetImageByFood(){
         Services.closeDataAccess();

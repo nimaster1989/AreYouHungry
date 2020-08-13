@@ -15,6 +15,7 @@ import comp3350.Group2.areyouhungry.R;
 import comp3350.Group2.areyouhungry.ui.add_food.AddFoodActivity;
 import comp3350.Group2.areyouhungry.ui.favorites.FavouriteFoodListActivity;
 import comp3350.Group2.areyouhungry.ui.more.MoreActivity;
+import comp3350.Group2.areyouhungry.ui.on_hand.OnhandActivity;
 import comp3350.Group2.areyouhungry.ui.preferred.PreferredActivity;
 
 
@@ -59,7 +60,7 @@ public class HomeActivity extends AppCompatActivity{
             }
         });
 
-        specifiedFoodButton = findViewById(R.id.specified_Food_Button);
+        specifiedFoodButton = findViewById(R.id.specifiedFoodButton);
         specifiedFoodButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -76,6 +77,11 @@ public class HomeActivity extends AppCompatActivity{
 
     public void addFoodOnClick(){
         Intent intent = new Intent(this, AddFoodActivity.class);
+        this.startActivity(intent);
+    }
+
+    public void onHandSearchOnClick(View view){
+        Intent intent = new Intent(this, OnhandActivity.class);
         this.startActivity(intent);
     }
 }
