@@ -35,10 +35,12 @@ public class DataAccessStub implements DataAccess{
     private Map<String,Food> Food_map;
     private ArrayList<FoodIngredient> foodIngredients;
     private ArrayList<FoodDirection> foodDirections;
+
     //stub map referencing user_favourite table in the HSQLDB database
     private Map<Integer, String> imageURL;
     private ArrayList<Map<Integer,Integer>>  User_favourite_map_list;
-
+    private ArrayList<Map<Integer,Integer>>  User_liked_map_list;
+    private ArrayList<Map<Integer,Integer>>  User_disliked_map_list;
     public DataAccessStub(String dbName){
         this.dbName = dbName;
     }
@@ -73,7 +75,7 @@ public class DataAccessStub implements DataAccess{
         foods.add(food);
         imageURL.put(3, "food3");
         Food_map.put(String.valueOf(food.getFoodID()),food);
-        food = new Food(4, "Classic Cheesecake",7,40, "Sweet", "Hard", "American");
+        food = new Food(4, "Classic Cheesecake",7,120, "Sweet", "Hard", "American");
         foods.add(food);
         imageURL.put(4, "food4");
         Food_map.put(String.valueOf(food.getFoodID()),food);
@@ -369,6 +371,8 @@ public class DataAccessStub implements DataAccess{
         tempDirection.clear();
 
         User_favourite_map_list = new ArrayList<Map<Integer,Integer>>();
+        User_liked_map_list = new ArrayList<Map<Integer,Integer>>();
+        User_disliked_map_list = new ArrayList<Map<Integer,Integer>>();
     }
 
 
@@ -468,7 +472,18 @@ public class DataAccessStub implements DataAccess{
             }
         }
     }
-
+    @Override
+    public void deleteFood(int foodID){
+        Iterator<Food> foodIterator = foods.iterator(); /* This iterates through the foods list. */
+        Food food;
+        while(foodIterator.hasNext()){
+            food = foodIterator.next();
+            if(Integer.parseInt(food.getFoodID()) == foodID){
+                foodIterator.remove();
+                break;
+            }
+        }
+    }
     @Override
     public int getIngredientRow(){
         return ingredients.size();
@@ -529,12 +544,12 @@ public class DataAccessStub implements DataAccess{
     }
 
     @Override
-    public String searchFoodByCriteriaLists(ArrayList<String> prepTimeCriterias, ArrayList<String> flavourCriterias, ArrayList<String> difficutlyCriterias, ArrayList<String> ethnicityCriterias, ArrayList<Food> foodResult){
+    public String searchFoodByCriteriaLists(ArrayList<String> totalTimeCriterias, ArrayList<String> flavourCriterias, ArrayList<String> difficutlyCriterias, ArrayList<String> ethnicityCriterias, ArrayList<Food> foodResult){
         Iterator<Food> foodIterator = foods.iterator();
         Food food;
         while(foodIterator.hasNext()){
             food = foodIterator.next();
-            if(prepTimeCriterias.contains(String.valueOf(food.getPrepTime())) && flavourCriterias.contains(food.getFlavour()) && difficutlyCriterias.contains(food.getDifficulty())&& ethnicityCriterias.contains(food.getEthnicity())){
+            if(totalTimeCriterias.contains(String.valueOf(food.getTotalTime())) && flavourCriterias.contains(food.getFlavour()) && difficutlyCriterias.contains(food.getDifficulty())&& ethnicityCriterias.contains(food.getEthnicity())){
                 foodResult.add(food);
             }
         }
@@ -631,9 +646,82 @@ public class DataAccessStub implements DataAccess{
         User_favourite_map_list.add(map);
         return null;
     }
-
+    //todo make tests for this
+    public String setFoodToLikedByUser(User user, String curr_id, boolean b){
+        Iterator<Map<Integer,Integer>> mapIterator = User_liked_map_list.iterator(); /* This iterates through the foods list. */
+        Map<Integer,Integer> map;
+        Food food;
+        int userID = user.getUserID();
+        int foodID = Integer.parseInt(curr_id);
+        while(mapIterator.hasNext()){
+            map = mapIterator.next();
+            if(map.containsKey(userID) && ((int)map.get(userID)) == (foodID)){
+                if(b){
+                    return null;
+                }else{
+                    mapIterator.remove();
+                    return null;
+                }
+            }
+        }
+        map = new HashMap<>();
+        map.put(userID,foodID);
+        User_liked_map_list.add(map);
+        return null;
+    }
+    //todo make tests for this
+    public String setFoodToDislikedByUser(User user, String curr_id, boolean b){
+        Iterator<Map<Integer,Integer>> mapIterator = User_disliked_map_list.iterator(); /* This iterates through the foods list. */
+        Map<Integer,Integer> map;
+        Food food;
+        int userID = user.getUserID();
+        int foodID = Integer.parseInt(curr_id);
+        while(mapIterator.hasNext()){
+            map = mapIterator.next();
+            if(map.containsKey(userID) && ((int)map.get(userID)) == (foodID)){
+                if(b){
+                    return null;
+                }else{
+                    mapIterator.remove();
+                    return null;
+                }
+            }
+        }
+        map = new HashMap<>();
+        map.put(userID,foodID);
+        User_disliked_map_list.add(map);
+        return null;
+    }
     public boolean getFoodFavByUser(User user, Food food){
         Iterator<Map<Integer,Integer>> mapIterator = User_favourite_map_list.iterator(); /* This iterates through the foods list. */
+        Map<Integer,Integer> map;
+        int userID = user.getUserID();
+        int foodID = Integer.parseInt(food.getFoodID());
+        while(mapIterator.hasNext()){
+            map = mapIterator.next();
+            if(map.containsKey(userID) && ((int)map.get(userID)) == (foodID)){
+                return true;
+            }
+        }
+        return false;
+    }
+    //todo make tests for this
+    public boolean getFoodLikedByUser(User user, Food food){
+        Iterator<Map<Integer,Integer>> mapIterator = User_liked_map_list.iterator(); /* This iterates through the foods list. */
+        Map<Integer,Integer> map;
+        int userID = user.getUserID();
+        int foodID = Integer.parseInt(food.getFoodID());
+        while(mapIterator.hasNext()){
+            map = mapIterator.next();
+            if(map.containsKey(userID) && ((int)map.get(userID)) == (foodID)){
+                return true;
+            }
+        }
+        return false;
+    }
+    //todo make tests for this
+    public boolean getFoodDislikedByUser(User user, Food food){
+        Iterator<Map<Integer,Integer>> mapIterator = User_disliked_map_list.iterator(); /* This iterates through the foods list. */
         Map<Integer,Integer> map;
         int userID = user.getUserID();
         int foodID = Integer.parseInt(food.getFoodID());

@@ -70,6 +70,8 @@ public interface DataAccess{
 
     void deleteUser(int userID);
 
+    void deleteFood(int foodID);
+
     int getIngredientRow();
 
     String addFoodIngredient(int foodid, int ingredientid);
@@ -84,7 +86,7 @@ public interface DataAccess{
 
     String getIngredientSequential(List<Ingredient> ingredients);
 
-    String searchFoodByCriteriaLists(ArrayList<String> prepTimeCriterias, ArrayList<String> flavourCriterias, ArrayList<String> difficutlyCriterias, ArrayList<String> ethnicityCriterias, ArrayList<Food> foodResult);
+    String searchFoodByCriteriaLists(ArrayList<String> totalTimeCriterias, ArrayList<String> flavourCriterias, ArrayList<String> difficutlyCriterias, ArrayList<String> ethnicityCriterias, ArrayList<Food> foodResult);
 
     String getFoodSequentialByCategory(String category, ArrayList<Food> foodCategoryResult);
 
@@ -93,4 +95,6 @@ public interface DataAccess{
     String addFoodImage(int foodid, String foodURL);
 
     String getImageByFood(int foodid);
+
+
 }
