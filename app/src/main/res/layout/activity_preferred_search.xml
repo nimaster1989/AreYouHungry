@@ -111,7 +111,7 @@
         android:layout_marginTop="133dp"
         android:layout_marginEnd="19dp"
         android:layout_toEndOf="@+id/viewRecipeButton"
-        android:background="#4D00EA"
+        android:background="@color/colorPrimary"
         android:text="Return Home"
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
@@ -123,7 +123,7 @@
         android:layout_below="@id/ethnicityTextView"
         android:layout_marginStart="14dp"
         android:layout_marginTop="133dp"
-        android:background="#4D00EA"
+        android:background="@color/colorPrimary"
         android:text="View Recipe"
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
