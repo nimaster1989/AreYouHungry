@@ -211,7 +211,7 @@ public class AccessFoodsTest extends TestCase{
         Services.closeDataAccess();
     }
 
-    public void testGetFoodsByCategory() {
+    public void testGetFoodsByCategory(){
         Services.closeDataAccess();
         Services.createDataAccess(new DataAccessStub(dbName));
         AccessFoods accessFoods = new AccessFoods();

@@ -89,7 +89,7 @@ public class BusinessPersistenceSeamTest extends TestCase{
 
         int matchedId = 0;
         ListIterator<Ingredient> ingredientListIterator = ingredientList.listIterator();
-        while (ingredientListIterator.hasNext()) {
+        while (ingredientListIterator.hasNext()){
             Ingredient tempIngredient = ingredientListIterator.next();
             if(tempIngredient.getIngredientID() == 150){
                 matchedId = 150;
@@ -135,7 +135,7 @@ public class BusinessPersistenceSeamTest extends TestCase{
 
         int matchedId = 0;
         ListIterator<Direction> directionListIterator = directionList.listIterator();
-        while (directionListIterator.hasNext()) {
+        while (directionListIterator.hasNext()){
             Direction tempDirection = directionListIterator.next();
             if(tempDirection.getDirectionID() == 150){
                 matchedId = 150;
