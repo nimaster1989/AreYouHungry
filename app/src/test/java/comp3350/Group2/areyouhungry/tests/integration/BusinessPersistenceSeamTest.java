@@ -29,10 +29,10 @@ public class BusinessPersistenceSeamTest extends TestCase{
 
     public void setUp(){
         System.out.println("Starting Persistence");
-        dataAccess = new DataAccessObject(dbName);
+//        dataAccess = new DataAccessObject(dbName);
+//        dataAccess.open(MainActivity.getDBPathName());
+        dataAccess = new DataAccessStub(dbName);
         dataAccess.open(MainActivity.getDBPathName());
-        //dataAccess = new DataAccessStub(dbName);
-        //dataAccess.open(MainActivity.getDBPathName());
     }
     public BusinessPersistenceSeamTest(String arg0){
         super(arg0);
@@ -55,6 +55,7 @@ public class BusinessPersistenceSeamTest extends TestCase{
         returnedFood = accessFoods.getFoodByID("7");
         assertFalse(returnedFood.getFavourite());
 
+        dataAccess.deleteFood(7);
         Services.closeDataAccess();
     }
 
@@ -81,7 +82,7 @@ public class BusinessPersistenceSeamTest extends TestCase{
         //add Ingredients
         Ingredient ingredient = new Ingredient(42, "milk", "1/2 Cup");
         accessIngredients.addIngredient(ingredient);
-
+        
         String result = accessIngredients.setFoodIngredient(Integer.parseInt(dbFood.getFoodID()), ingredient.getIngredientID());
 
         //get food/ingredient and check
@@ -100,6 +101,10 @@ public class BusinessPersistenceSeamTest extends TestCase{
         }
 
         assertEquals(42, matchedId);
+        dataAccess.deleteFoodIngredient(7, 42);
+        dataAccess.deleteIngredient(42);
+        dataAccess.deleteFood(7);
+
 
         Services.closeDataAccess();
     }
@@ -146,7 +151,9 @@ public class BusinessPersistenceSeamTest extends TestCase{
         }
 
         assertEquals(150, matchedId);
-
+        dataAccess.deleteFoodDirection(7,150);
+        dataAccess.deleteDirection(150);
+        dataAccess.deleteFood(7);
         Services.closeDataAccess();
 
     }
@@ -166,6 +173,7 @@ public class BusinessPersistenceSeamTest extends TestCase{
         ArrayList<User> userList = new ArrayList<>();
         accessUsers.getUsers(userList);
         assertEquals(userList.size(),4);
+        dataAccess.deleteUser(4);
         Services.closeDataAccess();
     }
 

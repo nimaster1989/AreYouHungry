@@ -94,12 +94,12 @@ public class PersistenceDatabaseSeam extends TestCase{
 
         ArrayList<User> userlist = new ArrayList<>();
         dataAccess.getUserSequential(userlist);
-        assertEquals(userlist.size(),3);
+
+        assertEquals(4, userlist.size());
 
         dataAccess.deleteUser(777);
         User deletedUser = dataAccess.getUser(777);
         assertNull(deletedUser);
-        Services.closeDataAccess();
 
     }
 
@@ -122,6 +122,7 @@ public class PersistenceDatabaseSeam extends TestCase{
         assertEquals(foodlist.size(),3);
 
         dataAccess.deleteFoodCategory(Integer.valueOf(newFood.getFoodID()),dairyID);
+
         dataAccess.getFoodSequentialByCategory("Dairy",foodlist);
         assertEquals(foodlist.size(),2);
 
@@ -129,6 +130,9 @@ public class PersistenceDatabaseSeam extends TestCase{
         dataAccess.deleteFood(Integer.valueOf(newFoodId));
         foodReturned = dataAccess.getFoodFromID(newFoodId);
         assertNull(foodReturned);
+
+        dataAccess.deleteFood(7);
+
         Services.closeDataAccess();
     }
 }
