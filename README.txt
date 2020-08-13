@@ -18,9 +18,17 @@ How to run:
     Open the project in android studio. Download a Nexus 7 tablet emulator with Marshmallow on it.
     Before you run it make sure it says app to the left where it says what emulator you are using.
     This insures that the project loaded in correctly.
-    If it doesnt say app, go to the projects directory to the left navigate to the folder that says
+    If it doesn't say app, go to the projects directory to the left navigate to the folder that says
     Android and has the little alien to the left of it.
 
+How to test:
+    If you haven't already complete the steps in How to Run. Then inside the projects
+    java folders you will see 3 separate folders. The 2nd and 3rd ones are our test suits.
+    For acceptance tests go to the 2nd folder and use RunAcceptanceTests.
+    For integration tests go to the 3rd folder and use RunIntegrationTests.
+    For unit tests go to the 3rd folder and use RunUnitTests.
+    To restore the db to its initial state you must copy the contents of app/src/main/assets/db/SC.script
+    and copy them into app/database/SC.script
 
 Packages:
     - comp3350.Group2.areyouhungry.ui
