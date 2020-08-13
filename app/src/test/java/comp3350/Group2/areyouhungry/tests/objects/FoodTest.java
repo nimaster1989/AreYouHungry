@@ -18,13 +18,13 @@ public class FoodTest extends TestCase{
         int foodID = 10;
         String foodName = "TestFood";
         int portionSize = 1;
-        int prepTime = 10;
+        int totalTime = 10;
         String flavour = "Spicy";
         String difficulty = "Easy";
         String ethnicity = "American";
         int testNum = 0;
         try{
-            food = new Food(foodID, foodName, portionSize, prepTime,flavour, difficulty,ethnicity);
+            food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
             testNum = 1;
         }catch (Exception e){
             testNum = 0;
@@ -37,13 +37,13 @@ public class FoodTest extends TestCase{
         int foodID = -10;
         String foodName = "TestFood";
         int portionSize = 1;
-        int prepTime = 10;
+        int totalTime = 10;
         String flavour = "Spicy";
         String difficulty = "Easy";
         String ethnicity = "American";
         int testNum = 0;
         try{
-            food = new Food(foodID, foodName, portionSize, prepTime,flavour, difficulty,ethnicity);
+            food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
             testNum = 1;
         }catch (Exception e){
             testNum = 0;
@@ -56,13 +56,13 @@ public class FoodTest extends TestCase{
         int foodID = 10;
         String foodName = "";
         int portionSize = 1;
-        int prepTime = 10;
+        int totalTime = 10;
         String flavour = "Spicy";
         String difficulty = "Easy";
         String ethnicity = "American";
         int testNum = 0;
         try{
-            food = new Food(foodID, foodName, portionSize, prepTime,flavour, difficulty,ethnicity);
+            food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
             testNum = 1;
         }catch (Exception e){
             testNum = 0;
@@ -75,13 +75,13 @@ public class FoodTest extends TestCase{
         int foodID = -10;
         String foodName = "TestFood";
         int portionSize = 2;
-        int prepTime = 10;
+        int totalTime = 10;
         String flavour = "Spicy";
         String difficulty = "Easy";
         String ethnicity = "American";
         int testNum = 0;
         try{
-            food = new Food(foodID, foodName, portionSize, prepTime,flavour, difficulty,ethnicity);
+            food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
             testNum = 1;
         }catch (Exception e){
             testNum = 0;
@@ -94,13 +94,13 @@ public class FoodTest extends TestCase{
         int foodID = -10;
         String foodName = "TestFood";
         int portionSize = 1;
-        int prepTime = 11;
+        int totalTime = 11;
         String flavour = "Spicy";
         String difficulty = "Easy";
         String ethnicity = "American";
         int testNum = 0;
         try{
-            food = new Food(foodID, foodName, portionSize, prepTime,flavour, difficulty,ethnicity);
+            food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
             testNum = 1;
         }catch (Exception e){
             testNum = 0;
@@ -113,13 +113,13 @@ public class FoodTest extends TestCase{
         int foodID = -10;
         String foodName = "TestFood";
         int portionSize = 1;
-        int prepTime = 10;
+        int totalTime = 10;
         String flavour = "Sour";
         String difficulty = "Easy";
         String ethnicity = "American";
         int testNum = 0;
         try{
-            food = new Food(foodID, foodName, portionSize, prepTime,flavour, difficulty,ethnicity);
+            food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
             testNum = 1;
         }catch (Exception e){
             testNum = 0;
@@ -132,13 +132,13 @@ public class FoodTest extends TestCase{
         int foodID = -10;
         String foodName = "TestFood";
         int portionSize = 1;
-        int prepTime = 10;
+        int totalTime = 10;
         String flavour = "Sweet";
         String difficulty = "Difficult";
         String ethnicity = "American";
         int testNum = 0;
         try{
-            food = new Food(foodID, foodName, portionSize, prepTime,flavour, difficulty,ethnicity);
+            food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
             testNum = 1;
         }catch (Exception e){
             testNum = 0;
@@ -151,13 +151,13 @@ public class FoodTest extends TestCase{
         int foodID = -10;
         String foodName = "TestFood";
         int portionSize = 1;
-        int prepTime = 10;
+        int totalTime = 10;
         String flavour = "Sour";
         String difficulty = "Easy";
         String ethnicity = "Canadian";
         int testNum = 0;
         try{
-            food = new Food(foodID, foodName, portionSize, prepTime,flavour, difficulty,ethnicity);
+            food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
             testNum = 1;
         }catch (Exception e){
             testNum = 0;
@@ -171,7 +171,7 @@ public class FoodTest extends TestCase{
         assertEquals("Ceaser Salad", food.getFoodName());
         assertFalse(food.getFavourite());
         assertEquals(7, food.getPortionSize());
-        assertEquals(30, food.getPrepTime());
+        assertEquals(30, food.getTotalTime());
         assertEquals("Other", food.getFlavour());
         assertEquals("Hard", food.getDifficulty());
         assertEquals("Vietnamese", food.getEthnicity());
@@ -197,8 +197,8 @@ public class FoodTest extends TestCase{
         food.setPortionSize(1);
         assertEquals(1,food.getPortionSize());
 
-        food.setPrepTime(10);
-        assertEquals(10,food.getPrepTime());
+        food.setTotalTime(10);
+        assertEquals(10,food.getTotalTime());
 
         food.setFavourite(true);
         assertTrue(food.getFavourite());
@@ -224,7 +224,7 @@ public class FoodTest extends TestCase{
 
     public void testToString(){
         Food food = new Food(6, "Ceaser Salad",7,30, "Other", "Hard", "Vietnamese");
-        String test = "ID: 6\n  FoodName: Ceaser Salad\n  Favourited: false\n  PortionSize: 7\n  PrepTime: 30\n  Flavour: Other\n  Difficulty: Hard\n  Ethnicity: Vietnamese\n";
+        String test = "ID: 6\n  FoodName: Ceaser Salad\n  Favourited: false\n  PortionSize: 7\n  TotalTime: 30\n  Flavour: Other\n  Difficulty: Hard\n  Ethnicity: Vietnamese\n";
         assertTrue(test.equals(food.toString()));
     }
 }

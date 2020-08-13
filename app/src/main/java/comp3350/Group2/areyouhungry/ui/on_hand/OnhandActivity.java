@@ -11,7 +11,6 @@ import android.view.View;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.CheckBoxPreference;
-import androidx.preference.EditTextPreference;
 import androidx.preference.MultiSelectListPreference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
@@ -84,7 +83,7 @@ public class OnhandActivity extends AppCompatActivity{
 
         ArrayList<String> categoryCriterias;
         //food object criterias
-        ArrayList<String> prepTimeCriterias;
+        ArrayList<String> totalTimeCriterias;
         ArrayList<String> flavourCriterias;
         ArrayList<String> difficutlyCriterias;
         ArrayList<String> ethnicityCriterias;
@@ -100,7 +99,7 @@ public class OnhandActivity extends AppCompatActivity{
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey){
             categoryCriterias = new ArrayList<>();
-            prepTimeCriterias = new ArrayList<>();
+            totalTimeCriterias = new ArrayList<>();
             flavourCriterias = new ArrayList<>();
             difficutlyCriterias = new ArrayList<>();
             ethnicityCriterias = new ArrayList<>();
@@ -199,7 +198,7 @@ public class OnhandActivity extends AppCompatActivity{
                     cb9.setVisible(searchOnTime);
                     cb10.setVisible(searchOnTime);
                     if(!searchOnTime){
-                        prepTimeCriterias.clear();
+                        totalTimeCriterias.clear();
                         cb6.setChecked(false);
                         cb7.setChecked(false);
                         cb8.setChecked(false);
@@ -213,9 +212,9 @@ public class OnhandActivity extends AppCompatActivity{
                 case "60":
                 case "100":
                     searchOnTime = sharedPreferences.getBoolean("search_on_time",false);
-                    CheckBoxPreference prepTimeCheckBox = findPreference(s);
-                    if(searchOnTime && prepTimeCheckBox.isChecked()) prepTimeCriterias.add(s);
-                    else prepTimeCriterias.remove(s);
+                    CheckBoxPreference totalTimeCheckBox = findPreference(s);
+                    if(searchOnTime && totalTimeCheckBox.isChecked()) totalTimeCriterias.add(s);
+                    else totalTimeCriterias.remove(s);
                     break;
                 case "search_on_ethnicity":
                     searchOnEthnicity = sharedPreferences.getBoolean(s,false);
@@ -335,15 +334,15 @@ public class OnhandActivity extends AppCompatActivity{
             }
             ingredientsCriterias.addAll(ingredientsTextCriterias);
             if(!ingredientsCriterias.isEmpty()) search_logic_ingredient(ingredientsCriterias);
-            search_logic_foodCriteria(prepTimeCriterias,flavourCriterias,difficutlyCriterias,ethnicityCriterias);
+            search_logic_foodCriteria(totalTimeCriterias,flavourCriterias,difficutlyCriterias,ethnicityCriterias);
             search_logic_answer();
         }
 
-        private void search_logic_foodCriteria(ArrayList<String> prepTimeCriterias,ArrayList<String> flavourCriterias,ArrayList<String> difficutlyCriterias,ArrayList<String> ethnicityCriterias){
+        private void search_logic_foodCriteria(ArrayList<String> totalTimeCriterias,ArrayList<String> flavourCriterias,ArrayList<String> difficutlyCriterias,ArrayList<String> ethnicityCriterias){
             foodsCriteriaResults.clear();
             AccessFoods accessFoods = new AccessFoods();
             ArrayList<Food> foodCriteria = new ArrayList<>();
-            accessFoods.foodCriteriaSearch(prepTimeCriterias,flavourCriterias,difficutlyCriterias,ethnicityCriterias,foodCriteria);
+            accessFoods.foodCriteriaSearch(totalTimeCriterias,flavourCriterias,difficutlyCriterias,ethnicityCriterias,foodCriteria);
             foodsCriteriaResults.addAll(foodCriteria);
         }
 

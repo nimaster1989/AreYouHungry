@@ -12,7 +12,7 @@ public class Answers implements Serializable{
     private List<Integer> answers;
     private String flavor;
     private String portionSize;
-    private String preptime;
+    private String totalTime;
     private String difficulty;
     private String ethnicity;
     private AccessFoods accessFoods;
@@ -48,15 +48,15 @@ public class Answers implements Serializable{
                     }
                 } else if (i == 2){
                     if (answer == 0){
-                        preptime = "10";
+                        totalTime = "10";
                     } else if (answer == 1){
-                        preptime = "20";
+                        totalTime = "20";
                     } else if (answer == 2){
-                        preptime = "30";
+                        totalTime = "30";
                     } else if (answer == 3){
-                        preptime = "40";
+                        totalTime = "40";
                     } else{
-                        preptime = "Unknown";
+                        totalTime = "Unknown";
                     }
                 } else if (i == 3){
                     if (answer == 0){
@@ -100,8 +100,8 @@ public class Answers implements Serializable{
         return portionSize;
     }
 
-    public String getPreptime(){
-        return preptime;
+    public String getTotalTime(){
+        return totalTime;
     }
 
     public String getDifficulty(){
@@ -121,7 +121,7 @@ public class Answers implements Serializable{
         while(foodIterator.hasNext()){
             curr_food = foodIterator.next();
             if(checkValid(curr_food)){
-                if ((curr_food.getPrepTime() == Integer.parseInt(preptime.trim())) &&
+                if ((curr_food.getTotalTime() == Integer.parseInt(totalTime.trim())) &&
                         curr_food.getFlavour().equals(flavor) &&
                         curr_food.getEthnicity().equals(ethnicity) &&
                         curr_food.getDifficulty().equals(difficulty) &&
@@ -142,8 +142,8 @@ public class Answers implements Serializable{
         this.portionSize = portionSize;
     }
 
-    public void setPreptime(String preptime){
-        this.preptime = preptime;
+    public void setTotalTime(String totalTime){
+        this.totalTime = totalTime;
     }
 
     public void setDifficulty(String difficulty){
@@ -156,7 +156,7 @@ public class Answers implements Serializable{
 
     private boolean checkValid(Food food){
         boolean valid = false;
-        if(food.getPrepTime() != 0 &&
+        if(food.getTotalTime() != 0 &&
             food.getPortionSize() != 0 &&
             food.getDifficulty() != null &&
             food.getFlavour() != null &&
@@ -172,7 +172,7 @@ public class Answers implements Serializable{
             Answers otherAnswer = (Answers)otherObject;
             if(flavor.equals(otherAnswer.getFlavor()) &&
                 portionSize.equals(otherAnswer.getPortionSize()) &&
-                preptime.equals(otherAnswer.getPreptime()) &&
+                totalTime.equals(otherAnswer.getTotalTime()) &&
                 difficulty.equals(otherAnswer.getDifficulty()) &&
                 ethnicity.equals(otherAnswer.getEthnicity())){
                 equal = true;
@@ -182,6 +182,6 @@ public class Answers implements Serializable{
     }
 
     public String toString(){
-        return "Flavor: " + flavor +"\n  PortionSize: "+portionSize+"\n  PrepTime: "+preptime+"\n  Difficulty: "+difficulty+"\n  Ethnicity: "+ethnicity+"\n";
+        return "Flavor: " + flavor +"\n  PortionSize: "+portionSize+"\n  TotalTime: "+totalTime+"\n  Difficulty: "+difficulty+"\n  Ethnicity: "+ethnicity+"\n";
     }
 }

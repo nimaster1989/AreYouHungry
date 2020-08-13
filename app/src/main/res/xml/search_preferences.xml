@@ -49,12 +49,12 @@
             app:isPreferenceVisible="false"/>
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="Prepare Time">
+    <PreferenceCategory app:title="Total Time">
 
         <SwitchPreferenceCompat
             android:defaultValue="false"
             app:key="search_on_time"
-            app:title="Search by preparation time" />
+            app:title="Search by time" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="15"

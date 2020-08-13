@@ -50,12 +50,12 @@
         android:textSize="30sp" />
 
     <TextView
-        android:id="@+id/prepTimeTextView"
+        android:id="@+id/totalTimeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/difficultyTextView"
         android:layout_centerHorizontal="true"
-        android:text="Preparation Time: 20 Minutes"
+        android:text="Total Time: 20 Minutes"
         android:textColor="#000000"
         android:textSize="30sp" />
 
@@ -63,7 +63,7 @@
         android:id="@+id/flavorTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/prepTimeTextView"
+        android:layout_below="@id/totalTimeTextView"
         android:layout_centerHorizontal="true"
         android:text="Flavor: Savory"
         android:textColor="#000000"
