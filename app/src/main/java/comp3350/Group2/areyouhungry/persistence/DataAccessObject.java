@@ -570,7 +570,62 @@ public class DataAccessObject implements DataAccess{
             result = processSQLError(e);
         }
     }
+    public void deleteIngredient(int ingredientID){
+        String values;
+        cmdString = "";
+        result = null;
 
+        try{
+            cmdString = "DELETE FROM INGREDIENT WHERE INGREDIENTID = '"+ingredientID+"'";
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+    }
+    public void deleteFoodIngredient(int foodID, int ingredientID){
+        String values;
+        cmdString = "";
+        result = null;
+
+        try{
+            cmdString = "DELETE FROM FOODINGREDIENT WHERE FOODID = '"+foodID+"' AND INGREDIENTID = '"+ingredientID+"'";
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+    }
+    public void deleteFoodDirection(int foodID, int directionID){
+        String values;
+        cmdString = "";
+        result = null;
+
+        try{
+            cmdString = "DELETE FROM FOODDIRECTION WHERE FOODID = '"+foodID+"' AND DIRECTIONID = '"+directionID+"'";
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+    }
+    public void deleteDirection(int directionID){
+        String values;
+        cmdString = "";
+        result = null;
+
+        try{
+            cmdString = "DELETE FROM DIRECTION WHERE DIRECTIONID = '"+directionID+"'";
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+        }
+        catch (Exception e){
+            result = processSQLError(e);
+        }
+    }
     @Override
     public int getIngredientRow(){
         int count = 0;

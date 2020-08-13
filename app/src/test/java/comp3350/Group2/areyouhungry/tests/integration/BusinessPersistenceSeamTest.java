@@ -55,6 +55,7 @@ public class BusinessPersistenceSeamTest extends TestCase{
         returnedFood = accessFoods.getFoodByID("7");
         assertFalse(returnedFood.getFavourite());
 
+        dataAccess.deleteFood(7);
         Services.closeDataAccess();
     }
 
@@ -100,6 +101,10 @@ public class BusinessPersistenceSeamTest extends TestCase{
         }
 
         assertEquals(42, matchedId);
+        dataAccess.deleteFoodIngredient(7, 42);
+        dataAccess.deleteIngredient(42);
+        dataAccess.deleteFood(7);
+
 
         Services.closeDataAccess();
     }
@@ -146,7 +151,9 @@ public class BusinessPersistenceSeamTest extends TestCase{
         }
 
         assertEquals(150, matchedId);
-
+        dataAccess.deleteFoodDirection(9,150);
+        dataAccess.deleteDirection(150);
+        dataAccess.deleteFood(9);
         Services.closeDataAccess();
 
     }
@@ -166,6 +173,7 @@ public class BusinessPersistenceSeamTest extends TestCase{
         ArrayList<User> userList = new ArrayList<>();
         accessUsers.getUsers(userList);
         assertEquals(userList.size(),4);
+        dataAccess.deleteUser(4);
         Services.closeDataAccess();
     }
 

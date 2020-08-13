@@ -485,6 +485,55 @@ public class DataAccessStub implements DataAccess{
         }
     }
     @Override
+    public void deleteIngredient(int ingredientID){
+        Iterator<Ingredient> ingredientIterator = ingredients.iterator(); /* This iterates through the foods list. */
+        Ingredient ingredient;
+        while(ingredientIterator.hasNext()){
+            ingredient = ingredientIterator.next();
+            if(ingredient.getIngredientID() == ingredientID){
+                ingredientIterator.remove();
+                break;
+            }
+        }
+    }
+    @Override
+    public void deleteDirection(int directionID){
+        Iterator<Direction> directionIterator = directions.iterator(); /* This iterates through the foods list. */
+        Direction direction;
+        while(directionIterator.hasNext()){
+            direction = directionIterator.next();
+            if(direction.getDirectionID() == directionID){
+                directionIterator.remove();
+                break;
+            }
+        }
+    }
+    @Override
+    public void deleteFoodIngredient(int foodID, int ingredientID){
+        Iterator<FoodIngredient> foodIngredientIterator = foodIngredients.iterator(); /* This iterates through the foods list. */
+        FoodIngredient fi;
+        while(foodIngredientIterator.hasNext()){
+            fi = foodIngredientIterator.next();
+            if(Integer.parseInt(fi.getFood().getFoodID()) == foodID){
+                foodIngredientIterator.remove();
+                break;
+            }
+        }
+    }
+    @Override
+    public void deleteFoodDirection(int foodID, int directionID){
+        Iterator<FoodDirection> foodDirectionIterator = foodDirections.iterator(); /* This iterates through the foods list. */
+        FoodDirection fd;
+        while(foodDirectionIterator.hasNext()){
+            fd = foodDirectionIterator.next();
+            if(Integer.parseInt(fd.getFood().getFoodID()) == foodID){
+                foodDirectionIterator.remove();
+                break;
+            }
+        }
+    }
+
+    @Override
     public int getIngredientRow(){
         return ingredients.size();
     }
