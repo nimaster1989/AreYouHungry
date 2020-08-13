@@ -66,7 +66,7 @@ public class PersistenceDatabaseSeam extends TestCase{
 
         ArrayList<User> userlist = new ArrayList<>();
         dataAccess.getUserSequential(userlist);
-        assertEquals(userlist.size(),4);
+        assertEquals(userlist.size(),3);
         Services.closeDataAccess();
 
     }

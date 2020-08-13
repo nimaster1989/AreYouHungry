@@ -184,15 +184,8 @@ public class OnHandFuzzyTest{
             e.printStackTrace();
         }
 
-        ViewInteraction textView2 = onView(
-                allOf(withId(R.id.content), withText("Greek Salad"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.searchresult_list),
-                                        0),
-                                1),
-                        isDisplayed()));
-        textView2.check(matches(withText("Greek Salad")));
+        onView(withText("Egg Fried Rice")).check(matches(isDisplayed()));
+        onView(withText("Greek Salad")).check(matches(isDisplayed()));
 
         pressBack();
 
@@ -334,16 +327,7 @@ public class OnHandFuzzyTest{
             e.printStackTrace();
         }
 
-        ViewInteraction textView4 = onView(
-                allOf(withId(R.id.content), withText("Banana Split"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.searchresult_list),
-                                        0),
-                                1),
-                        isDisplayed()));
-        textView4.check(matches(withText("Banana Split")));
-
+        onView(withText("Banana Split")).check(matches(isDisplayed()));
         pressBack();
 
     }

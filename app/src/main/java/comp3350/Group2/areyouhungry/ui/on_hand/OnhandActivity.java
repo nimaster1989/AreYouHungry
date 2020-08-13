@@ -321,10 +321,7 @@ public class OnhandActivity extends AppCompatActivity{
                     if(searchOnIngredientText != null && !searchOnIngredientText.equals("")){
                         String[] texts = searchOnIngredientText.split(",");
                         for(String text:texts){
-                            int indexOfSearchResult = fuzzy_ingredient_search(text.trim()) + 1;
-                            if (indexOfSearchResult != 0 && indexOfSearchResult < allIngredient.size() + 1){
-                                ingredientsTextCriterias.add(String.valueOf(indexOfSearchResult));
-                            }
+                            fuzzy_ingredient_search(text.trim(),ingredientsTextCriterias);
                         }
                     }
                     break;
@@ -332,7 +329,7 @@ public class OnhandActivity extends AppCompatActivity{
                     break;
 
             }
-            ingredientsCriterias.addAll(ingredientsTextCriterias);
+            if(!ingredientsTextCriterias.isEmpty()) ingredientsCriterias.addAll(ingredientsTextCriterias);
             if(!ingredientsCriterias.isEmpty()) search_logic_ingredient(ingredientsCriterias);
             search_logic_foodCriteria(totalTimeCriterias,flavourCriterias,difficutlyCriterias,ethnicityCriterias);
             search_logic_answer();
@@ -371,13 +368,13 @@ public class OnhandActivity extends AppCompatActivity{
             ArrayList<Food> FoodIngredientsResult = new ArrayList<>(foodIngredientSet);
             foodsIngredientResults.addAll(FoodIngredientsResult);
         }
-        private int fuzzy_ingredient_search(String str){
+        private void fuzzy_ingredient_search(String str,ArrayList ingredientsTextCriterias){
             for (int index=0;index<allIngredient.size();index++){
                 String ingredientName = allIngredient.get(index).getIngredientName();
                 if (ingredientName.equals((str))){
-                    return index;
+                    ingredientsTextCriterias.add(String.valueOf(index + 1));
                 } else if (ingredientName.toLowerCase().contains(str.toLowerCase())){
-                    return index;
+                    ingredientsTextCriterias.add(String.valueOf(index + 1));
                 } else{
                     //time complexity for calculate long string levenshtein distance is large,
                     //its not necessary, we break ingredient by space and search each word
@@ -385,12 +382,11 @@ public class OnhandActivity extends AppCompatActivity{
                     for (String s : ingredientNames){
                         int distance = levenshtein(s, str);
                         if ((double)distance <= (double)str.length() / 3){
-                            return index;
+                            ingredientsTextCriterias.add(String.valueOf(index + 1));
                         }
                     }
                 }
             }
-            return -1;
         }
 
         public void search_logic_answer(){

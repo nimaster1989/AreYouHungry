@@ -1,7 +1,6 @@
 package comp3350.Group2.areyouhungry.acceptance;
 
 
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -15,7 +14,6 @@ import androidx.test.runner.AndroidJUnit4;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,13 +21,12 @@ import org.junit.runner.RunWith;
 import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.R;
 
-import static android.content.ContentValues.TAG;
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
-import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -59,6 +56,9 @@ public class OnHandComplexTest{
                         isDisplayed()));
         appCompatButton.perform(click());
 
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try{
             Thread.sleep(700);
         } catch (InterruptedException e){
@@ -70,167 +70,7 @@ public class OnHandComplexTest{
                         childAtPosition(
                                 withClassName(is("android.widget.FrameLayout")),
                                 0)));
-        recyclerView.perform(actionOnItemAtPosition(4, click()));
-
-        onView(withText("Meat")).check(matches(isDisplayed()));
-        onView(withText("Vegetable")).check(matches(isDisplayed()));
-        onView(withText("Grain")).check(matches(isDisplayed()));
-        onView(withText("Dairy")).check(matches(isDisplayed()));
-        onView(withText("Fruit")).check(matches(isDisplayed()));
-
-
-        ViewInteraction recyclerView2 = onView(
-                allOf(withId(R.id.recycler_view),
-                        childAtPosition(
-                                withClassName(is("android.widget.FrameLayout")),
-                                0)));
-        recyclerView2.perform(actionOnItemAtPosition(5, click()));
-
-        try{
-            Thread.sleep(700);
-        } catch (InterruptedException e){
-            e.printStackTrace();
-        }
-
-        ViewInteraction textView7 = onView(
-                allOf(withId(R.id.snackbar_text), withText("1 food match"),
-                        childAtPosition(
-                                childAtPosition(
-                                        IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class),
-                                        0),
-                                0),
-                        isDisplayed()));
-        textView7.check(matches(withText("1 food match")));
-
-        ViewInteraction recyclerView3 = onView(
-                allOf(withId(R.id.recycler_view),
-                        childAtPosition(
-                                withClassName(is("android.widget.FrameLayout")),
-                                0)));
-        recyclerView3.perform(actionOnItemAtPosition(6, click()));
-
-        ViewInteraction recyclerView4 = onView(
-                allOf(withId(R.id.recycler_view),
-                        childAtPosition(
-                                withClassName(is("android.widget.FrameLayout")),
-                                0)));
-        recyclerView4.perform(actionOnItemAtPosition(7, click()));
-
-        try{
-            Thread.sleep(700);
-        } catch (InterruptedException e){
-            e.printStackTrace();
-        }
-
-        ViewInteraction textView8 = onView(
-                allOf(withId(R.id.snackbar_text), withText("4 food match"),
-                        childAtPosition(
-                                childAtPosition(
-                                        IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class),
-                                        0),
-                                0),
-                        isDisplayed()));
-        textView8.check(matches(withText("4 food match")));
-
-        ViewInteraction recyclerView5 = onView(
-                allOf(withId(R.id.recycler_view),
-                        childAtPosition(
-                                withClassName(is("android.widget.FrameLayout")),
-                                0)));
-        recyclerView5.perform(actionOnItemAtPosition(4, click()));
-
-        ViewInteraction textView9 = onView(
-                allOf(withId(R.id.snackbar_text), withText("0 food match"),
-                        childAtPosition(
-                                childAtPosition(
-                                        IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class),
-                                        0),
-                                0),
-                        isDisplayed()));
-        textView9.check(matches(withText("0 food match")));
-
-        ViewInteraction recyclerView6 = onView(
-                allOf(withId(R.id.recycler_view),
-                        childAtPosition(
-                                withClassName(is("android.widget.FrameLayout")),
-                                0)));
-        recyclerView6.perform(actionOnItemAtPosition(6, click()));
-
-        ViewInteraction recyclerView7 = onView(
-                allOf(withId(R.id.recycler_view),
-                        childAtPosition(
-                                withClassName(is("android.widget.FrameLayout")),
-                                0)));
-        recyclerView7.perform(actionOnItemAtPosition(11, click()));
-
-        ViewInteraction recyclerView8 = onView(
-                allOf(withId(R.id.recycler_view),
-                        childAtPosition(
-                                withClassName(is("android.widget.FrameLayout")),
-                                0)));
-        recyclerView8.perform(actionOnItemAtPosition(4, click()));
-
-        ViewInteraction recyclerView9 = onView(
-                allOf(withId(R.id.recycler_view),
-                        childAtPosition(
-                                withClassName(is("android.widget.FrameLayout")),
-                                0)));
-        recyclerView9.perform(actionOnItemAtPosition(5, click()));
-
-        ViewInteraction recyclerView10 = onView(
-                allOf(withId(R.id.recycler_view),
-                        childAtPosition(
-                                withClassName(is("android.widget.FrameLayout")),
-                                0)));
-        recyclerView10.perform(actionOnItemAtPosition(6, click()));
-
-        ViewInteraction recyclerView11 = onView(
-                allOf(withId(R.id.recycler_view),
-                        childAtPosition(
-                                withClassName(is("android.widget.FrameLayout")),
-                                0)));
-        recyclerView11.perform(actionOnItemAtPosition(7, click()));
-
-        ViewInteraction textView10 = onView(
-                allOf(withId(R.id.snackbar_text), withText("0 food match"),
-                        childAtPosition(
-                                childAtPosition(
-                                        IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class),
-                                        0),
-                                0),
-                        isDisplayed()));
-        textView10.check(matches(withText("0 food match")));
-
-        ViewInteraction recyclerView12 = onView(
-                allOf(withId(R.id.recycler_view),
-                        childAtPosition(
-                                withClassName(is("android.widget.FrameLayout")),
-                                0)));
-        recyclerView12.perform(actionOnItemAtPosition(8, click()));
-
-        ViewInteraction recyclerView13 = onView(
-                allOf(withId(R.id.recycler_view),
-                        childAtPosition(
-                                withClassName(is("android.widget.FrameLayout")),
-                                0)));
-        recyclerView13.perform(actionOnItemAtPosition(9, click()));
-
-        ViewInteraction textView11 = onView(
-                allOf(withId(R.id.snackbar_text), withText("1 food match"),
-                        childAtPosition(
-                                childAtPosition(
-                                        IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class),
-                                        0),
-                                0),
-                        isDisplayed()));
-        textView11.check(matches(withText("1 food match")));
-
-        ViewInteraction recyclerView14 = onView(
-                allOf(withId(R.id.recycler_view),
-                        childAtPosition(
-                                withClassName(is("android.widget.FrameLayout")),
-                                0)));
-        recyclerView14.perform(actionOnItemAtPosition(2, click()));
+        recyclerView.perform(actionOnItemAtPosition(2, click()));
 
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(android.R.id.edit),
@@ -239,7 +79,7 @@ public class OnHandComplexTest{
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
                                 1)));
-        appCompatEditText.perform(scrollTo(), replaceText("random"), closeSoftKeyboard());
+        appCompatEditText.perform(scrollTo(), replaceText("onion"), closeSoftKeyboard());
 
         ViewInteraction appCompatButton2 = onView(
                 allOf(withId(android.R.id.button1), withText("OK"),
@@ -249,74 +89,6 @@ public class OnHandComplexTest{
                                         0),
                                 3)));
         appCompatButton2.perform(scrollTo(), click());
-
-        ViewInteraction recyclerView15 = onView(
-                allOf(withId(R.id.recycler_view),
-                        childAtPosition(
-                                withClassName(is("android.widget.FrameLayout")),
-                                0)));
-        recyclerView15.perform(actionOnItemAtPosition(2, click()));
-
-        ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(android.R.id.edit), withText("random"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.ScrollView")),
-                                        0),
-                                1)));
-        appCompatEditText2.perform(scrollTo(), replaceText("onion"));
-
-        ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(android.R.id.edit), withText("onion"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.ScrollView")),
-                                        0),
-                                1),
-                        isDisplayed()));
-        appCompatEditText3.perform(closeSoftKeyboard());
-
-        ViewInteraction appCompatButton3 = onView(
-                allOf(withId(android.R.id.button1), withText("OK"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.buttonPanel),
-                                        0),
-                                3)));
-        appCompatButton3.perform(scrollTo(), click());
-
-        ViewInteraction recyclerView16 = onView(
-                allOf(withId(R.id.recycler_view),
-                        childAtPosition(
-                                withClassName(is("android.widget.FrameLayout")),
-                                0)));
-        recyclerView16.perform(actionOnItemAtPosition(11, click()));
-
-        ViewInteraction recyclerView17 = onView(
-                allOf(withId(R.id.recycler_view),
-                        childAtPosition(
-                                withClassName(is("android.widget.FrameLayout")),
-                                0)));
-        recyclerView17.perform(actionOnItemAtPosition(11, click()));
-
-        ViewInteraction recyclerView18 = onView(
-                allOf(withId(R.id.recycler_view),
-                        childAtPosition(
-                                withClassName(is("android.widget.FrameLayout")),
-                                0)));
-        recyclerView18.perform(actionOnItemAtPosition(11, click()));
-
-        onView(withText("60+ mins")).check(doesNotExist());
-
-        ViewInteraction textView12 = onView(
-                allOf(withId(R.id.snackbar_text), withText("1 food match"),
-                        childAtPosition(
-                                childAtPosition(
-                                        IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class),
-                                        0),
-                                0),
-                        isDisplayed()));
-        textView12.check(matches(withText("1 food match")));
 
         ViewInteraction extendedFloatingActionButton = onView(
                 allOf(withId(R.id.search_fba), withText("Search"),
@@ -328,13 +100,90 @@ public class OnHandComplexTest{
                         isDisplayed()));
         extendedFloatingActionButton.perform(click());
 
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try{
             Thread.sleep(700);
         } catch (InterruptedException e){
             e.printStackTrace();
         }
 
-        ViewInteraction textView13 = onView(
+        ViewInteraction textView = onView(
+                allOf(withId(R.id.content), withText("Egg Fried Rice"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.searchresult_list),
+                                        0),
+                                1),
+                        isDisplayed()));
+        textView.check(matches(withText("Egg Fried Rice")));
+
+        ViewInteraction textView2 = onView(
+                allOf(withId(R.id.content), withText("Greek Salad"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.searchresult_list),
+                                        1),
+                                1),
+                        isDisplayed()));
+        textView2.check(matches(withText("Greek Salad")));
+
+        ViewInteraction textView3 = onView(
+                allOf(withId(R.id.content), withText("Greek Salad"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.searchresult_list),
+                                        1),
+                                1),
+                        isDisplayed()));
+        textView3.check(matches(withText("Greek Salad")));
+
+        pressBack();
+
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try{
+            Thread.sleep(700);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
+        ViewInteraction recyclerView2 = onView(
+                allOf(withId(R.id.recycler_view),
+                        childAtPosition(
+                                withClassName(is("android.widget.FrameLayout")),
+                                0)));
+        recyclerView2.perform(actionOnItemAtPosition(4, click()));
+
+        ViewInteraction recyclerView3 = onView(
+                allOf(withId(R.id.recycler_view),
+                        childAtPosition(
+                                withClassName(is("android.widget.FrameLayout")),
+                                0)));
+        recyclerView3.perform(actionOnItemAtPosition(6, click()));
+
+        ViewInteraction extendedFloatingActionButton2 = onView(
+                allOf(withId(R.id.search_fba), withText("Search"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                1),
+                        isDisplayed()));
+        extendedFloatingActionButton2.perform(click());
+
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try{
+            Thread.sleep(700);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
+        ViewInteraction textView4 = onView(
                 allOf(withId(R.id.content), withText("Greek Salad"),
                         childAtPosition(
                                 childAtPosition(
@@ -342,7 +191,122 @@ public class OnHandComplexTest{
                                         0),
                                 1),
                         isDisplayed()));
-        textView13.check(matches(withText("Greek Salad")));
+        textView4.check(matches(withText("Greek Salad")));
+
+        pressBack();
+
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try{
+            Thread.sleep(700);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
+        ViewInteraction recyclerView4 = onView(
+                allOf(withId(R.id.recycler_view),
+                        childAtPosition(
+                                withClassName(is("android.widget.FrameLayout")),
+                                0)));
+        recyclerView4.perform(actionOnItemAtPosition(4, click()));
+
+        ViewInteraction recyclerView5 = onView(
+                allOf(withId(R.id.recycler_view),
+                        childAtPosition(
+                                withClassName(is("android.widget.FrameLayout")),
+                                0)));
+        recyclerView5.perform(actionOnItemAtPosition(6, click()));
+
+        ViewInteraction recyclerView6 = onView(
+                allOf(withId(R.id.recycler_view),
+                        childAtPosition(
+                                withClassName(is("android.widget.FrameLayout")),
+                                0)));
+        recyclerView6.perform(actionOnItemAtPosition(7, click()));
+
+        ViewInteraction extendedFloatingActionButton3 = onView(
+                allOf(withId(R.id.search_fba), withText("Search"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                1),
+                        isDisplayed()));
+        extendedFloatingActionButton3.perform(click());
+
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try{
+            Thread.sleep(700);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
+        ViewInteraction textView5 = onView(
+                allOf(withId(R.id.content), withText("Greek Salad"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.searchresult_list),
+                                        0),
+                                1),
+                        isDisplayed()));
+        textView5.check(matches(withText("Greek Salad")));
+
+        pressBack();
+
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try{
+            Thread.sleep(700);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
+        ViewInteraction recyclerView7 = onView(
+                allOf(withId(R.id.recycler_view),
+                        childAtPosition(
+                                withClassName(is("android.widget.FrameLayout")),
+                                0)));
+        recyclerView7.perform(actionOnItemAtPosition(7, click()));
+
+        ViewInteraction recyclerView8 = onView(
+                allOf(withId(R.id.recycler_view),
+                        childAtPosition(
+                                withClassName(is("android.widget.FrameLayout")),
+                                0)));
+        recyclerView8.perform(actionOnItemAtPosition(8, click()));
+
+        ViewInteraction extendedFloatingActionButton4 = onView(
+                allOf(withId(R.id.search_fba), withText("Search"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                1),
+                        isDisplayed()));
+        extendedFloatingActionButton4.perform(click());
+
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try{
+            Thread.sleep(700);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
+        ViewInteraction textView6 = onView(
+                allOf(withId(R.id.content), withText("Egg Fried Rice"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.searchresult_list),
+                                        0),
+                                1),
+                        isDisplayed()));
+        textView6.check(matches(withText("Egg Fried Rice")));
     }
 
     private static Matcher<View> childAtPosition(

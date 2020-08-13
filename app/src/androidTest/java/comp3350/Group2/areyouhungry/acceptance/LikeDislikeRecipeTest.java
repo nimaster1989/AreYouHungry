@@ -14,7 +14,6 @@ import androidx.test.runner.AndroidJUnit4;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,6 +29,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.is;
 
 @LargeTest
@@ -41,9 +41,6 @@ public class LikeDislikeRecipeTest{
 
     @Test
     public void likeDislikeRecipeTest(){
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try{
             Thread.sleep(700);
         } catch (InterruptedException e){
@@ -61,9 +58,6 @@ public class LikeDislikeRecipeTest{
                         isDisplayed()));
         appCompatButton.perform(click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try{
             Thread.sleep(700);
         } catch (InterruptedException e){
@@ -175,9 +169,6 @@ public class LikeDislikeRecipeTest{
                         isDisplayed()));
         appCompatButton6.perform(click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try{
             Thread.sleep(700);
         } catch (InterruptedException e){
@@ -195,15 +186,9 @@ public class LikeDislikeRecipeTest{
                         isDisplayed()));
         floatingActionButton.perform(click());
 
-        ViewInteraction textView11 = onView(
-                allOf(withId(R.id.snackbar_text), withText("You liked it! Thank You For The Feedback!"),
-                        childAtPosition(
-                                childAtPosition(
-                                        IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class),
-                                        0),
-                                0),
-                        isDisplayed()));
-        textView11.check(matches(withText("You liked it! Thank You For The Feedback!")));
+        onView(anyOf(withText("You liked it! Thank You For The Feedback!"),withText("You've Already Provided Feedback For This Food!"))).check(matches(isDisplayed()));
+
+
 
         ViewInteraction appCompatButton7 = onView(
                 allOf(withId(R.id.returnHomeButton), withText("Return Home"),
@@ -215,9 +200,6 @@ public class LikeDislikeRecipeTest{
                         isDisplayed()));
         appCompatButton7.perform(click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try{
             Thread.sleep(700);
         } catch (InterruptedException e){
@@ -235,9 +217,6 @@ public class LikeDislikeRecipeTest{
                         isDisplayed()));
         appCompatButton8.perform(click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try{
             Thread.sleep(700);
         } catch (InterruptedException e){
@@ -349,9 +328,6 @@ public class LikeDislikeRecipeTest{
                         isDisplayed()));
         appCompatButton13.perform(click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try{
             Thread.sleep(700);
         } catch (InterruptedException e){
@@ -368,6 +344,8 @@ public class LikeDislikeRecipeTest{
                         isDisplayed()));
         floatingActionButton2.perform(click());
 
+        onView(anyOf(withText("You Disliked it :( Thank You For The Feedback!"),withText("You've Already Provided Feedback For This Food!"))).check(matches(isDisplayed()));
+
         ViewInteraction floatingActionButton3 = onView(
                 allOf(withId(R.id.like),
                         childAtPosition(
@@ -378,15 +356,12 @@ public class LikeDislikeRecipeTest{
                         isDisplayed()));
         floatingActionButton3.perform(click());
 
-        ViewInteraction textView10 = onView(
-                allOf(withId(R.id.snackbar_text), withText("You Disliked it :( Thank You For The Feedback!"),
-                        childAtPosition(
-                                childAtPosition(
-                                        IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class),
-                                        0),
-                                0),
-                        isDisplayed()));
-        textView10.check(matches(withText("You Disliked it :( Thank You For The Feedback!")));
+        try{
+            Thread.sleep(500);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        onView(anyOf(withText("You liked it! Thank You For The Feedback!"),withText("You've Already Provided Feedback For This Food!"))).check(matches(isDisplayed()));
 
         ViewInteraction appCompatButton14 = onView(
                 allOf(withId(R.id.returnHomeButton), withText("Return Home"),
