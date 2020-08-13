@@ -42,7 +42,7 @@
         android:text="@string/add_favourite"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
-        app:backgroundTint="#4D00EA"
+        app:backgroundTint="@color/colorPrimary"
         app:icon="@android:drawable/ic_input_add"
         app:iconPadding="16dp"
         app:iconTint="#FFFFFF" />
