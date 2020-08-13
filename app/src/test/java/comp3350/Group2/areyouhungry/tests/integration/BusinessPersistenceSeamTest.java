@@ -31,6 +31,8 @@ public class BusinessPersistenceSeamTest extends TestCase{
         System.out.println("Starting Persistence");
         dataAccess = new DataAccessObject(dbName);
         dataAccess.open(MainActivity.getDBPathName());
+        //dataAccess = new DataAccessStub(dbName);
+        //dataAccess.open(MainActivity.getDBPathName());
     }
     public BusinessPersistenceSeamTest(String arg0){
         super(arg0);
@@ -66,8 +68,9 @@ public class BusinessPersistenceSeamTest extends TestCase{
         ArrayList<Ingredient> ingredientList = new ArrayList<>();
 
         //add food
-        Food testFood = new Food(8,"testFood",1,10,"Spicy","Hard","Canadian");
+        Food testFood = new Food(7,"testFood",1,10,"Spicy","Hard","Canadian");
         accessFoods.addFood(testFood);
+
 
         //get food
         Food dbFood = accessFoods.getFoodByID(testFood.getFoodID());
@@ -76,7 +79,7 @@ public class BusinessPersistenceSeamTest extends TestCase{
         assertNull(accessIngredients.getIngredient(dbFood,ingredientList));
 
         //add Ingredients
-        Ingredient ingredient = new Ingredient(150, "milk", "1/2 Cup");
+        Ingredient ingredient = new Ingredient(42, "milk", "1/2 Cup");
         accessIngredients.addIngredient(ingredient);
 
         String result = accessIngredients.setFoodIngredient(Integer.parseInt(dbFood.getFoodID()), ingredient.getIngredientID());
@@ -91,12 +94,12 @@ public class BusinessPersistenceSeamTest extends TestCase{
         ListIterator<Ingredient> ingredientListIterator = ingredientList.listIterator();
         while (ingredientListIterator.hasNext()){
             Ingredient tempIngredient = ingredientListIterator.next();
-            if(tempIngredient.getIngredientID() == 150){
-                matchedId = 150;
+            if(tempIngredient.getIngredientID() == 42){
+                matchedId = 42;
             }
         }
 
-        assertEquals(150, matchedId);
+        assertEquals(42, matchedId);
 
         Services.closeDataAccess();
     }
@@ -112,7 +115,7 @@ public class BusinessPersistenceSeamTest extends TestCase{
         ArrayList<Direction> directionList = new ArrayList<>();
 
         //add food
-        Food testFood = new Food(9,"testFood",1,10,"Spicy","Hard","Canadian");
+        Food testFood = new Food(7,"testFood",1,10,"Spicy","Hard","Canadian");
         accessFoods.addFood(testFood);
 
         //get food
