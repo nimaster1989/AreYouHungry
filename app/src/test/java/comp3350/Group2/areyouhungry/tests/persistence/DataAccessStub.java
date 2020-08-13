@@ -47,24 +47,6 @@ public class DataAccessStub implements DataAccess{
         this(MainActivity.dbName);
     }
 
-    @Override
-    public boolean getFoodLikedByUser(User user, Food food) {
-        return false;
-    }
-
-    public boolean getFoodDislikedByUser(User user, Food food){
-        return false;
-    }
-
-    public String setFoodToLikedByUser(User user, String string, boolean bool){
-       return null;
-    }
-
-    public String setFoodToDislikedByUser(User user, String string, boolean bool){
-        return null;
-    }
-
-
     public void open(String dbPath){
         Food food;
         Categories categories;
