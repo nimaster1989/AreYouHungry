@@ -43,7 +43,7 @@ public class AddFoodActivity extends AppCompatActivity{
             private String food_name;
             private boolean favourite;
             private int portionSize = 0;
-            private int prepTime = 0;
+            private int totalTime = 0;
             private String flavour;
             private String difficulty;
             private String ethnicity;
@@ -80,17 +80,17 @@ public class AddFoodActivity extends AppCompatActivity{
                     buildFood = false;
                 }
 
-                String prepTime_Str = sharedPreferences.getString("preptime","");
-                if(TextUtils.isDigitsOnly(prepTime_Str) && !TextUtils.isEmpty(prepTime_Str) && prepTime_Str.length() <= 10){
-                    if(prepTime_Str.length() == 10 && prepTime_Str.compareTo("2147483647") <= 0){
-                        prepTime = Integer.parseInt(prepTime_Str);
+                String totalTime_Str = sharedPreferences.getString("totaltime","");
+                if(TextUtils.isDigitsOnly(totalTime_Str) && !TextUtils.isEmpty(totalTime_Str) && totalTime_Str.length() <= 10){
+                    if(totalTime_Str.length() == 10 && totalTime_Str.compareTo("2147483647") <= 0){
+                        totalTime = Integer.parseInt(totalTime_Str);
                     }
-                    else if (prepTime_Str.length() < 10){
-                        prepTime = Integer.parseInt(prepTime_Str);
+                    else if (totalTime_Str.length() < 10){
+                        totalTime = Integer.parseInt(totalTime_Str);
                     }
                 }
-                if(prepTime <= 0){
-                    alertMessage += "Please enter a preparation time.\n";
+                if(totalTime <= 0){
+                    alertMessage += "Please enter a time.\n";
                     buildFood = false;
                 }
 
@@ -126,7 +126,7 @@ public class AddFoodActivity extends AppCompatActivity{
                 if(buildFood){
                     AccessFoods af = new AccessFoods();
                     int newId = af.getFoodRow() + 1;
-                    Food newFood = new Food(newId,food_name,portionSize,prepTime,flavour,difficulty,ethnicity);
+                    Food newFood = new Food(newId,food_name,portionSize, totalTime,flavour,difficulty,ethnicity);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.clear();
                     editor.apply();
@@ -152,7 +152,7 @@ public class AddFoodActivity extends AppCompatActivity{
                     alertDialog.show();
                 }
                 portionSize = 0;
-                prepTime = 0;
+                totalTime = 0;
             }
         });
     }

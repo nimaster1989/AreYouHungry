@@ -107,7 +107,7 @@ public class FoodDetailFragment extends Fragment{
                 foodInfo += theFood.getPortionSize() + " person";
             }
 
-            foodInfo += "\nPrep Time: " + theFood.getPrepTime() + " minutes\nFlavour: " + theFood.getFlavour() + "\nDifficulty: " + theFood.getDifficulty() + "\nEthnicity: " + theFood.getEthnicity() + "\n\n";
+            foodInfo += "\nTotal time: " + theFood.getTotalTime() + " minutes\nFlavour: " + theFood.getFlavour() + "\nDifficulty: " + theFood.getDifficulty() + "\nEthnicity: " + theFood.getEthnicity() + "\n\n";
 
             ad.getDirection(theFood, directions);
             ai.getIngredient(theFood, ingredients);

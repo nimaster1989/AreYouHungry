@@ -26,12 +26,12 @@ public class FoodIngredientTest extends TestCase{
         int foodID = 10;
         String foodName = "TestFood";
         int portionSize = 1;
-        int prepTime = 10;
+        int totalTime = 10;
         String flavour = "Spicy";
         String difficulty = "Easy";
         String ethnicity = "American";
         int testNum = 0;
-        food = new Food(foodID, foodName, portionSize, prepTime,flavour, difficulty,ethnicity);
+        food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
 
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         int ingredientID = 1;
@@ -59,12 +59,12 @@ public class FoodIngredientTest extends TestCase{
         int foodID = 10;
         String foodName = "TestFood";
         int portionSize = 1;
-        int prepTime = 10;
+        int totalTime = 10;
         String flavour = "Spicy";
         String difficulty = "Easy";
         String ethnicity = "American";
         int testNum = 0;
-        food = new Food(foodID, foodName, portionSize, prepTime,flavour, difficulty,ethnicity);
+        food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
 
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         int ingredientID = -1;
@@ -97,12 +97,12 @@ public class FoodIngredientTest extends TestCase{
         int foodID = 10;
         String foodName = "TestFood";
         int portionSize = 1;
-        int prepTime = 10;
+        int totalTime = 10;
         String flavour = "Spicy";
         String difficulty = "Easy";
         String ethnicity = "American";
         int testNum = 0;
-        food = new Food(foodID, foodName, portionSize, prepTime,flavour, difficulty,ethnicity);
+        food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
 
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         int ingredientID = 1;
@@ -125,12 +125,12 @@ public class FoodIngredientTest extends TestCase{
         int foodID = 10;
         String foodName = "TestFood";
         int portionSize = 1;
-        int prepTime = 10;
+        int totalTime = 10;
         String flavour = "Spicy";
         String difficulty = "Easy";
         String ethnicity = "American";
         int testNum = 0;
-        food = new Food(foodID, foodName, portionSize, prepTime,flavour, difficulty,ethnicity);
+        food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
 
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         int ingredientID = 1;
@@ -152,12 +152,12 @@ public class FoodIngredientTest extends TestCase{
         int foodID = 10;
         String foodName = "TestFood";
         int portionSize = 1;
-        int prepTime = 10;
+        int totalTime = 10;
         String flavour = "Spicy";
         String difficulty = "Easy";
         String ethnicity = "American";
         int testNum = 0;
-        food = new Food(foodID, foodName, portionSize, prepTime,flavour, difficulty,ethnicity);
+        food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
 
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         int ingredientID = 1;
@@ -170,7 +170,7 @@ public class FoodIngredientTest extends TestCase{
         FoodIngredient foodIngredient2 = new FoodIngredient(food, ingredients);
 
         foodID = 11;
-        food = new Food(foodID, foodName, portionSize, prepTime,flavour, difficulty,ethnicity);
+        food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
         FoodIngredient foodIngredient3 = new FoodIngredient(food, ingredients);
 
         assertTrue(foodIngredient1.equals(foodIngredient2));
@@ -184,12 +184,12 @@ public class FoodIngredientTest extends TestCase{
         int foodID = 10;
         String foodName = "TestFood";
         int portionSize = 1;
-        int prepTime = 10;
+        int totalTime = 10;
         String flavour = "Spicy";
         String difficulty = "Easy";
         String ethnicity = "American";
         int testNum = 0;
-        food = new Food(foodID, foodName, portionSize, prepTime,flavour, difficulty,ethnicity);
+        food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
 
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         int ingredientID = 1;

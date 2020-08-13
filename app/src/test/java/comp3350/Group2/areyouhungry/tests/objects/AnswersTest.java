@@ -48,7 +48,7 @@ public class AnswersTest extends TestCase{
 
         assertTrue("Sweet".equals(answer.getFlavor()));
         assertTrue("1".equals(answer.getPortionSize()));
-        assertTrue("10".equals(answer.getPreptime()));
+        assertTrue("10".equals(answer.getTotalTime()));
         assertTrue("Easy".equals(answer.getDifficulty()));
         assertTrue("Greek".equals(answer.getEthnicity()));
     }
@@ -71,9 +71,9 @@ public class AnswersTest extends TestCase{
         answer.setPortionSize("3");
         assertTrue(answer.getPortionSize().equals("3"));
 
-        assertTrue(answer.getPreptime().equals("10"));
-        answer.setPreptime("20");
-        assertTrue(answer.getPreptime().equals("20"));
+        assertTrue(answer.getTotalTime().equals("10"));
+        answer.setTotalTime("20");
+        assertTrue(answer.getTotalTime().equals("20"));
 
         assertTrue(answer.getDifficulty().equals("Easy"));
         answer.setDifficulty("Hard");
@@ -97,7 +97,7 @@ public class AnswersTest extends TestCase{
 
         assertTrue(answer.getEthnicity().equals("Unknown"));
         assertTrue(answer.getDifficulty().equals("Unknown"));
-        assertTrue(answer.getPreptime().equals("Unknown"));
+        assertTrue(answer.getTotalTime().equals("Unknown"));
         assertTrue(answer.getPortionSize().equals("Unknown"));
         assertTrue(answer.getFlavor().equals("Unknown"));
     }
@@ -180,7 +180,7 @@ public class AnswersTest extends TestCase{
         answers.add(0);
         answers.add(0);
         Answers answer = new Answers(answers);
-        String test = "Flavor: Sweet\n  PortionSize: 1\n  PrepTime: 10\n  Difficulty: Easy\n  Ethnicity: Greek\n";
+        String test = "Flavor: Sweet\n  PortionSize: 1\n  TotalTime: 10\n  Difficulty: Easy\n  Ethnicity: Greek\n";
         assertTrue(answer.toString().equals(test));
     }
 

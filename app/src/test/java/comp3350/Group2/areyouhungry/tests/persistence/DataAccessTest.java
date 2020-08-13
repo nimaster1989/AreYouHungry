@@ -202,13 +202,13 @@ public class DataAccessTest extends TestCase{
                     answers.add(0);
                     answer = new Answers(answers);
                     if(j == 0){
-                        assertTrue(answer.getPreptime().equals("10"));
+                        assertTrue(answer.getTotalTime().equals("10"));
                     }else if(j == 1){
-                        assertTrue(answer.getPreptime().equals("20"));
+                        assertTrue(answer.getTotalTime().equals("20"));
                     }else if(j == 2){
-                        assertTrue(answer.getPreptime().equals("30"));
+                        assertTrue(answer.getTotalTime().equals("30"));
                     }else if(j == 3){
-                        assertTrue(answer.getPreptime().equals("40"));
+                        assertTrue(answer.getTotalTime().equals("40"));
                     }
                 }else if(i == 3){
                     answers = new ArrayList<>();
@@ -263,7 +263,7 @@ public class DataAccessTest extends TestCase{
         answer = new Answers(answers);
         answer.setFlavor("Savoury");
         answer.setPortionSize("3");
-        answer.setPreptime("20");
+        answer.setTotalTime("20");
         answer.setDifficulty("Easy");
         answer.setEthnicity("American");
         Food food1 = answer.getFoodBasedOnAnswers();

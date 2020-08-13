@@ -132,7 +132,7 @@ public class DataAccessObject implements DataAccess{
 
     public String getFoodSequential(List<Food> foodResult){
         Food food;
-        int myFoodID,myPrepTime,myPortionSize;
+        int myFoodID,myTotalTime,myPortionSize;
         String myFoodName=EOF,myFlavour=EOF,myDifficulty=EOF,myEthnicity=EOF;
         result = null;
 
@@ -143,11 +143,11 @@ public class DataAccessObject implements DataAccess{
                 myFoodID = rs3.getInt("FOODID");
                 myFoodName = rs3.getString("FOODNAME");
                 myPortionSize = rs3.getInt("PORTIONSIZE");
-                myPrepTime = rs3.getInt("PREPTIME");
+                myTotalTime = rs3.getInt("TOTALTIME");
                 myFlavour = rs3.getString("FLAVOUR");
                 myDifficulty = rs3.getString("DIFFICULTY");
                 myEthnicity = rs3.getString("ETHNICITY");
-                food = new Food(myFoodID,myFoodName,myPortionSize,myPrepTime,myFlavour,myDifficulty,myEthnicity);
+                food = new Food(myFoodID,myFoodName,myPortionSize,myTotalTime,myFlavour,myDifficulty,myEthnicity);
                 foodResult.add(food);
             }
             rs3.close();
@@ -164,7 +164,7 @@ public class DataAccessObject implements DataAccess{
         String currentID = "-1";
         String currentIngredientID = "-1";
         String currentDirectionID = "-1";
-        int myPortionSize=0,myPrepTime=0;
+        int myPortionSize=0,myTotalTime=0;
         Boolean myFavourite=false;
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         ArrayList<Direction> directions = new ArrayList<>();
@@ -176,7 +176,7 @@ public class DataAccessObject implements DataAccess{
                 if(!currentID.equals(myID)){
                     /* Checking if there is variables set to add to a food. */
                     if(!currentID.equals("-1")){
-                        Food foundFood = new Food(Integer.valueOf(currentID), myFoodName,myPortionSize,myPrepTime,myFlavour,myDifficulty,myEthnicity);
+                        Food foundFood = new Food(Integer.valueOf(currentID), myFoodName,myPortionSize,myTotalTime,myFlavour,myDifficulty,myEthnicity);
                         foodResult.add(foundFood);
                         ingredients = new ArrayList<>();
                         directions = new ArrayList<>();
@@ -184,7 +184,7 @@ public class DataAccessObject implements DataAccess{
                     myID = rs5.getString("FOODID");
                     myFoodName = rs5.getString("FOODNAME");
                     myPortionSize = rs5.getInt("PORTIONSIZE");
-                    myPrepTime = rs5.getInt("PREPTIME");
+                    myTotalTime = rs5.getInt("TOTALTIME");
                     myFlavour = rs5.getString("FLAVOUR");
                     myDifficulty = rs5.getString("DIFFICULTY");
                     myEthnicity = rs5.getString("ETHNICITY");
@@ -216,7 +216,7 @@ public class DataAccessObject implements DataAccess{
                 currentID = myID;
             }
             /* Adding last food returned to the query. */
-            Food foundFood = new Food(Integer.valueOf(myID), myFoodName,myPortionSize,myPrepTime,myFlavour,myDifficulty,myEthnicity);
+            Food foundFood = new Food(Integer.valueOf(myID), myFoodName,myPortionSize,myTotalTime,myFlavour,myDifficulty,myEthnicity);
             foodResult.add(foundFood);
             rs5.close();
         }catch(Exception e){
@@ -244,11 +244,11 @@ public class DataAccessObject implements DataAccess{
                 int myFoodID = rs3.getInt("FOODID");
                 String myFoodName = rs3.getString("FOODNAME");
                 int myPortionSize = rs3.getInt("PORTIONSIZE");
-                int myPrepTime = rs3.getInt("PREPTIME");
+                int myTotalTime = rs3.getInt("TOTALTIME");
                 String myFlavour = rs3.getString("FLAVOUR");
                 String myDifficulty = rs3.getString("DIFFICULTY");
                 String myEthnicity = rs3.getString("ETHNICITY");
-                foodByID = new Food(myFoodID,myFoodName,myPortionSize,myPrepTime,myFlavour,myDifficulty,myEthnicity);
+                foodByID = new Food(myFoodID,myFoodName,myPortionSize,myTotalTime,myFlavour,myDifficulty,myEthnicity);
             }
             rs3.close();
         }catch (Exception e){
@@ -344,7 +344,7 @@ public class DataAccessObject implements DataAccess{
 
     public String getFavouriteFoodByUserSequential(User user, List<Food> foodResult){
         Food food;
-        int myFoodID,myPrepTime,myPortionSize;
+        int myFoodID,myTotalTime,myPortionSize;
         String myFoodName=EOF,myFlavour=EOF,myDifficulty=EOF,myEthnicity=EOF;
         result = null;
 
@@ -355,11 +355,11 @@ public class DataAccessObject implements DataAccess{
                 myFoodID = rs3.getInt("FOODID");
                 myFoodName = rs3.getString("FOODNAME");
                 myPortionSize = rs3.getInt("PORTIONSIZE");
-                myPrepTime = rs3.getInt("PREPTIME");
+                myTotalTime = rs3.getInt("TOTALTIME");
                 myFlavour = rs3.getString("FLAVOUR");
                 myDifficulty = rs3.getString("DIFFICULTY");
                 myEthnicity = rs3.getString("ETHNICITY");
-                food = new Food(myFoodID,myFoodName,myPortionSize,myPrepTime,myFlavour,myDifficulty,myEthnicity);
+                food = new Food(myFoodID,myFoodName,myPortionSize,myTotalTime,myFlavour,myDifficulty,myEthnicity);
                 foodResult.add(food);
             }
             rs3.close();
@@ -706,21 +706,21 @@ public class DataAccessObject implements DataAccess{
     }
 
     @Override
-    public String searchFoodByCriteriaLists(ArrayList<String> prepTimeCriterias, ArrayList<String> flavourCriterias, ArrayList<String> difficutlyCriterias, ArrayList<String> ethnicityCriterias, ArrayList<Food> foodResult){
+    public String searchFoodByCriteriaLists(ArrayList<String> totalTimeCriterias, ArrayList<String> flavourCriterias, ArrayList<String> difficutlyCriterias, ArrayList<String> ethnicityCriterias, ArrayList<Food> foodResult){
         String result = null;
         String cmd="SELECT * FROM FOODS WHERE ";
-        int size1 = prepTimeCriterias.size();
+        int size1 = totalTimeCriterias.size();
         int size2 = flavourCriterias.size();
         int size3 = difficutlyCriterias.size();
         int size4 = ethnicityCriterias.size();
 
-        for(String maxPrepTime:prepTimeCriterias){
-            String minPrepTime = String.valueOf(Integer.parseInt(maxPrepTime)-15);
-            if(Integer.parseInt(maxPrepTime) == 100){
-                cmd += "FOODS.PREPTIME > 60 OR";
+        for(String maxTotalTime: totalTimeCriterias){
+            String minTotalTime = String.valueOf(Integer.parseInt(maxTotalTime)-15);
+            if(Integer.parseInt(maxTotalTime) == 100){
+                cmd += "FOODS.TOTALTIME > 60 OR";
             }
             else{
-                cmd += "(FOODS.PREPTIME <= " + maxPrepTime + "AND FOODS.PREPTIME >=" + minPrepTime + ") OR ";
+                cmd += "(FOODS.TOTALTIME <= " + maxTotalTime + "AND FOODS.TOTALTIME >=" + minTotalTime + ") OR ";
             }
         }
         if(size1 > 0){
@@ -760,7 +760,7 @@ public class DataAccessObject implements DataAccess{
 
         if(cmd != "SELECT * FROM FOODS WHERE "){
             Food food;
-            int myFoodID, myPrepTime, myPortionSize;
+            int myFoodID, myTotalTime, myPortionSize;
             String myFoodName = EOF, myFlavour = EOF, myDifficulty = EOF, myEthnicity = EOF;
 
             try{
@@ -769,11 +769,11 @@ public class DataAccessObject implements DataAccess{
                     myFoodID = rs3.getInt("FOODID");
                     myFoodName = rs3.getString("FOODNAME");
                     myPortionSize = rs3.getInt("PORTIONSIZE");
-                    myPrepTime = rs3.getInt("PREPTIME");
+                    myTotalTime = rs3.getInt("TOTALTIME");
                     myFlavour = rs3.getString("FLAVOUR");
                     myDifficulty = rs3.getString("DIFFICULTY");
                     myEthnicity = rs3.getString("ETHNICITY");
-                    food = new Food(myFoodID, myFoodName, myPortionSize, myPrepTime, myFlavour, myDifficulty, myEthnicity);
+                    food = new Food(myFoodID, myFoodName, myPortionSize, myTotalTime, myFlavour, myDifficulty, myEthnicity);
                     foodResult.add(food);
                 }
                 rs3.close();
@@ -915,7 +915,7 @@ public class DataAccessObject implements DataAccess{
         result = null;
 
         try{
-            cmdString = "INSERT INTO FOODS VALUES('"+addFood.getFoodID()+"','"+addFood.getFoodName()+"','"+addFood.getPortionSize()+"','"+addFood.getPrepTime()+"','"+addFood.getFlavour()+"','"+addFood.getDifficulty()+"','"+addFood.getEthnicity()+"')";
+            cmdString = "INSERT INTO FOODS VALUES('"+addFood.getFoodID()+"','"+addFood.getFoodName()+"','"+addFood.getPortionSize()+"','"+addFood.getTotalTime()+"','"+addFood.getFlavour()+"','"+addFood.getDifficulty()+"','"+addFood.getEthnicity()+"')";
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
         }
