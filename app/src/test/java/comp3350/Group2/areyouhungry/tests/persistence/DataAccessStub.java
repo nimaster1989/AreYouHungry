@@ -73,7 +73,7 @@ public class DataAccessStub implements DataAccess{
         foods.add(food);
         imageURL.put(3, "food3");
         Food_map.put(String.valueOf(food.getFoodID()),food);
-        food = new Food(4, "Classic Cheesecake",7,40, "Sweet", "Hard", "American");
+        food = new Food(4, "Classic Cheesecake",7,120, "Sweet", "Hard", "American");
         foods.add(food);
         imageURL.put(4, "food4");
         Food_map.put(String.valueOf(food.getFoodID()),food);
@@ -529,12 +529,12 @@ public class DataAccessStub implements DataAccess{
     }
 
     @Override
-    public String searchFoodByCriteriaLists(ArrayList<String> prepTimeCriterias, ArrayList<String> flavourCriterias, ArrayList<String> difficutlyCriterias, ArrayList<String> ethnicityCriterias, ArrayList<Food> foodResult){
+    public String searchFoodByCriteriaLists(ArrayList<String> totalTimeCriterias, ArrayList<String> flavourCriterias, ArrayList<String> difficutlyCriterias, ArrayList<String> ethnicityCriterias, ArrayList<Food> foodResult){
         Iterator<Food> foodIterator = foods.iterator();
         Food food;
         while(foodIterator.hasNext()){
             food = foodIterator.next();
-            if(prepTimeCriterias.contains(String.valueOf(food.getPrepTime())) && flavourCriterias.contains(food.getFlavour()) && difficutlyCriterias.contains(food.getDifficulty())&& ethnicityCriterias.contains(food.getEthnicity())){
+            if(totalTimeCriterias.contains(String.valueOf(food.getTotalTime())) && flavourCriterias.contains(food.getFlavour()) && difficutlyCriterias.contains(food.getDifficulty())&& ethnicityCriterias.contains(food.getEthnicity())){
                 foodResult.add(food);
             }
         }

@@ -16,8 +16,8 @@
             app:useSimpleSummaryProvider="true" />
         <EditTextPreference
             app:defaultValue=""
-            app:key="preptime"
-            app:title="Preparation Time (minutes)"
+            app:key="totaltime"
+            app:title="Total Time (minutes)"
             app:useSimpleSummaryProvider="true" />
         <EditTextPreference
             app:defaultValue=""
