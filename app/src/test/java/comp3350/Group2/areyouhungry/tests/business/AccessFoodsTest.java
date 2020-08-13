@@ -36,6 +36,30 @@ public class AccessFoodsTest extends TestCase{
         assertTrue(foodList.isEmpty());
         Services.closeDataAccess();
     }
+    public void testGetEmptyLikes(){
+        Services.closeDataAccess();
+        Services.createDataAccess(new DataAccessStub(dbName));
+        AccessFoods accessFood = new AccessFoods();
+        Food food = new Food(1, "Baked Salmon",3,20, "Savoury", "Easy", "American");
+        //This portion checks if we can get favourited foods, and list should be empty since we have nothing favourited yet.
+        User tempUser = new User(666,"i like no food");
+        boolean hasFood = accessFood.getFoodLikedByUser(tempUser,food);
+        //True as we have no foods favourited yet.
+        assertFalse(hasFood);
+        Services.closeDataAccess();
+    }
+    public void testGetEmptyDislikes(){
+        Services.closeDataAccess();
+        Services.createDataAccess(new DataAccessStub(dbName));
+        AccessFoods accessFood = new AccessFoods();
+        Food food = new Food(1, "Baked Salmon",3,20, "Savoury", "Easy", "American");
+        //This portion checks if we can get favourited foods, and list should be empty since we have nothing favourited yet.
+        User tempUser = new User(666,"i like no food");
+        boolean hasFood = accessFood.getFoodDislikedByUser(tempUser,food);
+        //True as we have no foods favourited yet.
+        assertFalse(hasFood);
+        Services.closeDataAccess();
+    }
 
     public void testAddingFavourite(){
         Services.closeDataAccess();
@@ -54,6 +78,32 @@ public class AccessFoodsTest extends TestCase{
         //Removing the favourite food for future tests
         accessFood.setFoodFavouriteByUser(newUser,foodList.get(0).getFoodID(),false);
         foodList.clear();
+        Services.closeDataAccess();
+    }
+    public void testAddingLikedFood(){
+        Services.closeDataAccess();
+        Services.createDataAccess(new DataAccessStub(dbName));
+        AccessFoods accessFood = new AccessFoods();
+        Food food = new Food(1, "Baked Salmon",3,20, "Savoury", "Easy", "American");
+        User newUser = new User(777,"i like one food");
+
+        accessFood.setFoodLikedByUser(newUser, food.getFoodID(), true);
+
+        assertTrue(accessFood.getFoodLikedByUser(newUser,food));
+
+        Services.closeDataAccess();
+    }
+    public void testAddingDislikedFood(){
+        Services.closeDataAccess();
+        Services.createDataAccess(new DataAccessStub(dbName));
+        AccessFoods accessFood = new AccessFoods();
+        Food food = new Food(1, "Baked Salmon",3,20, "Savoury", "Easy", "American");
+        User newUser = new User(777,"i like one food");
+
+        accessFood.setFoodDislikedByUser(newUser, food.getFoodID(), true);
+
+        assertTrue(accessFood.getFoodDislikedByUser(newUser,food));
+
         Services.closeDataAccess();
     }
 
@@ -78,6 +128,44 @@ public class AccessFoodsTest extends TestCase{
 
         Services.closeDataAccess();
     }
+    public void testUnLikingFood(){
+        Services.closeDataAccess();
+        Services.createDataAccess(new DataAccessStub(dbName));
+        AccessFoods accessFood = new AccessFoods();
+        Food food = new Food(1, "Baked Salmon",3,20, "Savoury", "Easy", "American");
+        User newUser = new User(777,"i like one food");
+
+        accessFood.setFoodLikedByUser(newUser, food.getFoodID(), true);
+
+        assertTrue(accessFood.getFoodLikedByUser(newUser,food));
+
+        accessFood.setFoodLikedByUser(newUser, food.getFoodID(), false);
+
+        assertFalse(accessFood.getFoodLikedByUser(newUser,food));
+
+        Services.closeDataAccess();
+
+
+    }
+    public void testUnDislikingFood(){
+        Services.closeDataAccess();
+        Services.createDataAccess(new DataAccessStub(dbName));
+        AccessFoods accessFood = new AccessFoods();
+        Food food = new Food(1, "Baked Salmon",3,20, "Savoury", "Easy", "American");
+        User newUser = new User(777,"i like one food");
+
+        accessFood.setFoodDislikedByUser(newUser, food.getFoodID(), true);
+
+        assertTrue(accessFood.getFoodDislikedByUser(newUser,food));
+
+        accessFood.setFoodDislikedByUser(newUser, food.getFoodID(), false);
+
+        assertFalse(accessFood.getFoodDislikedByUser(newUser,food));
+
+        Services.closeDataAccess();
+
+
+    }
 
     public void testFavouriteTwice(){
         Services.closeDataAccess();
@@ -97,6 +185,63 @@ public class AccessFoodsTest extends TestCase{
         accessFood.setFoodFavouriteByUser(newUser,foodList.get(0).getFoodID(),false);
         foodList.clear();
         Services.closeDataAccess();
+    }
+    public void testLikeTwice(){
+        Services.closeDataAccess();
+        Services.createDataAccess(new DataAccessStub(dbName));
+        AccessFoods accessFood = new AccessFoods();
+        Food food1 = new Food(1, "Baked Salmon",3,20, "Savoury", "Easy", "American");
+        Food food2 = new Food(2, "Greek Salad",1,10, "Fresh", "Easy", "Greek");
+
+        User newUser = new User(777,"i like two food");
+
+        accessFood.setFoodLikedByUser(newUser, food1.getFoodID(), true);
+        accessFood.setFoodLikedByUser(newUser, food2.getFoodID(), true);
+
+        assertTrue(accessFood.getFoodLikedByUser(newUser,food1));
+        assertTrue(accessFood.getFoodLikedByUser(newUser,food2));
+
+        Services.closeDataAccess();
+    }
+    public void testDislikeTwice(){
+        Services.closeDataAccess();
+        Services.createDataAccess(new DataAccessStub(dbName));
+        AccessFoods accessFood = new AccessFoods();
+        Food food1 = new Food(1, "Baked Salmon",3,20, "Savoury", "Easy", "American");
+        Food food2 = new Food(2, "Greek Salad",1,10, "Fresh", "Easy", "Greek");
+
+        User newUser = new User(777,"i like two food");
+
+        accessFood.setFoodDislikedByUser(newUser, food1.getFoodID(), true);
+        accessFood.setFoodDislikedByUser(newUser, food2.getFoodID(), true);
+
+        assertTrue(accessFood.getFoodDislikedByUser(newUser,food1));
+        assertTrue(accessFood.getFoodDislikedByUser(newUser,food2));
+
+        Services.closeDataAccess();
+    }
+
+    public void testLikingThenDisliking(){
+        Services.closeDataAccess();
+        Services.createDataAccess(new DataAccessStub(dbName));
+        AccessFoods accessFood = new AccessFoods();
+        Food food = new Food(1, "Baked Salmon",3,20, "Savoury", "Easy", "American");
+        User newUser = new User(777,"i like one food");
+
+        accessFood.setFoodLikedByUser(newUser, food.getFoodID(), true);
+
+        assertTrue(accessFood.getFoodLikedByUser(newUser,food));
+
+        accessFood.setFoodLikedByUser(newUser, food.getFoodID(), false);
+
+        assertFalse(accessFood.getFoodLikedByUser(newUser,food));
+
+        accessFood.setFoodDislikedByUser(newUser, food.getFoodID(), true);
+
+        assertTrue(accessFood.getFoodDislikedByUser(newUser,food));
+
+        Services.closeDataAccess();
+
     }
 
     //Tests trying to add a null item to the food list, this checks to make sure the null item isnt added
@@ -221,7 +366,6 @@ public class AccessFoodsTest extends TestCase{
         assertEquals(foodResult.get(0).getFoodName(), "Spicy Spaghetti");
         assertEquals(foodResult.get(1).getFoodName(), "Egg Fried Rice");
     }
-
     public void testGetImageByFood(){
         Services.closeDataAccess();
         Services.createDataAccess(new DataAccessStub(dbName));
