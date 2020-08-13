@@ -89,6 +89,7 @@ public class DataAccessTest extends TestCase{
         User user1 = new User(id,username);
         User userSet = dataAccess.setNewUser(id,username);
         assertEquals(user1, userSet);
+        dataAccess.deleteUser(4);
 
     }
     public void testSetAndDeleteNewFood(){

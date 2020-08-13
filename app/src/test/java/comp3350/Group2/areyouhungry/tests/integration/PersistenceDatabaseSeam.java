@@ -35,19 +35,47 @@ public class PersistenceDatabaseSeam extends TestCase{
 
         dataAccess.setFoodToFavouriteByUser(newUser,String.valueOf(newFood.getFoodID()),false);
         assertFalse(dataAccess.getFoodFavByUser(newUser,newFood));
-        dataAccess.deleteFood(7);
+
         dataAccess.deleteUser(777);
+        User deletedUser = dataAccess.getUser(777);
+        assertNull(deletedUser);
+
+        String newFoodId = newFood.getFoodID();
+        dataAccess.deleteFood(Integer.valueOf(newFoodId));
+        foodReturned = dataAccess.getFoodFromID(newFoodId);
+        assertNull(foodReturned);
         Services.closeDataAccess();
     }
 
-    public void testSetFoodToLikedByUser(){
+    public void testLikedFoodByUser(){
         Services.closeDataAccess();
         Services.createDataAccess(new DataAccessObject(MainActivity.dbName));
         dataAccess = Services.getDataAccess(MainActivity.dbName);
 
+        User testUser = dataAccess.getUser(1);
+        Food gotFood = dataAccess.getFoodFromID("1");
+        dataAccess.setFoodToLikedByUser(testUser,String.valueOf(gotFood.getFoodID()),true);
+        assertTrue(dataAccess.getFoodLikedByUser(testUser,gotFood));
 
+        dataAccess.setFoodToLikedByUser(testUser,String.valueOf(gotFood.getFoodID()),false);
+        assertFalse(dataAccess.getFoodLikedByUser(testUser,gotFood));
 
-        assertTrue(true);
+        Services.closeDataAccess();
+    }
+
+    public void testDislikedFoodByUser(){
+        Services.closeDataAccess();
+        Services.createDataAccess(new DataAccessObject(MainActivity.dbName));
+        dataAccess = Services.getDataAccess(MainActivity.dbName);
+
+        User testUser = dataAccess.getUser(1);
+        Food gotFood = dataAccess.getFoodFromID("1");
+        dataAccess.setFoodToDislikedByUser(testUser,String.valueOf(gotFood.getFoodID()),true);
+        assertTrue(dataAccess.getFoodDislikedByUser(testUser,gotFood));
+
+        dataAccess.setFoodToDislikedByUser(testUser,String.valueOf(gotFood.getFoodID()),false);
+        assertFalse(dataAccess.getFoodDislikedByUser(testUser,gotFood));
+
         Services.closeDataAccess();
     }
 
@@ -66,7 +94,13 @@ public class PersistenceDatabaseSeam extends TestCase{
 
         ArrayList<User> userlist = new ArrayList<>();
         dataAccess.getUserSequential(userlist);
-        assertEquals(userlist.size(),3);
+
+        assertEquals(3,userlist.size());
+
+        dataAccess.deleteUser(777);
+        User deletedUser = dataAccess.getUser(777);
+        assertNull(deletedUser);
+
         Services.closeDataAccess();
 
     }
@@ -90,6 +124,16 @@ public class PersistenceDatabaseSeam extends TestCase{
         assertEquals(foodlist.size(),3);
 
         dataAccess.deleteFoodCategory(Integer.valueOf(newFood.getFoodID()),dairyID);
+
+        dataAccess.getFoodSequentialByCategory("Dairy",foodlist);
+        assertEquals(foodlist.size(),2);
+
+        String newFoodId = newFood.getFoodID();
+        dataAccess.deleteFood(Integer.valueOf(newFoodId));
+        foodReturned = dataAccess.getFoodFromID(newFoodId);
+        assertNull(foodReturned);
+
+        dataAccess.deleteFood(7);
 
         Services.closeDataAccess();
     }

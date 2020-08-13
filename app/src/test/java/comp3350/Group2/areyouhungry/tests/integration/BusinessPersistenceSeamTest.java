@@ -29,7 +29,9 @@ public class BusinessPersistenceSeamTest extends TestCase{
 
     public void setUp(){
         System.out.println("Starting Persistence");
-        dataAccess = new DataAccessObject(dbName);
+      // dataAccess = new DataAccessObject(dbName);
+        //dataAccess.open(MainActivity.getDBPathName());
+        dataAccess = new DataAccessStub(dbName);
         dataAccess.open(MainActivity.getDBPathName());
     }
     public BusinessPersistenceSeamTest(String arg0){
@@ -38,7 +40,7 @@ public class BusinessPersistenceSeamTest extends TestCase{
 
     public void testAccessFood(){
         Services.closeDataAccess();
-        Services.createDataAccess(new DataAccessStub(dbName));
+        Services.createDataAccess(dataAccess);
         Food testFood = new Food(7,"testFood",1,10,"Spicy","Hard","Canadian");
         AccessFoods accessFoods = new AccessFoods();
         accessFoods.addFood(testFood);
@@ -53,6 +55,7 @@ public class BusinessPersistenceSeamTest extends TestCase{
         returnedFood = accessFoods.getFoodByID("7");
         assertFalse(returnedFood.getFavourite());
 
+        dataAccess.deleteFood(7);
         Services.closeDataAccess();
     }
 
@@ -66,8 +69,9 @@ public class BusinessPersistenceSeamTest extends TestCase{
         ArrayList<Ingredient> ingredientList = new ArrayList<>();
 
         //add food
-        Food testFood = new Food(8,"testFood",1,10,"Spicy","Hard","Canadian");
+        Food testFood = new Food(7,"testFood",1,10,"Spicy","Hard","Canadian");
         accessFoods.addFood(testFood);
+
 
         //get food
         Food dbFood = accessFoods.getFoodByID(testFood.getFoodID());
@@ -76,9 +80,9 @@ public class BusinessPersistenceSeamTest extends TestCase{
         assertNull(accessIngredients.getIngredient(dbFood,ingredientList));
 
         //add Ingredients
-        Ingredient ingredient = new Ingredient(150, "milk", "1/2 Cup");
+        Ingredient ingredient = new Ingredient(42, "milk", "1/2 Cup");
         accessIngredients.addIngredient(ingredient);
-
+        
         String result = accessIngredients.setFoodIngredient(Integer.parseInt(dbFood.getFoodID()), ingredient.getIngredientID());
 
         //get food/ingredient and check
@@ -91,12 +95,16 @@ public class BusinessPersistenceSeamTest extends TestCase{
         ListIterator<Ingredient> ingredientListIterator = ingredientList.listIterator();
         while (ingredientListIterator.hasNext()){
             Ingredient tempIngredient = ingredientListIterator.next();
-            if(tempIngredient.getIngredientID() == 150){
-                matchedId = 150;
+            if(tempIngredient.getIngredientID() == 42){
+                matchedId = 42;
             }
         }
 
-        assertEquals(150, matchedId);
+        assertEquals(42, matchedId);
+        dataAccess.deleteFoodIngredient(7, 42);
+        dataAccess.deleteIngredient(42);
+        dataAccess.deleteFood(7);
+
 
         Services.closeDataAccess();
     }
@@ -112,7 +120,7 @@ public class BusinessPersistenceSeamTest extends TestCase{
         ArrayList<Direction> directionList = new ArrayList<>();
 
         //add food
-        Food testFood = new Food(9,"testFood",1,10,"Spicy","Hard","Canadian");
+        Food testFood = new Food(7,"testFood",1,10,"Spicy","Hard","Canadian");
         accessFoods.addFood(testFood);
 
         //get food
@@ -143,26 +151,29 @@ public class BusinessPersistenceSeamTest extends TestCase{
         }
 
         assertEquals(150, matchedId);
-
+        dataAccess.deleteFoodDirection(7,150);
+        dataAccess.deleteDirection(150);
+        dataAccess.deleteFood(7);
         Services.closeDataAccess();
 
     }
 
     public void testGetUser(){
         Services.closeDataAccess();
-        Services.createDataAccess(new DataAccessStub(dbName));
-        User newUser = new User(4,"testuser");
+        Services.createDataAccess(dataAccess);
+        User newUser = new User(3,"testuser");
         AccessUsers accessUsers = new AccessUsers();
-        User returnedUser = accessUsers.getUserByID(4);
+        User returnedUser = accessUsers.getUserByID(3);
         assertNull(returnedUser);
 
         accessUsers.newUsers(newUser.getUserName());
-        returnedUser = accessUsers.getUserByID(4);
+        returnedUser = accessUsers.getUserByID(3);
         assertTrue(newUser.equals(returnedUser));
 
         ArrayList<User> userList = new ArrayList<>();
         accessUsers.getUsers(userList);
-        assertEquals(userList.size(),4);
+        assertEquals(userList.size(),3);
+        dataAccess.deleteUser(3);
         Services.closeDataAccess();
     }
 
