@@ -133,7 +133,7 @@ public class DataAccessStub implements DataAccess{
         questions.add(question);
         question = new Question("You invite someone over saying you will cook for them knowing very well that you infact cant cook. What do you make?", "Everyone likes Lucky Charms!", "A nice bowl of Kraft Dinner", "Something that requires to be cooked to a certain temperature", "The thing the Rat in Ratatouille made");
         questions.add(question);
-        question = new Question("Ah yes the classic why did the chicken cross the road dilema, except the chicken is in the airport and is booking a flight to your favourite vacation spot which is...", "The place where the toilet water spins the other way", "Cant have a high amount of covid cases if we dont test land", "Mamma Mia!", "Breathing the Air here is like smoking a pack of cigs a day");
+        question = new Question("Ah yes the classic why did the chicken cross the road dilemma, except the chicken is in the airport and is booking a flight to your favourite vacation spot which is...", "The place where the toilet water spins the other way", "Cant have a high amount of covid cases if we dont test land", "Mamma Mia!", "Breathing the Air here is like smoking a pack of cigs a day");
         questions.add(question);
 
         ingredients = new ArrayList<Ingredient>();

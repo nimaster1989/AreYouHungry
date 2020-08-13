@@ -38,7 +38,7 @@ INSERT INTO QUESTIONS VALUES(1,'You are on fear factor and the following items a
 INSERT INTO QUESTIONS VALUES(2,'Im so hungry i could eat a...','Horse','Slightly larger Horse','Wow thats a big horse','A horse bred so large for the purpose to stop this dumb statement')
 INSERT INTO QUESTIONS VALUES(3,'Which would you rather do?','Defuse a bomb with 10 seconds left','Sit in the "slow" McDonalds line','Spend four years getting a degree in theoretical phys-ed','Play a game of Monopoly')
 INSERT INTO QUESTIONS VALUES(4,'You invite someone over saying you will cook for them knowing very well that you infact cant cook. What do you make?','Everyone likes Lucky Charms!','A nice bowl of Kraft Dinner','Something that requires to be cooked to a certain temperature','The thing the Rat in Ratatouille made')
-INSERT INTO QUESTIONS VALUES(5,'Ah yes the classic why did the chicken cross the road dilema, except the chicken is in the airport and is booking a flight to your favourite vacation spot which is...','All their philosphers become stone!','Cant have a high amount of covid cases if we dont test land','Mamma Mia!','Breathing the Air here is like smoking a pack of cigs a day')
+INSERT INTO QUESTIONS VALUES(5,'Ah yes the classic why did the chicken cross the road dilemma, except the chicken is in the airport and is booking a flight to your favourite vacation spot which is...','All their philosphers become stone!','Cant have a high amount of covid cases if we dont test land','Mamma Mia!','Breathing the Air here is like smoking a pack of cigs a day')
 INSERT INTO INGREDIENT VALUES(1,'Salmon Fillets','4')
 INSERT INTO INGREDIENT VALUES(2,'Olive Oil','2 tbsp.')
 INSERT INTO INGREDIENT VALUES(3,'Salt','1/2 tsp.')
