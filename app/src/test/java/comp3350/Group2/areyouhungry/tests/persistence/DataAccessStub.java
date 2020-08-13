@@ -790,25 +790,13 @@ public class DataAccessStub implements DataAccess{
         return imageURL.get(foodid);
     }
 
-    @Override
+
     public int getTotalUser(){
     return users.size();
     }
-    public String setFoodToLikedByUser(User user,String curr_id, boolean b){
-    return null;
-    }
 
-    public String setFoodToDislikedByUser(User user,String curr_id, boolean b){
-    return null;
-    }
 
-    public boolean getFoodLikedByUser(User user, Food food){
-        return false;
-    }
 
-    public boolean getFoodDislikedByUser(User user, Food food){
-        return false;
-    }
 
 }
 

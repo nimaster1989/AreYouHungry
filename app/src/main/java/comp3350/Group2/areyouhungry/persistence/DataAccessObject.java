@@ -261,12 +261,11 @@ public class DataAccessObject implements DataAccess{
     public int getFoodTableRow(){
         int myRow = 0;
         result = null;
-
         try{
-            cmdString = "SELECT * FROM FOODS";
+            cmdString = "SELECT MAX(FOODS.foodID)FROM FOODS";
             rs5 = st3.executeQuery(cmdString);
             while (rs5.next()){
-                myRow ++;
+                myRow = rs5.getInt(1);
             }
             rs5.close();
         }
@@ -306,10 +305,10 @@ public class DataAccessObject implements DataAccess{
         result = null;
         int count = 0;
         try{
-            cmdString = "SELECT * FROM QUESTIONS";
+            cmdString = "SELECT MAX(QUESTIONID) FROM QUESTIONS";
             rs5 = st3.executeQuery(cmdString);
             while(rs5.next()){
-                count++;
+                count = rs5.getInt(1);
             }
             rs5.close();
         }catch (Exception e){
@@ -577,10 +576,10 @@ public class DataAccessObject implements DataAccess{
         result = null;
 
         try{
-            cmdString = "SELECT * FROM INGREDIENT";
+            cmdString = "SELECT MAX(INGREDIENTID) FROM INGREDIENT";
             rs5 = st3.executeQuery(cmdString);
             while(rs5.next()){
-                count++;
+                count = rs5.getInt(1);
             }
             rs5.close();
         }catch (Exception e){
@@ -631,10 +630,10 @@ public class DataAccessObject implements DataAccess{
         result = null;
 
         try{
-            cmdString = "SELECT * FROM DIRECTION";
+            cmdString = "SELECT MAX(DIRECTIONID) FROM DIRECTION";
             rs5 = st3.executeQuery(cmdString);
             while(rs5.next()){
-                count++;
+                count = rs5.getInt(1);
             }
             rs5.close();
         }catch (Exception e){
@@ -830,10 +829,10 @@ public class DataAccessObject implements DataAccess{
         result = null;
 
         try{
-            cmdString = "SELECT * FROM USERS";
+            cmdString = "SELECT MAX(USERID) FROM USERS";
             rs5 = st3.executeQuery(cmdString);
             while(rs5.next()){
-                count++;
+                count = rs5.getInt(1);
             }
             rs5.close();
         }catch (Exception e){

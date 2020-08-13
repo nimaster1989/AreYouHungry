@@ -33,7 +33,7 @@ public class AccessQuestionTest extends TestCase{
         AccessQuestions accessQuestion = new AccessQuestions();
         List<Question> questionList =  accessQuestion.getQuestions();
         int questionTotal =  accessQuestion.getTotalQuestions();
-        assertTrue(questionTotal == questionList.size());
+        assertEquals(questionTotal, questionList.size());
         Services.closeDataAccess();
     }
 

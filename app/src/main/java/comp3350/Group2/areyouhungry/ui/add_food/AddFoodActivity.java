@@ -12,6 +12,7 @@ import android.view.View;
 import androidx.appcompat.app.ActionBar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
@@ -113,14 +114,13 @@ public class AddFoodActivity extends AppCompatActivity{
                 }
 
                 Set<String> entries = sharedPreferences.getStringSet("category", null);
-                if(entries == null){
+                if(entries == null || entries.isEmpty()){
                     alertMessage += "Please select at least one category.\n";
                     buildFood = false;
                 }else{
-                    String[] selecteds = entries.toArray(new String[]{});
                     str_categorys.clear();
+                    String[] selecteds = entries.toArray(new String[]{});
                     Collections.addAll(str_categorys, selecteds);
-
                 }
                 imageURL = sharedPreferences.getString("imageurl", "");
                 if(buildFood){
@@ -138,6 +138,7 @@ public class AddFoodActivity extends AppCompatActivity{
                     bundle.putStringArrayList("foodCats",str_categorys);
                     bundle.putString("foodImg",imageURL);
                     next.putExtras(bundle);
+                    clearValue();
                     startActivity(next);
                     finish();
                 }else{
@@ -200,6 +201,9 @@ public class AddFoodActivity extends AppCompatActivity{
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s){
+            if(s.equals("category")){
+
+            }
         }
     }
         public void clearValue(){

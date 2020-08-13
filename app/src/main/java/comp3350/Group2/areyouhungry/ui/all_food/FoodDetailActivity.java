@@ -76,13 +76,13 @@ public class FoodDetailActivity extends AppCompatActivity{
                         curr_food.setFavourite(false);
                         accessFoods.setFoodFavouriteByUser(currUser,curr_id,false);
                         fab.setImageDrawable(getDrawable(R.drawable.ic_baseline_favorite_border_24));
-                        Snackbar.make(view, "You Un-Favourited this food!", Snackbar.LENGTH_LONG)
+                        Snackbar.make(view, "You Unfavourite this food!", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                     } else{
                         curr_food.setFavourite(true);
                         accessFoods.setFoodFavouriteByUser(currUser,curr_id,true);
                         fab.setImageDrawable(getDrawable(R.drawable.ic_baseline_favorite_24));
-                        Snackbar.make(view, "You Favourited this food!", Snackbar.LENGTH_LONG)
+                        Snackbar.make(view, "You Favourite this food!", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                     }
                 }
