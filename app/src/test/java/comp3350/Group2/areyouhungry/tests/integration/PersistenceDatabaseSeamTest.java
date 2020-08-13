@@ -114,7 +114,6 @@ public class PersistenceDatabaseSeamTest extends TestCase{
 
         int dairyID = dataAccess.getCategoryIDbyName("Dairy");
 
-        FoodCategory newFC = new FoodCategory(Integer.valueOf(newFood.getFoodID()),dairyID);
         dataAccess.addFoodCategory(Integer.valueOf(newFood.getFoodID()),dairyID);
         ArrayList<Food> foodlist = new ArrayList<>();
         dataAccess.getFoodSequentialByCategory("Dairy",foodlist);

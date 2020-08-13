@@ -24,7 +24,7 @@ public class BusinessPersistenceSeamTest extends TestCase{
 
     public void setUp(){
         System.out.println("Starting Persistence");
-      // dataAccess = new DataAccessObject(dbName);
+        //dataAccess = new DataAccessObject(dbName);
         //dataAccess.open(MainActivity.getDBPathName());
         dataAccess = new DataAccessStub(dbName);
         dataAccess.open(MainActivity.getDBPathName());
@@ -63,24 +63,18 @@ public class BusinessPersistenceSeamTest extends TestCase{
 
         ArrayList<Ingredient> ingredientList = new ArrayList<>();
 
-        //add food
         Food testFood = new Food(7,"testFood",1,10,"Spicy","Hard","Canadian");
         accessFoods.addFood(testFood);
 
-
-        //get food
         Food dbFood = accessFoods.getFoodByID(testFood.getFoodID());
 
-        //get Ingredients
         assertNull(accessIngredients.getIngredient(dbFood,ingredientList));
 
-        //add Ingredients
         Ingredient ingredient = new Ingredient(42, "milk", "1/2 Cup");
         accessIngredients.addIngredient(ingredient);
         
-        String result = accessIngredients.setFoodIngredient(Integer.parseInt(dbFood.getFoodID()), ingredient.getIngredientID());
+        accessIngredients.setFoodIngredient(Integer.parseInt(dbFood.getFoodID()), ingredient.getIngredientID());
 
-        //get food/ingredient and check
         dbFood = accessFoods.getFoodByID(testFood.getFoodID());
         ingredientList = new ArrayList<>();
 
@@ -114,23 +108,18 @@ public class BusinessPersistenceSeamTest extends TestCase{
 
         ArrayList<Direction> directionList = new ArrayList<>();
 
-        //add food
         Food testFood = new Food(7,"testFood",1,10,"Spicy","Hard","Canadian");
         accessFoods.addFood(testFood);
 
-        //get food
         Food dbFood = accessFoods.getFoodByID(testFood.getFoodID());
 
-        //get Directions
         assertNull(accessDirections.getDirection(dbFood,directionList));
 
-        //add Direction
         Direction direction = new Direction(150, "Add milk to bowl", 1);
         accessDirections.addDirection(direction);
 
-        String result = accessDirections.addFoodDirection(Integer.parseInt(dbFood.getFoodID()), direction.getDirectionID());
+        accessDirections.addFoodDirection(Integer.parseInt(dbFood.getFoodID()), direction.getDirectionID());
 
-        //get food/direction and check
         dbFood = accessFoods.getFoodByID(testFood.getFoodID());
         directionList = new ArrayList<>();
 

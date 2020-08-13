@@ -34,7 +34,6 @@ public class AccessIngredientsTest extends TestCase{
     public void testGetIngredients(){
         Services.closeDataAccess();
         Services.createDataAccess(new DataAccessStub(dbName));
-        AccessDirections accessDirections = new AccessDirections();
         AccessIngredients accessIngredients = new AccessIngredients();
         AccessFoods accessFoods = new AccessFoods();
         Food tempFood = accessFoods.getFoodByID("1");

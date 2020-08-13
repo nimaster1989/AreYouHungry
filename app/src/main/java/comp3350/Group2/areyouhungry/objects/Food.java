@@ -107,7 +107,6 @@ public class Food implements Serializable{
         return this.getFoodID().equals(food.getFoodID());
     }
 
-    //use for hashset
     @Override
     public int hashCode(){
         return Objects.hash(foodID, foodName, favourite, portionSize, totalTime, flavour, difficulty, ethnicity);

@@ -55,7 +55,6 @@ public class OnhandActivity extends AppCompatActivity{
         editor.apply();
         foods = new ArrayList<>();
         resultList = new ArrayList<>();
-        AccessFoods accessFoods = new AccessFoods();
 
         ExtendedFloatingActionButton fab = (ExtendedFloatingActionButton) findViewById(R.id.search_fba);
         fab.setOnClickListener(new View.OnClickListener(){
@@ -82,7 +81,7 @@ public class OnhandActivity extends AppCompatActivity{
     public static class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener{
 
         ArrayList<String> categoryCriterias;
-        //food object criterias
+        /* Food object criteria's. */
         ArrayList<String> totalTimeCriterias;
         ArrayList<String> flavourCriterias;
         ArrayList<String> difficutlyCriterias;
@@ -115,14 +114,13 @@ public class OnhandActivity extends AppCompatActivity{
             AccessIngredients accessIngredients = new AccessIngredients();
             ArrayList<Ingredient> ingredients = new ArrayList<>();
             accessIngredients.getAllIngredient(ingredients);
-            //assign to class variable
+            /* Assign to class variable. */
             allIngredient = ingredients;
-            //set up ingredient options view for search
+            /* Set up ingredient options view for search. */
             int size = ingredients.size();
             CharSequence[] entries = new CharSequence[size];
             CharSequence[] entryvalue = new CharSequence[size];
             int i = 0;
-            String str_input;
             for (Ingredient ingredient : ingredients){
                 entries[i] = ingredient.getIngredientName();
                 entryvalue[i] = String.valueOf(ingredient.getIngredientID());
@@ -133,14 +131,14 @@ public class OnhandActivity extends AppCompatActivity{
         }
         public void onResume(){
             super.onResume();
-            // Set up a listener whenever a key changes
+            /* Set up a listener whenever a key changes. */
             getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         }
 
         @Override
         public void onPause(){
             super.onPause();
-            // Set up a listener whenever a key changes
+            /* Set up a listener whenever a key changes. */
             getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
         }
 
@@ -376,8 +374,8 @@ public class OnhandActivity extends AppCompatActivity{
                 } else if (ingredientName.toLowerCase().contains(str.toLowerCase())){
                     ingredientsTextCriterias.add(String.valueOf(index + 1));
                 } else{
-                    //time complexity for calculate long string levenshtein distance is large,
-                    //its not necessary, we break ingredient by space and search each word
+                    /* Time complexity for calculate long string levenshtein distance is large,
+                      its not necessary, we break ingredient by space and search each word. */
                     String[] ingredientNames = ingredientName.split(" ");
                     for (String s : ingredientNames){
                         int distance = levenshtein(s, str);
@@ -421,8 +419,8 @@ public class OnhandActivity extends AppCompatActivity{
             return list;
         }
 
-        //two helper methods for fuzzy search, calculate the levenshtein distance
-        //we assume if two word have levenshtein distance <= 1/3 word length, we consider it a result
+        /* Two helper methods for fuzzy search, calculate the levenshtein distance
+           we assume if two word have levenshtein distance <= 1/3 word length, we consider it a result. */
         public int levenshtein (CharSequence lhs, CharSequence rhs){
             int len0 = lhs.length() + 1;
             int len1 = rhs.length() + 1;
