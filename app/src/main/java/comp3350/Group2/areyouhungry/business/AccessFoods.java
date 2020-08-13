@@ -88,6 +88,7 @@ public class AccessFoods{
     }
 
     public FoodCategory addFoodCategory(Food newFood, String categoryName){
+        categoryName = categoryName.trim();
         int foodID = Integer.parseInt(newFood.getFoodID());
         int categoryID = getCategoryID(categoryName);
         return dataAccess.addFoodCategory(foodID, categoryID);

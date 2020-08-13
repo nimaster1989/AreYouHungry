@@ -485,7 +485,7 @@ public class DataAccessObject implements DataAccess{
         result = null;
 
         try{
-            cmdString = "SELECT * FROM CATEGORIES WHERE CATEGORIES.CATEGORYNAME = '"+categoryName+"'";
+            cmdString = "SELECT * FROM CATEGORYS WHERE CATEGORYS.CATEGORYNAME = '"+categoryName+"'";
             rs5 = st3.executeQuery(cmdString);
             while (rs5.next()){
                 myID = rs5.getInt("CATEGORYID");
@@ -500,7 +500,6 @@ public class DataAccessObject implements DataAccess{
     }
 
     public FoodCategory addFoodCategory(int foodID, int categoryID){
-        String values;
         FoodCategory addedFoodCategory = null;
         result = null;
 
@@ -578,7 +577,6 @@ public class DataAccessObject implements DataAccess{
     public String addFoodIngredient(int foodid, int ingredientid){
         String values;
         result = null;
-
         try{
             if(foodid >= 1 && ingredientid >=1){
                 cmdString = "INSERT INTO FOODINGREDIENT VALUES(" + foodid + "," + ingredientid + ")";
@@ -704,10 +702,9 @@ public class DataAccessObject implements DataAccess{
             if(Integer.parseInt(maxPrepTime) == 100){
                 cmd += "FOODS.PREPTIME > 60 OR";
             }
-            else {
+            else{
                 cmd += "(FOODS.PREPTIME <= " + maxPrepTime + "AND FOODS.PREPTIME >=" + minPrepTime + ") OR ";
             }
-            System.out.println("time:"+minPrepTime+" ~ "+maxPrepTime);
         }
         if(size1 > 0){
             cmd = cmd.substring(0, cmd.length() - 3);
@@ -738,7 +735,7 @@ public class DataAccessObject implements DataAccess{
             if(ethnicity.equals("OtherEthnicity")){
                 cmd += "FOODS.ETHNICITY != 'American' AND FOODS.ETHNICITY != 'Greek' AND FOODS.ETHNICITY != 'Italian' AND FOODS.ETHNICITY != 'Chinese' OR ";
             }
-            else {
+            else{
                 cmd += "FOODS.ETHNICITY = '" + ethnicity + "' OR ";
             }
         }
@@ -772,13 +769,14 @@ public class DataAccessObject implements DataAccess{
 
     @Override
     public String getFoodSequentialByCategory(String category, ArrayList<Food> foodCategoryResult){
+        foodCategoryResult.clear();
         result = null;
         Food food;
         try{
             cmdString = "select FOODSCATEGORY.FOODID from FOODSCATEGORY,CATEGORYS  where FOODSCATEGORY.CATEGORYID = CATEGORYS.CATEGORYID and CATEGORYS.CATEGORYNAME = '"+category+"'";
-            rs3 = st2.executeQuery(cmdString);
-            while(rs3.next()){
-                int foodID = rs3.getInt("FOODID");
+            rs4 = st2.executeQuery(cmdString);
+            while(rs4.next()){
+                int foodID = rs4.getInt("FOODID");
                 food = getFoodFromID(String.valueOf(foodID));
                 foodCategoryResult.add(food);
             }
@@ -799,7 +797,6 @@ public class DataAccessObject implements DataAccess{
             rs3 = st2.executeQuery(cmdString);
             while(rs3.next()){
                 int foodID = rs3.getInt("FOODID");
-                System.out.println("get foodid:"+ foodID);
                 food = getFoodFromID(String.valueOf(foodID));
                 foodIngredientResult.add(food);
             }
