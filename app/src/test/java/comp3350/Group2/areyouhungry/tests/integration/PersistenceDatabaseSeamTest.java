@@ -2,20 +2,17 @@ package comp3350.Group2.areyouhungry.tests.integration;
 
 import junit.framework.TestCase;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import comp3350.Group2.areyouhungry.MainActivity;
 import comp3350.Group2.areyouhungry.Services;
-import comp3350.Group2.areyouhungry.objects.Categories;
 import comp3350.Group2.areyouhungry.objects.Food;
 import comp3350.Group2.areyouhungry.objects.FoodCategory;
 import comp3350.Group2.areyouhungry.objects.User;
 import comp3350.Group2.areyouhungry.persistence.DataAccess;
 import comp3350.Group2.areyouhungry.persistence.DataAccessObject;
-import comp3350.Group2.areyouhungry.tests.persistence.DataAccessStub;
 
-public class PersistenceDatabaseSeam extends TestCase{
+public class PersistenceDatabaseSeamTest extends TestCase{
     private DataAccess dataAccess;
 
     public void testSetFoodToFavouriteByUser(){
