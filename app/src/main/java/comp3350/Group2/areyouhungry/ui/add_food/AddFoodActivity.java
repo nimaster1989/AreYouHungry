@@ -157,7 +157,6 @@ public class AddFoodActivity extends AppCompatActivity{
         });
     }
 
-    //This allows you to use the back button on the top left to go to home page
     public boolean onOptionsItemSelected(MenuItem item){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
@@ -187,14 +186,12 @@ public class AddFoodActivity extends AppCompatActivity{
         @Override
         public void onResume(){
             super.onResume();
-            // Set up a listener whenever a key changes
             getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         }
 
         @Override
         public void onPause(){
             super.onPause();
-            // Set up a listener whenever a key changes
             getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
         }
 

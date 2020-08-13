@@ -23,7 +23,6 @@ import comp3350.Group2.areyouhungry.ui.all_food.FoodDetailFragment;
 
 public class SearchResultActivity extends AppCompatActivity{
 
-    private AccessFoods accessFoods;
     private ArrayList<Food> searchResultList;
     private boolean mTwoPane;
 

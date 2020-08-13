@@ -104,8 +104,8 @@ public class AccessFoods{
     }
 
     /* Definition of duplicate: we assume foods might have same name,
-   but not same recipe, we call two foods to be equal if they have same
-   name, and same recipe. */
+        but not same recipe, we call two foods to be equal if they have same
+        name, and same recipe. */
     public boolean checkDuplicate(Food food){
         boolean duplicate = false;
         List<Food> foodsInDatabase = new ArrayList<Food>();

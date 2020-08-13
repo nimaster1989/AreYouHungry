@@ -162,10 +162,7 @@ public class DataAccessObject implements DataAccess{
     private void fillFoodObject(String cmdString,List<Food> foodResult){
         String myID="",myFoodName="",myFlavour="",myDifficulty="",myEthnicity="",myIngredientName="",myIngredientMeasure="",myIngredientId="",myDirectionID="",myDirectionDesc="",myDirectionStep="";
         String currentID = "-1";
-        String currentIngredientID = "-1";
-        String currentDirectionID = "-1";
         int myPortionSize=0,myTotalTime=0;
-        Boolean myFavourite=false;
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         ArrayList<Direction> directions = new ArrayList<>();
 
@@ -370,7 +367,6 @@ public class DataAccessObject implements DataAccess{
     }
 
     public String setFoodToFavouriteByUser(User user, String curr_id, boolean b){
-        String values;
         cmdString = "";
         result = null;
 
@@ -391,7 +387,6 @@ public class DataAccessObject implements DataAccess{
     }
 
     public String setFoodToLikedByUser(User user, String curr_id, boolean b){
-        String values;
         cmdString = "";
         result = null;
 
@@ -411,7 +406,6 @@ public class DataAccessObject implements DataAccess{
         return result;
     }
     public String setFoodToDislikedByUser(User user, String curr_id, boolean b){
-        String values;
         cmdString = "";
         result = null;
 
@@ -527,7 +521,6 @@ public class DataAccessObject implements DataAccess{
 
 
     public void deleteFoodCategory(int foodID, int categoryID){
-        String values;
         cmdString = "";
         result = null;
 
@@ -542,7 +535,6 @@ public class DataAccessObject implements DataAccess{
     }
 
     public void deleteUser(int userID){
-        String values;
         cmdString = "";
         result = null;
 
@@ -556,7 +548,6 @@ public class DataAccessObject implements DataAccess{
         }
     }
     public void deleteFood(int foodID){
-        String values;
         cmdString = "";
         result = null;
 
@@ -570,7 +561,6 @@ public class DataAccessObject implements DataAccess{
         }
     }
     public void deleteIngredient(int ingredientID){
-        String values;
         cmdString = "";
         result = null;
 
@@ -584,7 +574,6 @@ public class DataAccessObject implements DataAccess{
         }
     }
     public void deleteFoodIngredient(int foodID, int ingredientID){
-        String values;
         cmdString = "";
         result = null;
 
@@ -598,7 +587,6 @@ public class DataAccessObject implements DataAccess{
         }
     }
     public void deleteFoodDirection(int foodID, int directionID){
-        String values;
         cmdString = "";
         result = null;
 
@@ -612,7 +600,6 @@ public class DataAccessObject implements DataAccess{
         }
     }
     public void deleteDirection(int directionID){
-        String values;
         cmdString = "";
         result = null;
 
@@ -646,7 +633,6 @@ public class DataAccessObject implements DataAccess{
 
     @Override
     public String addFoodIngredient(int foodid, int ingredientid){
-        String values;
         result = null;
         try{
             if(foodid >= 1 && ingredientid >=1){
@@ -663,7 +649,6 @@ public class DataAccessObject implements DataAccess{
 
     @Override
     public String addNewIngredient(Ingredient newIngredient){
-        String values;
         result = null;
 
         try{
@@ -700,7 +685,6 @@ public class DataAccessObject implements DataAccess{
 
     @Override
     public String addNewDirection(Direction newDirection){
-        String values;
         result = null;
 
         try{
@@ -718,7 +702,6 @@ public class DataAccessObject implements DataAccess{
 
     @Override
     public String addFoodDirection(int foodid, int directionid){
-        String values;
         result = null;
 
         try{
@@ -761,7 +744,6 @@ public class DataAccessObject implements DataAccess{
 
     @Override
     public String searchFoodByCriteriaLists(ArrayList<String> totalTimeCriterias, ArrayList<String> flavourCriterias, ArrayList<String> difficutlyCriterias, ArrayList<String> ethnicityCriterias, ArrayList<Food> foodResult){
-        String result = null;
         String cmd="SELECT * FROM FOODS WHERE ";
         int size1 = totalTimeCriterias.size();
         int size2 = flavourCriterias.size();
@@ -965,7 +947,6 @@ public class DataAccessObject implements DataAccess{
     }
 
     public String addFood(Food addFood){
-        String values;
         result = null;
 
         try{

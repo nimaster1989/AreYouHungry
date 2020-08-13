@@ -38,7 +38,6 @@ public class DataAccessTest extends TestCase{
 
     public void testDataAccess(){
         ArrayList<Food> foods;
-        Food food;
         String result;
         foods = new ArrayList<Food>();
         result = dataAccess.getFoodSequential(foods);
@@ -90,7 +89,6 @@ public class DataAccessTest extends TestCase{
         User userSet = dataAccess.setNewUser(id,username);
         assertEquals(user1, userSet);
         dataAccess.deleteUser(4);
-
     }
     public void testSetAndDeleteNewFood(){
         Food newFood = new Food(150, "Fish and Chip",1,10, "Savory", "Easy", "American");
@@ -154,7 +152,7 @@ public class DataAccessTest extends TestCase{
     }
 
     /* We understood that tests are suppsoe to avoid if/else and loops but this saves so much
-   time for testing all possible options. */
+       time for testing all possible options. */
     public void testAllAnswerOptions(){
         Answers answer;
         List<Integer> answers;

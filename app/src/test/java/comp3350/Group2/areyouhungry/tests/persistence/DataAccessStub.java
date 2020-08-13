@@ -36,7 +36,7 @@ public class DataAccessStub implements DataAccess{
     private ArrayList<FoodIngredient> foodIngredients;
     private ArrayList<FoodDirection> foodDirections;
 
-    //stub map referencing user_favourite table in the HSQLDB database
+    /* Stub map referencing user_favourite table in the HSQLDB database. */
     private Map<Integer, String> imageURL;
     private ArrayList<Map<Integer,Integer>>  User_favourite_map_list;
     private ArrayList<Map<Integer,Integer>>  User_liked_map_list;
@@ -460,7 +460,7 @@ public class DataAccessStub implements DataAccess{
 
     @Override
     public void deleteUser(int userID){
-        Iterator<User> userIterator = users.iterator(); /* This iterates through the foods list. */
+        Iterator<User> userIterator = users.iterator();
         User user;
         while(userIterator.hasNext()){
             user = userIterator.next();
@@ -472,7 +472,7 @@ public class DataAccessStub implements DataAccess{
     }
     @Override
     public void deleteFood(int foodID){
-        Iterator<Food> foodIterator = foods.iterator(); /* This iterates through the foods list. */
+        Iterator<Food> foodIterator = foods.iterator();
         Food food;
         while(foodIterator.hasNext()){
             food = foodIterator.next();
@@ -484,7 +484,7 @@ public class DataAccessStub implements DataAccess{
     }
     @Override
     public void deleteIngredient(int ingredientID){
-        Iterator<Ingredient> ingredientIterator = ingredients.iterator(); /* This iterates through the foods list. */
+        Iterator<Ingredient> ingredientIterator = ingredients.iterator();
         Ingredient ingredient;
         while(ingredientIterator.hasNext()){
             ingredient = ingredientIterator.next();
@@ -496,7 +496,7 @@ public class DataAccessStub implements DataAccess{
     }
     @Override
     public void deleteDirection(int directionID){
-        Iterator<Direction> directionIterator = directions.iterator(); /* This iterates through the foods list. */
+        Iterator<Direction> directionIterator = directions.iterator();
         Direction direction;
         while(directionIterator.hasNext()){
             direction = directionIterator.next();
@@ -508,7 +508,7 @@ public class DataAccessStub implements DataAccess{
     }
     @Override
     public void deleteFoodIngredient(int foodID, int ingredientID){
-        Iterator<FoodIngredient> foodIngredientIterator = foodIngredients.iterator(); /* This iterates through the foods list. */
+        Iterator<FoodIngredient> foodIngredientIterator = foodIngredients.iterator();
         FoodIngredient fi;
         while(foodIngredientIterator.hasNext()){
             fi = foodIngredientIterator.next();
@@ -520,7 +520,7 @@ public class DataAccessStub implements DataAccess{
     }
     @Override
     public void deleteFoodDirection(int foodID, int directionID){
-        Iterator<FoodDirection> foodDirectionIterator = foodDirections.iterator(); /* This iterates through the foods list. */
+        Iterator<FoodDirection> foodDirectionIterator = foodDirections.iterator();
         FoodDirection fd;
         while(foodDirectionIterator.hasNext()){
             fd = foodDirectionIterator.next();
@@ -668,7 +668,7 @@ public class DataAccessStub implements DataAccess{
     }
 
     public String getFavouriteFoodByUserSequential(User user, List<Food> favouriteFoodList){
-        Iterator<Map<Integer,Integer>> mapIterator = User_favourite_map_list.iterator(); /* This iterates through the foods list. */
+        Iterator<Map<Integer,Integer>> mapIterator = User_favourite_map_list.iterator();
         Map map;
         Food food;
         int userID = user.getUserID();
@@ -684,9 +684,8 @@ public class DataAccessStub implements DataAccess{
     }
 
     public String setFoodToFavouriteByUser(User user, String curr_id, boolean b){
-        Iterator<Map<Integer,Integer>> mapIterator = User_favourite_map_list.iterator(); /* This iterates through the foods list. */
+        Iterator<Map<Integer,Integer>> mapIterator = User_favourite_map_list.iterator();
         Map<Integer,Integer> map;
-        Food food;
         int userID = user.getUserID();
         int foodID = Integer.parseInt(curr_id);
         while(mapIterator.hasNext()){
@@ -705,11 +704,10 @@ public class DataAccessStub implements DataAccess{
         User_favourite_map_list.add(map);
         return null;
     }
-    //todo make tests for this
+
     public String setFoodToLikedByUser(User user, String curr_id, boolean b){
-        Iterator<Map<Integer,Integer>> mapIterator = User_liked_map_list.iterator(); /* This iterates through the foods list. */
+        Iterator<Map<Integer,Integer>> mapIterator = User_liked_map_list.iterator();
         Map<Integer,Integer> map;
-        Food food;
         int userID = user.getUserID();
         int foodID = Integer.parseInt(curr_id);
         while(mapIterator.hasNext()){
@@ -728,11 +726,10 @@ public class DataAccessStub implements DataAccess{
         User_liked_map_list.add(map);
         return null;
     }
-    //todo make tests for this
+
     public String setFoodToDislikedByUser(User user, String curr_id, boolean b){
-        Iterator<Map<Integer,Integer>> mapIterator = User_disliked_map_list.iterator(); /* This iterates through the foods list. */
+        Iterator<Map<Integer,Integer>> mapIterator = User_disliked_map_list.iterator();
         Map<Integer,Integer> map;
-        Food food;
         int userID = user.getUserID();
         int foodID = Integer.parseInt(curr_id);
         while(mapIterator.hasNext()){
@@ -752,7 +749,7 @@ public class DataAccessStub implements DataAccess{
         return null;
     }
     public boolean getFoodFavByUser(User user, Food food){
-        Iterator<Map<Integer,Integer>> mapIterator = User_favourite_map_list.iterator(); /* This iterates through the foods list. */
+        Iterator<Map<Integer,Integer>> mapIterator = User_favourite_map_list.iterator();
         Map<Integer,Integer> map;
         int userID = user.getUserID();
         int foodID = Integer.parseInt(food.getFoodID());
@@ -764,9 +761,8 @@ public class DataAccessStub implements DataAccess{
         }
         return false;
     }
-    //todo make tests for this
     public boolean getFoodLikedByUser(User user, Food food){
-        Iterator<Map<Integer,Integer>> mapIterator = User_liked_map_list.iterator(); /* This iterates through the foods list. */
+        Iterator<Map<Integer,Integer>> mapIterator = User_liked_map_list.iterator();
         Map<Integer,Integer> map;
         int userID = user.getUserID();
         int foodID = Integer.parseInt(food.getFoodID());
@@ -778,9 +774,9 @@ public class DataAccessStub implements DataAccess{
         }
         return false;
     }
-    //todo make tests for this
+
     public boolean getFoodDislikedByUser(User user, Food food){
-        Iterator<Map<Integer,Integer>> mapIterator = User_disliked_map_list.iterator(); /* This iterates through the foods list. */
+        Iterator<Map<Integer,Integer>> mapIterator = User_disliked_map_list.iterator();
         Map<Integer,Integer> map;
         int userID = user.getUserID();
         int foodID = Integer.parseInt(food.getFoodID());
@@ -838,7 +834,6 @@ public class DataAccessStub implements DataAccess{
     }
 
     public String addFoodImage(int foodid, String imageurl){
-        String result = null;
         if(foodid == foods.size()){
             imageURL.put(foodid, imageurl);
         }

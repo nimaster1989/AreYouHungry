@@ -101,7 +101,6 @@ public class FoodIngredientTest extends TestCase{
         String flavour = "Spicy";
         String difficulty = "Easy";
         String ethnicity = "American";
-        int testNum = 0;
         food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
 
         ArrayList<Ingredient> ingredients = new ArrayList<>();
@@ -129,7 +128,6 @@ public class FoodIngredientTest extends TestCase{
         String flavour = "Spicy";
         String difficulty = "Easy";
         String ethnicity = "American";
-        int testNum = 0;
         food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
 
         ArrayList<Ingredient> ingredients = new ArrayList<>();
@@ -156,7 +154,6 @@ public class FoodIngredientTest extends TestCase{
         String flavour = "Spicy";
         String difficulty = "Easy";
         String ethnicity = "American";
-        int testNum = 0;
         food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
 
         ArrayList<Ingredient> ingredients = new ArrayList<>();
@@ -188,7 +185,6 @@ public class FoodIngredientTest extends TestCase{
         String flavour = "Spicy";
         String difficulty = "Easy";
         String ethnicity = "American";
-        int testNum = 0;
         food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
 
         ArrayList<Ingredient> ingredients = new ArrayList<>();

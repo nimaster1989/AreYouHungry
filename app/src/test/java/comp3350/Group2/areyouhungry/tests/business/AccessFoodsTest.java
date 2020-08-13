@@ -28,10 +28,8 @@ public class AccessFoodsTest extends TestCase{
 
         AccessFoods accessFood = new AccessFoods();
         ArrayList<Food> foodList = new ArrayList<>();
-        //This portion checks if we can get favourited foods, and list should be empty since we have nothing favourited yet.
         User tempUser = new User(666,"i like no food");
         accessFood.getFavouriteFoodsByUser(tempUser,foodList);
-        //True as we have no foods favourited yet.
         assertTrue(foodList.isEmpty());
         Services.closeDataAccess();
     }
@@ -40,10 +38,8 @@ public class AccessFoodsTest extends TestCase{
         Services.createDataAccess(new DataAccessStub(dbName));
         AccessFoods accessFood = new AccessFoods();
         Food food = new Food(1, "Baked Salmon",3,20, "Savoury", "Easy", "American");
-        //This portion checks if we can get favourited foods, and list should be empty since we have nothing favourited yet.
         User tempUser = new User(666,"i like no food");
         boolean hasFood = accessFood.getFoodLikedByUser(tempUser,food);
-        //True as we have no foods favourited yet.
         assertFalse(hasFood);
         Services.closeDataAccess();
     }
@@ -52,10 +48,8 @@ public class AccessFoodsTest extends TestCase{
         Services.createDataAccess(new DataAccessStub(dbName));
         AccessFoods accessFood = new AccessFoods();
         Food food = new Food(1, "Baked Salmon",3,20, "Savoury", "Easy", "American");
-        //This portion checks if we can get favourited foods, and list should be empty since we have nothing favourited yet.
         User tempUser = new User(666,"i like no food");
         boolean hasFood = accessFood.getFoodDislikedByUser(tempUser,food);
-        //True as we have no foods favourited yet.
         assertFalse(hasFood);
         Services.closeDataAccess();
     }
@@ -64,17 +58,13 @@ public class AccessFoodsTest extends TestCase{
         Services.closeDataAccess();
         Services.createDataAccess(new DataAccessStub(dbName));
         AccessFoods accessFood = new AccessFoods();
-        AccessUsers accessUsers = new AccessUsers();
         ArrayList<Food> foodList = new ArrayList<>();
         User newUser = new User(777,"i like one food");
-        //This portion grabs a random food, favourites it, clears our foodList and fills foodList with all our favourited foods.
         accessFood.getRandom(foodList);
-        Food tempFood = foodList.get(0);
         accessFood.setFoodFavouriteByUser(newUser,foodList.get(0).getFoodID(),true);
         foodList.clear();
         accessFood.getFavouriteFoodsByUser(newUser,foodList);
         assertFalse(foodList.isEmpty()); //This should not be empty now as we have a favourited food!!
-        //Removing the favourite food for future tests
         accessFood.setFoodFavouriteByUser(newUser,foodList.get(0).getFoodID(),false);
         foodList.clear();
         Services.closeDataAccess();
@@ -111,15 +101,14 @@ public class AccessFoodsTest extends TestCase{
         Services.createDataAccess(new DataAccessStub(dbName));
         AccessFoods accessFood = new AccessFoods();
         ArrayList<Food> foodList = new ArrayList<>();
-        //Accesses a random food and favourites it
+        /* Accesses a random food and favourites it. */
         accessFood.getRandom(foodList);
         User newUser = new User(777,"i dont like it now");
         accessFood.setFoodFavouriteByUser(newUser,foodList.get(0).getFoodID(),true);
         foodList.clear();
         accessFood.getFavouriteFoodsByUser(newUser,foodList);
-        //now the favourite list should not be empty
         assertFalse(foodList.isEmpty());
-        //Gets favourite food list and removed item added
+        /* Gets favourite food list and removed item added. */
         accessFood.setFoodFavouriteByUser(newUser,foodList.get(0).getFoodID(),false);
         foodList.clear();
         accessFood.getFavouriteFoodsByUser(newUser,foodList);
@@ -171,16 +160,16 @@ public class AccessFoodsTest extends TestCase{
         Services.createDataAccess(new DataAccessStub(dbName));
         AccessFoods accessFood = new AccessFoods();
         ArrayList<Food> foodList = new ArrayList<>();
-        //This portion grabs a random food, favourites it, clears our foodList and fills foodList with all our favourited foods.
+        /* This portion grabs a random food, favourites it, clears our foodList and fills foodList with all our favourited foods. */
         accessFood.getRandom(foodList);
-        //Setting its favourite to true twice in a row
+        /* Setting its favourite to true twice in a row. */
         User newUser = new User(777,"i like food very much");
         accessFood.setFoodFavouriteByUser(newUser,foodList.get(0).getFoodID(),true);
         accessFood.setFoodFavouriteByUser(newUser,foodList.get(0).getFoodID(),true);
         foodList.clear();
         accessFood.getFavouriteFoodsByUser(newUser,foodList);
-        assertFalse(foodList.isEmpty()); //This should not be empty now as we have a favourited food!!
-        //Removing the favourite food for future tests
+        assertFalse(foodList.isEmpty());
+        /* Removing the favourite food for future tests. */
         accessFood.setFoodFavouriteByUser(newUser,foodList.get(0).getFoodID(),false);
         foodList.clear();
         Services.closeDataAccess();
@@ -243,7 +232,6 @@ public class AccessFoodsTest extends TestCase{
 
     }
 
-    //Tests trying to add a null item to the food list, this checks to make sure the null item isnt added
     public void testAddNullFood(){
         Services.closeDataAccess();
         Services.createDataAccess(new DataAccessStub(dbName));
@@ -271,8 +259,6 @@ public class AccessFoodsTest extends TestCase{
     public void testAddFoodInvalidID(){
         Services.closeDataAccess();
         Services.createDataAccess(new DataAccessStub(dbName));
-        AccessFoods accessFood = new AccessFoods();
-        ArrayList<Food> foodList = new ArrayList<>();
         Food newItem;
         int testnum = 0;
         try{
@@ -288,8 +274,6 @@ public class AccessFoodsTest extends TestCase{
     public void testFoodMissingName(){
         Services.closeDataAccess();
         Services.createDataAccess(new DataAccessStub(dbName));
-        AccessFoods accessFood = new AccessFoods();
-        ArrayList<Food> foodList = new ArrayList<>();
         Food food;
         int testnum = 0;
         try{
@@ -302,8 +286,6 @@ public class AccessFoodsTest extends TestCase{
         Services.closeDataAccess();
     }
 
-
-    //Tests the stub database, ensuring our hardcoded data is working and we can access all entries
     public void testSequential(){
         Services.closeDataAccess();
         Services.createDataAccess(new DataAccessStub(dbName));
@@ -313,12 +295,11 @@ public class AccessFoodsTest extends TestCase{
         int num = 1;
         Iterator<Food> foodIterator;
 
-        //Since we have a stub database of 6 food objects, check if we can retrieve all 6.
         accessFood.getFoods(foodList);
         assertEquals(6, foodList.size());
         foodIterator = foodList.iterator();
 
-        //This part verifies that they're all different IDs/foods.
+        /* This part verifies that they're all different IDs/foods. */
         while(foodIterator.hasNext()){
             foodId = num;
             assertEquals(String.valueOf(foodId), foodIterator.next().getFoodID());

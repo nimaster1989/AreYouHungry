@@ -115,7 +115,7 @@ public class Answers implements Serializable{
     public Food getFoodBasedOnAnswers(){
         accessFoods = new AccessFoods();
         List<Food> foods = new ArrayList<Food>();
-        String result = accessFoods.getFoods(foods);
+        accessFoods.getFoods(foods);
         Iterator<Food> foodIterator = foods.iterator(); /* This iterates through the foods list. */
         Food curr_food = null;
         while(foodIterator.hasNext()){
