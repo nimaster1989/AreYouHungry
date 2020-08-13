@@ -58,32 +58,19 @@ Developer Log:
     Trello board: https://trello.com/b/ETfh9VNT/are-you-hungry
 
 Major changes in this iteration and where to find them:
-    1. First off in this iteration we added the ability to have persistent storage with a Database.
-       We kept the stub one around too and have the ability to swap between them for testing.
-       However only the persistent one is used in the app.
-    2. The next big change was we added a multiple choice style questionnaire to the app with "fun"
-       questions to get how the user is currently feeling. Based off their answers we then coorelate
-       them to a food in our database and retrieve it and display it to them. We went with this
-       approach as apposed to the previous one with just the user entering different things they had
-       and what type of food they're feeling because it seem more fun and would possibly cause the
-       user to use it more. As the app progressed more questions could be added to further get
-       what the user is feeling.
-    3. We removed the random food suggestion. As pointed out from our last iteration the random
-       option might actually be worse then looking up recipes online so we decided to remove it.
-    4. We tried to separate our project a lot more by having more objects and trying to make each
-       class do a specific thing. With the addition of the these new classes we were able to get
-       more tests as well as compared to the last iteration.
-    5. A big thing we tried to focus on was consistency. So we tried to keep all of the comments
-       similar as well as bracket styling and how we developed overall.
-    6. We added the ability to swap between users. Although not mentioned in our initial plan. We
-       having the functionality to swap between different users and have them contain their own
-       favourited food was a nice adjustment.
-    7. We added more to the food detail page. Now as promised the food description page has a picture
-       of the food itself. Additionally the page contains the ingredients to make it and how much
-       of each and the directions itself to make it.
-    8. We also updated the ability to add food. Before it was simple where you provide a food name,
-       with a recipe link for how to make it. Now it requires a lot more fields to make it the same
-       as a food object in the database.
+    1. First off the largest change to this iteration was how we updated our testing suite. We added
+       automated JUnit integration tests across each seam in our architecture. The persistence layer
+       tests are able to swap between the stub database and the real database by commenting out some
+       lines of code. Also we added an automated acceptance test for each of our completed big user
+       story using Espresso. Each test thoroughly goes through the customer stories and does all
+       actions and responses.
+    2. We changed how we add food into our app. First we changed it
+       from a one page has everything to multiple pages. Additionally we changed the formatting for
+       how certain fields are entered to be less restrictive. We also added the ability to remove
+       ingredients and instructions when they are added just in case an error is made.
+    3. We added a search by criteria feature, which allows the user to search food in our application
+       by various criteria for our existing foods in the database.
+
 
 Changes in this iteration that we were unable to implement:
     1. We have not added any feature to sort any of the foods. Whether it be favourites or from the
