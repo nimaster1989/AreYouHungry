@@ -851,7 +851,7 @@ public class DataAccessStub implements DataAccess{
         return imageURL.get(foodid);
     }
 
-    @Override
+
     public int getTotalUser(){
     return users.size();
     }
