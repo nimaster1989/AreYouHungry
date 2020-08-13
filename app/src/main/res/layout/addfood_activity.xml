@@ -33,7 +33,7 @@
         android:fontFamily="sans-serif"
         android:textColor="#FFFFFF"
 
-        app:backgroundTint="#4D00EA"
+        app:backgroundTint="@color/colorPrimary"
         app:icon="@drawable/ic_baseline_arrow_forward_24"
         app:iconTint="#FFFFFF"/>
 
