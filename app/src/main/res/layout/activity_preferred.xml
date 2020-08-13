@@ -49,7 +49,7 @@
         android:layout_width="275dp"
         android:layout_height="75dp"
         android:layout_centerHorizontal="true"
-        android:background="#4D00EA"
+        android:background="@color/colorPrimary"
         android:layout_below="@id/radio_group"
         android:text="Confirm"
         android:textColor="#FFFFFF"
