@@ -31,8 +31,8 @@ public class BusinessPersistenceSeamTest extends TestCase{
         System.out.println("Starting Persistence");
         dataAccess = new DataAccessObject(dbName);
         dataAccess.open(MainActivity.getDBPathName());
-        //dataAccess = new DataAccessStub(dbName);
-        //dataAccess.open(MainActivity.getDBPathName());
+//        dataAccess = new DataAccessStub(dbName);
+//        dataAccess.open(MainActivity.getDBPathName());
     }
     public BusinessPersistenceSeamTest(String arg0){
         super(arg0);
@@ -81,7 +81,7 @@ public class BusinessPersistenceSeamTest extends TestCase{
         //add Ingredients
         Ingredient ingredient = new Ingredient(42, "milk", "1/2 Cup");
         accessIngredients.addIngredient(ingredient);
-
+        
         String result = accessIngredients.setFoodIngredient(Integer.parseInt(dbFood.getFoodID()), ingredient.getIngredientID());
 
         //get food/ingredient and check

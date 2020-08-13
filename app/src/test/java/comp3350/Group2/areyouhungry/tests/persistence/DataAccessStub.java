@@ -491,14 +491,20 @@ public class DataAccessStub implements DataAccess{
 
     @Override
     public String addFoodIngredient(int foodid, int ingredientid){
-        Iterator<FoodIngredient> foodIngredientIterator = foodIngredients.iterator();
-        FoodIngredient foodIngredient;
-        while(foodIngredientIterator.hasNext()){
-            foodIngredient = foodIngredientIterator.next();
-            if(foodIngredient.getFood().getFoodID().equals(String.valueOf(foodid))){
-                foodIngredient.getIngredients().add(ingredients.get(ingredientid-1));
+        ArrayList<Ingredient> tempIngredient = new ArrayList<>();
+        Iterator<Ingredient> ingredientsIterator = ingredients.iterator();
+        Ingredient ingredient;
+        int index = 0;
+        while(ingredientsIterator.hasNext()){
+            ingredient = ingredientsIterator.next();
+            if(ingredient.getIngredientID() == ingredientid){
+                tempIngredient.add(ingredients.get(index));
+                FoodIngredient foodIngredient = new FoodIngredient(foods.get(foodid-1),tempIngredient);
+                foodIngredients.add(foodIngredient);
             }
+            index++;
         }
+
         return null;
     }
 
@@ -525,14 +531,20 @@ public class DataAccessStub implements DataAccess{
 
     @Override
     public String addFoodDirection(int foodid, int directionid){
-        Iterator<FoodDirection> foodDirectionIterator = foodDirections.iterator();
-        FoodDirection foodDirection;
-        while(foodDirectionIterator.hasNext()){
-            foodDirection = foodDirectionIterator.next();
-            if(foodDirection.getFood().getFoodID().equals(String.valueOf(foodid))){
-                foodDirection.getDirections().add(directions.get(directionid-1));
+        ArrayList<Direction> tempDirection = new ArrayList<>();
+        Iterator<Direction> directionsIterator = directions.iterator();
+        Direction direction;
+        int index = 0;
+        while(directionsIterator.hasNext()){
+            direction = directionsIterator.next();
+            if(direction.getDirectionID() == directionid){
+                tempDirection.add(directions.get(index));
+                FoodDirection foodDirection = new FoodDirection(foods.get(foodid-1),tempDirection);
+                foodDirections.add(foodDirection);
             }
+            index++;
         }
+
         return null;
     }
 
