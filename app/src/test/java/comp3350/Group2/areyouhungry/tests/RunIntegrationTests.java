@@ -3,7 +3,7 @@ package comp3350.Group2.areyouhungry.tests;
 import junit.framework.TestSuite;
 
 import comp3350.Group2.areyouhungry.tests.integration.BusinessPersistenceSeamTest;
-import comp3350.Group2.areyouhungry.tests.integration.PersistenceDatabaseSeam;
+import comp3350.Group2.areyouhungry.tests.integration.PersistenceDatabaseSeamTest;
 
 public class RunIntegrationTests{
     public static TestSuite suite;
@@ -17,7 +17,7 @@ public class RunIntegrationTests{
     }
 
     public static void testPersistenceDatabaseSeam(){
-        suite.addTestSuite(PersistenceDatabaseSeam.class);
+        suite.addTestSuite(PersistenceDatabaseSeamTest.class);
     }
 
     public static void testBusinessPersistenceSeam(){

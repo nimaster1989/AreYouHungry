@@ -9,7 +9,7 @@ import comp3350.Group2.areyouhungry.acceptance.*;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         AddUserTest.class,
-        SwithUserTest.class,
+        SwitchUserTest.class,
         ReceiveRecipeSuggestionTest.class,
         FavouriteFoodTest.class,
         LikeDislikeRecipeTest.class,

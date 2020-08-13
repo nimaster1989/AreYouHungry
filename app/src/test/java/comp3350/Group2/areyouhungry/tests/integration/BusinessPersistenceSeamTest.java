@@ -3,7 +3,6 @@ package comp3350.Group2.areyouhungry.tests.integration;
 import junit.framework.TestCase;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ListIterator;
 
 import comp3350.Group2.areyouhungry.MainActivity;
@@ -14,14 +13,10 @@ import comp3350.Group2.areyouhungry.business.AccessIngredients;
 import comp3350.Group2.areyouhungry.business.AccessUsers;
 import comp3350.Group2.areyouhungry.objects.Direction;
 import comp3350.Group2.areyouhungry.objects.Food;
-import comp3350.Group2.areyouhungry.objects.FoodIngredient;
 import comp3350.Group2.areyouhungry.objects.Ingredient;
 import comp3350.Group2.areyouhungry.objects.User;
 import comp3350.Group2.areyouhungry.persistence.DataAccess;
-import comp3350.Group2.areyouhungry.persistence.DataAccessObject;
 import comp3350.Group2.areyouhungry.tests.persistence.DataAccessStub;
-
-import static java.lang.Integer.parseInt;
 
 public class BusinessPersistenceSeamTest extends TestCase{
     private DataAccess dataAccess;
