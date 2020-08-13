@@ -29,10 +29,10 @@ public class BusinessPersistenceSeamTest extends TestCase{
 
     public void setUp(){
         System.out.println("Starting Persistence");
-        dataAccess = new DataAccessObject(dbName);
-        dataAccess.open(MainActivity.getDBPathName());
-//        dataAccess = new DataAccessStub(dbName);
+//        dataAccess = new DataAccessObject(dbName);
 //        dataAccess.open(MainActivity.getDBPathName());
+        dataAccess = new DataAccessStub(dbName);
+        dataAccess.open(MainActivity.getDBPathName());
     }
     public BusinessPersistenceSeamTest(String arg0){
         super(arg0);
@@ -151,9 +151,9 @@ public class BusinessPersistenceSeamTest extends TestCase{
         }
 
         assertEquals(150, matchedId);
-        dataAccess.deleteFoodDirection(9,150);
+        dataAccess.deleteFoodDirection(7,150);
         dataAccess.deleteDirection(150);
-        dataAccess.deleteFood(9);
+        dataAccess.deleteFood(7);
         Services.closeDataAccess();
 
     }

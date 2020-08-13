@@ -95,7 +95,7 @@ public class PersistenceDatabaseSeam extends TestCase{
         ArrayList<User> userlist = new ArrayList<>();
         dataAccess.getUserSequential(userlist);
 
-        assertEquals(userlist.size(),3);
+        assertEquals(4, userlist.size());
 
         dataAccess.deleteUser(777);
         User deletedUser = dataAccess.getUser(777);
