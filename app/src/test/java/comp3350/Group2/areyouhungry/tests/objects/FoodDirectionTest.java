@@ -24,12 +24,12 @@ public class FoodDirectionTest extends TestCase{
         int foodID = 10;
         String foodName = "TestFood";
         int portionSize = 1;
-        int prepTime = 10;
+        int totalTime = 10;
         String flavour = "Spicy";
         String difficulty = "Easy";
         String ethnicity = "American";
         int testNum = 0;
-        food = new Food(foodID, foodName, portionSize, prepTime,flavour, difficulty,ethnicity);
+        food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
 
         ArrayList<Direction> directions = new ArrayList<>();
         int directionID = 1;
@@ -54,12 +54,12 @@ public class FoodDirectionTest extends TestCase{
         int foodID = 10;
         String foodName = "TestFood";
         int portionSize = 1;
-        int prepTime = 10;
+        int totalTime = 10;
         String flavour = "Spicy";
         String difficulty = "Easy";
         String ethnicity = "American";
         int testNum = 0;
-        food = new Food(foodID, foodName, portionSize, prepTime,flavour, difficulty,ethnicity);
+        food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
 
         ArrayList<Direction> directions = new ArrayList<>();
         int directionID = 1;
@@ -90,12 +90,12 @@ public class FoodDirectionTest extends TestCase{
         int foodID = 10;
         String foodName = "TestFood";
         int portionSize = 1;
-        int prepTime = 10;
+        int totalTime = 10;
         String flavour = "Spicy";
         String difficulty = "Easy";
         String ethnicity = "American";
         int testNum = 0;
-        food = new Food(foodID, foodName, portionSize, prepTime,flavour, difficulty,ethnicity);
+        food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
 
         ArrayList<Direction> directions = new ArrayList<>();
         int directionID = 1;
@@ -116,12 +116,12 @@ public class FoodDirectionTest extends TestCase{
         int foodID = 10;
         String foodName = "TestFood";
         int portionSize = 1;
-        int prepTime = 10;
+        int totalTime = 10;
         String flavour = "Spicy";
         String difficulty = "Easy";
         String ethnicity = "American";
         int testNum = 0;
-        food = new Food(foodID, foodName, portionSize, prepTime,flavour, difficulty,ethnicity);
+        food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
 
         ArrayList<Direction> directions = new ArrayList<>();
         int directionID = 1;
@@ -141,12 +141,12 @@ public class FoodDirectionTest extends TestCase{
         int foodID = 10;
         String foodName = "TestFood";
         int portionSize = 1;
-        int prepTime = 10;
+        int totalTime = 10;
         String flavour = "Spicy";
         String difficulty = "Easy";
         String ethnicity = "American";
         int testNum = 0;
-        food = new Food(foodID, foodName, portionSize, prepTime,flavour, difficulty,ethnicity);
+        food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
 
         ArrayList<Direction> directions = new ArrayList<>();
         int directionID = 1;
@@ -160,7 +160,7 @@ public class FoodDirectionTest extends TestCase{
 
 
         foodID = 11;
-        food = new Food(foodID, foodName, portionSize, prepTime,flavour, difficulty,ethnicity);
+        food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
         FoodDirection foodDirection3 = new FoodDirection(food, directions);
 
         assertTrue(foodDirection1.equals(foodDirection2));
@@ -173,12 +173,12 @@ public class FoodDirectionTest extends TestCase{
         int foodID = 10;
         String foodName = "TestFood";
         int portionSize = 1;
-        int prepTime = 10;
+        int totalTime = 10;
         String flavour = "Spicy";
         String difficulty = "Easy";
         String ethnicity = "American";
         int testNum = 0;
-        food = new Food(foodID, foodName, portionSize, prepTime,flavour, difficulty,ethnicity);
+        food = new Food(foodID, foodName, portionSize, totalTime,flavour, difficulty,ethnicity);
 
         ArrayList<Direction> directions = new ArrayList<>();
         int directionID = 1;

@@ -88,6 +88,7 @@ public class AccessFoods{
     }
 
     public FoodCategory addFoodCategory(Food newFood, String categoryName){
+        categoryName = categoryName.trim();
         int foodID = Integer.parseInt(newFood.getFoodID());
         int categoryID = getCategoryID(categoryName);
         return dataAccess.addFoodCategory(foodID, categoryID);
@@ -123,8 +124,8 @@ public class AccessFoods{
         return duplicate;
     }
 
-    public String foodCriteriaSearch(ArrayList<String> prepTimeCriterias, ArrayList<String> flavourCriterias, ArrayList<String> difficutlyCriterias, ArrayList<String> ethnicityCriterias, ArrayList<Food> foodResult){
-        return dataAccess.searchFoodByCriteriaLists(prepTimeCriterias,flavourCriterias,difficutlyCriterias,ethnicityCriterias,foodResult);
+    public String foodCriteriaSearch(ArrayList<String> totalTimeCriteria, ArrayList<String> flavourCriterias, ArrayList<String> difficutlyCriterias, ArrayList<String> ethnicityCriterias, ArrayList<Food> foodResult){
+        return dataAccess.searchFoodByCriteriaLists(totalTimeCriteria,flavourCriterias,difficutlyCriterias,ethnicityCriterias,foodResult);
     }
 
     public String getFoodsByCategory(String category, ArrayList<Food> foodCategoryResult){

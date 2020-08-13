@@ -49,7 +49,6 @@ public class DataAccessStub implements DataAccess{
         this(MainActivity.dbName);
     }
 
-
     public void open(String dbPath){
         Food food;
         Categories categories;
@@ -76,7 +75,7 @@ public class DataAccessStub implements DataAccess{
         foods.add(food);
         imageURL.put(3, "food3");
         Food_map.put(String.valueOf(food.getFoodID()),food);
-        food = new Food(4, "Classic Cheesecake",7,40, "Sweet", "Hard", "American");
+        food = new Food(4, "Classic Cheesecake",7,120, "Sweet", "Hard", "American");
         foods.add(food);
         imageURL.put(4, "food4");
         Food_map.put(String.valueOf(food.getFoodID()),food);
@@ -394,7 +393,6 @@ public class DataAccessStub implements DataAccess{
         return null;
     }
 
-
     /* This function is used to generate a random food from the stub database
        and add it into the foodresult list. */
     public String getFoodRandom(List<Food> foodResult){
@@ -474,7 +472,18 @@ public class DataAccessStub implements DataAccess{
             }
         }
     }
-
+    @Override
+    public void deleteFood(int foodID){
+        Iterator<Food> foodIterator = foods.iterator(); /* This iterates through the foods list. */
+        Food food;
+        while(foodIterator.hasNext()){
+            food = foodIterator.next();
+            if(Integer.parseInt(food.getFoodID()) == foodID){
+                foodIterator.remove();
+                break;
+            }
+        }
+    }
     @Override
     public int getIngredientRow(){
         return ingredients.size();
@@ -535,12 +544,12 @@ public class DataAccessStub implements DataAccess{
     }
 
     @Override
-    public String searchFoodByCriteriaLists(ArrayList<String> prepTimeCriterias, ArrayList<String> flavourCriterias, ArrayList<String> difficutlyCriterias, ArrayList<String> ethnicityCriterias, ArrayList<Food> foodResult){
+    public String searchFoodByCriteriaLists(ArrayList<String> totalTimeCriterias, ArrayList<String> flavourCriterias, ArrayList<String> difficutlyCriterias, ArrayList<String> ethnicityCriterias, ArrayList<Food> foodResult){
         Iterator<Food> foodIterator = foods.iterator();
         Food food;
         while(foodIterator.hasNext()){
             food = foodIterator.next();
-            if(prepTimeCriterias.contains(String.valueOf(food.getPrepTime())) && flavourCriterias.contains(food.getFlavour()) && difficutlyCriterias.contains(food.getDifficulty())&& ethnicityCriterias.contains(food.getEthnicity())){
+            if(totalTimeCriterias.contains(String.valueOf(food.getTotalTime())) && flavourCriterias.contains(food.getFlavour()) && difficutlyCriterias.contains(food.getDifficulty())&& ethnicityCriterias.contains(food.getEthnicity())){
                 foodResult.add(food);
             }
         }
@@ -769,21 +778,38 @@ public class DataAccessStub implements DataAccess{
         return null;
     }
 
-public String addFoodImage(int foodid, String imageurl){
+    public String addFoodImage(int foodid, String imageurl){
         String result = null;
         if(foodid == foods.size()){
             imageURL.put(foodid, imageurl);
         }
         return null;
-}
+    }
 
-public String getImageByFood(int foodid){
+    public String getImageByFood(int foodid){
         return imageURL.get(foodid);
-}
+    }
 
     @Override
     public int getTotalUser(){
-        return users.size();
+    return users.size();
+    }
+    public String setFoodToLikedByUser(User user,String curr_id, boolean b){
+    return null;
+    }
+
+    public String setFoodToDislikedByUser(User user,String curr_id, boolean b){
+    return null;
+    }
+
+    public boolean getFoodLikedByUser(User user, Food food){
+        return false;
+    }
+
+    public boolean getFoodDislikedByUser(User user, Food food){
+        return false;
     }
 
 }
+
+

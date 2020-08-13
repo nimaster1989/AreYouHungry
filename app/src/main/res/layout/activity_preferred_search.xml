@@ -50,12 +50,12 @@
         android:textSize="30sp" />
 
     <TextView
-        android:id="@+id/prepTimeTextView"
+        android:id="@+id/totalTimeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/difficultyTextView"
         android:layout_centerHorizontal="true"
-        android:text="Preparation Time: 20 Minutes"
+        android:text="Total Time: 20 Minutes"
         android:textColor="#000000"
         android:textSize="30sp" />
 
@@ -63,7 +63,7 @@
         android:id="@+id/flavorTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/prepTimeTextView"
+        android:layout_below="@id/totalTimeTextView"
         android:layout_centerHorizontal="true"
         android:text="Flavor: Savory"
         android:textColor="#000000"
@@ -111,7 +111,7 @@
         android:layout_marginTop="133dp"
         android:layout_marginEnd="19dp"
         android:layout_toEndOf="@+id/viewRecipeButton"
-        android:background="#4D00EA"
+        android:background="@color/colorPrimary"
         android:text="Return Home"
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
@@ -123,7 +123,7 @@
         android:layout_below="@id/ethnicityTextView"
         android:layout_marginStart="14dp"
         android:layout_marginTop="133dp"
-        android:background="#4D00EA"
+        android:background="@color/colorPrimary"
         android:text="View Recipe"
         android:textColor="#FFFFFF"
         android:textSize="20sp" />

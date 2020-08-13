@@ -342,15 +342,15 @@ public class AccessFoodsTest extends TestCase{
         Services.createDataAccess(new DataAccessStub(dbName));
         AccessFoods accessFood = new AccessFoods();
         ArrayList<Food> foodResult = new ArrayList<>();
-        ArrayList<String> prepTimeList = new ArrayList<>();
-        prepTimeList.add("10");
+        ArrayList<String> totalTimeList = new ArrayList<>();
+        totalTimeList.add("10");
         ArrayList<String> flavourList = new ArrayList<>();
         flavourList.add("Sweet");
         ArrayList<String> difficultList = new ArrayList<>();
         difficultList.add("Easy");
         ArrayList<String> ethnicityList = new ArrayList<>();
         ethnicityList.add("American");
-        accessFood.foodCriteriaSearch(prepTimeList,flavourList,difficultList,ethnicityList,foodResult);
+        accessFood.foodCriteriaSearch(totalTimeList,flavourList,difficultList,ethnicityList,foodResult);
         assertEquals(foodResult.size(),1);
         assertEquals(foodResult.get(0).getFoodName(),"Banana Split");
         Services.closeDataAccess();

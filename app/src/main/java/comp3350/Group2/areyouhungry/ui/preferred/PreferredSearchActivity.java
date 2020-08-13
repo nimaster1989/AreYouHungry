@@ -31,7 +31,7 @@ public class PreferredSearchActivity extends AppCompatActivity{
 
     private TextView textViewName;
     private TextView textViewDifficulty;
-    private TextView textViewPrepTime;
+    private TextView textViewTotalTime;
     private TextView textViewFlavor;
     private TextView textViewServes;
     private TextView textViewEthnicity;
@@ -59,7 +59,7 @@ public class PreferredSearchActivity extends AppCompatActivity{
         setTitle(getTitle());
         textViewName = findViewById(R.id.resultName);
         textViewDifficulty = findViewById(R.id.difficultyTextView);
-        textViewPrepTime = findViewById(R.id.prepTimeTextView);
+        textViewTotalTime = findViewById(R.id.totalTimeTextView);
         textViewFlavor = findViewById(R.id.flavorTextView);
         textViewServes = findViewById(R.id.portionSizeTextView);
         textViewEthnicity = findViewById(R.id.ethnicityTextView);
@@ -128,7 +128,7 @@ public class PreferredSearchActivity extends AppCompatActivity{
             foodId = food.getFoodID();
             textViewName.setText(food.getFoodName());
             textViewDifficulty.setText("Difficulty: " +food.getDifficulty());
-            textViewPrepTime.setText("Preptime: "+food.getPrepTime()+" minutes");
+            textViewTotalTime.setText("Total time: "+food.getTotalTime()+" minutes");
             textViewFlavor.setText("Flavor: "+food.getFlavour());
             textViewServes.setText("Serves: "+answer.getPortionSize()+"-"+(Integer.parseInt(answer.getPortionSize())+1) +" people");
             textViewEthnicity.setText("Ethnicity: "+food.getEthnicity());

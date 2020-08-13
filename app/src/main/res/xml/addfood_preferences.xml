@@ -10,14 +10,14 @@
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
-            app:defaultValue="0"
+            app:defaultValue=""
             app:key="portion"
             app:title="Portion Size"
             app:useSimpleSummaryProvider="true" />
         <EditTextPreference
-            app:defaultValue="0"
-            app:key="preptime"
-            app:title="Preparation Time"
+            app:defaultValue=""
+            app:key="totaltime"
+            app:title="Total Time (minutes)"
             app:useSimpleSummaryProvider="true" />
         <EditTextPreference
             app:defaultValue=""
@@ -57,70 +57,15 @@
             app:useSimpleSummaryProvider="true"/>
 
     </PreferenceCategory>
-
-    <PreferenceCategory app:title="4. Ingredients">
-
-        <EditTextPreference
-            app:key="ingredient"
-            app:title="Ingredient"
-            app:useSimpleSummaryProvider="true" />
-        <EditTextPreference
-            app:key="ingredient2"
-            app:title="Ingredient 2"
-            app:summary=""
-            app:isPreferenceVisible="false"/>
-        <EditTextPreference
-            app:key="ingredient3"
-            app:title="Ingredient 3"
-            app:summary=""
-            app:isPreferenceVisible="false"/>
-        <EditTextPreference
-            app:key="ingredient4"
-            app:title="Ingredient 4"
-            app:summary=""
-            app:isPreferenceVisible="false"/>
-        <EditTextPreference
-            app:key="ingredient5"
-            app:title="Ingredient 5"
-            app:summary=""
-            app:isPreferenceVisible="false"/>
-
-    </PreferenceCategory>
-    <PreferenceCategory app:title="5. Instructions">
-
-        <EditTextPreference
-            app:key="instruction"
-            app:title="Instruction"
-            app:useSimpleSummaryProvider="true" />
-        <EditTextPreference
-            app:key="instruction2"
-            app:title="Instruction 2"
-            app:summary=""
-            app:isPreferenceVisible="false"/>
-        <EditTextPreference
-            app:key="instruction3"
-            app:title="Instruction 3"
-            app:summary=""
-            app:isPreferenceVisible="false"/>
-        <EditTextPreference
-            app:key="instruction4"
-            app:title="Instruction 4"
-            app:summary=""
-            app:isPreferenceVisible="false"/>
-        <EditTextPreference
-            app:key="instruction5"
-            app:title="Instruction 5"
-            app:summary=""
-            app:isPreferenceVisible="false"/>
-
-    </PreferenceCategory>
-
-    <PreferenceCategory app:title="6. Image (Optional)">
+    <PreferenceCategory app:title="4. Image (Optional)">
         <EditTextPreference
             app:key="imageurl"
             app:title="Image URL"
             app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
+
+
+
 
 
 </PreferenceScreen>

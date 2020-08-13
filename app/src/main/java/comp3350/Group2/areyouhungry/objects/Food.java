@@ -1,26 +1,26 @@
 package comp3350.Group2.areyouhungry.objects;
-
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Food{
+public class Food implements Serializable{
     private int foodID;
     private String foodName;
     private boolean favourite;
     private boolean liked;
     private int portionSize;
-    private int prepTime;
+    private int totalTime;
 
 
     private String flavour;
     private String difficulty;
     private String ethnicity;
 
-    public Food(int foodID, String foodName, int portionSize, int prepTime,String flavour,String difficulty,String ethnicity){
+    public Food(int foodID, String foodName, int portionSize, int totalTime,String flavour,String difficulty,String ethnicity){
         if(foodID>=0 && !foodName.isEmpty()){
             this.foodID = foodID;
             this.foodName = foodName;
             this.portionSize = portionSize;
-            this.prepTime = prepTime;
+            this.totalTime = totalTime;
             this.flavour = flavour;
             this.difficulty = difficulty;
             this.ethnicity = ethnicity;
@@ -43,8 +43,8 @@ public class Food{
         return portionSize;
     }
 
-    public int getPrepTime(){
-        return prepTime;
+    public int getTotalTime(){
+        return totalTime;
     }
 
     public String getFlavour(){
@@ -75,8 +75,8 @@ public class Food{
         this.portionSize = portionSize;
     }
 
-    public void setPrepTime(int prepTime){
-        this.prepTime = prepTime;
+    public void setTotalTime(int totalTime){
+        this.totalTime = totalTime;
     }
 
     public void setFlavour(String flavour){
@@ -96,7 +96,7 @@ public class Food{
     }
 
     public String toString(){
-        return "ID: " + foodID + "\n  FoodName: " + foodName + "\n  Favourited: " + favourite + "\n  PortionSize: " + portionSize + "\n  PrepTime: "+ prepTime + "\n  Flavour: " + flavour + "\n  Difficulty: " + difficulty + "\n  Ethnicity: " + ethnicity+"\n";
+        return "ID: " + foodID + "\n  FoodName: " + foodName + "\n  Favourited: " + favourite + "\n  PortionSize: " + portionSize + "\n  TotalTime: "+ totalTime + "\n  Flavour: " + flavour + "\n  Difficulty: " + difficulty + "\n  Ethnicity: " + ethnicity+"\n";
     }
 
     @Override
@@ -110,6 +110,6 @@ public class Food{
     //use for hashset
     @Override
     public int hashCode(){
-        return Objects.hash(foodID, foodName, favourite, portionSize, prepTime, flavour, difficulty, ethnicity);
+        return Objects.hash(foodID, foodName, favourite, portionSize, totalTime, flavour, difficulty, ethnicity);
     }
 }
