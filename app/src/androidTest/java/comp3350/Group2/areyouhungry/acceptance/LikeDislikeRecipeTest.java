@@ -23,6 +23,7 @@ import comp3350.Group2.areyouhungry.R;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -181,6 +182,7 @@ public class LikeDislikeRecipeTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
 
         ViewInteraction floatingActionButton = onView(
                 allOf(withId(R.id.like),

@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.espresso.DataInteraction;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.matcher.ViewMatchers;
@@ -24,10 +25,21 @@ import comp3350.Group2.areyouhungry.R;
 
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.*;
-import static androidx.test.espresso.assertion.ViewAssertions.*;
+import static androidx.test.espresso.Espresso.pressBack;
+import static androidx.test.espresso.action.ViewActions.clearText;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.replaceText;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
+import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
-import static androidx.test.espresso.matcher.ViewMatchers.*;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
@@ -72,13 +84,7 @@ public class AddFoodTest {
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
                                 1)));
-        appCompatEditText.perform(scrollTo(), replaceText("Cereal"), closeSoftKeyboard());
-
-        //Checking if the text has "Cereal" in it now
-        onView(allOf(withId(android.R.id.edit),
-                childAtPosition(
-                        childAtPosition(
-                                withClassName(is("android.widget.ScrollView")), 0), 1))).check(matches(withText("Cereal")));
+        appCompatEditText.perform(scrollTo(), replaceText("white cut chicken"), closeSoftKeyboard());
 
         ViewInteraction appCompatButton2 = onView(
                 allOf(withId(android.R.id.button1), withText("OK"),
@@ -88,6 +94,8 @@ public class AddFoodTest {
                                         0),
                                 3)));
         appCompatButton2.perform(scrollTo(), click());
+
+        onView(withText("white cut chicken")).check(matches(isDisplayed()));
 
         ViewInteraction recyclerView2 = onView(
                 allOf(withId(R.id.recycler_view),
@@ -103,14 +111,7 @@ public class AddFoodTest {
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
                                 1)));
-        appCompatEditText2.perform(scrollTo(), replaceText("1"), closeSoftKeyboard());
-
-        //Testing if portion size input is 1
-        onView(
-                allOf(withId(android.R.id.edit),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.ScrollView")), 0), 1))).check(matches(withText("1")));
+        appCompatEditText2.perform(scrollTo(), replaceText("5"), closeSoftKeyboard());
 
         ViewInteraction appCompatButton3 = onView(
                 allOf(withId(android.R.id.button1), withText("OK"),
@@ -120,6 +121,8 @@ public class AddFoodTest {
                                         0),
                                 3)));
         appCompatButton3.perform(scrollTo(), click());
+
+        onView(withText("5")).check(matches(isDisplayed()));
 
         ViewInteraction recyclerView3 = onView(
                 allOf(withId(R.id.recycler_view),
@@ -135,14 +138,7 @@ public class AddFoodTest {
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
                                 1)));
-        appCompatEditText3.perform(scrollTo(), replaceText("5"), closeSoftKeyboard());
-
-        //Testing if the total time input is 5
-        onView(
-                allOf(withId(android.R.id.edit),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.ScrollView")), 0), 1))).check(matches(withText("5")));
+        appCompatEditText3.perform(scrollTo(), replaceText("40"), closeSoftKeyboard());
 
         ViewInteraction appCompatButton4 = onView(
                 allOf(withId(android.R.id.button1), withText("OK"),
@@ -152,6 +148,8 @@ public class AddFoodTest {
                                         0),
                                 3)));
         appCompatButton4.perform(scrollTo(), click());
+
+        onView(withText("40")).check(matches(isDisplayed()));
 
         ViewInteraction recyclerView4 = onView(
                 allOf(withId(R.id.recycler_view),
@@ -167,14 +165,7 @@ public class AddFoodTest {
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
                                 1)));
-        appCompatEditText4.perform(scrollTo(), replaceText("Spicy"), closeSoftKeyboard());
-
-        //Check if flavour input is Spicy
-        onView(
-                allOf(withId(android.R.id.edit),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.ScrollView")), 0), 1))).check(matches(withText("Spicy")));
+        appCompatEditText4.perform(scrollTo(), replaceText("Sweet"), closeSoftKeyboard());
 
         ViewInteraction appCompatButton5 = onView(
                 allOf(withId(android.R.id.button1), withText("OK"),
@@ -184,6 +175,8 @@ public class AddFoodTest {
                                         0),
                                 3)));
         appCompatButton5.perform(scrollTo(), click());
+
+        onView(withText("Sweet")).check(matches(isDisplayed()));
 
         ViewInteraction recyclerView5 = onView(
                 allOf(withId(R.id.recycler_view),
@@ -197,15 +190,8 @@ public class AddFoodTest {
                         childAtPosition(
                                 withId(R.id.contentPanel),
                                 0)))
-                .atPosition(0);
+                .atPosition(3);
         appCompatCheckedTextView.perform(click());
-
-        //Testing if difficulty Easy is selected
-//        onData(anything())
-//                .inAdapterView(allOf(withId(R.id.select_dialog_listview),
-//                        childAtPosition(
-//                                withId(R.id.contentPanel),
-//                                0))).check(matches(isEnabled()));
 
         ViewInteraction recyclerView6 = onView(
                 allOf(withId(R.id.recycler_view),
@@ -221,7 +207,7 @@ public class AddFoodTest {
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
                                 1)));
-        appCompatEditText5.perform(scrollTo(), replaceText("American"), closeSoftKeyboard());
+        appCompatEditText5.perform(scrollTo(), replaceText("Chinese"), closeSoftKeyboard());
 
         ViewInteraction appCompatButton6 = onView(
                 allOf(withId(android.R.id.button1), withText("OK"),
@@ -231,6 +217,8 @@ public class AddFoodTest {
                                         0),
                                 3)));
         appCompatButton6.perform(scrollTo(), click());
+
+        onView(withText("Chinese")).check(matches(isDisplayed()));
 
         ViewInteraction recyclerView7 = onView(
                 allOf(withId(R.id.recycler_view),
@@ -251,16 +239,8 @@ public class AddFoodTest {
                         childAtPosition(
                                 withId(R.id.contentPanel),
                                 0)))
-                .atPosition(3);
+                .atPosition(0);
         appCompatCheckedTextView2.perform(click());
-
-        DataInteraction appCompatCheckedTextView3 = onData(anything())
-                .inAdapterView(allOf(withId(R.id.select_dialog_listview),
-                        childAtPosition(
-                                withId(R.id.contentPanel),
-                                0)))
-                .atPosition(2);
-        appCompatCheckedTextView3.perform(click());
 
         ViewInteraction appCompatButton7 = onView(
                 allOf(withId(android.R.id.button1), withText("OK"),
@@ -294,7 +274,9 @@ public class AddFoodTest {
                                         withId(R.id.ingredientLayout),
                                         0),
                                 0)));
-        textInputEditText.perform(scrollTo(), replaceText("Milk"), closeSoftKeyboard());
+        textInputEditText.perform(scrollTo(), replaceText("chicken"), closeSoftKeyboard());
+
+        onView(withId(R.id.ingredientName)).check(matches(withText("chicken")));
 
         ViewInteraction textInputEditText2 = onView(
                 allOf(withId(R.id.ingredientQuantity),
@@ -303,7 +285,9 @@ public class AddFoodTest {
                                         withId(R.id.textInputLayout),
                                         0),
                                 0)));
-        textInputEditText2.perform(scrollTo(), replaceText("1 cup"), closeSoftKeyboard());
+        textInputEditText2.perform(scrollTo(), replaceText("1kg"), closeSoftKeyboard());
+
+        onView(withId(R.id.ingredientQuantity)).check(matches(withText("1kg")));
 
         ViewInteraction materialButton = onView(
                 allOf(withId(R.id.addIngredientButton), withText("ADD"),
@@ -314,6 +298,8 @@ public class AddFoodTest {
                                 4)));
         materialButton.perform(scrollTo(), click());
 
+        onView(withText("chicken - 1kg")).check(matches(isDisplayed()));
+
         ViewInteraction textInputEditText3 = onView(
                 allOf(withId(R.id.ingredientName),
                         childAtPosition(
@@ -321,7 +307,9 @@ public class AddFoodTest {
                                         withId(R.id.ingredientLayout),
                                         0),
                                 0)));
-        textInputEditText3.perform(scrollTo(), replaceText("Cereal"), closeSoftKeyboard());
+        textInputEditText3.perform(scrollTo(), replaceText("salt"), closeSoftKeyboard());
+
+        onView(withId(R.id.ingredientName)).check(matches(withText("salt")));
 
         ViewInteraction textInputEditText4 = onView(
                 allOf(withId(R.id.ingredientQuantity),
@@ -330,7 +318,9 @@ public class AddFoodTest {
                                         withId(R.id.textInputLayout),
                                         0),
                                 0)));
-        textInputEditText4.perform(scrollTo(), replaceText("1 cup"), closeSoftKeyboard());
+        textInputEditText4.perform(scrollTo(), replaceText("10g"), closeSoftKeyboard());
+
+        onView(withId(R.id.ingredientQuantity)).check(matches(withText("10g")));
 
         ViewInteraction materialButton2 = onView(
                 allOf(withId(R.id.addIngredientButton), withText("ADD"),
@@ -341,32 +331,115 @@ public class AddFoodTest {
                                 4)));
         materialButton2.perform(scrollTo(), click());
 
+        onView(withText("salt - 10g")).check(matches(isDisplayed()));
+
+        ViewInteraction materialButton3 = onView(
+                allOf(withId(R.id.remove), withText("Remove"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.ingredientContainer),
+                                        1),
+                                0)));
+        materialButton3.perform(scrollTo(), click());
+
+        onView(withText("salt - 10g")).check(doesNotExist());
+
         ViewInteraction textInputEditText5 = onView(
+                allOf(withId(R.id.ingredientName),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.ingredientLayout),
+                                        0),
+                                0)));
+        textInputEditText5.perform(scrollTo(), replaceText("sea salt"), closeSoftKeyboard());
+
+        onView(withId(R.id.ingredientName)).check(matches(withText("sea salt")));
+
+        ViewInteraction textInputEditText6 = onView(
+                allOf(withId(R.id.ingredientQuantity),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.textInputLayout),
+                                        0),
+                                0)));
+        textInputEditText6.perform(scrollTo(), replaceText("20g"), closeSoftKeyboard());
+
+        onView(withId(R.id.ingredientQuantity)).check(matches(withText("20g")));
+
+        ViewInteraction materialButton4 = onView(
+                allOf(withId(R.id.addIngredientButton), withText("ADD"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.scrollView),
+                                        0),
+                                4)));
+        materialButton4.perform(scrollTo(), click());
+
+        onView(withText("sea salt - 20g")).check(matches(isDisplayed()));
+
+        ViewInteraction textInputEditText7 = onView(
                 allOf(withId(R.id.instructionName),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.instructionLayout),
                                         0),
                                 0)));
-        textInputEditText5.perform(scrollTo(), replaceText("Pour milk and cereal into bowl"), closeSoftKeyboard());
+        textInputEditText7.perform(scrollTo(), replaceText("cook the chicken"), closeSoftKeyboard());
 
-        ViewInteraction materialButton3 = onView(
+        onView(withId(R.id.instructionName)).check(matches(withText("cook the chicken")));
+
+        ViewInteraction materialButton5 = onView(
                 allOf(withId(R.id.addInstructionButton), withText("ADD"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.scrollView),
                                         0),
                                 8)));
-        materialButton3.perform(scrollTo(), click());
+        materialButton5.perform(scrollTo(), click());
 
-        ViewInteraction extendedFloatingActionButton2 = onView(
-                allOf(withId(R.id.submit), withText("Submit"),
+        onView(withText("cook the chicken")).check(matches(isDisplayed()));
+
+        ViewInteraction textInputEditText8 = onView(
+                allOf(withId(R.id.instructionName),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.instructionLayout),
+                                        0),
+                                0)));
+        textInputEditText8.perform(scrollTo(), replaceText("paste with salt"), closeSoftKeyboard());
+
+        onView(withId(R.id.instructionName)).check(matches(withText("paste with salt")));
+
+        ViewInteraction materialButton6 = onView(
+                allOf(withId(R.id.addInstructionButton), withText("ADD"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.scrollView),
                                         0),
-                                10)));
-        extendedFloatingActionButton2.perform(scrollTo(), click());
+                                8)));
+        materialButton6.perform(scrollTo(), click());
+
+        onView(withText("cook the chicken")).check(matches(isDisplayed()));
+
+        ViewInteraction textInputEditText9 = onView(
+                allOf(withId(R.id.instructionName),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.instructionLayout),
+                                        0),
+                                0)));
+        textInputEditText9.perform(scrollTo(), replaceText("roast the chicken"), closeSoftKeyboard());
+
+        ViewInteraction materialButton7 = onView(
+                allOf(withId(R.id.addInstructionButton), withText("ADD"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.scrollView),
+                                        0),
+                                8)));
+        materialButton7.perform(scrollTo(), click());
+
+        onView(withId(R.id.submit)).perform(scrollTo(), click());
 
         ViewInteraction appCompatButton8 = onView(
                 allOf(withId(android.R.id.button3), withText("OK"),
@@ -379,9 +452,38 @@ public class AddFoodTest {
                         isDisplayed()));
         appCompatButton8.perform(click());
 
+        try {
+            Thread.sleep(700);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ViewInteraction bottomNavigationItemView = onView(
+                allOf(withId(R.id.navigation_favorites), withContentDescription("Favorite"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.nav_view),
+                                        0),
+                                1),
+                        isDisplayed()));
+        bottomNavigationItemView.perform(click());
+
+        try {
+            Thread.sleep(700);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ViewInteraction recyclerView9 = onView(
+                allOf(withId(R.id.favouritefood_list),
+                        childAtPosition(
+                                withId(R.id.frameLayout),
+                                0)));
+
+        recyclerView9.perform(actionOnItemAtPosition(3, click()));
+
 
     }
-
 
     private static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {
