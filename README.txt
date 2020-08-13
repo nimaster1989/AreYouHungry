@@ -30,6 +30,10 @@ How to test:
     To restore the db to its initial state you must copy the contents of app/src/main/assets/db/SC.script
     and copy them into app/database/SC.script
 
+    In order to swap between stub and actual db:
+        For integration tests go to BusinessPersistenceSeamTest.java and swap commented out code
+        For unit tests go to DataAccessTest.java and swap the commented out code
+
 Packages:
     - comp3350.Group2.areyouhungry.ui
       this package is in charge of the presentation layer, it contains all the code for the gui and

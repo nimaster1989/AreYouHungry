@@ -25,11 +25,11 @@ public class DataAccessTest extends TestCase{
     public void setUp(){
         System.out.println("Starting Persistence");
         /* Use the following statements to run with the stub database. */
-         dataAccess = new DataAccessStub();
-         dataAccess.open("Stub");
+//        dataAccess = new DataAccessStub();
+//        dataAccess.open("Stub");
         /* or switch to the real database: */
-//        dataAccess = new DataAccessObject(MainActivity.dbName);
-//        dataAccess.open(MainActivity.getDBPathName());
+        dataAccess = new DataAccessObject(MainActivity.dbName);
+        dataAccess.open(MainActivity.getDBPathName());
 }
 
     public void tearDown(){

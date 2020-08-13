@@ -37,20 +37,33 @@ public class BusinessPersistenceSeamTest extends TestCase{
     public void testAccessFood(){
         Services.closeDataAccess();
         Services.createDataAccess(dataAccess);
-        Food testFood = new Food(7,"testFood",1,10,"Spicy","Hard","Canadian");
         AccessFoods accessFoods = new AccessFoods();
+        AccessUsers accessUsers = new AccessUsers();
+
+        User testUser = new User(3, "testuser");
+        User returnedUser = accessUsers.getUserByID(3);
+        assertNull(returnedUser);
+        accessUsers.newUsers(testUser.getUserName());
+        returnedUser = accessUsers.getUserByID(3);
+        assertTrue(testUser.equals(returnedUser));
+
+
+        Food testFood = new Food(7,"testFood",1,10,"Spicy","Hard","Canadian");
         accessFoods.addFood(testFood);
         Food returnedFood = accessFoods.getFoodByID("7");
         assertTrue(testFood.equals(returnedFood));
 
-        testFood.setFavourite(true);
-        returnedFood = accessFoods.getFoodByID("7");
-        assertTrue(returnedFood.getFavourite());
 
-        testFood.setFavourite(false);
+        accessFoods.setFoodFavouriteByUser(testUser, testFood.getFoodID(), true);
+        returnedFood = accessFoods.getFoodByID("7");
+        assertTrue(accessFoods.getFoodFavouriteByUser(testUser,returnedFood));
+
+
         returnedFood = accessFoods.getFoodByID("7");
         assertFalse(returnedFood.getFavourite());
 
+        accessFoods.setFoodFavouriteByUser(testUser, testFood.getFoodID(), false);
+        dataAccess.deleteUser(3);
         dataAccess.deleteFood(7);
         Services.closeDataAccess();
     }
