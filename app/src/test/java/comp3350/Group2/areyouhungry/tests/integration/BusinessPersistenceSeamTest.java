@@ -29,8 +29,8 @@ public class BusinessPersistenceSeamTest extends TestCase{
 
     public void setUp(){
         System.out.println("Starting Persistence");
-//        dataAccess = new DataAccessObject(dbName);
-//        dataAccess.open(MainActivity.getDBPathName());
+      // dataAccess = new DataAccessObject(dbName);
+        //dataAccess.open(MainActivity.getDBPathName());
         dataAccess = new DataAccessStub(dbName);
         dataAccess.open(MainActivity.getDBPathName());
     }
@@ -40,7 +40,7 @@ public class BusinessPersistenceSeamTest extends TestCase{
 
     public void testAccessFood(){
         Services.closeDataAccess();
-        Services.createDataAccess(new DataAccessStub(dbName));
+        Services.createDataAccess(dataAccess);
         Food testFood = new Food(7,"testFood",1,10,"Spicy","Hard","Canadian");
         AccessFoods accessFoods = new AccessFoods();
         accessFoods.addFood(testFood);
@@ -160,20 +160,20 @@ public class BusinessPersistenceSeamTest extends TestCase{
 
     public void testGetUser(){
         Services.closeDataAccess();
-        Services.createDataAccess(new DataAccessStub(dbName));
-        User newUser = new User(4,"testuser");
+        Services.createDataAccess(dataAccess);
+        User newUser = new User(3,"testuser");
         AccessUsers accessUsers = new AccessUsers();
-        User returnedUser = accessUsers.getUserByID(4);
+        User returnedUser = accessUsers.getUserByID(3);
         assertNull(returnedUser);
 
         accessUsers.newUsers(newUser.getUserName());
-        returnedUser = accessUsers.getUserByID(4);
+        returnedUser = accessUsers.getUserByID(3);
         assertTrue(newUser.equals(returnedUser));
 
         ArrayList<User> userList = new ArrayList<>();
         accessUsers.getUsers(userList);
-        assertEquals(userList.size(),4);
-        dataAccess.deleteUser(4);
+        assertEquals(userList.size(),3);
+        dataAccess.deleteUser(3);
         Services.closeDataAccess();
     }
 

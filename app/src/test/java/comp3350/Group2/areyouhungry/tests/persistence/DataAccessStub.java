@@ -123,8 +123,6 @@ public class DataAccessStub implements DataAccess{
         users.add(user);
         user = new User(2,"sample user");
         users.add(user);
-        user = new User(3,"new user");
-        users.add(user);
 
         questions = new ArrayList<Question>();
         question = new Question("You are on fear factor and the following items are presented for you to feast on. A blue substance you cant tell is bleach or gatorade, An Ant Hill, Hot Rocks, or a Mystery Box the host insists is much worse.What do you choose?", "Its worth the risk for sweet sweet Gatorade", "Ants are like little chips... right?", "Mmmmm hot rocks go brrrr", "Ahhh A nice fresh box!");

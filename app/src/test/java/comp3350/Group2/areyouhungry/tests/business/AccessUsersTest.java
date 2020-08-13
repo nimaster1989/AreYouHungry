@@ -30,7 +30,7 @@ public class AccessUsersTest extends TestCase{
         ArrayList<User> users = new ArrayList<>();
         accessUsers.getUsers(users);
         assertFalse(users.isEmpty());
-        assertEquals(users.size(),3);
+        assertEquals(users.size(),2);
         Services.closeDataAccess();
     }
     public void testGetDefaultUser(){
@@ -51,13 +51,13 @@ public class AccessUsersTest extends TestCase{
         AccessUsers accessUsers= new AccessUsers();
         ArrayList<User> users = new ArrayList<>();
         accessUsers.getUsers(users);
-        assertEquals(users.size(),3);
+        assertEquals(users.size(),2);
         users.clear();
         accessUsers.newUsers(newUserName);
         accessUsers.getUsers(users);
-        assertEquals(users.get(3).getUserName(),"a man has no name");
-        assertEquals(users.get(3).getUserID(),4);
-        assertEquals(users.size(),4);
+        assertEquals(users.get(2).getUserName(),"a man has no name");
+        assertEquals(users.get(2).getUserID(),3);
+        assertEquals(users.size(),3);
         Services.closeDataAccess();
     }
 
@@ -68,11 +68,11 @@ public class AccessUsersTest extends TestCase{
         AccessUsers accessUsers= new AccessUsers();
         ArrayList<User> users = new ArrayList<>();
         accessUsers.getUsers(users);
-        assertEquals(users.size(),3);
+        assertEquals(users.size(),2);
         users.clear();
         accessUsers.newUsers(newUserName);
         accessUsers.getUsers(users);
-        assertEquals(users.size(),3);
+        assertEquals(users.size(),2);
         Services.closeDataAccess();
     }
 }
