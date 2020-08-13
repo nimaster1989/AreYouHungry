@@ -1,4 +1,4 @@
-package comp3350.Group2.areyouhungry;
+package comp3350.Group2.areyouhungry.acceptance;
 
 
 import android.view.View;
@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 
 import androidx.test.espresso.ViewInteraction;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
@@ -13,9 +14,13 @@ import androidx.test.runner.AndroidJUnit4;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import comp3350.Group2.areyouhungry.MainActivity;
+import comp3350.Group2.areyouhungry.R;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.Espresso.pressBack;
@@ -31,15 +36,15 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class FavouriteDisfavouriteRecipeTest {
+public class FavouriteFoodTest{
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void favouriteDisfavouriteRecipeTest() {
+    public void favouriteDisfavouriteRecipeTest(){
         ViewInteraction bottomNavigationItemView = onView(
-                allOf(withId(R.id.navigation_more), withContentDescription("More"),
+                allOf(ViewMatchers.withId(R.id.navigation_more), withContentDescription("More"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.nav_view),
@@ -48,9 +53,9 @@ public class FavouriteDisfavouriteRecipeTest {
                         isDisplayed()));
         bottomNavigationItemView.perform(click());
 
-        try {
+        try{
             Thread.sleep(700);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e){
             e.printStackTrace();
         }
 
@@ -65,9 +70,9 @@ public class FavouriteDisfavouriteRecipeTest {
                         isDisplayed()));
         appCompatButton.perform(click());
 
-        try {
+        try{
             Thread.sleep(700);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e){
             e.printStackTrace();
         }
 
@@ -78,9 +83,9 @@ public class FavouriteDisfavouriteRecipeTest {
                                 0)));
         recyclerView.perform(actionOnItemAtPosition(1, click()));
 
-        try {
+        try{
             Thread.sleep(700);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e){
             e.printStackTrace();
         }
 
@@ -96,9 +101,9 @@ public class FavouriteDisfavouriteRecipeTest {
 
         pressBack();
 
-        try {
+        try{
             Thread.sleep(700);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e){
             e.printStackTrace();
         }
 
@@ -113,9 +118,9 @@ public class FavouriteDisfavouriteRecipeTest {
         bottomNavigationItemView2.perform(click());
 
 
-        try {
+        try{
             Thread.sleep(700);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e){
             e.printStackTrace();
         }
 
@@ -136,9 +141,9 @@ public class FavouriteDisfavouriteRecipeTest {
                                 0)));
         recyclerView2.perform(actionOnItemAtPosition(1, click()));
 
-        try {
+        try{
             Thread.sleep(700);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e){
             e.printStackTrace();
         }
 
@@ -152,6 +157,16 @@ public class FavouriteDisfavouriteRecipeTest {
                         isDisplayed()));
         floatingActionButton2.perform(click());
 
+        ViewInteraction textView10 = onView(
+                allOf(withId(R.id.snackbar_text), withText("You Unfavourite this food!"),
+                        childAtPosition(
+                                childAtPosition(
+                                        IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class),
+                                        0),
+                                0),
+                        isDisplayed()));
+        textView10.check(matches(withText("You Unfavourite this food!")));
+
         ViewInteraction appCompatImageButton = onView(
                 allOf(withContentDescription("Navigate up"),
                         childAtPosition(
@@ -163,9 +178,9 @@ public class FavouriteDisfavouriteRecipeTest {
                         isDisplayed()));
         appCompatImageButton.perform(click());
 
-        try {
+        try{
             Thread.sleep(700);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e){
             e.printStackTrace();
         }
 
@@ -183,17 +198,17 @@ public class FavouriteDisfavouriteRecipeTest {
     }
 
     private static Matcher<View> childAtPosition(
-            final Matcher<View> parentMatcher, final int position) {
+            final Matcher<View> parentMatcher, final int position){
 
-        return new TypeSafeMatcher<View>() {
+        return new TypeSafeMatcher<View>(){
             @Override
-            public void describeTo(Description description) {
+            public void describeTo(Description description){
                 description.appendText("Child at position " + position + " in parent ");
                 parentMatcher.describeTo(description);
             }
 
             @Override
-            public boolean matchesSafely(View view) {
+            public boolean matchesSafely(View view){
                 ViewParent parent = view.getParent();
                 return parent instanceof ViewGroup && parentMatcher.matches(parent)
                         && view.equals(((ViewGroup) parent).getChildAt(position));

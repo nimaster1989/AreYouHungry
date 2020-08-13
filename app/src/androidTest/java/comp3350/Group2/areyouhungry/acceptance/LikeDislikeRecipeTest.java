@@ -14,6 +14,7 @@ import androidx.test.runner.AndroidJUnit4;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,19 +34,19 @@ import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class LikeDislikeRecipeTest {
+public class LikeDislikeRecipeTest{
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void likeDislikeRecipeTest() {
+    public void likeDislikeRecipeTest(){
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
+        try{
             Thread.sleep(700);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e){
             e.printStackTrace();
         }
 
@@ -63,9 +64,9 @@ public class LikeDislikeRecipeTest {
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
+        try{
             Thread.sleep(700);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e){
             e.printStackTrace();
         }
 
@@ -177,9 +178,9 @@ public class LikeDislikeRecipeTest {
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
+        try{
             Thread.sleep(700);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e){
             e.printStackTrace();
         }
 
@@ -194,6 +195,16 @@ public class LikeDislikeRecipeTest {
                         isDisplayed()));
         floatingActionButton.perform(click());
 
+        ViewInteraction textView11 = onView(
+                allOf(withId(R.id.snackbar_text), withText("You liked it! Thank You For The Feedback!"),
+                        childAtPosition(
+                                childAtPosition(
+                                        IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class),
+                                        0),
+                                0),
+                        isDisplayed()));
+        textView11.check(matches(withText("You liked it! Thank You For The Feedback!")));
+
         ViewInteraction appCompatButton7 = onView(
                 allOf(withId(R.id.returnHomeButton), withText("Return Home"),
                         childAtPosition(
@@ -207,9 +218,9 @@ public class LikeDislikeRecipeTest {
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
+        try{
             Thread.sleep(700);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e){
             e.printStackTrace();
         }
 
@@ -227,9 +238,9 @@ public class LikeDislikeRecipeTest {
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
+        try{
             Thread.sleep(700);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e){
             e.printStackTrace();
         }
 
@@ -341,9 +352,9 @@ public class LikeDislikeRecipeTest {
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
+        try{
             Thread.sleep(700);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e){
             e.printStackTrace();
         }
 
@@ -367,6 +378,16 @@ public class LikeDislikeRecipeTest {
                         isDisplayed()));
         floatingActionButton3.perform(click());
 
+        ViewInteraction textView10 = onView(
+                allOf(withId(R.id.snackbar_text), withText("You Disliked it :( Thank You For The Feedback!"),
+                        childAtPosition(
+                                childAtPosition(
+                                        IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class),
+                                        0),
+                                0),
+                        isDisplayed()));
+        textView10.check(matches(withText("You Disliked it :( Thank You For The Feedback!")));
+
         ViewInteraction appCompatButton14 = onView(
                 allOf(withId(R.id.returnHomeButton), withText("Return Home"),
                         childAtPosition(
@@ -379,17 +400,17 @@ public class LikeDislikeRecipeTest {
     }
 
     private static Matcher<View> childAtPosition(
-            final Matcher<View> parentMatcher, final int position) {
+            final Matcher<View> parentMatcher, final int position){
 
-        return new TypeSafeMatcher<View>() {
+        return new TypeSafeMatcher<View>(){
             @Override
-            public void describeTo(Description description) {
+            public void describeTo(Description description){
                 description.appendText("Child at position " + position + " in parent ");
                 parentMatcher.describeTo(description);
             }
 
             @Override
-            public boolean matchesSafely(View view) {
+            public boolean matchesSafely(View view){
                 ViewParent parent = view.getParent();
                 return parent instanceof ViewGroup && parentMatcher.matches(parent)
                         && view.equals(((ViewGroup) parent).getChildAt(position));

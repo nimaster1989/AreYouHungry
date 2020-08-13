@@ -24,10 +24,10 @@ import comp3350.Group2.areyouhungry.R;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
+import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -36,23 +36,57 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class AddUserTest{
+public class SwithUserTest{
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void addUserTest(){
+    public void swithUserTest(){
         ViewInteraction bottomNavigationItemView = onView(
-                allOf(ViewMatchers.withId(R.id.navigation_more), withContentDescription("More"),
+                allOf(ViewMatchers.withId(R.id.navigation_favorites), withContentDescription("Favorite"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.nav_view),
+                                        0),
+                                1),
+                        isDisplayed()));
+        bottomNavigationItemView.perform(click());
+
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try{
+            Thread.sleep(700);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
+        ViewInteraction textView = onView(
+                allOf(withId(R.id.content), withText("Baked Salmon"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.favouritefood_list),
+                                        0),
+                                1),
+                        isDisplayed()));
+        textView.check(matches(withText("Baked Salmon")));
+
+        ViewInteraction bottomNavigationItemView2 = onView(
+                allOf(withId(R.id.navigation_more), withContentDescription("More"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.nav_view),
                                         0),
                                 2),
                         isDisplayed()));
-        bottomNavigationItemView.perform(click());
+        bottomNavigationItemView2.perform(click());
 
+        onView(withText("Welcome! Default User")).check(matches(isDisplayed()));
+
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try{
             Thread.sleep(700);
         } catch (InterruptedException e){
@@ -70,50 +104,30 @@ public class AddUserTest{
                         isDisplayed()));
         appCompatButton.perform(click());
 
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try{
             Thread.sleep(700);
         } catch (InterruptedException e){
             e.printStackTrace();
         }
 
-        ViewInteraction extendedFloatingActionButton = onView(
-                allOf(withId(R.id.all_fab), withText("Add User"),
+        ViewInteraction recyclerView = onView(
+                allOf(withId(R.id.user_list),
                         childAtPosition(
-                                allOf(withId(R.id.user_constrain),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                2),
-                        isDisplayed()));
-        extendedFloatingActionButton.perform(click());
-
-        ViewInteraction editText = onView(
-                allOf(childAtPosition(
-                        allOf(withId(R.id.custom),
-                                childAtPosition(
-                                        withId(R.id.customPanel),
-                                        0)),
-                        0),
-                        isDisplayed()));
-        editText.perform(replaceText("Cool User"), closeSoftKeyboard());
+                                withId(R.id.user_frameLayout),
+                                0)));
+        recyclerView.perform(actionOnItemAtPosition(1, click()));
 
         ViewInteraction appCompatButton2 = onView(
-                allOf(withId(android.R.id.button1), withText("OK"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.buttonPanel),
-                                        0),
-                                3)));
-        appCompatButton2.perform(scrollTo(), click());
-
-        ViewInteraction appCompatButton3 = onView(
                 allOf(withId(android.R.id.button1), withText("Yes"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.buttonPanel),
                                         0),
                                 3)));
-        appCompatButton3.perform(scrollTo(), click());
+        appCompatButton2.perform(scrollTo(), click());
 
         pressBack();
 
@@ -123,7 +137,20 @@ public class AddUserTest{
             e.printStackTrace();
         }
 
-        onView(withText("Welcome! Cool User")).check(matches(isDisplayed()));
+        onView(withText("Welcome! Sample user")).check(matches(isDisplayed()));
+
+        ViewInteraction bottomNavigationItemView3 = onView(
+                allOf(withId(R.id.navigation_favorites), withContentDescription("Favorite"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.nav_view),
+                                        0),
+                                1),
+                        isDisplayed()));
+        bottomNavigationItemView3.perform(click());
+
+        onView(withText("Baked Salmon")).check(doesNotExist());
+
     }
 
     private static Matcher<View> childAtPosition(
