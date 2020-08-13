@@ -211,15 +211,16 @@ public class AccessFoodsTest extends TestCase{
         Services.closeDataAccess();
     }
 
-    public void testGetFoodsByCategory(){
+    public void testGetFoodsByCategory() {
         Services.closeDataAccess();
         Services.createDataAccess(new DataAccessStub(dbName));
         AccessFoods accessFoods = new AccessFoods();
         ArrayList<Food> foodResult = new ArrayList<>();
-        accessFoods.getFoodsByCategory("Grain",foodResult);
-        assertEquals(foodResult.size(),2);
-        assertEquals(foodResult.get(0).getFoodName(),"Spicy Spaghetti");
-        assertEquals(foodResult.get(1).getFoodName(),"Egg Fried Rice");
+        accessFoods.getFoodsByCategory("Grain", foodResult);
+        assertEquals(foodResult.size(), 2);
+        assertEquals(foodResult.get(0).getFoodName(), "Spicy Spaghetti");
+        assertEquals(foodResult.get(1).getFoodName(), "Egg Fried Rice");
+    }
 
     public void testGetImageByFood(){
         Services.closeDataAccess();

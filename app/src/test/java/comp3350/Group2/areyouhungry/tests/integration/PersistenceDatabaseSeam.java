@@ -83,8 +83,9 @@ public class PersistenceDatabaseSeam extends TestCase{
 
         FoodCategory newFC = new FoodCategory(Integer.valueOf(newFood.getFoodID()),dairyID);
         dataAccess.addFoodCategory(Integer.valueOf(newFood.getFoodID()),dairyID);
-        dataAccess.
-        assertEquals(newFC.getCategoryID(),returnedCategoryId);
+        ArrayList<Food> foodlist = new ArrayList<>();
+        dataAccess.getFoodSequentialByCategory("Dairy",foodlist);
+        assertEquals(foodlist.size(),3);
 
         dataAccess.deleteFoodCategory(Integer.valueOf(newFood.getFoodID()),dairyID);
 

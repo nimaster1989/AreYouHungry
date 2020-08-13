@@ -490,7 +490,7 @@ public class DataAccessObject implements DataAccess{
         result = null;
 
         try{
-            cmdString = "SELECT * FROM CATEGORIES WHERE CATEGORIES.CATEGORYNAME = '"+categoryName+"'";
+            cmdString = "SELECT * FROM CATEGORYS WHERE CATEGORYS.CATEGORYNAME = '"+categoryName+"'";
             rs5 = st3.executeQuery(cmdString);
             while (rs5.next()){
                 myID = rs5.getInt("CATEGORYID");
@@ -780,9 +780,9 @@ public class DataAccessObject implements DataAccess{
         Food food;
         try{
             cmdString = "select FOODSCATEGORY.FOODID from FOODSCATEGORY,CATEGORYS  where FOODSCATEGORY.CATEGORYID = CATEGORYS.CATEGORYID and CATEGORYS.CATEGORYNAME = '"+category+"'";
-            rs3 = st2.executeQuery(cmdString);
-            while(rs3.next()){
-                int foodID = rs3.getInt("FOODID");
+            rs4 = st2.executeQuery(cmdString);
+            while(rs4.next()){
+                int foodID = rs4.getInt("FOODID");
                 food = getFoodFromID(String.valueOf(foodID));
                 foodCategoryResult.add(food);
             }
