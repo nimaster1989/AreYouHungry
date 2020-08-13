@@ -468,7 +468,18 @@ public class DataAccessStub implements DataAccess{
             }
         }
     }
-
+    @Override
+    public void deleteFood(int foodID){
+        Iterator<Food> foodIterator = foods.iterator(); /* This iterates through the foods list. */
+        Food food;
+        while(foodIterator.hasNext()){
+            food = foodIterator.next();
+            if(Integer.parseInt(food.getFoodID()) == foodID){
+                foodIterator.remove();
+                break;
+            }
+        }
+    }
     @Override
     public int getIngredientRow(){
         return ingredients.size();

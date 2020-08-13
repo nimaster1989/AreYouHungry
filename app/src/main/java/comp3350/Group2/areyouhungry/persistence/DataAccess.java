@@ -70,6 +70,8 @@ public interface DataAccess{
 
     void deleteUser(int userID);
 
+    void deleteFood(int foodID);
+
     int getIngredientRow();
 
     String addFoodIngredient(int foodid, int ingredientid);
@@ -93,4 +95,6 @@ public interface DataAccess{
     String addFoodImage(int foodid, String foodURL);
 
     String getImageByFood(int foodid);
+
+
 }
